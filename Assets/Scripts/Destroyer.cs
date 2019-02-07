@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+
+class Destroyer : ADestroyer
 {
-    class Destroyer : MonoBehaviour, IDestroyer
+    public void Destroy(SceneData sceneData)
     {
-        public void Destroy(SceneData sceneData)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }
+

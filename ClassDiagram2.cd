@@ -3,36 +3,33 @@
   <Class Name="GameManager" Collapsed="true">
     <Position X="6" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AARAAQAAACAgAAAAABAAEAAAAAAAQBAAAAAAgAAQAAA=</HashCode>
       <FileName>Assets\Scripts\GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Assets.Scripts.PropsGenerator" Collapsed="true">
+  <Class Name="Generators.PropsGenerator" Collapsed="true">
     <Position X="0.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Assets\Scripts\PropsGenerator.cs</FileName>
+      <FileName>Assets\Scripts\Generators\PropsGenerator.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Assets.Scripts.EnemyGenerator" Collapsed="true">
+  <Class Name="Generators.EnemyGenerator" Collapsed="true">
     <Position X="5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Assets\Scripts\EnemyGenerator.cs</FileName>
+      <FileName>Assets\Scripts\Generators\EnemyGenerator.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Assets.Scripts.RailGenerator" Collapsed="true">
+  <Class Name="Generators.RailGenerator" Collapsed="true">
     <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Assets\Scripts\RailGenerator.cs</FileName>
+      <FileName>Assets\Scripts\Generators\RailGenerator.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Assets.Scripts.WorldMovement" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="3.5" Width="1.5" />
+    <Position X="4" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\WorldMovement.cs</FileName>
@@ -42,34 +39,61 @@
   <Class Name="SceneData">
     <Position X="11.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAEAAAAAACAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\SceneData.cs</FileName>
+      <HashCode>AABAAQAAAQAAAAAAAAAEAAAAAACAAAABAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\SceneData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Assets.Scripts.Destroyer" Collapsed="true">
+  <Class Name="Destroyer" Collapsed="true">
     <Position X="9.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Destroyer.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Assets.Scripts.IGenerator">
-    <Position X="3" Y="2" Width="1.5" />
+  <Class Name="ADestroyer" Collapsed="true">
+    <Position X="9.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ADestroyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AWorldMover" Collapsed="true">
+    <Position X="7.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\AWorldMover.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldMovement" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\WorldMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Generators.AGenerator" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Assets\Scripts\IGenerator.cs</FileName>
+      <FileName>Assets\Scripts\Generators\AGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Generators.IGenerator">
+    <Position X="2" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\IGenerator.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Assets.Scripts.IWorldMover">
-    <Position X="7.25" Y="2" Width="1.5" />
+    <Position X="6" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\IWorldMover.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Assets.Scripts.IDestroyer" Collapsed="true">
-    <Position X="9.25" Y="2" Width="1.5" />
+    <Position X="8" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\IDestroyer.cs</FileName>

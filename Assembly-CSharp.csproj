@@ -60,15 +60,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ADestroyer.cs" />
+    <Compile Include="Assets\Scripts\AWorldMover.cs" />
+    <Compile Include="Assets\Scripts\Data\SceneData.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
-    <Compile Include="Assets\Scripts\EnemyGenerator.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\IDestroyer.cs" />
-    <Compile Include="Assets\Scripts\IGenerator.cs" />
-    <Compile Include="Assets\Scripts\IWorldMover.cs" />
-    <Compile Include="Assets\Scripts\PropsGenerator.cs" />
-    <Compile Include="Assets\Scripts\RailGenerator.cs" />
-    <Compile Include="Assets\Scripts\SceneData.cs" />
+    <Compile Include="Assets\Scripts\Generators\AGenerator.cs" />
+    <Compile Include="Assets\Scripts\Generators\EnemyGenerator.cs" />
+    <Compile Include="Assets\Scripts\Generators\PropsGenerator.cs" />
+    <Compile Include="Assets\Scripts\Generators\RailGenerator.cs" />
     <Compile Include="Assets\Scripts\WorldMovement.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>E:/GameDev/Unity 2018.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

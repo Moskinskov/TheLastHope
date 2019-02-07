@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+class WorldMovement : AWorldMover
 {
-    class WorldMovement : MonoBehaviour, IWorldMover
+    [SerializeField] GameObject terrain1;
+    [SerializeField] GameObject terrain2;
+
+    public void MoveWorld(SceneData sceneData)
     {
-        public void MoveWorld(SceneData sceneData)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }
