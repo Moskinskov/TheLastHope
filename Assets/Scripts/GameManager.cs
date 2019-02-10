@@ -33,6 +33,6 @@ public class GameManager : MonoBehaviour
         railGen.Generate(sceneData);
         propsGen.Generate(sceneData);
         enemyGen.Generate(sceneData);
-        worldMover.MoveWorld(sceneData);
+        worldMover.MoveWorld(sceneData, Time.deltaTime);
     }
 }

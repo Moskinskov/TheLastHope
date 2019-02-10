@@ -5,8 +5,5 @@ using UnityEngine;
 
 public abstract class ADestroyer : MonoBehaviour
 {
-   public void Destroy(SceneData sceneData)
-   {
-
-   }
+    public abstract void Destroy(SceneData sceneData);
 }

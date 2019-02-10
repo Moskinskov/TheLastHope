@@ -7,9 +7,7 @@ namespace Generators
     public abstract class AGenerator : MonoBehaviour
     {
 
-        public void Generate(SceneData sceneData)
-        {
-
-        }
+        public abstract void Generate(SceneData sceneData);
+        
     }
 }

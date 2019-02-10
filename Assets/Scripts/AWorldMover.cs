@@ -5,8 +5,5 @@ using UnityEngine;
 
 public abstract class AWorldMover : MonoBehaviour
 {
-    public void MoveWorld(SceneData sceneData)
-    {
-
-    }
+    public abstract void MoveWorld(SceneData sceneData, float deltaTime);
 }
