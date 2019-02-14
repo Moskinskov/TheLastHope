@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Data;
 
-namespace Generators
+namespace TheLastHope.Generators
 {
     class PropsGenerator : AGenerator
     {

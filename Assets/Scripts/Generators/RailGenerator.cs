@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Generators
+using TheLastHope.Data;
+
+namespace TheLastHope.Generators
 {
     class RailGenerator : AGenerator
     {

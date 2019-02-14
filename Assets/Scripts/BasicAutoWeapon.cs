@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Helpers;
+﻿using TheLastHope.Helpers;
 using UnityEngine;
 
-public class AWeapon : MonoBehaviour
+public class BasicAutoWeapon : MonoBehaviour
 {
     [Header("Необходимые префабы")]
     [Tooltip("'Дуло', мушка")]

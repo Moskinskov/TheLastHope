@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Helpers;
+﻿using TheLastHope.Helpers;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace TheLastHope.Weapons
 {
     public class WeaponController : MonoBehaviour
     {
-        public AWeapon _weapon;
+        public BasicAutoWeapon _weapon;
        
         private void Update()
         {

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Generators;
+using TheLastHope.Generators;
+using TheLastHope.Data;
 
 public class GameManager : MonoBehaviour
 {

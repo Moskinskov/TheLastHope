@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.Helpers
+namespace TheLastHope.Helpers
 {
     /// <summary>
     /// Удобно отсчитывать время

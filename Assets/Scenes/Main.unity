@@ -1214,6 +1214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2001669937}
   - component: {fileID: 2001669936}
+  - component: {fileID: 2001669938}
   m_Layer: 0
   m_Name: MosMos
   m_TagString: Untagged
@@ -1254,3 +1255,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2001669938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001669935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4f57952b954384092de7f8af3daf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootingSpeed: 1
+  _shootingRange: 15
+  _reloadTime: 1
+  _clipSize: 5
+  _canChangeFiringMode: 0
+  _currentFiringMode: 1
+  _firingModesAvailable: 2
