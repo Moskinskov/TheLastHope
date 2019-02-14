@@ -16,7 +16,7 @@ namespace TheLastHope.Weapons
 		[SerializeField] protected float _clipSize = 5.0f; //clip size
 		[SerializeField] protected bool _canChangeFiringMode = false; //ability to change firing mode
 		[SerializeField] protected FiringMode _currentFiringMode; //current active firing mode
-		[SerializeField] protected FiringMode _firingModesAvailable; //available firing modes
+		[SerializeField] protected int[] _firingModesAvailable; //available firing modes
 		[SerializeField] protected AAmmo _ammo; //патроны
 		#endregion
 

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Abstract\AAmmo.cs" />
     <Compile Include="Assets\Scripts\Abstract\ADestroyer.cs" />
+    <Compile Include="Assets\Scripts\Abstract\AGenerator.cs" />
     <Compile Include="Assets\Scripts\Abstract\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Abstract\AWorldMover.cs" />
     <Compile Include="Assets\Scripts\BaseObject.cs" />
@@ -73,10 +74,10 @@
     <Compile Include="Assets\Scripts\Enemies\BikeEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\DynamicEnemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Generators\AGenerator.cs" />
     <Compile Include="Assets\Scripts\Generators\EnemyGenerator.cs" />
     <Compile Include="Assets\Scripts\Generators\PropsGenerator.cs" />
     <Compile Include="Assets\Scripts\Generators\RailGenerator.cs" />
+    <Compile Include="Assets\Scripts\GroundScroller.cs" />
     <Compile Include="Assets\Scripts\Helpers\Timer.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IPoolable.cs" />
     <Compile Include="Assets\Scripts\MachineGun.cs" />
