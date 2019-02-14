@@ -7,4 +7,5 @@ using TheLastHope.Data;
 public abstract class AWorldMover : MonoBehaviour
 {
     public abstract void MoveWorld(SceneData sceneData, float deltaTime);
+    public abstract void SetupMover(SceneData sceneData);
 }
