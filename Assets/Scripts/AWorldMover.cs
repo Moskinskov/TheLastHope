@@ -6,4 +6,5 @@ using UnityEngine;
 public abstract class AWorldMover : MonoBehaviour
 {
     public abstract void MoveWorld(SceneData sceneData, float deltaTime);
+    public abstract void SetupMover(SceneData sceneData);
 }
