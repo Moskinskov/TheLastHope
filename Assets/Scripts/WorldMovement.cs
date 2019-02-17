@@ -7,7 +7,6 @@ class WorldMovement : AWorldMover
 {
     [SerializeField] GameObject terrain;
     Material terrainMaterial;
-    [SerializeField] string nameOfSpeedVar;
     float trainPrevSpeed;
 
     /// <summary>
@@ -51,6 +50,10 @@ class WorldMovement : AWorldMover
             trainPrevSpeed = sceneData.trainSpeed;
         }
 
-        terrain.GetComponent<Renderer>().material.SetFloat(nameOfSpeedVar, sceneData.trainSpeed * deltaTime);
+        //if (terrainMaterial.mainTextureOffset.x < 1)
+        //    terrainMaterial.mainTextureOffset = terrainMaterial.mainTextureOffset + new Vector2(sceneData.trainSpeed * deltaTime, 0);
+        //else
+        //    terrainMaterial.mainTextureOffset = new Vector2(0, 0);
+        //terrain.GetComponent<Renderer>().material = terrainMaterial;
     }
 }

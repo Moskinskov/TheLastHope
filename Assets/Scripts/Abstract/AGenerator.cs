@@ -9,6 +9,7 @@ namespace TheLastHope.Generators
     {
 
         public abstract void Generate(SceneData sceneData);
+        public abstract void Generate(GameObject gameObject, SceneData sceneData, List<Vector3> positions);
         
     }
 }

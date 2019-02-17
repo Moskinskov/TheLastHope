@@ -11,13 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] AGenerator railGen;
     [SerializeField] AGenerator propsGen;
     [SerializeField] AGenerator enemyGen;
-    [SerializeField] float targetEnemyCount;
-    [SerializeField] float targetPropsCount;
+    [SerializeField] int targetEnemyCount;
+    [SerializeField] int targetPropsCount;
     [SerializeField] float trainSpeed;
     [SerializeField] AWorldMover worldMover;
     [SerializeField] ADestroyer destroyer;
     [SerializeField] GameObject debugEnemy;
     [SerializeField] GameObject debugEnemyPattern;
+    //[SerializeField] GameObject debugProps;
+    List<Vector3> patternPositions;
 
 
     // Start is called before the first frame update
@@ -30,16 +32,21 @@ public class GameManager : MonoBehaviour
         sceneData.enemies.Add(debugEnemy);
         sceneData.enemiesPatterns.Add(debugEnemyPattern);
         debugEnemy.GetComponent<BikeEnemy>().Initialize();
+        patternPositions = new List<Vector3>();
+        patternPositions.Add(debugEnemyPattern.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        sceneData.enemies[0].GetComponent<BikeEnemy>().Move(sceneData,Time.deltaTime);
+        foreach(var enemy in sceneData.enemies)
+        {
+            enemy.GetComponent<BikeEnemy>().Move(sceneData, Time.deltaTime);
+        }
         destroyer.Destroy(sceneData);
         railGen.Generate(sceneData);
         propsGen.Generate(sceneData);
-        enemyGen.Generate(sceneData);
+        enemyGen.Generate(debugEnemy,sceneData,patternPositions);
         worldMover.MoveWorld(sceneData, Time.deltaTime);
     }
 }
