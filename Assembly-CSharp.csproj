@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{B8C8A61A-4345-CD97-1DB7-1FC67E666262}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Turrel\Scripts\BulletController.cs" />
     <Compile Include="Assets\Turrel\Scripts\TurretController.cs" />
     <None Include="Assets\Shaders\MovingTerraShader.shader" />
+    <None Include="ClassDiagram3.cd" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>E:/GameDev/Unity 2018.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>

@@ -19,6 +19,7 @@ public class BasicAutoWeapon : MonoBehaviour
     [Range(10, 20), Tooltip("Кол-во патронов в обоиме")]
     public int _clipSize;
 
+    [SerializeField] float damage;
 
     #region Properties
 
@@ -72,6 +73,7 @@ public class BasicAutoWeapon : MonoBehaviour
         {
             Destroy(Instantiate(_Effect, tempHit.point, Quaternion.identity), 2f);
         }
+        tempHit.collider.gameObject.GetComponent<DynamicEnemy>().SetDamage(damage);
 
         CurrentClipSize--;
         SetActive(false);

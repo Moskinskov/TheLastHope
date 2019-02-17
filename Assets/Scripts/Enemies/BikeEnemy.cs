@@ -49,6 +49,7 @@ public class BikeEnemy : DynamicEnemy
     /// <param name="damage"></param>
     public override void SetDamage(float damage)
     {
+        health -= damage;
     }
 
     Vector3 GetCurrentSpeed(SceneData sceneData,Vector3 currentSpeed, GameObject targetPosition, float deltaTime)

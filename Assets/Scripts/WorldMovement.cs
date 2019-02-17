@@ -6,6 +6,7 @@ using TheLastHope.Data;
 class WorldMovement : AWorldMover
 {
     [SerializeField] GameObject terrain;
+    [SerializeField] float speedDivider;
     Material terrainMaterial;
     float trainPrevSpeed;
 
@@ -50,10 +51,9 @@ class WorldMovement : AWorldMover
             trainPrevSpeed = sceneData.trainSpeed;
         }
 
-        //if (terrainMaterial.mainTextureOffset.x < 1)
-        //    terrainMaterial.mainTextureOffset = terrainMaterial.mainTextureOffset + new Vector2(sceneData.trainSpeed * deltaTime, 0);
-        //else
-        //    terrainMaterial.mainTextureOffset = new Vector2(0, 0);
-        //terrain.GetComponent<Renderer>().material = terrainMaterial;
+        if (terrain.GetComponent<Renderer>().material.mainTextureOffset.x > -1)
+            terrain.GetComponent<Renderer>().material.mainTextureOffset -= new Vector2(sceneData.trainSpeed  * deltaTime / speedDivider, 0);
+        else
+            terrain.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, 0);
     }
 }

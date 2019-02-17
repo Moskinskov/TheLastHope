@@ -11,7 +11,7 @@ class Destroyer : ADestroyer
     {
         DestroyInList(sceneData.props);
         DestroyInList(sceneData.rails);
-        DestroyInList(sceneData.enemies);
+        DestroyDeadEnemiesInList(sceneData.enemies);
 
     }
 
@@ -20,6 +20,19 @@ class Destroyer : ADestroyer
         for(var i=0;i<list.Count;i++)
         {
             if (list[i].transform.position.x < xDestroyCoord)
+            {
+                Destroy(list[i].gameObject);
+                list.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    void DestroyDeadEnemiesInList(List<GameObject> list)
+    {
+        for (var i = 0; i < list.Count; i++)
+        {
+            if (list[i].GetComponent<DynamicEnemy>().health<=0)
             {
                 Destroy(list[i].gameObject);
                 list.RemoveAt(i);
