@@ -58,13 +58,26 @@ public class TurretController : MonoBehaviour
     public virtual void Update()
     {
         //Каждый кадр сохраняем текущее положение цели
-        previousTargetPosition = target.position;
+        if(!target)
+        {
+        }
+        else 
+        {
+            previousTargetPosition = target.position;
+        }
     }
 
     public virtual void LateUpdate()
     {
         //В конце каждого кадра высчитываем скорость цели
-        targetSpeed = (target.position - previousTargetPosition) / Time.deltaTime;
+        if(!target)
+        {
+
+        }
+        else
+        {
+            targetSpeed = (target.position - previousTargetPosition) / Time.deltaTime;          
+        }
     }
 
     //Finite State Machine
