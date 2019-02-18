@@ -73,7 +73,7 @@ public class BasicAutoWeapon : MonoBehaviour
         {
             Destroy(Instantiate(_Effect, tempHit.point, Quaternion.identity), 2f);
         }
-        tempHit.collider.gameObject.GetComponent<DynamicEnemy>().SetDamage(damage);
+        tempHit.collider.gameObject.GetComponent<AEnemy>().SetDamage(damage);
 
         CurrentClipSize--;
         SetActive(false);

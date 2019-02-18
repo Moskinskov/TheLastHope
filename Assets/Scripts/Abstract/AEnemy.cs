@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Data;
 
-public abstract class DynamicEnemy : BaseObject
+public abstract class AEnemy : BaseObject
 {
     [SerializeField] internal float maxSpeed;
     internal Vector3 currentSpeed;

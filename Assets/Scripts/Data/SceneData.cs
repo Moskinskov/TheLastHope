@@ -11,7 +11,8 @@ namespace TheLastHope.Data
 		public List<GameObject> trainCars;
 		public List<GameObject> rails;
 		public List<GameObject> enemiesPatterns;
-		public int targetEnemyCount;
+        public List<GameObject> ammos = new List<GameObject>();
+        public int targetEnemyCount;
 		public int targetPropsCount;
 		public float trainSpeed;
 

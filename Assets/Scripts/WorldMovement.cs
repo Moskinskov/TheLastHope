@@ -55,8 +55,9 @@ class WorldMovement : AWorldMover
             if (terrainRenderer.material.mainTextureOffset.x > -1)
                 terrainRenderer.material.mainTextureOffset -= new Vector2(sceneData.trainSpeed * deltaTime / speedDivider, 0);
             else
-                terrainRenderer.material.mainTextureOffset = new Vector2(0, 0);
+                terrainRenderer.material.mainTextureOffset += new Vector2(1, 0);
         }
+        print("offset: " +  terrainRenderers[0].material.mainTextureOffset.x);
 
     }
 }
