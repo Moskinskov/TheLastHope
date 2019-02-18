@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TheLastHope.Weapons.AAmmo" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\AAmmo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Weapons.ARangedWeapon" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQAAAAAMAAAAUAACAAEAAAAAAAAkBRAACAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\ARangedWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Weapons.MachineGun" Collapsed="true">
+    <Position X="3.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Scripts\MachineGun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Weapons.WeaponController" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\WeaponController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ADestroyer" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\ADestroyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AWorldMover" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\AWorldMover.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseObject" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACIAACAAQAAAAAAABAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\BaseObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicAutoWeapon" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAKAAAAAgAAAAIAIAAQAAgAEBBAACAAAAOCAEEA=</HashCode>
+      <FileName>Assets\Scripts\BasicAutoWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Destroyer" Collapsed="true">
+    <Position X="6.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABACAACAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Destroyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BikeEnemy" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAIAQAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\BikeEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DynamicEnemy" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABEAAAAIAAAQQAIAAAABAAAAAAABQAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\DynamicEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARIAQAACCAgAAAAABAAEAAAAAAAQBAAAAAAggAQAAA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroundScroller" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGQAAAAAACAAAAAAAAAAAIAQAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GroundScroller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoolManager" Collapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PoolManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldMovement" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAABEAAAAAAAAQAAAAAAAAAQBAAAA=</HashCode>
+      <FileName>Assets\Scripts\WorldMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletController" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQACAAAAAAAAAAAAAAAAAAAQAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Turrel\Scripts\BulletController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurretController" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwkAABAACIAAJCAIAAAIBAAAQAOAAAUBAJgAAAAAgA=</HashCode>
+      <FileName>Assets\Turrel\Scripts\TurretController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Generators.AGenerator" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Abstract\AGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Generators.DynamicGenerator" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\DynamicGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Generators.EnemyGenerator" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\EnemyGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Generators.PropsGenerator" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAEUAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\PropsGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Generators.RailGenerator" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAABAEAAAAAAAAAAAAEAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\RailGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Generators.StaticGenerator" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAEUAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\StaticGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Data.SceneData" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAQAAAQAAAAAAAAAEAAAAAACAAAABAAAAAAEQAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\SceneData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Generators.AGenerator" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Generators\AGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Helpers.Timer" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACACgAAAAAAAAAQAAAAAAAAAAQAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Helpers\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheLastHope.Workers.ObjectPool" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Workers\ObjectPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IPoolable" Collapsed="true">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interfaces\IPoolable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TheLastHope.Data.FiringMode" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAEAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\FiringMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TheLastHope.Data.PoolType" Collapsed="true">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAEAAAAAAAAAAABAEAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\PoolType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

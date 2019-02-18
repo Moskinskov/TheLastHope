@@ -34,11 +34,13 @@ public class GameManager : MonoBehaviour
         debugEnemy.GetComponent<BikeEnemy>().Initialize();
         patternPositions = new List<Vector3>();
         patternPositions.Add(debugEnemyPattern.transform.position);
+        worldMover.SetupMover(sceneData);
     }
 
     // Update is called once per frame
     void Update()
     {
+        sceneData.trainSpeed = trainSpeed;
         foreach(var enemy in sceneData.enemies)
         {
             enemy.GetComponent<BikeEnemy>().Move(sceneData, Time.deltaTime);
