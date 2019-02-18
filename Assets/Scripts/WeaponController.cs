@@ -1,20 +1,26 @@
-﻿using TheLastHope.Helpers;
+﻿using TheLastHope.Data;
+using TheLastHope.Helpers;
 using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
     public class WeaponController : MonoBehaviour
     {
-        public BasicAutoWeapon _weapon;
+        public ARangedWeapon _weapon;
        
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && _weapon._isActive)
+
+        }
+
+        public void UpdateWeapons(SceneData sceneData, bool lmbIsPressed)
+        {
+            if (lmbIsPressed)
             {
-                _weapon.Fire();
+                _weapon.Fire(sceneData);
             }
-            if (Input.GetKeyDown(KeyCode.R))
-                _weapon.Reload();
+            //if (Input.GetKeyDown(KeyCode.R))
+            //    _weapon.Reload();
         }
     }
 }

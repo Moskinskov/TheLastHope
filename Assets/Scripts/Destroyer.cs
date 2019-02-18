@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Data;
-
+using TheLastHope.Weapons;
 
 class Destroyer : ADestroyer
 {
@@ -12,7 +12,7 @@ class Destroyer : ADestroyer
         DestroyInList(sceneData.props);
         DestroyInList(sceneData.rails);
         DestroyDeadEnemiesInList(sceneData.enemies);
-
+        DestroyFinishedAmmoInList(sceneData.ammos);
     }
 
     void DestroyInList(List<GameObject> list)
@@ -32,7 +32,20 @@ class Destroyer : ADestroyer
     {
         for (var i = 0; i < list.Count; i++)
         {
-            if (list[i].GetComponent<DynamicEnemy>().health<=0)
+            if (list[i].GetComponent<AEnemy>().health<=0)
+            {
+                Destroy(list[i].gameObject);
+                list.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    void DestroyFinishedAmmoInList(List<GameObject> list)
+    {
+        for (var i = 0; i < list.Count; i++)
+        {
+            if (list[i].GetComponent<AAmmo>().IsFinifhed)
             {
                 Destroy(list[i].gameObject);
                 list.RemoveAt(i);

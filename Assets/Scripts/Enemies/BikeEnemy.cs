@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Data;
 
-public class BikeEnemy : DynamicEnemy
+public class BikeEnemy : AEnemy
 {
     [SerializeField] float driftingSpeedDivider;
     /// <summary>

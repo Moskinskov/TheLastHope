@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Weapons;
+using TheLastHope.Data;
 
 namespace TheLastHope.Weapons
 {
 	public sealed class MachineGun : ARangedWeapon
 	{
-		public override void Fire(AAmmo ammo)
+        [SerializeField] GameObject barrel;
+		public override void Fire(SceneData scene)
 		{
-			throw new System.NotImplementedException();
+            AAmmo ammo =  Instantiate(_ammo,barrel.transform.position, barrel.transform.rotation);
+            ammo.Direction = barrel.transform.forward;
+            ammo.Range = _shootingRange;
+            scene.ammos.Add(ammo.gameObject);
+            
 		}
 
 		public override void Reload(int bulletsInClip)
