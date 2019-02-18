@@ -7,7 +7,7 @@ namespace TheLastHope.Generators
     class RailGenerator : AGenerator
     {
         [SerializeField] private GameObject _rails;
-        [SerializeField][Range(10,20)] private float railLength;
+        [SerializeField] private float railLength;
         [SerializeField] private float startTerrainCoordinate;    //if Terrain is located in x[-15; 15] startTerrainCoordinate will be -15
         [SerializeField] private int railsCount = 3;
         #region Debugging; start without GameManager
@@ -21,11 +21,11 @@ namespace TheLastHope.Generators
         public override void Generate(SceneData sceneData)
         {
             //first rail
-            _rails.GetComponentsInChildren<Transform>()[1].localScale = new Vector3(railLength, 0.5f, 0.5f);
-            _rails.GetComponentsInChildren<Transform>()[1].localPosition = new Vector3(railLength / 2, 0, 1);
+            //_rails.GetComponentsInChildren<Transform>()[1].localScale = new Vector3(railLength, 0.5f, 0.5f);
+            //_rails.GetComponentsInChildren<Transform>()[1].localPosition = new Vector3(railLength / 2, 0, 1);
             //second rail
-            _rails.GetComponentsInChildren<Transform>()[2].localScale = new Vector3(railLength, 0.5f, 0.5f);
-            _rails.GetComponentsInChildren<Transform>()[2].localPosition = new Vector3(railLength / 2, 0, -1);
+            //_rails.GetComponentsInChildren<Transform>()[2].localScale = new Vector3(railLength, 0.5f, 0.5f);
+            //_rails.GetComponentsInChildren<Transform>()[2].localPosition = new Vector3(railLength / 2, 0, -1);
 
             if (sceneData.rails.Count == 0)
             {
