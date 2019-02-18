@@ -6,6 +6,7 @@ using TheLastHope.Data;
 public class BikeEnemy : AEnemy
 {
     [SerializeField] float driftingSpeedDivider;
+    [SerializeField] float speedSmoother;
     /// <summary>
     /// Resets health.
     /// </summary>
@@ -37,7 +38,9 @@ public class BikeEnemy : AEnemy
     {
         //base.currentAcceleration = GetCurrentAcceleration(base.targetPosition, base.maxAcceleration);
         //base.currentSpeed = GetCurrentSpeed(base.currentSpeed, base.currentAcceleration, deltaTime);
-        base.currentSpeed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
+        Vector3 speed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
+        base.currentSpeed = Vector3.Lerp(base.currentSpeed,speed, speedSmoother);
+        gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward,currentSpeed);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
                                                     gameObject.transform.position.y + currentSpeed.y * deltaTime,
                                                     gameObject.transform.position.z + currentSpeed.z * deltaTime);

@@ -1608,6 +1608,7 @@ MonoBehaviour:
   targetPosition: {fileID: 425080510}
   driftingRadius: 6
   driftingSpeedDivider: 5
+  speedSmoother: 0.01
 --- !u!65 &1626866610
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1675,7 +1676,7 @@ Transform:
   m_GameObject: {fileID: 1626866608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -2, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
