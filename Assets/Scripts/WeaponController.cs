@@ -7,17 +7,13 @@ namespace TheLastHope.Weapons
     public class WeaponController : MonoBehaviour
     {
         public ARangedWeapon _weapon;
-       
-        private void Update()
-        {
-
-        }
-
-        public void UpdateWeapons(SceneData sceneData, bool lmbIsPressed)
+     
+        public void UpdateWeapons(bool lmbIsPressed)
         {
             if (lmbIsPressed)
             {
-                _weapon.Fire(sceneData);
+                _weapon.Fire();
+				
             }
             //if (Input.GetKeyDown(KeyCode.R))
             //    _weapon.Reload();

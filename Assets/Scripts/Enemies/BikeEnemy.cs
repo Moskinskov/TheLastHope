@@ -57,13 +57,13 @@ public class BikeEnemy : AEnemy
 
     Vector3 GetCurrentSpeed(SceneData sceneData,Vector3 currentSpeed, GameObject targetPosition, float deltaTime)
     {
-        if (Mathf.Abs(targetPosition.transform.position.x - this.transform.position.x) < driftingRadius &&
-            Mathf.Abs(targetPosition.transform.position.x - this.transform.position.x) < driftingRadius)
+        if (Mathf.Abs(targetPosition.transform.position.z - this.transform.position.z) < driftingRadius &&
+            Mathf.Abs(targetPosition.transform.position.z - this.transform.position.z) < driftingRadius)
             return DriftSpeed(sceneData, deltaTime).normalized * maxSpeed/ driftingSpeedDivider;
 
-        return new Vector3(targetPosition.transform.position.x - this.transform.position.x,
+        return new Vector3(targetPosition.transform.position.z - this.transform.position.z,
                           0,
-                          targetPosition.transform.position.z - this.transform.position.z).normalized * maxSpeed ;
+                          targetPosition.transform.position.x - this.transform.position.x).normalized * maxSpeed ;
     }
 
 

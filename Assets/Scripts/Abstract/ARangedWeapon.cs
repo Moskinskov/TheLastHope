@@ -10,14 +10,16 @@ namespace TheLastHope.Weapons
 	{
 
 		#region Serializables
-		[SerializeField] protected float _shootingSpeed = 1.0f; //firing speed
-		[SerializeField] protected float _shootingRange = 15.0f; //firing range
+		[SerializeField] protected float _rateOfFire = 1.0f; //firing speed
+		[SerializeField] protected float _shootingRange = 30.0f; //firing range
 		[SerializeField] protected float _reloadTime = 1.0f; //reload time
 		[SerializeField] protected float _clipSize = 5.0f; //clip size
+		[SerializeField] protected float _force = 30.0f; //power of fire
 		[SerializeField] protected bool _canChangeFiringMode = false; //ability to change firing mode
 		[SerializeField] protected FiringMode _currentFiringMode; //current active firing mode
 		[SerializeField] protected int[] _firingModesAvailable; //available firing modes
-		[SerializeField] protected AAmmo _ammo; //патроны
+		[SerializeField] protected AAmmo _ammo; //ammunition to fire
+		[SerializeField] protected Transform _muzzle;
 		#endregion
 
 		#region Protected Variables
@@ -28,7 +30,7 @@ namespace TheLastHope.Weapons
 		#endregion
 
 		#region Abstract Functions
-		public abstract void Fire(SceneData sceneData);                 //Firing (mandatory to implement in inheriting classes)
+		public abstract void Fire();                 //Firing (mandatory to implement in inheriting classes)
 		public abstract void Reload(int bulletsInClip);        //Recharging (mandatory to implement in inheriting classes)
 		public abstract void SwitchFiringMode();
 		#endregion
@@ -37,6 +39,16 @@ namespace TheLastHope.Weapons
 		{
 			get { return _audioPlayer; }
 			set { _audioPlayer = value; }
+		}
+
+		protected virtual void Update()
+		{
+				_delay.Update();
+				if (_delay.IsEvent())
+
+				{
+					_readyToFire = true;
+				}
 		}
 	}
 }

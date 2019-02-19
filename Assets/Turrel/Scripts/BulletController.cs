@@ -22,8 +22,18 @@ public class BulletController : AAmmo {
         Destroy(gameObject);
 	}
 
-    public override void Move(float deltaTime)
-    {
-        throw new System.NotImplementedException();
-    }
+	public override void OnDepopulate()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public override void OnPopulate()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	//public override void Move(float deltaTime)
+	//{
+	//    throw new System.NotImplementedException();
+	//}
 }

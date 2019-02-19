@@ -4,34 +4,17 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
-    public abstract class AAmmo : MonoBehaviour, IPoolable
+	[RequireComponent(typeof(Collider))]
+	public abstract class AAmmo : MonoBehaviour, IPoolable
     {
-        [SerializeField] internal float damage;
-        [SerializeField] internal float speed;
-        public bool IsFinifhed { get; set; }
-        public float Range { get; set; }
+        [SerializeField] protected float damage;
+        [SerializeField] public float speed;
 
-        public Vector3 Direction { get; set; }
-        public float Speed { get { return speed; } }
+		public abstract void OnDepopulate();
+		public abstract void OnPopulate();
+		public abstract void OnTriggerEnter(Collider collision);
 
-        public virtual void OnPopulate()
-        {
-            throw new System.NotImplementedException();
-        }
+		//public abstract void Move(float deltaTime);
 
-        public virtual void OnDepopulate()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual void OnTriggerEnter(Collider collision)
-        {
-            try { collision.gameObject.GetComponent<AEnemy>().SetDamage(damage); IsFinifhed = true;  }
-            catch { };
-            
-        }
-
-        public abstract void Move(float deltaTime);
-
-    }
+	}
 }

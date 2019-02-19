@@ -62,17 +62,19 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Abstract\AAmmo.cs" />
     <Compile Include="Assets\Scripts\Abstract\ADestroyer.cs" />
+    <Compile Include="Assets\Scripts\Abstract\AEnemy.cs" />
     <Compile Include="Assets\Scripts\Abstract\AGenerator.cs" />
     <Compile Include="Assets\Scripts\Abstract\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Abstract\AWorldMover.cs" />
+    <Compile Include="Assets\Scripts\Ammo\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\BaseObject.cs" />
     <Compile Include="Assets\Scripts\BasicAutoWeapon.cs" />
+    <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Data\FiringMode.cs" />
     <Compile Include="Assets\Scripts\Data\PoolType.cs" />
     <Compile Include="Assets\Scripts\Data\SceneData.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Enemies\BikeEnemy.cs" />
-    <Compile Include="Assets\Scripts\Enemies\DynamicEnemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Generators\AGenerator.cs" />
     <Compile Include="Assets\Scripts\Generators\DynamicGenerator.cs" />
@@ -84,8 +86,10 @@
     <Compile Include="Assets\Scripts\Helpers\Timer.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IPoolable.cs" />
     <Compile Include="Assets\Scripts\MachineGun.cs" />
+    <Compile Include="Assets\Scripts\ManualTurretPlatform.cs" />
     <Compile Include="Assets\Scripts\PoolManager.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
+    <Compile Include="Assets\Scripts\Workers\CursorSetter.cs" />
     <Compile Include="Assets\Scripts\Workers\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\WorldMovement.cs" />
     <Compile Include="Assets\Turrel\Scripts\BulletController.cs" />

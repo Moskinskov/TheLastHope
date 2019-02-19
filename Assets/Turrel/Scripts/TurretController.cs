@@ -36,7 +36,7 @@ public class TurretController : MonoBehaviour
     protected enum State
     {
         Idle,       //состояние покоя
-        Atack,      //цель найдена, атакуем
+        Attack,      //цель найдена, атакуем
     }
     //начальное и текущее состояние
     protected State state = State.Idle;
@@ -105,11 +105,11 @@ public class TurretController : MonoBehaviour
         //yield return null;
 
         //Переводим турель в состоянии атаки
-        state = State.Atack;
+        state = State.Attack;
         //yield return null;
     }
 
-    protected virtual IEnumerator Atack()
+    protected virtual IEnumerator Attack()
     {
         //Перешли в состояние атаки, при необходимости можно сделать дополнительные действия
         //yield return null;
@@ -174,7 +174,9 @@ public class TurretController : MonoBehaviour
         {
             //для выстрела используем StartCoroutine, которая устанавливает allowFire в true с учетом скорострельности
             StartCoroutine(Fire());
-        }
+			var snd = this.gameObject.GetComponent<AudioSource>();
+			snd.Play();
+		}
     }
 
     protected virtual IEnumerator Fire()
@@ -249,7 +251,7 @@ public class TurretController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, visionRadius);
-        if (state == State.Atack)
+        if (state == State.Attack)
         {
             //Текущее направление пушки
             Debug.DrawRay(turretGun.position, turretGun.forward * visionRadius, Color.blue);
