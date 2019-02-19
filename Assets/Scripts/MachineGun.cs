@@ -8,23 +8,27 @@ namespace TheLastHope.Weapons
 {
 	public sealed class MachineGun : ARangedWeapon
 	{
-		//      [SerializeField] GameObject barrel;
-		//public override void Fire(SceneData scene)
-		//{
-		//          AAmmo ammo =  Instantiate(_ammo,barrel.transform.position, barrel.transform.rotation);
-		//          ammo.Direction = barrel.transform.forward;
-		//          ammo.Range = _shootingRange;
-		//          scene.ammos.Add(ammo.gameObject);
 
-		//}
+		private Light _flash;
+
+		private void Start()
+		{
+			_flash = _muzzle.GetComponent<Light>();
+		}
+
 
 		public override void Fire()
 		{
-			if (_delay._elapsed == -1) _readyToFire = true;
+			if (_delay._elapsed == -1)
+			{
+				_readyToFire = true;
+			}
 			if (_readyToFire)
 			{
 				Shot(_ammo);
+				_flash.enabled = true;
 			}
+			else _flash.enabled = false;
 		}
 
 		private void Shot(AAmmo ammo)
