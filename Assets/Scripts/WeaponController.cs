@@ -1,5 +1,4 @@
-﻿using TheLastHope.Data;
-using TheLastHope.Helpers;
+﻿using Assets.Scripts.Abstract;
 using UnityEngine;
 
 namespace TheLastHope.Weapons
@@ -7,16 +6,24 @@ namespace TheLastHope.Weapons
     public class WeaponController : MonoBehaviour
     {
         public ARangedWeapon _weapon;
-        [SerializeField] GameObject manualTurret;
+        public AEnergeticWeapon _Eweapon;
 
-        public void UpdateWeapons(bool lmbIsPressed, float deltaTime)
+        private void Update()
         {
-            manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(InputManager.GetMousePosIn3D(manualTurret), deltaTime);
+            if (Input.GetButton("Fire1"))
+            {
+                _Eweapon.Fire();
+            }
+        }
+
+
+
+        public void UpdateWeapons(bool lmbIsPressed)
+        {
             if (lmbIsPressed)
             {
-                _weapon.Fire();				
+                _weapon.Fire();
             }
-
             //if (Input.GetKeyDown(KeyCode.R))
             //    _weapon.Reload();
         }
