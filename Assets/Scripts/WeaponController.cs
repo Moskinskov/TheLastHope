@@ -5,24 +5,26 @@ namespace TheLastHope.Weapons
 {
     public class WeaponController : MonoBehaviour
     {
-        public ARangedWeapon _weapon;
-        public AEnergeticWeapon _Eweapon;
+        [SerializeField] ARangedWeapon _weapon;
+        [SerializeField] AEnergeticWeapon _Eweapon;
+        [SerializeField] GameObject manualTurret;
 
-        private void Update()
+        public void UpdateWeapons(float deltaTime)
         {
+            manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(InputManager.GetMousePosIn3D(manualTurret),deltaTime);
             if (Input.GetButton("Fire1"))
             {
-                _Eweapon.Fire();
-            }
-        }
-
-
-
-        public void UpdateWeapons(bool lmbIsPressed)
-        {
-            if (lmbIsPressed)
-            {
-                _weapon.Fire();
+                try
+                {
+                    _Eweapon.Fire();
+                }
+                catch { }
+                try
+                {
+                    _weapon.Fire();
+                }
+                catch { }
+                
             }
             //if (Input.GetKeyDown(KeyCode.R))
             //    _weapon.Reload();

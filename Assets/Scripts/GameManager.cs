@@ -39,6 +39,6 @@ public class GameManager : Singleton<GameManager>
 		}
 		destroyer.Destroy(sceneData);	
 		worldMover.MoveWorld(sceneData, Time.deltaTime);
-		weaponController.UpdateWeapons(Input.GetMouseButton(0),Time.deltaTime);
+		weaponController.UpdateWeapons(Time.deltaTime);
 	}
 }

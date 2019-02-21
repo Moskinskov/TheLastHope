@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Abstract\AAmmo.cs" />
     <Compile Include="Assets\Scripts\Abstract\ADestroyer.cs" />
     <Compile Include="Assets\Scripts\Abstract\AEnemy.cs" />
+    <Compile Include="Assets\Scripts\Abstract\AEnergeticWeapon.cs" />
     <Compile Include="Assets\Scripts\Abstract\AGenerator.cs" />
     <Compile Include="Assets\Scripts\Abstract\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Abstract\AWorldMover.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\Helpers\Timer.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IPoolable.cs" />
+    <Compile Include="Assets\Scripts\LaserGun.cs" />
     <Compile Include="Assets\Scripts\MachineGun.cs" />
     <Compile Include="Assets\Scripts\ManualTurretPlatform.cs" />
     <Compile Include="Assets\Scripts\PoolManager.cs" />
