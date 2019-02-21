@@ -7,14 +7,16 @@ namespace TheLastHope.Weapons
     public class WeaponController : MonoBehaviour
     {
         public ARangedWeapon _weapon;
-     
-        public void UpdateWeapons(bool lmbIsPressed)
+        [SerializeField] GameObject manualTurret;
+
+        public void UpdateWeapons(bool lmbIsPressed, float deltaTime)
         {
+            manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(InputManager.GetMousePosIn3D(manualTurret), deltaTime);
             if (lmbIsPressed)
             {
-                _weapon.Fire();
-				
+                _weapon.Fire();				
             }
+
             //if (Input.GetKeyDown(KeyCode.R))
             //    _weapon.Reload();
         }
