@@ -1,7 +1,7 @@
 ﻿using TheLastHope.Helpers;
 using UnityEngine;
 
-namespace Assets.Scripts.Abstract
+namespace TheLastHope.Weapons
 {
     public abstract class AEnergeticWeapon : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace Assets.Scripts.Abstract
         protected bool _impulse = true;                   //if true, firing is available only when _currentCharge is equal to _energyCapacity
         protected Transform _muzzle;                      //child transform that casts the fire
         protected float _minActiveEnergy;
-        protected GameObject _laserEffect;
+        protected ParticleSystem _laserEffect;
 
         protected AudioSource AudioSource { get; set; }
         protected Timer _timerEndOfFire = new Timer();
@@ -25,6 +25,7 @@ namespace Assets.Scripts.Abstract
         private void Start()
         {
             _currentCharge = _energyCapacity;
+            _laserEffect.Stop();
         }
 
         private void Update()
@@ -69,8 +70,8 @@ namespace Assets.Scripts.Abstract
                     if (hit.transform.GetComponent<AEnemy>())
                     {
 
-                        GameObject tempObject = Instantiate(_laserEffect, hit.point, Quaternion.Euler(hit.normal));
-                        Destroy(tempObject, 1);
+                        _laserEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+                        _laserEffect.Play();
 
                         hit.transform.GetComponent<AEnemy>().SetDamage(_damagePerSecond * Time.deltaTime);
                         _currentCharge -= _energyPerSecond * Time.deltaTime;
@@ -96,6 +97,7 @@ namespace Assets.Scripts.Abstract
             if (_timerEndOfFire.IsEvent())
             {
                 _usingLaser = false;
+                _laserEffect.Stop();
             }
             if (!_usingLaser)
             {

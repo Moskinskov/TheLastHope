@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Abstract;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
@@ -12,7 +11,7 @@ namespace TheLastHope.Weapons
         [Tooltip("Сам лазер")]
         public LineRenderer _LGLineRenderer;
         [Tooltip("Эффект от попадания")]
-        public GameObject _LGLaserEffect;
+        public ParticleSystem _LGLaserEffect;
 
         [Header("Урон лазера"), Space(10)]
         [Tooltip("Ну это понятно")]
