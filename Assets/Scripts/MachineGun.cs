@@ -8,6 +8,12 @@ namespace TheLastHope.Weapons
 {
 	public sealed class MachineGun : ARangedWeapon
 	{
+        /// <summary>
+        ///  Класс MachineGun
+        ///  реализует подобие стрельбы из крупнокалиберного пулемета. Основной принцип большая
+        ///  скорострельность, большой объем магазина. 
+        ///  Shot - толкает все пули по направлению _muzzle.forward
+        /// </summary>
         public override void Shot()
         {
             AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
