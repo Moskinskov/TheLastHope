@@ -6,6 +6,11 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    ///  Класс ARangedWeapon
+    ///  отвечает за основную механику стрелкового оружия
+    ///  Fire() вызывает метод Shot() , который каждый наследник обязан переопределить
+    /// </summary>
 	public abstract class ARangedWeapon : MonoBehaviour //change to BaseObject when it is ready
 	{
 		#region Serializables
@@ -18,26 +23,28 @@ namespace TheLastHope.Weapons
 		[SerializeField] protected FiringMode _currentFiringMode; //current active firing mode
 		[SerializeField] protected int[] _firingModesAvailable; //available firing modes
 		[SerializeField] protected AAmmo _ammo; //ammunition to fire
-		[SerializeField] protected Transform _muzzle;
+		[SerializeField] protected Transform _muzzle; // Система координат для вылета пули
 		#endregion
 
 		#region Protected Variables
 		protected Timer _delay = new Timer();                       //Timer
 		protected bool _readyToFire = true;                         //Ready to shoot flag
 		protected int _ammoInClip;									//Current ammo in clip
-        protected int _currentAmmoInClip;
-        protected AudioSource _audioPlayer;
+        protected int _currentAmmoInClip; //Текущие количество патронов в магазине
+        protected AudioSource _audioPlayer; //Типа должно быть использовано для звуков выстрела
         #endregion
 
         #region Abstract Functions
         public abstract void Shot(); //Логика выстрела             
-		public abstract void SwitchFiringMode();
+		public abstract void SwitchFiringMode(); // Возможная механика смены режима стрельбы
         #endregion
         public void Fire() 
         //Функция вызывает комманду выстрела проверяя наличие 
         //патронов и учитывая скорость стрельбы
         {
             Debug.Log("Fire!");
+            //_delay.Start(time) отсчитывает время time 
+            //после отчета разрешает снова стрелять.
             if (_delay._elapsed == -1)
             {
                 _readyToFire = true;

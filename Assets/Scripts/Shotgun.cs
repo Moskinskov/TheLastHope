@@ -6,7 +6,13 @@ namespace TheLastHope.Weapons
 {
     public class Shotgun : ARangedWeapon
     {
-        [SerializeField] protected int _ammoPerShot = 5;
+        /// <summary>
+        ///  Класс Shotgun
+        ///  Реализует подобие стрельбы из дробовика выпуская одновременно _ammoPerShot патронов
+        ///  Shot толкает следующий патрон на i * dirDeviasion правее и левее
+        ///  В свою очередь dirDeviasion считается как перепендикулярный вектор к _muzzle.forward
+        /// </summary>
+        [SerializeField] protected int _ammoPerShot = 5;//Количество дроби
         [SerializeField] protected float _angleScatter;
         public override void Shot()
         {
