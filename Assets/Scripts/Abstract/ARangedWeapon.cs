@@ -17,13 +17,13 @@ namespace TheLastHope.Weapons
 		[SerializeField] protected float _rateOfFire = 1.0f; //firing speed
 		[SerializeField] protected float _shootingRange = 30.0f; //firing range
 		[SerializeField] protected float _reloadTime = 1.0f; //reload time
-		[SerializeField] protected float _force = 30.0f; //power of fire
+		[SerializeField] public float _force = 30.0f; //power of fire
         [SerializeField] protected int _clipSize = 5; //clip size
         [SerializeField] protected bool _canChangeFiringMode = false; //ability to change firing mode
 		[SerializeField] protected FiringMode _currentFiringMode; //current active firing mode
 		[SerializeField] protected int[] _firingModesAvailable; //available firing modes
 		[SerializeField] protected AAmmo _ammo; //ammunition to fire
-		[SerializeField] protected Transform _muzzle; // Система координат для вылета пули
+		[SerializeField] public Transform _muzzle; // Система координат для вылета пули
 		#endregion
 
 		#region Protected Variables
@@ -42,7 +42,6 @@ namespace TheLastHope.Weapons
         //Функция вызывает комманду выстрела проверяя наличие 
         //патронов и учитывая скорость стрельбы
         {
-            Debug.Log("Fire!");
             //_delay.Start(time) отсчитывает время time 
             //после отчета разрешает снова стрелять.
             if (_delay._elapsed == -1)

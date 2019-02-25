@@ -16,6 +16,7 @@ namespace TheLastHope.Weapons
         /// </summary>
         public override void Shot()
         {
+            
             AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
             var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
             _bulletRigidBody.AddForce(_muzzle.forward * _force);
