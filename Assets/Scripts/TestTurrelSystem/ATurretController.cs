@@ -22,7 +22,6 @@ namespace TheLastHope.Weapons
             float turningDir = 1;
             if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
             {
-                weapon.Fire();
                 return;
             }
             if (Mathf.Abs(eulerTargetRot) > 180)
@@ -33,14 +32,14 @@ namespace TheLastHope.Weapons
 
         public virtual void Start()
         {
-            soft.Init(transform.position);
+            soft.Init(weapon._force);
         }
 
        
         public virtual void TurUpdate(float deltaTime)
         {
             //Каждый кадр сохраняем текущее положение цели
-            TurnTurret(soft.CalculateAim(weapon._muzzle.position, weapon._force), Time.deltaTime);
+            TurnTurret(soft.CalculateAim(transform), Time.deltaTime);
             //Если навелись на цель стреляем
             if (soft.ReadyToFire)
             {

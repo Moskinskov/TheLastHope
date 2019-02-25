@@ -25,35 +25,41 @@ namespace TheLastHope.Weapons
         //Точка, по которой будет стрелять турель в случае обнаружения цели, по умолчанию это сама цель
         private Vector3 targetingPosition;
         private float sqrVisionRadius;
-        private Vector3 turrelPosition;
+        private Transform turrelPosition;
+        private float projectileSpeed;
 
         public bool ReadyToFire { get => readyToFire; set => readyToFire = value; }
         public Transform Target { get => target; set => target = value; }
         #endregion
 
-        public virtual void Init(Vector3 turPosition)
+        public virtual void Init(float projectileSpeed)
         {
             //радиус обзора в квадрате, используется в FindClosestTarget;
+            this.projectileSpeed = projectileSpeed;
             sqrVisionRadius = visionRadius * visionRadius;
-            turrelPosition = turPosition;
+            
             //запускаем поиск цели
             StartCoroutine(FindClosestTarget());
         }
         //Считает точку, на которую должна навестись турель
-        public virtual Vector3 CalculateAim(Vector3 gunPosition, float projectileSpeed)
+        public virtual Vector3 CalculateAim(Transform turPosition)
         {
             //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
             //которая находится перед движущейся целью и по которой будет стрелять турель.
             //То есть турель должна стрелять на опережение
             targetingPosition = target.position;
+            turrelPosition = turPosition;
+            float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
+                            target.position - turrelPosition.position).eulerAngles.y;
 
-            //Высчитываем точку, перед мишенью, по которой нужно произвести выстрел, чтобы попасть по движущейся мишени
-            //по идее, чем больше итераций, тем точнее будет положение точки для упреждающего выстрела
-            for (int i = 0; i < 10; i++)
+            //Проверяем навелись мы или нет
+            if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
             {
-                float dist = (gunPosition - targetingPosition).magnitude;
-                float timeToTarget = dist / projectileSpeed;
-                targetingPosition = target.position + targetSpeed * timeToTarget;
+                readyToFire = true;
+            }
+            else
+            {
+                readyToFire = false;
             }
             return targetingPosition;
         }

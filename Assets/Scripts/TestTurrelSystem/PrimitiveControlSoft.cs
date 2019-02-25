@@ -6,14 +6,14 @@ namespace TheLastHope.Weapons
 {
     public class PrimitiveControlSoft : ASoftware
     {
-        public override Vector3 CalculateAim(Vector3 gunPosition, float projectileSpeed)
+        public override Vector3 CalculateAim(Transform turPosition)
         {
-            return base.CalculateAim(gunPosition, projectileSpeed);
+            return base.CalculateAim(turPosition);
         }
 
-        public override void Init(Vector3 turPosition)
+        public override void Init(float projectileSpeed)
         {
-            base.Init(turPosition);
+            base.Init(projectileSpeed);
         }
 
         protected override IEnumerator FindClosestTarget()
