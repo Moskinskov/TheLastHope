@@ -8,7 +8,6 @@ namespace TheLastHope.Weapons
     {
         public override Vector3 CalculateAim(Vector3 gunPosition, float projectileSpeed)
         {
-            Debug.Log(base.CalculateAim(gunPosition, projectileSpeed));
             return base.CalculateAim(gunPosition, projectileSpeed);
         }
 

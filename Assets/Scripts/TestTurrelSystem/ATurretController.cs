@@ -20,6 +20,11 @@ namespace TheLastHope.Weapons
                             mousePosition - transform.position).eulerAngles.y;
             //print("rot: " + eulerTargetRot);
             float turningDir = 1;
+            if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
+            {
+                weapon.Fire();
+                return;
+            }
             if (Mathf.Abs(eulerTargetRot) > 180)
                 turningDir *= -1;
             gameObject.transform.rotation *= Quaternion.AngleAxis(turningAngularSpeed * turningDir * deltaTime,

@@ -108,8 +108,8 @@ MonoBehaviour:
   _rateOfFire: 0.05
   _shootingRange: 15
   _reloadTime: 1
-  _clipSize: 5
   _force: 30
+  _clipSize: 5
   _canChangeFiringMode: 0
   _currentFiringMode: 0
   _firingModesAvailable: 
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1522323373}
   - component: {fileID: 1522323372}
   - component: {fileID: 1522323371}
-  - component: {fileID: 1522323370}
+  - component: {fileID: 9146526213567794268}
   m_Layer: 0
   m_Name: ManualTurret
   m_TagString: Untagged
@@ -245,6 +245,7 @@ Transform:
   - {fileID: 814306046}
   - {fileID: 1047150866}
   - {fileID: 107907176}
+  - {fileID: 513667818159401491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,7 +307,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1522323370
+--- !u!114 &9146526213567794268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,10 +316,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1522323368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09fdf46d95e549d40a12d000992984aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 506bf321e8ad0664d8b0b3adf190bc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turningAngularSpeed: 90
+  weapon: {fileID: 42657563}
+  soft: {fileID: 6186825546690082802}
+  turningAngularSpeed: 60
 --- !u!1 &2106411358
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +352,52 @@ Transform:
   m_Father: {fileID: 1522323369}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7764452165013891589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513667818159401491}
+  - component: {fileID: 6186825546690082802}
+  m_Layer: 0
+  m_Name: soft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513667818159401491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764452165013891589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1522323369}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6186825546690082802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764452165013891589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741bd21d6e578164aaa2b0c1228e0ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTag: Enemy
+  visionRadius: 10
+  searchTimeDelay: 1
 --- !u!1001 &107516648
 PrefabInstance:
   m_ObjectHideFlags: 0
