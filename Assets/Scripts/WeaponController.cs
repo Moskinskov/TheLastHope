@@ -11,7 +11,8 @@ namespace TheLastHope.Weapons
 
         public void UpdateWeapons(SceneData sceneData,float deltaTime)
         {
-            manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(InputManager.GetMousePosIn3D(manualTurret),deltaTime);
+            manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(
+                            InputManager.GetMousePosIn3D(manualTurret),deltaTime);
             if (Input.GetButton("Fire1"))
             {
                 try
@@ -24,7 +25,6 @@ namespace TheLastHope.Weapons
                     _weapon.Fire(sceneData);
                 }
                 catch { }
-                
             }
             //if (Input.GetKeyDown(KeyCode.R))
             //    _weapon.Reload();

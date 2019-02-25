@@ -13,7 +13,7 @@ namespace TheLastHope.Generators
         }
         public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
         {
-            if(sceneData.enemies.Count< sceneData.targetEnemyCount)
+            if(sceneData.enemies.Count < sceneData.targetEnemyCount)
             {
                 for (int i = sceneData.targetEnemyCount - sceneData.enemies.Count; i < sceneData.targetEnemyCount; i++)
                 {

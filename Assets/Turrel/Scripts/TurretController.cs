@@ -131,6 +131,7 @@ public class TurretController : MonoBehaviour
             //на которое надо поворачивать турель каждый кадр.
             //Получаем угол, на который должна повернуться башня
             float angle = Quaternion.Angle(turretHead.localRotation, rotateQuaternion);
+            //Debug.Log(Mathf.Min(1f, Time.deltaTime * rotationSpeed / angle));
             turretHead.localRotation = Quaternion.Slerp(
                 turretHead.localRotation,
                 rotateQuaternion,

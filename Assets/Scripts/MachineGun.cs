@@ -8,52 +8,23 @@ namespace TheLastHope.Weapons
 {
 	public sealed class MachineGun : ARangedWeapon
 	{
+        /// <summary>
+        ///  Класс MachineGun
+        ///  реализует подобие стрельбы из крупнокалиберного пулемета. Основной принцип большая
+        ///  скорострельность, большой объем магазина. 
+        ///  Shot - толкает все пули по направлению _muzzle.forward
+        /// </summary>
+        public override void Shot(SceneData SceneData)
+        {
+            
+            AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
+			sceneData.ammos.Add(_bullet.gameObject);
+			_bullet.startPoint = new Vector3(_muzzle.position.x, _muzzle.position.y, _muzzle.position.z);
+            var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
+            _bulletRigidBody.AddForce(_muzzle.forward * _force);
+        }
 
-		private Light _flash;
-
-		private void Start()
-		{
-			_flash = _muzzle.GetComponent<Light>();
-		}
-
-
-		public override void Fire(SceneData sceneData)
-		{
-			if (_delay._elapsed == -1)
-			{
-				_readyToFire = true;
-			}
-			if (_readyToFire)
-			{
-				Shot(_ammo, sceneData);
-				_flash.enabled = true;
-			}
-			else _flash.enabled = false;
-		}
-
-		private void Shot(AAmmo ammo, SceneData sceneData)
-		{
-			if (ammo)
-			{
-				AAmmo _bullet = Instantiate(ammo, _muzzle.position, _muzzle.rotation);
-                sceneData.ammos.Add(_bullet.gameObject);
-                _bullet.startPoint = new Vector3(_muzzle.position.x, _muzzle.position.y, _muzzle.position.z);
-				var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
-				_bulletRigidBody.AddForce(_muzzle.forward * _force);
-				_delay.Start(_rateOfFire);
-				_readyToFire = false;
-				var snd = this.GetComponent<AudioSource>();
-				snd.Play();
-			}
-		}
-
-
-		public override void Reload(int bulletsInClip)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public override void SwitchFiringMode()
+        public override void SwitchFiringMode()
 		{
 			throw new System.NotImplementedException();
 		}
