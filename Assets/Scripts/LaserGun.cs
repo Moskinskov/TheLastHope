@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Abstract;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TheLastHope.Weapons
 {

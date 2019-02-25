@@ -9,6 +9,8 @@ namespace TheLastHope.Weapons
     {
         [SerializeField] protected float damage;
         [SerializeField] public float speed;
+        [SerializeField] public float maxMagnitude;
+        public Vector3 startPoint;
 
 		public abstract void OnDepopulate();
 		public abstract void OnPopulate();

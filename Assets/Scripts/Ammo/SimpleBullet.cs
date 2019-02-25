@@ -5,13 +5,13 @@ using TheLastHope.Weapons;
 
 public class SimpleBullet : AAmmo
 {
-	[SerializeField] protected float _lifeTime = 2.0f; 
+    
 	public void Awake() //Временно! Убрать при реализации ObjectPool'а.
 	{
 		//Destroy(this, _lifeTime);
 	}
 
-	public override void OnPopulate()
+    public override void OnPopulate()
 	{
 		throw new System.NotImplementedException();
 	}

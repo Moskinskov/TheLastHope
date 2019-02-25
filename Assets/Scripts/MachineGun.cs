@@ -17,7 +17,7 @@ namespace TheLastHope.Weapons
 		}
 
 
-		public override void Fire()
+		public override void Fire(SceneData sceneData)
 		{
 			if (_delay._elapsed == -1)
 			{
@@ -25,17 +25,19 @@ namespace TheLastHope.Weapons
 			}
 			if (_readyToFire)
 			{
-				Shot(_ammo);
+				Shot(_ammo, sceneData);
 				_flash.enabled = true;
 			}
 			else _flash.enabled = false;
 		}
 
-		private void Shot(AAmmo ammo)
+		private void Shot(AAmmo ammo, SceneData sceneData)
 		{
 			if (ammo)
 			{
 				AAmmo _bullet = Instantiate(ammo, _muzzle.position, _muzzle.rotation);
+                sceneData.ammos.Add(_bullet.gameObject);
+                _bullet.startPoint = new Vector3(_muzzle.position.x, _muzzle.position.y, _muzzle.position.z);
 				var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
 				_bulletRigidBody.AddForce(_muzzle.forward * _force);
 				_delay.Start(_rateOfFire);

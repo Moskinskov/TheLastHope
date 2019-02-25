@@ -30,7 +30,7 @@ namespace TheLastHope.Weapons
 		#endregion
 
 		#region Abstract Functions
-		public abstract void Fire();                 //Firing (mandatory to implement in inheriting classes)
+		public abstract void Fire(SceneData sceneData);                 //Firing (mandatory to implement in inheriting classes)
 		public abstract void Reload(int bulletsInClip);        //Recharging (mandatory to implement in inheriting classes)
 		public abstract void SwitchFiringMode();
 		#endregion

@@ -1,7 +1,7 @@
 ﻿using TheLastHope.Helpers;
 using UnityEngine;
 
-namespace Assets.Scripts.Abstract
+namespace TheLastHope.Weapons
 {
     public abstract class AEnergeticWeapon : MonoBehaviour
     {

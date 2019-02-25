@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Abstract;
-using UnityEngine;
+﻿using UnityEngine;
+using TheLastHope.Data;
 
 namespace TheLastHope.Weapons
 {
@@ -9,7 +9,7 @@ namespace TheLastHope.Weapons
         [SerializeField] AEnergeticWeapon _Eweapon;
         [SerializeField] GameObject manualTurret;
 
-        public void UpdateWeapons(float deltaTime)
+        public void UpdateWeapons(SceneData sceneData,float deltaTime)
         {
             manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(InputManager.GetMousePosIn3D(manualTurret),deltaTime);
             if (Input.GetButton("Fire1"))
@@ -21,7 +21,7 @@ namespace TheLastHope.Weapons
                 catch { }
                 try
                 {
-                    _weapon.Fire();
+                    _weapon.Fire(sceneData);
                 }
                 catch { }
                 
