@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Data;
 
 namespace TheLastHope.Weapons
 { 
     public class Rifle : ARangedWeapon
     {
-        public override void Shot()
+        public override void Shot(SceneData sceneData)
         {
             /// <summary>
             ///  Класс Rifle

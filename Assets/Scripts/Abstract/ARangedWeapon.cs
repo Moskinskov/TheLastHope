@@ -35,10 +35,10 @@ namespace TheLastHope.Weapons
         #endregion
 
         #region Abstract Functions
-        public abstract void Shot(); //Логика выстрела             
+        public abstract void Shot(SceneData sceneData); //Логика выстрела             
 		public abstract void SwitchFiringMode(); // Возможная механика смены режима стрельбы
         #endregion
-        public void Fire() 
+        public void Fire(SceneData sceneData) 
         //Функция вызывает комманду выстрела проверяя наличие 
         //патронов и учитывая скорость стрельбы
         {
@@ -56,7 +56,7 @@ namespace TheLastHope.Weapons
             }
             if (_readyToFire && _ammo)
             {
-                Shot();
+                Shot(sceneData);
                 var snd = this.GetComponent<AudioSource>();
                 snd.Play();
                 _delay.Start(_rateOfFire);

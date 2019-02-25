@@ -12,7 +12,7 @@ class Destroyer : ADestroyer
         DestroyInList(sceneData.props);
         DestroyInList(sceneData.rails);
         DestroyDeadEnemiesInList(sceneData.enemies);
-        DestroyFinishedAmmoInList(sceneData.ammos);
+        //DestroyFinishedAmmoInList(sceneData.ammos);
     }
 
     void DestroyInList(List<GameObject> list)

@@ -1,33 +1,53 @@
 ﻿using UnityEngine;
 using TheLastHope.Data;
-
+using System.Collections.Generic;
 namespace TheLastHope.Weapons
 {
     public class WeaponController : MonoBehaviour
     {
-        [SerializeField] ARangedWeapon _weapon;
-        [SerializeField] AEnergeticWeapon _Eweapon;
-        [SerializeField] GameObject manualTurret;
+        [SerializeField] Selector selector;
+        [SerializeField] List<ATurretController> listTurretControllers = new List<ATurretController>();
+        GameObject selectedTurret = null;
+        GameObject currentManualTurret = null;
 
+        public void Init()
+        {
+         foreach(var turret in listTurretControllers)
+            {
+                turret.gameObject.AddComponent<AutoAndManualSoft>();
+                turret.soft = turret.gameObject.GetComponent<AutoAndManualSoft>();
+                turret.soft.Init(10f); //MAGIC NUMBER
+            }
+        }
+
+        /// <summary>
+        /// Turns and fires turrets. Also switches manual turret.
+        /// </summary>
+        /// <param name="sceneData"></param>
+        /// <param name="deltaTime"></param>
         public void UpdateWeapons(SceneData sceneData,float deltaTime)
         {
-            manualTurret.GetComponent<ManualTurretPlatform>().TurnTurret(
-                            InputManager.GetMousePosIn3D(manualTurret),deltaTime);
-            if (Input.GetButton("Fire1"))
+
+            selectedTurret = selector.GetSelectedGameObject();
+            if (Input.GetButtonDown("Fire1") &&
+                selectedTurret.GetComponentInChildren<ATurretController>() != null &&
+                selectedTurret != currentManualTurret )
             {
-                try
+                if (currentManualTurret != null)
                 {
-                    _Eweapon.Fire();
+                    currentManualTurret.GetComponentInChildren<ATurretController>().soft.SwitchMode();
                 }
-                catch { }
-                try
+                else
                 {
-                    _weapon.Fire(sceneData);
+                    currentManualTurret = selectedTurret;
                 }
-                catch { }
+                selectedTurret.GetComponentInChildren<ATurretController>().soft.SwitchMode();
+
             }
-            //if (Input.GetKeyDown(KeyCode.R))
-            //    _weapon.Reload();
+            foreach (var turret in listTurretControllers)
+            {
+                turret.TurUpdate(sceneData,deltaTime);
+            }
         }
     }
 }

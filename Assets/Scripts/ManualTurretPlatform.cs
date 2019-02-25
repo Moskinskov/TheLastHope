@@ -5,6 +5,7 @@ using UnityEngine;
 public class ManualTurretPlatform : MonoBehaviour
 {
     [SerializeField] float turningAngularSpeed;
+    [SerializeField] float accuracy;
 
     public void TurnTurret(Vector3 mousePosition, float deltaTime)
     {
@@ -13,6 +14,13 @@ public class ManualTurretPlatform : MonoBehaviour
         float turningDir = 1;
         if (Mathf.Abs(eulerTargetRot) > 180)
             turningDir *= -1; 
-        gameObject.transform.rotation *= Quaternion.AngleAxis( turningAngularSpeed * turningDir * deltaTime, Vector3.up);
+        if (Mathf.Abs(eulerTargetRot) < turningAngularSpeed* deltaTime)
+        {
+            gameObject.transform.rotation *= Quaternion.AngleAxis(eulerTargetRot * deltaTime, Vector3.up);           
+        }
+        else
+        {
+            gameObject.transform.rotation *= Quaternion.AngleAxis( turningAngularSpeed * turningDir * deltaTime, Vector3.up);       
+        }
     }
 }

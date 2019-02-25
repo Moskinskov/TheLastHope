@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Data;
 
 namespace TheLastHope.Weapons
 {
@@ -9,47 +10,51 @@ namespace TheLastHope.Weapons
         //Оружие турели
         [SerializeField] protected ARangedWeapon weapon;
         //Установленный на турель софт
-        [SerializeField] protected ASoftware soft;
+        [SerializeField] public ASoftware soft;
         //Скорость поворота турели к цели
         [SerializeField] float turningAngularSpeed;
 
         //Вращает турель в сторону точки mousePosition
-        public void TurnTurret(Vector3 mousePosition, float deltaTime)
+        public void TurnTurret(SceneData sceneData,float deltaTime)
         {
+            Vector3 aimingPoint = soft.CalculateAim(sceneData,transform);
             float eulerTargetRot = Quaternion.FromToRotation(transform.forward,
-                            mousePosition - transform.position).eulerAngles.y;
+                            aimingPoint - transform.position).eulerAngles.y;
             //print("rot: " + eulerTargetRot);
             float turningDir = 1;
-            if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
-            {
-                return;
-            }
             if (Mathf.Abs(eulerTargetRot) > 180)
                 turningDir *= -1;
-            gameObject.transform.rotation *= Quaternion.AngleAxis(turningAngularSpeed * turningDir * deltaTime,
-                                                                    Vector3.up);
+            if (Mathf.Abs(eulerTargetRot) < turningAngularSpeed* deltaTime)
+            {
+                gameObject.transform.rotation *= Quaternion.AngleAxis(eulerTargetRot * deltaTime, Vector3.up);           
+            }
+            else
+            {
+                gameObject.transform.rotation *= Quaternion.AngleAxis( turningAngularSpeed * turningDir * deltaTime,
+                                                                     Vector3.up);       
+            }
         }
 
         public virtual void Start()
         {
-            soft.Init(weapon._force);
         }
 
        
-        public virtual void TurUpdate(float deltaTime)
+        public virtual void TurUpdate(SceneData sceneData, float deltaTime)
         {
+            soft.FindClosestTarget(sceneData);
             //Каждый кадр сохраняем текущее положение цели
-            TurnTurret(soft.CalculateAim(transform), Time.deltaTime);
+            TurnTurret(sceneData, Time.deltaTime);
             //Если навелись на цель стреляем
             if (soft.ReadyToFire)
             {
-                weapon.Fire();
+                weapon.Fire(sceneData);
             }
         }
-        public void Update()
-        {
-            TurUpdate(0);
-        }
+        // public void Update()
+        // {
+        //     TurUpdate(0);
+        // }
         /*
         //Для удобства - в окне редактора покажем радиус поражения турели и некоторые дополнительные данные
         void OnDrawGizmos()

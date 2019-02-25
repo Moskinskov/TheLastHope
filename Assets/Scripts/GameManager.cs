@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
 		sceneData.trainSpeed = trainSpeed;
 		worldMover.SetupMover(sceneData);
         generatorManager.Initialize(sceneData);
+		weaponController.Init();
 	}
 
 	// Update is called once per frame

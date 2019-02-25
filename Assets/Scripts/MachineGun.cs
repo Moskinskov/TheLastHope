@@ -14,7 +14,7 @@ namespace TheLastHope.Weapons
         ///  скорострельность, большой объем магазина. 
         ///  Shot - толкает все пули по направлению _muzzle.forward
         /// </summary>
-        public override void Shot(SceneData SceneData)
+        public override void Shot(SceneData sceneData)
         {
             
             AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
