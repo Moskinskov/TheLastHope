@@ -21,11 +21,11 @@ public class CameraController : MonoBehaviour
             cameraPos.x = Mathf.Lerp(cameraPos.x, cameraPos.x - 4, Time.deltaTime * cameraSpeed);
         }
 
-        if (Input.mousePosition.y > Camera.main.pixelHeight * 0.8f && cameraPos.z < zRange)
+        if (Input.mousePosition.y > Camera.main.pixelHeight * 0.1f && cameraPos.z < zRange)
         {
-            cameraPos.z = Mathf.Lerp(cameraPos.z, cameraPos.z + 4, Time.deltaTime * cameraSpeed);
+            cameraPos.z = Mathf.Lerp(cameraPos.z, cameraPos.z, Time.deltaTime * cameraSpeed);
         }
-        else if (Input.mousePosition.y < Camera.main.pixelHeight * 0.2f && cameraPos.z > -zRange)
+        else if (Input.mousePosition.y < Camera.main.pixelHeight * 0.1f && cameraPos.z > -zRange)
         {
             cameraPos.z = Mathf.Lerp(cameraPos.z, cameraPos.z - 4, Time.deltaTime * cameraSpeed);
         }

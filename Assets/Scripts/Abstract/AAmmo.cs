@@ -8,7 +8,6 @@ namespace TheLastHope.Weapons
 	public abstract class AAmmo : MonoBehaviour, IPoolable
     {
         [SerializeField] protected float damage;
-        [SerializeField] public float speed;
 
 		public abstract void OnDepopulate();
 		public abstract void OnPopulate();

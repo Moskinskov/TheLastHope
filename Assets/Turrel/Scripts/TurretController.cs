@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Weapons;
 
-public class TurretController : MonoBehaviour
+public class TurretController : ARangedWeapon
 {
     //Голова турели, которая вращается вокруг оси Y
     public Transform turretHead;
@@ -155,7 +156,7 @@ public class TurretController : MonoBehaviour
             );
 
             //Выстрел
-            Shot();
+            Shoot();
 
             yield return null;
         }
@@ -168,7 +169,7 @@ public class TurretController : MonoBehaviour
         //yield return null;
     }
 
-    public virtual void Shot()
+    public virtual void Shoot()
     {
         //если можем сделать выстрел, то стреляем
         if (allowFire)
@@ -185,17 +186,21 @@ public class TurretController : MonoBehaviour
         //запрещаем делать следующий выстрел
         allowFire = false;
 
-        GameObject projectileItem = Instantiate(
-            projectile,
-            turretGun.position,
-            Quaternion.FromToRotation(projectile.transform.forward, turretGun.forward)
-        ) as GameObject;
+		//GameObject projectileItem = Instantiate(
+		//    projectile,
+		//    turretGun.position,
+		//    Quaternion.FromToRotation(projectile.transform.forward, turretGun.forward)
+		//) as GameObject;
 
-        BulletController projectileController = projectileItem.GetComponent<BulletController>();
-        projectileController.speed = projectileSpeed;
+		//SeriousAmmo projectileController = projectileItem.GetComponent<SeriousAmmo>();
+		//projectileController.speed = projectileSpeed;
 
-        //следующий выстрел можно будет произвести спустя fireRate секунд
-        yield return new WaitForSeconds(fireRate);
+		AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
+		var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
+		_bulletRigidBody.AddForce(_muzzle.forward * _force);
+
+		//следующий выстрел можно будет произвести спустя fireRate секунд
+		yield return new WaitForSeconds(fireRate);
 
         //разрешаем сделать следующий выстрел
         allowFire = true;
@@ -262,4 +267,14 @@ public class TurretController : MonoBehaviour
             Debug.DrawRay(turretHead.position, turretHead.forward * visionRadius, Color.red);
         }
     }
+
+	public override void Shot()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public override void SwitchFiringMode()
+	{
+		throw new System.NotImplementedException();
+	}
 }

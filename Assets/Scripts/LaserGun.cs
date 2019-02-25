@@ -4,27 +4,27 @@ namespace TheLastHope.Weapons
 {
     public class LaserGun : AEnergeticWeapon
     {
-        [Header("Необходимые компоненты"), Tooltip("Мушка, отсюда вылетает лазер")]
+        [Header("Required components"), Tooltip("Muzzle. Laser emits from here.")]
         public Transform _LGMuzzle;
-        [Tooltip("Ну это понятно")]
+        [Tooltip("Laser sound")]
         public AudioSource LGAudioSource;
-        [Tooltip("Сам лазер")]
+        [Tooltip("Laser line")]
         public LineRenderer _LGLineRenderer;
-        [Tooltip("Эффект от попадания")]
+        [Tooltip("Damage effect")]
         public ParticleSystem _LGLaserEffect;
 
-        [Header("Урон лазера"), Space(10)]
-        [Tooltip("Ну это понятно")]
+        [Header("Laser damage"), Space(10)]
+        [Tooltip("Damage set by laser")]
         public float _LGDamagePerSecond;
 
-        [Header("Енергия лазера"), Space(10)]
-        [Tooltip("Общий объем энергии")]
+        [Header("Laser energy capacity"), Space(10)]
+        [Tooltip("The overall laser capacity")]
         public float _LGEnergyCapacity;
-        [Tooltip("Ну это понятно")]
+        [Tooltip("Energy being consumed per second")]
         public float _LGEnergyPerSecond;
-        [Tooltip("Ну это понятно")]
+        [Tooltip("Energy being recoveried every second")]
         public float _LGRecoveryPerSecond;
-        [Tooltip("Минимальное кол-во энергии для начала стрельбы")]
+        [Tooltip("Minimal amount of energy that allows to shoot")]
         public float _LGMinActiveEnergy;
 
 

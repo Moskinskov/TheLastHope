@@ -20,7 +20,7 @@ public class GeneratorManager : Singleton<GeneratorManager>
         foreach(var enemy in enemies)
         {
             sceneData.enemies.Add(enemy);
-            enemy.GetComponent<BikeEnemy>().Initialize();
+            enemy.GetComponent<CopterEnemy>().Initialize();
 
         }
         patternPositions = new List<Vector3>();

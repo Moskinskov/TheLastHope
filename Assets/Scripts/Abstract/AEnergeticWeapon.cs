@@ -5,7 +5,7 @@ namespace TheLastHope.Weapons
 {
     public abstract class AEnergeticWeapon : MonoBehaviour
     {
-        protected float _energyCapacity;                  //maximum charge
+        protected float _energyCapacity;                  //maximal charge
         protected float _energyPerSecond;                 //energy being consumed per second
         protected float _damagePerSecond;                 //amount of damage being applied every second
         protected float _recoveryPerSecond;               //time needed for the full recovery (use Timer)

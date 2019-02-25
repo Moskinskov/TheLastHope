@@ -26,7 +26,7 @@ MonoBehaviour:
         motionVectorsResolution: 24
         motionVectorsAmplitude: 64
   fog:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       excludeSkybox: 1
   antialiasing:
@@ -80,7 +80,7 @@ MonoBehaviour:
   motionBlur:
     m_Enabled: 1
     m_Settings:
-      shutterAngle: 180
+      shutterAngle: 90
       sampleCount: 16
       frameBlending: 0.1
   eyeAdaptation:
@@ -101,7 +101,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.69
+        intensity: 0.46
         threshold: 0.68
         softKnee: 0.685
         radius: 3.19
@@ -121,12 +121,12 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.42
-        temperature: 16
+        postExposure: 1
+        temperature: 25.2
         tint: 0
         hueShift: 0
-        saturation: 0.963
-        contrast: 1.146
+        saturation: 0.896
+        contrast: 0.96
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 1, g: 1, b: 1, a: 0}
+          lift: {r: 0.9442181, g: 0.90579313, b: 1, a: 0}
           gamma: {r: 1, g: 0.9696482, b: 0.7803316, a: 0}
           gain: {r: 0.6244129, g: 0.62747324, b: 1, a: 0}
       curves:
@@ -309,7 +309,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.338
+      intensity: 0.155
   grain:
     m_Enabled: 0
     m_Settings:
@@ -330,7 +330,7 @@ MonoBehaviour:
       opacity: 1
       rounded: 0
   dithering:
-    m_Enabled: 1
+    m_Enabled: 0
   monitors:
     currentMonitorID: 0
     refreshOnPlay: 0

@@ -16,4 +16,5 @@ public abstract class AEnemy : BaseObject
 
     public abstract void SetTargetPosition(GameObject targetPosition);
     public abstract void Move(SceneData sceneData, float deltaTime);
+	public abstract void Die();
 }
