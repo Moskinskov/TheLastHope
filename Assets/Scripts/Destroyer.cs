@@ -42,17 +42,18 @@ class Destroyer : ADestroyer
         }
     }
 
-    //void DestroyFinishedAmmoInList(List<GameObject> list)
-    //{
-    //    for (var i = 0; i < list.Count; i++)
-    //    {
-    //        if (list[i].GetComponent<AAmmo>().IsFinished)
-    //        {
-    //            Destroy(list[i].gameObject);
-    //            list.RemoveAt(i);
-    //            i--;
-    //        }
-    //    }
-    //}
+    void DestroyFinishedAmmoInList(List<GameObject> list)
+    {
+        for (var i = 0; i < list.Count; i++)
+        {
+            if ((list[i].GetComponent<AAmmo>().transform.position - list[i].GetComponent<AAmmo>().startPoint).magnitude 
+                > list[i].GetComponent<AAmmo>().maxMagnitude)
+            {
+                Destroy(list[i].gameObject);
+                list.RemoveAt(i);
+                i--;
+            }
+        }
+    }
 }
 

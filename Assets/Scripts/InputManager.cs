@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
 
-    public static Vector3 GetMousePosIn3D(GameObject gameObject)
+    public static Vector3 GetMousePosIn3D()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
         RaycastHit raycastHit;

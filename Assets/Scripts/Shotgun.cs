@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Data;
 
 namespace TheLastHope.Weapons
 {
@@ -14,7 +15,7 @@ namespace TheLastHope.Weapons
         /// </summary>
         [SerializeField] protected int _ammoPerShot = 5;//Количество дроби
         [SerializeField] protected float _angleScatter;
-        public override void Shot()
+        public override void Shot(SceneData sceneData)
         {
 			//Направление перпендикулярное
 			Debug.Log("Shot!");
