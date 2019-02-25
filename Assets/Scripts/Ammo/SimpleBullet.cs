@@ -20,15 +20,26 @@ public class SimpleBullet : AAmmo
 		try
 		{
 			collision.gameObject.GetComponent<AEnemy>().SetDamage(damage);
-			var snd = this.GetComponent<AudioSource>();
-			if (snd != null)
-			{
-				//print("Not NUll!");
-				snd.Play();
-			}
+			Die(true);
 		}
 		catch { };
+	}
 
-		Destroy(this.gameObject);
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (!collision.gameObject.GetComponent<AEnemy>()) Die(false);
+	}
+
+	private void Die(bool withSnd)
+	{
+		var _explosion = this.gameObject.transform.GetChild(0);
+		_explosion.gameObject.SetActive(true);
+		var snd = this.GetComponent<AudioSource>();
+		this.gameObject.GetComponent<Renderer>().enabled = false;
+		if (snd)
+		{
+			if (withSnd) snd.Play();
+		}
+		Destroy(this.gameObject, 1.0f);
 	}
 }

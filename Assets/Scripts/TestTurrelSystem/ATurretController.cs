@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Data;
+using TheLastHope.Weapons;
 
 namespace TheLastHope.Weapons
 {

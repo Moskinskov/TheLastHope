@@ -21,7 +21,7 @@ namespace TheLastHope.Generators
                     obj,
                     positions[0],                                //position NOT depends on obj name (or type, etc.)
                     Quaternion.identity);
-                    enemy.GetComponent<CopterEnemy>().Initialize();
+                    enemy.GetComponentInChildren<CopterEnemy>().Initialize();
                     sceneData.enemies.Add(enemy);
                 }
             }

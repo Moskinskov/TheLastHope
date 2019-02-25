@@ -97,7 +97,6 @@ public class CopterEnemy : AEnemy
 	public override void Die()
 	{
 		var _explosion = this.gameObject.transform.GetChild(1);
-		print(_explosion.name);
 		var _copter = this.gameObject.transform.GetChild(0);
 		_copter.gameObject.SetActive(false);
 		_explosion.gameObject.SetActive(true);
