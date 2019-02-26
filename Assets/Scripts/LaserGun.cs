@@ -5,27 +5,36 @@ namespace TheLastHope.Weapons
     public class LaserGun : AEnergeticWeapon
     {
         [Header("Required components"), Tooltip("Muzzle. Laser emits from here.")]
-        public Transform _LGMuzzle;
+		[SerializeField]
+		private Transform _LGMuzzle;
         [Tooltip("Laser sound")]
-        public AudioSource LGAudioSource;
+		[SerializeField]
+		private AudioSource LGAudioSource;
         [Tooltip("Laser line")]
-        public LineRenderer _LGLineRenderer;
+		[SerializeField]
+		private LineRenderer _LGLineRenderer;
         [Tooltip("Damage effect")]
-        public ParticleSystem _LGLaserEffect;
+		[SerializeField]
+		private ParticleSystem _LGLaserEffect;
 
         [Header("Laser damage"), Space(10)]
         [Tooltip("Damage set by laser")]
-        public float _LGDamagePerSecond;
+		[SerializeField]
+		private float _LGDamagePerSecond;
 
         [Header("Laser energy capacity"), Space(10)]
         [Tooltip("The overall laser capacity")]
-        public float _LGEnergyCapacity;
+		[SerializeField]
+		private float _LGEnergyCapacity;
         [Tooltip("Energy being consumed per second")]
-        public float _LGEnergyPerSecond;
+		[SerializeField]
+		private float _LGEnergyPerSecond;
         [Tooltip("Energy being recoveried every second")]
-        public float _LGRecoveryPerSecond;
+		[SerializeField]
+		private float _LGRecoveryPerSecond;
         [Tooltip("Minimal amount of energy that allows to shoot")]
-        public float _LGMinActiveEnergy;
+		[SerializeField]
+		private float _LGMinActiveEnergy;
 
 
         private void Awake()

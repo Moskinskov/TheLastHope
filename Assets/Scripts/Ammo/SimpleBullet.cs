@@ -27,7 +27,7 @@ public class SimpleBullet : AAmmo
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (!collision.gameObject.GetComponent<AEnemy>()) Die(false);
+		if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>())) Die(false);
 	}
 
 	private void Die(bool withSnd)
@@ -40,6 +40,6 @@ public class SimpleBullet : AAmmo
 		{
 			if (withSnd) snd.Play();
 		}
-		Destroy(this.gameObject, 1.0f);
+		Destroy(this.gameObject, 0.3f);
 	}
 }

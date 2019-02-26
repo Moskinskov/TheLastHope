@@ -166,6 +166,7 @@
     <Compile Include="Assets\Scripts\Abstract\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Abstract\ASoftware.cs" />
     <Compile Include="Assets\Scripts\Abstract\AWorldMover.cs" />
+    <Compile Include="Assets\Scripts\Abstract\old_ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />

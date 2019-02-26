@@ -19,7 +19,7 @@ namespace TheLastHope.Generators
                 {
                     GameObject enemy = Instantiate(
                     obj,
-                    positions[0],                                //position NOT depends on obj name (or type, etc.)
+                    positions[0] + new Vector3((i*6), 0, (i*7)-40),                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
                     Quaternion.identity);
                     enemy.GetComponentInChildren<CopterEnemy>().Initialize();
                     sceneData.enemies.Add(enemy);

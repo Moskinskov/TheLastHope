@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Data;
+using TheLastHope.Weapons;
 
 public class CopterEnemy : AEnemy
 {
-    [SerializeField] float driftingSpeedDivider;
-    [SerializeField] float speedSmoother;
-    /// <summary>
-    /// Resets health.
-    /// </summary>
-    public override void Initialize()
+    [SerializeField] private float _driftingSpeedDivider;
+    [SerializeField] private float _speedSmoother;
+	[SerializeField] private ARangedWeapon _weapon;
+	[SerializeField] private float _visionDistance;
+	private RaycastHit hit;
+	GameManager gameManager;
+	/// <summary>
+	/// Resets health.
+	/// </summary>
+	public override void Initialize()
     {
         base.health = base.maxHealth;
         //base.currentSpeed = new Vector3(base.maxSpeed/2, 0f, 0f);
@@ -36,15 +41,32 @@ public class CopterEnemy : AEnemy
     /// <param name="deltaTime"></param>
     public override void Move(SceneData sceneData, float deltaTime)
     {
-        //base.currentAcceleration = GetCurrentAcceleration(base.targetPosition, base.maxAcceleration);
-        //base.currentSpeed = GetCurrentSpeed(base.currentSpeed, base.currentAcceleration, deltaTime);
-        Vector3 speed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
-        base.currentSpeed = Vector3.Lerp(base.currentSpeed,speed, speedSmoother);
-        gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward,currentSpeed);
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
+		//base.currentAcceleration = GetCurrentAcceleration(base.targetPosition, base.maxAcceleration);
+		//base.currentSpeed = GetCurrentSpeed(base.currentSpeed, base.currentAcceleration, deltaTime);
+		if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
+		{
+			Vector3 speed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
+			base.currentSpeed = Vector3.Lerp(base.currentSpeed, speed, _speedSmoother);
+			gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, currentSpeed);
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
                                                     gameObject.transform.position.y + currentSpeed.y * deltaTime,
                                                     gameObject.transform.position.z + currentSpeed.z * deltaTime);
-    }
+		}
+
+		Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _visionDistance, Color.red);
+
+		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+		{
+			if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance)) _weapon.Fire(sceneData);
+			if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
+			{
+				print("I am " + gameObject.name + " with ID " + gameObject.GetInstanceID() + " and I'm wandering away (");
+				this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
+				health = 0;
+				//Tell Singleton to destroy this enemy;
+			}
+		}
+	}
 
     /// <summary>
     /// For not it do nothing.
@@ -55,11 +77,11 @@ public class CopterEnemy : AEnemy
         health -= damage;
     }
 
-    Vector3 GetCurrentSpeed(SceneData sceneData,Vector3 currentSpeed, GameObject targetPosition, float deltaTime)
+	Vector3 GetCurrentSpeed(SceneData sceneData,Vector3 currentSpeed, GameObject targetPosition, float deltaTime)
     {
         if (Mathf.Abs(targetPosition.transform.position.z - this.transform.position.z) < driftingRadius &&
             Mathf.Abs(targetPosition.transform.position.z - this.transform.position.z) < driftingRadius)
-            return DriftSpeed(sceneData, deltaTime).normalized * maxSpeed/ driftingSpeedDivider;
+            return DriftSpeed(sceneData, deltaTime).normalized * maxSpeed/ _driftingSpeedDivider;
 
         return new Vector3(targetPosition.transform.position.z - this.transform.position.z,
                           0,
