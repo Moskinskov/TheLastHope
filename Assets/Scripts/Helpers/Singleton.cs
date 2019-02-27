@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Helpers
+namespace TheLastHope.Helpers
 {
 
     //Code received from http://wiki.unity3d.com/index.php/Singleton

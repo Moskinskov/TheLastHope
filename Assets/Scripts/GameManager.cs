@@ -4,7 +4,8 @@ using UnityEngine;
 using TheLastHope.Generators;
 using TheLastHope.Data;
 using TheLastHope.Weapons;
-using Assets.Scripts.Helpers;
+using TheLastHope.Hippo;
+using TheLastHope.Helpers;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -16,15 +17,7 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] AWorldMover worldMover;
 	[SerializeField] ADestroyer destroyer;
 	[SerializeField] WeaponController weaponController;
-
-	public float TrainSpeed
-	{
-		get { return sceneData.trainSpeed; }
-		set { sceneData.trainSpeed = value; }
-
-	}
-
-
+	[SerializeField] HippoMainPlayer mainPlayer;
 
 	// Start is called before the first frame update
 	void Start()
@@ -50,6 +43,8 @@ public class GameManager : Singleton<GameManager>
 		destroyer.Destroy(sceneData);	
 		worldMover.MoveWorld(sceneData, Time.deltaTime);
 		weaponController.UpdateWeapons(sceneData,Time.deltaTime);
+		mainPlayer.UpdatePlayer(sceneData);
+		
 
 		print(sceneData.trainSpeed);
 	}

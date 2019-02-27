@@ -16,11 +16,13 @@ namespace TheLastHope.Hippo
 			_health -= damage;
 		}
 
-		public void Update() //Temp
+		public void UpdatePlayer(SceneData sceneData) //Temp
 		{
 			if (_health < 1)
 			{
 				Debug.Log("Player wasted!");
+				var _oldSpeed = sceneData.trainSpeed;
+				sceneData.trainSpeed = 0;//Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 			}
 		}
 

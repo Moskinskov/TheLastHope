@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Generators;
 using TheLastHope.Data;
-using Assets.Scripts.Helpers;
+using TheLastHope.Helpers;
 
 
 public class GeneratorManager : Singleton<GeneratorManager>

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 963044542}
   - component: {fileID: 963044543}
   - component: {fileID: 963044537}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BasicShotgunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 1142910536464772364}
   - component: {fileID: 2538562827682984482}
   - component: {fileID: 5496192301996429710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,6 +422,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4718059927425676, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -465,6 +469,14 @@ PrefabInstance:
     - target: {fileID: 4718059927425676, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493136983426320, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982887731187066, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 198606588566830260, guid: 643639841fb531e4ba8097fed4eb9ac7,
         type: 3}
