@@ -7,9 +7,9 @@ using UnityEngine;
 namespace TheLastHope.Weapons
 {
 	/// <summary>
-	///  Класс ARangedWeapon
-	///  отвечает за основную механику стрелкового оружия
-	///  Fire() вызывает метод Shot() , который каждый наследник обязан переопределить
+	///  ARangedWeapon class
+	///  realizes basic bahaviour of the ranged weapon
+	///  Fire() calls Shot() method that is to be overriden in every 
 	/// </summary>
 	public abstract class ARangedWeapon : MonoBehaviour //change to BaseObject when it is ready
 	{

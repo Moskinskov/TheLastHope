@@ -158,6 +158,7 @@
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\HippoMainPlayer.cs" />
     <Compile Include="Assets\Scripts\Abstract\AAmmo.cs" />
     <Compile Include="Assets\Scripts\Abstract\ADestroyer.cs" />
     <Compile Include="Assets\Scripts\Abstract\AEnemy.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Assets\Scripts\Abstract\AWorldMover.cs" />
     <Compile Include="Assets\Scripts\Abstract\old_ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleBullet.cs" />
+    <Compile Include="Assets\Scripts\Ammo\SimpleEnemyBullet.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Data\FiringMode.cs" />

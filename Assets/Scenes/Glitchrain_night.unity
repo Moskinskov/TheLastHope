@@ -2695,7 +2695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &664414072
 Transform:
   m_ObjectHideFlags: 0
@@ -3432,7 +3432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff861adad56c054fbbfec2cccba6634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rails: {fileID: 2016334847, guid: de554a63d71a4ee4aa5ef4a25248892e, type: 3}
+  _rails: {fileID: 7532160765645273823, guid: 3482b2a78cebc8e4abe84ef6d46ef990, type: 3}
   railLength: 30
   startTerrainCoordinate: 0
   railsCount: 5
@@ -15510,7 +15510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f8ad65c7338df49b0b36b420f131b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.95
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 36f8ad65c7338df49b0b36b420f131b9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -16361,16 +16361,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rateOfFire: 1
   _shootingRange: 10
-  _reloadTime: 2
+  _reloadTime: 1
   _force: 30
   _clipSize: 8
   _canChangeFiringMode: 0
   _currentFiringMode: 0
   _firingModesAvailable: 
-  _ammo: {fileID: 963044537, guid: 3839fdca990e50d41978d84222d19c47, type: 3}
+  _ammo: {fileID: 963044537, guid: bda4d8028fc5435468dc26a084e5963b, type: 3}
   _muzzle: {fileID: 997309350}
   _ammoPerShot: 12
-  _angleScatter: 20
+  _angleScatter: 15
 --- !u!1 &1550089561
 GameObject:
   m_ObjectHideFlags: 0
@@ -34384,9 +34384,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rateOfFire: 0.05
   _shootingRange: 15
-  _reloadTime: 3
+  _reloadTime: 1
   _force: 30
-  _clipSize: 30
+  _clipSize: 50
   _canChangeFiringMode: 0
   _currentFiringMode: 0
   _firingModesAvailable: 

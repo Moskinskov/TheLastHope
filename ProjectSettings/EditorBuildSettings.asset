@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Glitchrain_night.unity
+    guid: 39e90f557ba5d064cbf79cdde927db29
   m_configObjects: {}

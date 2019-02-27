@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 548}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 662
+  controlID: 40
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 663
+  controlID: 41
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 664
+  controlID: 42
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,8 +184,8 @@ MonoBehaviour:
     y: 0
     width: 355
     height: 600
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -214,12 +214,12 @@ MonoBehaviour:
   m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 14}
   m_Panes:
-  - {fileID: 14}
   - {fileID: 12}
+  - {fileID: 14}
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -274,7 +274,7 @@ MonoBehaviour:
   - {fileID: 20}
   - {fileID: 21}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -386,7 +386,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d0e9ecffeee9ecff54ebecffd4ebecfff69ef6fff89ef6ff089ff6ff149ff6ff249ff6ffbefbffff4a310000703100009a31000022320000443300005c33000076330000a4330000
+      m_ExpandedIDs: a448feffc248feff284afeff364efeff544efeffba4ffeffb8fbffff843100001232000098330000ee330000f0330000b2340000d45d00009e5e000060600000b6600000ce600000d0600000c4610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -442,9 +442,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -17.336685, y: -1.4506059, z: 0.75367594}
+    m_Target: {x: 2.3978348, y: -2.582662, z: 4.5397205}
     speed: 2
-    m_Value: {x: -17.336685, y: -1.4506059, z: 0.75367594}
+    m_Value: {x: 2.3978348, y: -2.582662, z: 4.5397205}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -472,13 +472,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.48300442, y: 0.08953504, z: -0.04971301, w: 0.86960846}
+    m_Target: {x: 0.30973977, y: -0.47785085, z: 0.18480507, w: 0.8009788}
     speed: 2
-    m_Value: {x: 0.48300442, y: 0.08953504, z: -0.04971301, w: 0.86960846}
+    m_Value: {x: 0.30973977, y: -0.47785085, z: 0.18480507, w: 0.8009788}
   m_Size:
-    m_Target: 8.330311
+    m_Target: 16.024813
     speed: 2
-    m_Value: 8.330311
+    m_Value: 16.024813
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -652,20 +652,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Effects/EffectTexturesAndPrefabs/Materials
+    - Assets/Scripts/Ammo
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Effects/EffectTexturesAndPrefabs/Materials
+  - Assets/Scripts/Ammo
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\sm1else\Documents\Limerence\Repo
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 922c0000
-    m_LastClickedID: 11410
-    m_ExpandedIDs: 00000000c6270000fc2c00002e2d0000842d00009c2d0000ee2d0000ac2e0000cc2e0000fc2e0000a22f0000e42f0000ba360000bc360000be360000c0360000c236000000ca9a3b
+    scrollPos: {x: 0, y: 480}
+    m_SelectedIDs: 4e2d0000
+    m_LastClickedID: 11598
+    m_ExpandedIDs: 00000000c8270000002d0000322d0000882d0000a02d0000f22d00003a2e0000b22e0000d22e0000022f0000a82f0000ea2f0000903700009237000094370000963700009837000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -693,7 +693,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c6270000fc2c00002e2d0000842d00009c2d0000ee2d0000362e0000ac2e0000cc2e0000fc2e0000a22f0000e42f0000ba360000bc360000be360000c0360000c2360000
+    m_ExpandedIDs: 00000000c8270000002d0000322d0000882d0000a02d0000f22d00003a2e0000b22e0000d22e0000022f0000a82f0000ea2f00009037000092370000943700009637000098370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -720,19 +720,19 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 3806000032060000260600002c0600005e0700007e0700002206000020050000c8050000ba86000000000000e82a0000f02e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: SimpleEnemyBullet
-      m_OriginalName: SimpleEnemyBullet
+      m_Name: BasicShotgunBullet
+      m_OriginalName: BasicShotgunBullet
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 23612
+      m_UserData: 14276
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0

@@ -60,7 +60,6 @@ public class CopterEnemy : AEnemy
 			if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance)) _weapon.Fire(sceneData);
 			if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
 			{
-				print("I am " + gameObject.name + " with ID " + gameObject.GetInstanceID() + " and I'm wandering away (");
 				this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
 				health = 0;
 				//Tell Singleton to destroy this enemy;
