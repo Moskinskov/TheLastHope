@@ -100,8 +100,8 @@ Material:
     - _OutlineWidthMode: 1
     - _Parallax: 0.02
     - _ReceiveShadowRate: 1
-    - _ShadeShift: 0.313
-    - _ShadeToony: 0.825
+    - _ShadeShift: -0.064
+    - _ShadeToony: 0.782
     - _ShadingGradeRate: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
