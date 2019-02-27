@@ -50,12 +50,12 @@ class WorldMovement : AWorldMover
             trainPrevSpeed = sceneData.trainSpeed;
         }
         
-        foreach(var terrainRenderer in terrainRenderers)
-        {
-            if (terrainRenderer.material.mainTextureOffset.x > -1)
-                terrainRenderer.material.mainTextureOffset -= new Vector2(sceneData.trainSpeed * deltaTime / speedDivider, 0);
-            else
-                terrainRenderer.material.mainTextureOffset += new Vector2(1, 0);
-        }
+        //foreach(var terrainRenderer in terrainRenderers)
+        //{
+        //    if (terrainRenderer.material.mainTextureOffset.x > -1)
+        //        terrainRenderer.material.mainTextureOffset -= new Vector2(sceneData.trainSpeed * deltaTime / speedDivider, 0);
+        //    else
+        //        terrainRenderer.material.mainTextureOffset += new Vector2(1, 0);
+        //}
     }
 }

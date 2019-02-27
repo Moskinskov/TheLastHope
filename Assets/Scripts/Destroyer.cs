@@ -6,7 +6,7 @@ using TheLastHope.Weapons;
 
 class Destroyer : ADestroyer
 {
-    [SerializeField] float xDestroyCoord;
+    [SerializeField] private float _xDestroyCoord;
     public override void Destroy(SceneData sceneData)
     {
         DestroyInList(sceneData.props);
@@ -19,7 +19,7 @@ class Destroyer : ADestroyer
     {
         for(var i=0;i<list.Count;i++)
         {
-            if (list[i].transform.position.x < xDestroyCoord)
+            if (list[i].transform.position.x < _xDestroyCoord)
             {
                 Destroy(list[i].gameObject);
                 list.RemoveAt(i);

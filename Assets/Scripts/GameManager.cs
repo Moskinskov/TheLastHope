@@ -17,6 +17,15 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] ADestroyer destroyer;
 	[SerializeField] WeaponController weaponController;
 
+	public float TrainSpeed
+	{
+		get { return sceneData.trainSpeed; }
+		set { sceneData.trainSpeed = value; }
+
+	}
+
+
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -41,5 +50,7 @@ public class GameManager : Singleton<GameManager>
 		destroyer.Destroy(sceneData);	
 		worldMover.MoveWorld(sceneData, Time.deltaTime);
 		weaponController.UpdateWeapons(sceneData,Time.deltaTime);
+
+		print(sceneData.trainSpeed);
 	}
 }

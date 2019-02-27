@@ -16,7 +16,5 @@ namespace TheLastHope.Weapons
 		public abstract void OnPopulate();
 		public abstract void OnTriggerEnter(Collider collision);
 
-		//public abstract void Move(float deltaTime);
-
 	}
 }

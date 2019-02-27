@@ -18,7 +18,6 @@ namespace TheLastHope.Weapons
         public override void Shot(SceneData sceneData)
         {
 			//Направление перпендикулярное
-			Debug.Log("Shot!");
             Vector3 dirDeviation = new Vector3(_muzzle.forward.z,
                                    0,
                                    _muzzle.forward.x);
