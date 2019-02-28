@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TheLastHope.Management.Data;
 using TheLastHope.Management.AbstractLayer;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace TheLastHope.Generators
             {
                 if (sceneData.Props.Count < sceneData.TargetPropsCount)
                 {
-                    float zCoordinate = Random.Range(-activeTerrainGeometry.y, activeTerrainGeometry.y);
+                    float zCoordinate = UnityEngine.Random.Range(-activeTerrainGeometry.y, activeTerrainGeometry.y);
                     
                     if (zCoordinate < sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z + railsWidth &&
                         zCoordinate > sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z)
@@ -52,7 +53,7 @@ namespace TheLastHope.Generators
                     }
 
                     sceneData.Props.Add(Instantiate(
-                        prop[Random.Range(0, prop.Length)],
+                        prop[UnityEngine.Random.Range(0, prop.Length)],
                         new Vector3(i, 0, zCoordinate),
                         Quaternion.identity));
                 }
@@ -66,6 +67,11 @@ namespace TheLastHope.Generators
         public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override void Generate(GameObject[] objects, SceneData sceneData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

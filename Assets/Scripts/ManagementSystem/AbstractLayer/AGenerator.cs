@@ -10,6 +10,7 @@ namespace TheLastHope.Management.AbstractLayer
 
         public abstract void Generate(SceneData sceneData);
         public abstract void Generate(GameObject gameObject, SceneData sceneData, List<Vector3> positions);
+        public abstract void Generate(GameObject[] objects, SceneData sceneData);
         
     }
 }

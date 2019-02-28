@@ -28,5 +28,10 @@ namespace TheLastHope.Generators
                 }
             }
         }
+
+        public override void Generate(GameObject[] objects, SceneData sceneData)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

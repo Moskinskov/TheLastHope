@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TheLastHope.Management.Data;
 using TheLastHope.Management.AbstractLayer;
@@ -31,7 +32,7 @@ namespace TheLastHope.Generators
                 var stepPos = startGenerationPosition;
                 for (var i= sceneData.Props.Count; i< sceneData.TargetPropsCount;i++)
                 {
-                    float zCoordinate = Random.Range(-activeTerrainGeometry.y, activeTerrainGeometry.y);
+                    float zCoordinate = UnityEngine.Random.Range(-activeTerrainGeometry.y, activeTerrainGeometry.y);
 
                     //if props cross the rails; rails' width is [-5;5]
                     if (zCoordinate < sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z + 5 &&
@@ -46,7 +47,7 @@ namespace TheLastHope.Generators
                     }
 
                     sceneData.Props.Add(Instantiate(
-                        prop[Random.Range(0, prop.Length)],
+                        prop[UnityEngine.Random.Range(0, prop.Length)],
                         new Vector3(stepPos, 0, zCoordinate),
                         Quaternion.identity));
                     stepPos += step;
@@ -58,6 +59,11 @@ namespace TheLastHope.Generators
         public override void Generate(GameObject gameObject, SceneData sceneData, List<Vector3> positions)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override void Generate(GameObject[] objects, SceneData sceneData)
+        {
+            throw new NotImplementedException();
         }
     }
 }
