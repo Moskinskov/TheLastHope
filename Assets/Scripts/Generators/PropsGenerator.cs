@@ -24,28 +24,28 @@ namespace TheLastHope.Generators
 
         public override void Generate(SceneData sceneData)
         {
-            if( sceneData.targetPropsCount > sceneData.props.Count)
+            if( sceneData.TargetPropsCount > sceneData.Props.Count)
             {
                 startGenerationPosition = (int)activeTerrainGeometry.x;
 
                 var stepPos = startGenerationPosition;
-                for (var i= sceneData.props.Count; i< sceneData.targetPropsCount;i++)
+                for (var i= sceneData.Props.Count; i< sceneData.TargetPropsCount;i++)
                 {
                     float zCoordinate = Random.Range(-activeTerrainGeometry.y, activeTerrainGeometry.y);
 
                     //if props cross the rails; rails' width is [-5;5]
-                    if (zCoordinate < sceneData.rails[sceneData.rails.Count - 1].transform.position.z + 5 &&
-                        zCoordinate > sceneData.rails[sceneData.rails.Count - 1].transform.position.z)
+                    if (zCoordinate < sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z + 5 &&
+                        zCoordinate > sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z)
                     {
                         zCoordinate += 5;
                     }
-                    else if (zCoordinate > sceneData.rails[sceneData.rails.Count - 1].transform.position.z - 5 &&
-                             zCoordinate < sceneData.rails[sceneData.rails.Count - 1].transform.position.z)
+                    else if (zCoordinate > sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z - 5 &&
+                             zCoordinate < sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z)
                     {
                         zCoordinate -= 5;
                     }
 
-                    sceneData.props.Add(Instantiate(
+                    sceneData.Props.Add(Instantiate(
                         prop[Random.Range(0, prop.Length)],
                         new Vector3(stepPos, 0, zCoordinate),
                         Quaternion.identity));

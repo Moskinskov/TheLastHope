@@ -17,11 +17,11 @@ namespace TheLastHope.Weapons
         public override void Shot(SceneData sceneData)
         {
             
-            AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
-			sceneData.ammos.Add(_bullet.gameObject);
-			_bullet.startPoint = new Vector3(_muzzle.position.x, _muzzle.position.y, _muzzle.position.z);
+            AAmmo _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
+			sceneData.Ammos.Add(_bullet.gameObject);
+			_bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
             var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
-            _bulletRigidBody.AddForce(_muzzle.forward * _force);
+            _bulletRigidBody.AddForce(Muzzle.forward * Force);
         }
 
         public override void SwitchFiringMode()

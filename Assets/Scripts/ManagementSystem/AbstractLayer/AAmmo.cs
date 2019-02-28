@@ -9,11 +9,15 @@ namespace TheLastHope.Management.AbstractLayer
 	public abstract class AAmmo : MonoBehaviour, IPoolable
     {
         [SerializeField] protected float damage;
-        [SerializeField] public float speed;
-        [SerializeField] public float maxMagnitude;
-        public Vector3 startPoint;
+        [SerializeField] float speed;
+        [SerializeField] float maxMagnitude;
 
-		public abstract void OnDepopulate();
+        public float Speed { get { return speed; } set { speed = value; } }
+        public float MaxMagnitude { get { return maxMagnitude; } set { maxMagnitude = value; } }
+        public Vector3 StartPoint { get; set; }
+        
+
+        public abstract void OnDepopulate();
 		public abstract void OnPopulate();
 		public abstract void OnTriggerEnter(Collider collision);
 

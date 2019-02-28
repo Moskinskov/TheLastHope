@@ -25,7 +25,7 @@ namespace TheLastHope.Generators
 
         public override void Generate(SceneData sceneData)
         {
-            if (sceneData.props.Count != 0)
+            if (sceneData.Props.Count != 0)
             {
                 startGenerationPosition = (int) activeTerrainGeometry.x - 1;
             }
@@ -36,22 +36,22 @@ namespace TheLastHope.Generators
 
             for (int i = startGenerationPosition; i < activeTerrainGeometry.x; i+=step)
             {
-                if (sceneData.props.Count < sceneData.targetPropsCount)
+                if (sceneData.Props.Count < sceneData.TargetPropsCount)
                 {
                     float zCoordinate = Random.Range(-activeTerrainGeometry.y, activeTerrainGeometry.y);
                     
-                    if (zCoordinate < sceneData.rails[sceneData.rails.Count - 1].transform.position.z + railsWidth &&
-                        zCoordinate > sceneData.rails[sceneData.rails.Count - 1].transform.position.z)
+                    if (zCoordinate < sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z + railsWidth &&
+                        zCoordinate > sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z)
                     {
                         zCoordinate += railsWidth;
                     }
-                    else if (zCoordinate > sceneData.rails[sceneData.rails.Count - 1].transform.position.z - railsWidth &&
-                             zCoordinate < sceneData.rails[sceneData.rails.Count - 1].transform.position.z)
+                    else if (zCoordinate > sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z - railsWidth &&
+                             zCoordinate < sceneData.Rails[sceneData.Rails.Count - 1].transform.position.z)
                     {
                         zCoordinate -= railsWidth;
                     }
 
-                    sceneData.props.Add(Instantiate(
+                    sceneData.Props.Add(Instantiate(
                         prop[Random.Range(0, prop.Length)],
                         new Vector3(i, 0, zCoordinate),
                         Quaternion.identity));

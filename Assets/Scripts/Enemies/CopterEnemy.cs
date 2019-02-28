@@ -15,13 +15,13 @@ namespace TheLastHope.Enemies
         [SerializeField] private ARangedWeapon _weapon;
         [SerializeField] private float _visionDistance;
         private RaycastHit hit;
-        GameManager gameManager; //Why do we need this?
-                                 /// <summary>
-                                 /// Resets health.
-                                 /// </summary>
+
+        /// <summary>
+        /// Resets health.
+        /// </summary>
         public override void Initialize()
         {
-            base.health = base.maxHealth;
+            base.Health = base.maxHealth;
             //base.currentSpeed = new Vector3(base.maxSpeed/2, 0f, 0f);
             //base.currentAcceleration = new Vector3(base.maxAcceleration / 2, 0f, 0f);
             base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
@@ -65,7 +65,7 @@ namespace TheLastHope.Enemies
                 if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
                 {
                     this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
-                    health = 0;
+                    Health = 0;
                     //Tell Singleton to destroy this enemy;
                 }
             }
@@ -77,7 +77,7 @@ namespace TheLastHope.Enemies
         /// <param name="damage"></param>
         public override void SetDamage(float damage)
         {
-            health -= damage;
+            Health -= damage;
         }
 
         Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, GameObject targetPosition, float deltaTime)

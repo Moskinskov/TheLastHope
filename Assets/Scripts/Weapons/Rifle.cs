@@ -16,9 +16,9 @@ namespace TheLastHope.Weapons
             ///  MachineGun, тк отличает от этого класса лишь звуком, размером обоймы, скоростью стрельбы
             ///  временем перезарядки и силой толкающей пулю. Эти все параметры сменяемы в классе родителе
             /// </summary>
-            AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
+            AAmmo _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
             var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
-            _bulletRigidBody.AddForce(_muzzle.forward * _force);
+            _bulletRigidBody.AddForce(Muzzle.forward * Force);
         }
         public override void SwitchFiringMode()
         {

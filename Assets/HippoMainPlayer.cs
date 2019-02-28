@@ -21,8 +21,8 @@ namespace TheLastHope.Hippo
 			if (_health < 1)
 			{
 				Debug.Log("Player wasted!");
-				var _oldSpeed = sceneData.trainSpeed;
-				sceneData.trainSpeed = 0;//Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+				var _oldSpeed = sceneData.TrainSpeed;
+				sceneData.TrainSpeed = 0;//Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 			}
 		}
 

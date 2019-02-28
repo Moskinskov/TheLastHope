@@ -25,9 +25,9 @@ namespace TheLastHope.Management
         void Start()
         {
             sceneData = new SceneData();
-            sceneData.targetEnemyCount = targetEnemyCount;
-            sceneData.targetPropsCount = targetPropsCount;
-            sceneData.trainSpeed = trainSpeed;
+            sceneData.TargetEnemyCount = targetEnemyCount;
+            sceneData.TargetPropsCount = targetPropsCount;
+            sceneData.TrainSpeed = trainSpeed;
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
@@ -37,7 +37,7 @@ namespace TheLastHope.Management
         void Update()
         {
             generatorManager.UpdateGenerators(sceneData);
-            foreach (var enemy in sceneData.enemies)
+            foreach (var enemy in sceneData.Enemies)
             {
                 enemy.GetComponent<AEnemy>().Move(sceneData, Time.deltaTime);
             }
@@ -45,7 +45,7 @@ namespace TheLastHope.Management
             worldMover.MoveWorld(sceneData, Time.deltaTime);
             weaponController.UpdateWeapons(sceneData, Time.deltaTime);
             mainPlayer.UpdatePlayer(sceneData);
-            print(sceneData.trainSpeed);
+            print(sceneData.TrainSpeed);
         }
     }
 }

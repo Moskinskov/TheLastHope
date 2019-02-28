@@ -18,7 +18,7 @@ class WorldMovement : AWorldMover
     public override void SetupMover(SceneData sceneData)
     {
         terrainRenderers = terrain.GetComponentsInChildren<Renderer>();
-        trainPrevSpeed =  sceneData.trainSpeed;
+        trainPrevSpeed =  sceneData.TrainSpeed;
     }
     /// <summary>
     /// Moves objects static on the scene. Except train.
@@ -27,29 +27,28 @@ class WorldMovement : AWorldMover
     /// <param name="deltaTime"></param>
     public override void MoveWorld(SceneData sceneData, float deltaTime)
     {
-        print("MOVERSPEED: " + sceneData.trainSpeed);
-        for (var i = 0; i < sceneData.props.Count; i++)
+        for (var i = 0; i < sceneData.Props.Count; i++)
         {
-            sceneData.props[i].transform.position = new Vector3(sceneData.props[i].transform.position.x - sceneData.trainSpeed * deltaTime,
-                                                                sceneData.props[i].transform.position.y,
-                                                                sceneData.props[i].transform.position.z);
+            sceneData.Props[i].transform.position = new Vector3(sceneData.Props[i].transform.position.x - sceneData.TrainSpeed * deltaTime,
+                                                                sceneData.Props[i].transform.position.y,
+                                                                sceneData.Props[i].transform.position.z);
         }
-        for (var i = 0; i < sceneData.rails.Count; i++)
+        for (var i = 0; i < sceneData.Rails.Count; i++)
         {
-            sceneData.rails[i].transform.position = new Vector3(sceneData.rails[i].transform.position.x - sceneData.trainSpeed * deltaTime,
-                                                                sceneData.rails[i].transform.position.y,
-                                                                sceneData.rails[i].transform.position.z);
+            sceneData.Rails[i].transform.position = new Vector3(sceneData.Rails[i].transform.position.x - sceneData.TrainSpeed * deltaTime,
+                                                                sceneData.Rails[i].transform.position.y,
+                                                                sceneData.Rails[i].transform.position.z);
         }
 
-        if (trainPrevSpeed != sceneData.trainSpeed)
+        if (trainPrevSpeed != sceneData.TrainSpeed)
         {
-            for (var i=0; i< sceneData.enemiesPatterns.Count;i++)
+            for (var i=0; i< sceneData.EnemiesPatterns.Count;i++)
             {
-                sceneData.enemiesPatterns[i].transform.position = new Vector3(sceneData.enemiesPatterns[i].transform.position.x + (sceneData.trainSpeed - trainPrevSpeed) * deltaTime,
-                                                    sceneData.enemiesPatterns[i].transform.position.y,                 
-                                                    sceneData.enemiesPatterns[i].transform.position.z);
+                sceneData.EnemiesPatterns[i].transform.position = new Vector3(sceneData.EnemiesPatterns[i].transform.position.x + (sceneData.TrainSpeed - trainPrevSpeed) * deltaTime,
+                                                    sceneData.EnemiesPatterns[i].transform.position.y,                 
+                                                    sceneData.EnemiesPatterns[i].transform.position.z);
             }
-            trainPrevSpeed = sceneData.trainSpeed;
+            trainPrevSpeed = sceneData.TrainSpeed;
         }
         
         //foreach(var terrainRenderer in terrainRenderers)

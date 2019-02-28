@@ -50,7 +50,7 @@ namespace TheLastHope.Weapons.Software
             Transform closest = null;
             //Квадрат радиуса обзора, это значение потребуется при поиске ближайшей цели
             float distance = sqrVisionRadius;
-            foreach (GameObject go in sceneData.enemies)
+            foreach (GameObject go in sceneData.Enemies)
             {
                 //Находим расстояние между турелью и предполагаемой целью
                 Vector3 diff = go.transform.position - this.gameObject.transform.position;

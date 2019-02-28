@@ -8,7 +8,8 @@ namespace TheLastHope.Helpers
     public class Timer
     {
         private DateTime _start;
-        public float _elapsed = -1;
+        private float _elapsed = -1;
+        public float Elapsed { get { return _elapsed; } set { _elapsed = value; } }
 
         public TimeSpan Duration { get; private set; }
         /// <summary>

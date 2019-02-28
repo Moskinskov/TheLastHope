@@ -5,9 +5,14 @@ namespace TheLastHope.Workers
 {
     public class CursorSetter : MonoBehaviour
     {
-        public Texture2D cursorTexture;
-        public CursorMode cursorMode = CursorMode.Auto;
-        public Vector2 hotSpot = Vector2.zero;
+        [SerializeField] Texture2D cursorTexture;
+        [SerializeField] CursorMode cursorMode = CursorMode.Auto;
+        [SerializeField] Vector2 hotSpot = Vector2.zero;
+
+        public Texture2D CursorTexture { get { return cursorTexture; } set { cursorTexture = value; } }
+        public CursorMode CursorMode { get { return cursorMode; } set { cursorMode = value; } }
+        public Vector2 HotSpot { get { return hotSpot; } set { hotSpot = value; } }
+
         void OnMouseEnter()
         {
             Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);

@@ -10,7 +10,9 @@ namespace TheLastHope.Weapons
     public class TurretController : ATurret
     {
         //Установленный на турель софт
-        [SerializeField] public ASoftware soft;
+        [SerializeField] ASoftware soft;
+
+        public ASoftware Soft { get { return soft; } set { soft = value; } }
 
         //Вращает турель в сторону точки mousePosition
         public override void TurnTurret(SceneData sceneData,float deltaTime)

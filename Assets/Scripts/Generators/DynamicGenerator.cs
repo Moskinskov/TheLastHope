@@ -15,16 +15,16 @@ namespace TheLastHope.Generators
         }
         public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
         {
-            if(sceneData.enemies.Count < sceneData.targetEnemyCount)
+            if(sceneData.Enemies.Count < sceneData.TargetEnemyCount)
             {
-                for (int i = sceneData.targetEnemyCount - sceneData.enemies.Count; i < sceneData.targetEnemyCount; i++)
+                for (int i = sceneData.TargetEnemyCount - sceneData.Enemies.Count; i < sceneData.TargetEnemyCount; i++)
                 {
                     GameObject enemy = Instantiate(
                     obj,
                     positions[0] + new Vector3((i*6), 0, (i*7)-40),                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
                     Quaternion.identity);
                     enemy.GetComponentInChildren<CopterEnemy>().Initialize();
-                    sceneData.enemies.Add(enemy);
+                    sceneData.Enemies.Add(enemy);
                 }
             }
         }

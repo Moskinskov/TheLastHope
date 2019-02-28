@@ -5,13 +5,18 @@ public class CameraShake : MonoBehaviour
 {
 	// Transform of the camera to shake. Grabs the gameObject's transform
 	// if null.
-	public Transform camTransform;
+	[SerializeField] Transform camTransform;
 	// How long the object should shake for.
-	public float shakeDuration = 0f;
+	[SerializeField] float shakeDuration = 0f;
 
 	// Amplitude of the shake. A larger value shakes the camera harder.
-	public float shakeAmount = 0.7f;
-	public float decreaseFactor = 1.0f;
+	[SerializeField] float shakeAmount = 0.7f;
+	[SerializeField] float decreaseFactor = 1.0f;
+
+    public Transform CamTransform { get { return camTransform; } set { camTransform = value; } }
+    public float ЫhakeDuration { get { return shakeDuration; } set { shakeDuration = value; } }
+    public float ЫhakeAmount { get { return shakeAmount; } set { shakeAmount = value; } }
+    public float ВecreaseFactor { get { return decreaseFactor; } set { decreaseFactor = value; } }
 
 	Vector3 originalPos;
 

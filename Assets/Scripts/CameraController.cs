@@ -19,6 +19,10 @@ namespace TheLastHope.Render
 
 		public AnimationCurve curve = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
 		public float t = 0.1f;        // don't know what is that
+
+        public AnimationCurve Curve { get { return curve; } set { curve = value; } }
+        public float T { get { return t; } set { t = value; } }
+
 		public void CameraUpdate()
 		{
 			cameraPos = Camera.main.transform.position;

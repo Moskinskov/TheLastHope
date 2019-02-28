@@ -19,18 +19,18 @@ namespace TheLastHope.Weapons
         public override void Shot(SceneData sceneData)
         {
 			//Направление перпендикулярное
-            Vector3 dirDeviation = new Vector3(_muzzle.forward.z,
+            Vector3 dirDeviation = new Vector3(Muzzle.forward.z,
                                    0,
-                                   _muzzle.forward.x);
+                                   Muzzle.forward.x);
             dirDeviation /= 10;
             for (int i = 0; i < _ammoPerShot; i++)
             {
-                AAmmo _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
+                AAmmo _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
                 var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
-                _bulletRigidBody.AddForce((_muzzle.forward + i * dirDeviation) * _force);
-                _bullet = Instantiate(_ammo, _muzzle.position, _muzzle.rotation);
+                _bulletRigidBody.AddForce((Muzzle.forward + i * dirDeviation) * Force);
+                _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
                 _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
-                _bulletRigidBody.AddForce((_muzzle.forward - i * dirDeviation) * _force);
+                _bulletRigidBody.AddForce((Muzzle.forward - i * dirDeviation) * Force);
             }
             
         }

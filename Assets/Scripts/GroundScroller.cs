@@ -5,12 +5,16 @@ using UnityEngine;
 public class GroundScroller : MonoBehaviour
 {
 
-	public float ScrollX = 0.0f;
-	public float ScrollY = 0.0f;
+	[SerializeField] float scrollX = 0.0f;
+	[SerializeField] float scrollY = 0.0f;
 	[SerializeField] private float speed;
 	private float _oldSpeed;
 
-	private void Start()
+    public float ScrollX { get { return scrollX; } set { scrollX = value; } }
+    public float ScrollY { get { return scrollY; } set { scrollY = value; } }
+
+
+    private void Start()
 	{
 		_oldSpeed = speed;
 	}
@@ -18,8 +22,8 @@ public class GroundScroller : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		float OffsetX = Time.time * ScrollX*speed;
-		float OffsetY = Time.time * ScrollY*speed;
+		float OffsetX = Time.time * scrollX*speed;
+		float OffsetY = Time.time * scrollY*speed;
 		GetComponent<Renderer>().material.mainTextureOffset = new Vector2(OffsetX, OffsetY);
 
 		if (speed != _oldSpeed) 

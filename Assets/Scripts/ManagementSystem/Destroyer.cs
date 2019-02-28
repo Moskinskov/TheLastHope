@@ -10,10 +10,10 @@ class Destroyer : ADestroyer
     [SerializeField] private float _xDestroyCoord;
     public override void Destroy(SceneData sceneData)
     {
-        DestroyInList(sceneData.props);
-        DestroyInList(sceneData.rails);
-        DestroyDeadEnemiesInList(sceneData.enemies);
-        //DestroyFinishedAmmoInList(sceneData.ammos);
+        DestroyInList(sceneData.Props);
+        DestroyInList(sceneData.Rails);
+        DestroyDeadEnemiesInList(sceneData.Enemies);
+        //DestroyFinishedAmmoInList(sceneData.Ammos);
     }
 
     void DestroyInList(List<GameObject> list)
@@ -33,7 +33,7 @@ class Destroyer : ADestroyer
     {
         for (var i = 0; i < list.Count; i++)
         {
-            if (list[i].GetComponent<AEnemy>().health<=0)
+            if (list[i].GetComponent<AEnemy>().Health <= 0)
             {
 				list[i].GetComponent<AEnemy>().Die();
 				Destroy(list[i].gameObject, 2.0f);
@@ -47,8 +47,8 @@ class Destroyer : ADestroyer
     {
         for (var i = 0; i < list.Count; i++)
         {
-            if ((list[i].GetComponent<AAmmo>().transform.position - list[i].GetComponent<AAmmo>().startPoint).magnitude 
-                > list[i].GetComponent<AAmmo>().maxMagnitude)
+            if ((list[i].GetComponent<AAmmo>().transform.position - list[i].GetComponent<AAmmo>().StartPoint).magnitude 
+                > list[i].GetComponent<AAmmo>().MaxMagnitude)
             {
                 Destroy(list[i].gameObject);
                 list.RemoveAt(i);

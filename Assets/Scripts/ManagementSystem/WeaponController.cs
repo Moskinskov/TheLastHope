@@ -17,8 +17,8 @@ namespace TheLastHope.Weapons
 			foreach (var turret in listTurretControllers)
 			{
 				turret.gameObject.AddComponent<AutoAndManualSoft>();
-				turret.soft = turret.gameObject.GetComponent<AutoAndManualSoft>();
-				turret.soft.Init(0f); //MAGIC NUMBER
+				turret.Soft = turret.gameObject.GetComponent<AutoAndManualSoft>();
+				turret.Soft.Init(0f); //MAGIC NUMBER
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace TheLastHope.Weapons
 			selectedTurret = selector.GetSelectedGameObject();
 			if (Input.GetButtonDown("Fire2"))
 			{
-				currentManualTurret.GetComponentInChildren<TurretController>().soft.SwitchMode();
+				currentManualTurret.GetComponentInChildren<TurretController>().Soft.SwitchMode();
 				currentManualTurret = null;
 			}
 			if (Input.GetButtonDown("Fire1") &&
@@ -42,13 +42,13 @@ namespace TheLastHope.Weapons
 			{
 				if (currentManualTurret != null)
 				{
-					currentManualTurret.GetComponentInChildren<TurretController>().soft.SwitchMode();
+					currentManualTurret.GetComponentInChildren<TurretController>().Soft.SwitchMode();
 				}
 				else
 				{
 					currentManualTurret = selectedTurret;
 				}
-				selectedTurret.GetComponentInChildren<TurretController>().soft.SwitchMode();
+				selectedTurret.GetComponentInChildren<TurretController>().Soft.SwitchMode();
 
 			}
 			foreach (var turret in listTurretControllers)

@@ -20,14 +20,14 @@ public class GeneratorManager : Singleton<GeneratorManager>
     {
         foreach(var enemy in enemies)
         {
-            sceneData.enemies.Add(enemy);
+            sceneData.Enemies.Add(enemy);
             enemy.GetComponent<CopterEnemy>().Initialize();
 
         }
         patternPositions = new List<Vector3>();
         foreach (var pattern in enemyPatterns)
         {
-            sceneData.enemiesPatterns.Add(pattern);
+            sceneData.EnemiesPatterns.Add(pattern);
             patternPositions.Add(pattern.transform.position);
 
         }
