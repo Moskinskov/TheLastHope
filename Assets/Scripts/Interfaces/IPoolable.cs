@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPoolable
+namespace TheLastHope.Interfaces
 {
-	void OnPopulate();
-	void OnDepopulate();
+    public interface IPoolable
+    {
+        void OnPopulate();
+        void OnDepopulate();
+    }
 }
+

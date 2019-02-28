@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TheLastHope.Management;
 
 
 public class SingletonTest : MonoBehaviour

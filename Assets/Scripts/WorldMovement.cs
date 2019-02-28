@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using TheLastHope.Data;
+using TheLastHope.Management.Data;
+using TheLastHope.Management.AbstractLayer;
 
 class WorldMovement : AWorldMover
 {
@@ -26,6 +27,7 @@ class WorldMovement : AWorldMover
     /// <param name="deltaTime"></param>
     public override void MoveWorld(SceneData sceneData, float deltaTime)
     {
+        print("MOVERSPEED: " + sceneData.trainSpeed);
         for (var i = 0; i < sceneData.props.Count; i++)
         {
             sceneData.props[i].transform.position = new Vector3(sceneData.props[i].transform.position.x - sceneData.trainSpeed * deltaTime,

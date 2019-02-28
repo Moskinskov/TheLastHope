@@ -1,5 +1,6 @@
 ﻿using TheLastHope.Helpers;
 using UnityEngine;
+using TheLastHope.Management.AbstractLayer;
 
 public class BasicAutoWeapon : MonoBehaviour
 {

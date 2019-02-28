@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Workers;
-using TheLastHope.Data;
+using TheLastHope.Management.Data;
 
 public class PoolManager : MonoBehaviour
 {

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using TheLastHope.Data;
+using TheLastHope.Management.Data;
+using TheLastHope.Management.AbstractLayer;
+using TheLastHope.Enemies;
 
 namespace TheLastHope.Generators
 {

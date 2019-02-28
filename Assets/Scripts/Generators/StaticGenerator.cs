@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using TheLastHope.Data;
+using TheLastHope.Management.Data;
+using TheLastHope.Management.AbstractLayer;
 using UnityEngine;
 
 namespace TheLastHope.Generators
