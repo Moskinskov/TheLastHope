@@ -9,16 +9,12 @@ namespace TheLastHope.Weapons
 	{
 		[SerializeField] Selector selector;
 		[SerializeField] List<TurretController> listTurretControllers = new List<TurretController>();
-		GameObject selectedTurret = null;
-		GameObject currentManualTurret = null;
-
-		public void Init()
+        [SerializeField] public bool manualMode = false;
+        public void Init()
 		{
 			foreach (var turret in listTurretControllers)
 			{
-				turret.gameObject.AddComponent<AutoAndManualSoft>();
-				turret.Soft = turret.gameObject.GetComponent<AutoAndManualSoft>();
-				turret.Soft.Init(0f); //MAGIC NUMBER
+                turret.Init();
 			}
 		}
 
@@ -29,29 +25,14 @@ namespace TheLastHope.Weapons
 		/// <param name="deltaTime"></param>
 		public void UpdateWeapons(SceneData sceneData, float deltaTime)
 		{
-
-			selectedTurret = selector.GetSelectedGameObject();
-			if (Input.GetButtonDown("Fire2"))
-			{
-				currentManualTurret.GetComponentInChildren<TurretController>().Soft.SwitchMode();
-				currentManualTurret = null;
-			}
-			if (Input.GetButtonDown("Fire1") &&
-				selectedTurret.GetComponentInChildren<TurretController>() != null &&
-				selectedTurret != currentManualTurret)
-			{
-				if (currentManualTurret != null)
-				{
-					currentManualTurret.GetComponentInChildren<TurretController>().Soft.SwitchMode();
-				}
-				else
-				{
-					currentManualTurret = selectedTurret;
-				}
-				selectedTurret.GetComponentInChildren<TurretController>().Soft.SwitchMode();
-
-			}
-			foreach (var turret in listTurretControllers)
+            //Fire2 - пкм. При нажатии пкм на турель, мы меняем режим ее стрельбы, если это нам позволяет софт
+            GameObject selectedTurret = selector.GetSelectedGameObject();
+            if (Input.GetButtonDown("Fire2") &&
+                selectedTurret.GetComponentInChildren<TurretController>() != null)
+            {
+                selectedTurret.GetComponentInChildren<TurretController>().SwitchMode();
+            }
+            foreach (var turret in listTurretControllers)
 			{
 				turret.TurUpdate(sceneData, deltaTime);
 			}

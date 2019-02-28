@@ -45,7 +45,6 @@ namespace TheLastHope.Management
             worldMover.MoveWorld(sceneData, Time.deltaTime);
             weaponController.UpdateWeapons(sceneData, Time.deltaTime);
             mainPlayer.UpdatePlayer(sceneData);
-            print(sceneData.TrainSpeed);
         }
     }
 }

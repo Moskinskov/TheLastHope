@@ -16,7 +16,7 @@ namespace TheLastHope.Weapons.Software
         //поиск цели будет осуществлен с помощью корутина 1 раз в searchTimeDelay секунд
         [SerializeField] internal float searchTimeDelay = 1f;
         //Текущая цель турели
-        public Transform target;
+        internal Transform target;
         //Предыдущее положение цели
         private Vector3 previousTargetPosition;
         //Скорость цели
@@ -25,10 +25,9 @@ namespace TheLastHope.Weapons.Software
         internal bool readyToFire;
         //Точка, по которой будет стрелять турель в случае обнаружения цели, по умолчанию это сама цель
         internal Vector3 targetingPosition = new Vector3(0, 0, 0);
-        internal float sqrVisionRadius;
         internal Transform turrelPosition;
         private float projectileSpeed;
-        internal bool manualMode = false;
+        internal bool canBeManual = false;
 
         public bool ReadyToFire { get => readyToFire; set => readyToFire = value; }
         public Transform Target { get => target; set => target = value; }
@@ -37,18 +36,11 @@ namespace TheLastHope.Weapons.Software
 
         public virtual void SwitchMode()
         {
-            manualMode = !manualMode;
+            canBeManual = !canBeManual;
         }
-        public virtual void Init(float projectileSpeed)
-        {
-            //радиус обзора в квадрате, используется в FindClosestTarget;
-            this.projectileSpeed = projectileSpeed;
-            sqrVisionRadius = visionRadius * visionRadius;
-            // //запускаем поиск цели
-            // StartCoroutine(FindClosestTarget());
-        }
+        public abstract void Init();
         //Считает точку, на которую должна навестись турель
-        public abstract Vector3 CalculateAim(SceneData sceneData, Transform turPosition);
+        public abstract Vector3 CalculateAim(Transform turPosition);
 
         public abstract void FindClosestTarget(SceneData sceneData);
 

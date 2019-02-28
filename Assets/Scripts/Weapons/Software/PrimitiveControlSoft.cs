@@ -12,7 +12,7 @@ namespace TheLastHope.Weapons.Software
             //Ближайшая цель, попавшая в радиус обзора
             Transform closest = null;
             //Квадрат радиуса обзора, это значение потребуется при поиске ближайшей цели
-            float distance = sqrVisionRadius;
+            float distance = visionRadius;
             foreach (GameObject go in sceneData.Enemies)
             {
                 //Находим расстояние между турелью и предполагаемой целью
@@ -30,12 +30,11 @@ namespace TheLastHope.Weapons.Software
             target = closest;
         }
 
-        public override Vector3 CalculateAim(SceneData sceneData, Transform turPosition)
+        public override Vector3 CalculateAim(Transform turPosition)
         {
             //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
             //которая находится перед движущейся целью и по которой будет стрелять турель.
             //То есть турель должна стрелять на опережение
-            FindClosestTarget(sceneData);
             targetingPosition = target.position;
             turrelPosition = turPosition;
             float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
@@ -51,6 +50,12 @@ namespace TheLastHope.Weapons.Software
                 readyToFire = false;
             }
             return targetingPosition;
+        }
+
+        public override void Init()
+        {
+            canBeManual = false;
+            readyToFire = false;
         }
     }
 }

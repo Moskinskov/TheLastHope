@@ -4,20 +4,18 @@ using UnityEngine;
 using TheLastHope.Management.Data;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Weapons.Software;
+using TheLastHope.Management;
 
 namespace TheLastHope.Weapons
 {
     public class TurretController : ATurret
     {
         //Установленный на турель софт
-        [SerializeField] ASoftware soft;
-
-        public ASoftware Soft { get { return soft; } set { soft = value; } }
-
-        //Вращает турель в сторону точки mousePosition
-        public override void TurnTurret(SceneData sceneData,float deltaTime)
+        [SerializeField] public bool manualMode = false;
+        private Vector3 aimingPoint;
+        //Вращает турель в сторону точки ффz
+        public override void TurnTurret(float deltaTime)
         {
-            Vector3 aimingPoint = soft.CalculateAim(sceneData,transform);
             float eulerTargetRot = Quaternion.FromToRotation(transform.forward,
                             aimingPoint - transform.position).eulerAngles.y;
             //print("rot: " + eulerTargetRot);
@@ -37,19 +35,39 @@ namespace TheLastHope.Weapons
        
         public override void TurUpdate(SceneData sceneData, float deltaTime)
         {
-            soft.FindClosestTarget(sceneData);
-            //Каждый кадр сохраняем текущее положение цели
-            TurnTurret(sceneData, Time.deltaTime);
-            //Если навелись на цель стреляем
-            if (soft.ReadyToFire)
+            //Проверяем включен ли ручной режим на турели и возможен ли он при установленном софте
+            if (manualMode && soft.canBeManual)
             {
-                weapon.Fire(sceneData);
+                //Смотрим куда показывает мышка
+                aimingPoint = InputManager.GetMousePosIn3D();
+                if (Input.GetButton("Fire1"))
+                {
+                    weapon.Fire(sceneData);
+                }
             }
+            else
+            {
+                //Рассчитываем точку для стрельбы
+                soft.FindClosestTarget(sceneData);
+                aimingPoint = soft.CalculateAim(transform);
+                //Если навелись на цель стреляем
+                if (soft.ReadyToFire)
+                {
+                    weapon.Fire(sceneData);
+                }
+            }
+            TurnTurret(Time.deltaTime);
         }
-        // public void Update()
-        // {
-        //     TurUpdate(0);
-        // }
+        //меняем режим стрельбы
+        public virtual void SwitchMode()
+        {
+            manualMode = !manualMode;
+        }
+
+        public override void Init()
+        {
+            soft.Init();
+        }
         /*
         //Для удобства - в окне редактора покажем радиус поражения турели и некоторые дополнительные данные
         void OnDrawGizmos()

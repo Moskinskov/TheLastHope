@@ -701,8 +701,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1461751279}
+  soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
   turningAngularSpeed: 45
-  soft: {fileID: 0}
+  manualMode: 0
 --- !u!23 &38812814
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14770,6 +14771,7 @@ MonoBehaviour:
   - {fileID: 2020139587}
   - {fileID: 1704827073}
   - {fileID: 38812813}
+  manualMode: 0
 --- !u!4 &1312983919
 Transform:
   m_ObjectHideFlags: 0
@@ -21746,8 +21748,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 6526000067301007043}
+  soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
   turningAngularSpeed: 130
-  soft: {fileID: 0}
+  manualMode: 0
 --- !u!1 &1613262907
 GameObject:
   m_ObjectHideFlags: 0
@@ -26747,8 +26750,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 29367511}
+  soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
   turningAngularSpeed: 45
-  soft: {fileID: 0}
+  manualMode: 0
 --- !u!1 &1712002260
 GameObject:
   m_ObjectHideFlags: 0
@@ -28402,8 +28406,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1541460267}
+  soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
   turningAngularSpeed: 180
-  soft: {fileID: 0}
+  manualMode: 0
 --- !u!23 &2020139588
 MeshRenderer:
   m_ObjectHideFlags: 0
