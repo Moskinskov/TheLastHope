@@ -12,10 +12,6 @@ namespace TheLastHope.Weapons.Software
         public override Vector3 CalculateAim(Transform turPosition)
         {
             ReadyToFire = Input.GetButton("Fire1");
-<<<<<<< HEAD
-
-=======
->>>>>>> fab68fbe74401601a774c71ab207ca4929fa3d92
             return InputManager.GetMousePosIn3D();
         }
 

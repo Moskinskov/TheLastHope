@@ -159,6 +159,9 @@
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\HippoMainPlayer.cs" />
+    <Compile Include="Assets\HippoSkill\ASkill.cs" />
+    <Compile Include="Assets\HippoSkill\HippoSkill1.cs" />
+    <Compile Include="Assets\HippoSkill\UltimateWeapon.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleEnemyBullet.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
