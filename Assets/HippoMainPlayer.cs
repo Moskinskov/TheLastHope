@@ -45,8 +45,8 @@ namespace TheLastHope.Hippo
 				var _child = gameObject.transform.GetChild(i);
 				if (!_child.gameObject.active) _child.gameObject.SetActive(true); 
 			}
-			//List<WeaponController> _weaponControllers;
-			//WeaponController weaponController = GameManager.Instance.
+			//List<WeaponManager> _weaponControllers;
+			//WeaponManager weaponController = GameManager.Instance.
 
 			for (int i = 0; i < _childCount; i++)
 			{

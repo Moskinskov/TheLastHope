@@ -14,8 +14,8 @@ public class CameraShake : MonoBehaviour
 	[SerializeField] float decreaseFactor = 1.0f;
 
     public Transform CamTransform { get { return camTransform; } set { camTransform = value; } }
-    public float ЫhakeDuration { get { return shakeDuration; } set { shakeDuration = value; } }
-    public float ЫhakeAmount { get { return shakeAmount; } set { shakeAmount = value; } }
+    public float ShakeDuration { get { return shakeDuration; } set { shakeDuration = value; } }
+    public float ShakeAmount { get { return shakeAmount; } set { shakeAmount = value; } }
     public float ВecreaseFactor { get { return decreaseFactor; } set { decreaseFactor = value; } }
 
 	Vector3 originalPos;

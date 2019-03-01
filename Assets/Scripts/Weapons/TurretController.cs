@@ -10,8 +10,6 @@ namespace TheLastHope.Weapons
 {
     public class TurretController : ATurret
     {
-        //Установленный на турель софт
-        [SerializeField] public bool manualMode = false;
         private Vector3 aimingPoint;
         //Вращает турель в сторону точки ффz
         public override void TurnTurret(float deltaTime)

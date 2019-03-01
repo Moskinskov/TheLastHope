@@ -17,11 +17,23 @@ namespace TheLastHope.Render
 
 		private Vector3 cameraPos;
 
-		public AnimationCurve curve = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
-		public float t = 0.1f;        // don't know what is that
+		[SerializeField]
+		private AnimationCurve curve = AnimationCurve.Linear(0.0f, 0.0f, 0.3f, 1.0f);
+		[SerializeField]
+		private float t = 1.0f;        // don't know what is that
 
-        public AnimationCurve Curve { get { return curve; } set { curve = value; } }
-        public float T { get { return t; } set { t = value; } }
+
+		[SerializeField] Transform camTransform;
+		[SerializeField] float shakeDuration = 0f; // How long the object should shake for.
+		[SerializeField] float shakeAmount = 0.7f; // Amplitude of the shake. A larger value shakes the camera harder.
+		[SerializeField] float decreaseFactor = 1.0f;
+
+		//public AnimationCurve Curve { get { return curve; } set { curve = value; } }
+		//public float T { get { return t; } set { t = value; } }
+		//public Transform CamTransform { get { return camTransform; } set { camTransform = value; } }
+		//public float ShakeDuration { get { return shakeDuration; } set { shakeDuration = value; } }
+		//public float ShakeAmount { get { return shakeAmount; } set { shakeAmount = value; } }
+		//public float ВecreaseFactor { get { return decreaseFactor; } set { decreaseFactor = value; } }
 
 		public void CameraUpdate()
 		{
@@ -37,24 +49,39 @@ namespace TheLastHope.Render
 				cameraPos.x = cameraPos.x - steps;
 			}
 
-			if (Input.mousePosition.y > Camera.main.pixelHeight * yBoard && cameraPos.z < zRange)
-			{
-				cameraPos.z = cameraPos.z + steps;
-			}
-			else if (Input.mousePosition.y < Camera.main.pixelHeight * (1 - yBoard) && cameraPos.z > -zRange)
-			{
-				cameraPos.z = cameraPos.z - steps;
-			}
+			//if (Input.mousePosition.y > Camera.main.pixelHeight * yBoard && cameraPos.z < zRange)
+			//{
+			//	cameraPos.z = cameraPos.z + steps;
+			//}
+			//else if (Input.mousePosition.y < Camera.main.pixelHeight * (1 - yBoard) && cameraPos.z > -zRange)
+			//{
+			//	cameraPos.z = cameraPos.z - steps;
+			//}
 
-			Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos, curve.Evaluate(t));
+			//IMPLEMENT MOUSE LOOK
+
+			Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos, Time.deltaTime*0.5f);
+		}
+
+		public void CameraShake()
+		{
+			camTransform = GetComponent(typeof(Transform)) as Transform;
+			var originalPos = camTransform.localPosition;
+
+			if (shakeDuration > 0)
+			{
+				camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+				shakeDuration -= Time.deltaTime * decreaseFactor;
+			}
+			else
+			{
+				shakeDuration = 0f;
+				camTransform.localPosition = originalPos;
+			}
 		}
 
 		// Debug 
 		// DONT'T FORGET TO MOVE UPDATE TO RENDER MANAGER
-		void Update()
-		{
-			CameraUpdate();
-		}
 
 	}
 }

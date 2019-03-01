@@ -32,19 +32,26 @@ namespace TheLastHope.Weapons.Software
 
         public override Vector3 CalculateAim(Transform turPosition)
         {
-            //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
-            //которая находится перед движущейся целью и по которой будет стрелять турель.
-            //То есть турель должна стрелять на опережение
-            targetingPosition = target.position;
-            turrelPosition = turPosition;
-            float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
-                            target.position - turrelPosition.position).eulerAngles.y;
+			//По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
+			//которая находится перед движущейся целью и по которой будет стрелять турель.
+			//То есть турель должна стрелять на опережение
+			if (target != null)
+			{
+				targetingPosition = target.position;
+				turrelPosition = turPosition;
+				float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
+								target.position - turrelPosition.position).eulerAngles.y;
 
-            //Проверяем навелись мы или нет
-            if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
-            {
-                readyToFire = true;
-            }
+				//Проверяем навелись мы или нет
+				if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
+				{
+					readyToFire = true;
+				}
+				else
+				{
+					readyToFire = false;
+				}
+			}
             else
             {
                 readyToFire = false;

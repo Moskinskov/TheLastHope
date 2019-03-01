@@ -189,8 +189,9 @@
     <Compile Include="Assets\Scripts\ManagementSystem\GameManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\GeneratorManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\InputManager.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\RenderManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Selector.cs" />
-    <Compile Include="Assets\Scripts\ManagementSystem\WeaponController.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\ManualTurretPlatform.cs" />
     <Compile Include="Assets\Scripts\PoolManager.cs" />
     <Compile Include="Assets\Scripts\Tests\SingletonTest.cs" />

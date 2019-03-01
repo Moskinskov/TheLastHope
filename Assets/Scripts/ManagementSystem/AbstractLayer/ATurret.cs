@@ -11,8 +11,9 @@ namespace TheLastHope.Management.AbstractLayer
         //Оружие турели
         [SerializeField] internal AWeapon weapon;
         [SerializeField] internal ASoftware soft;
-        //Скорость поворота турели к цели
-        [SerializeField] internal float turningAngularSpeed;
+		[SerializeField] internal bool manualMode = false;
+		//Скорость поворота турели к цели
+		[SerializeField] internal float turningAngularSpeed;
 
         public abstract void TurnTurret(float deltaTime);
 

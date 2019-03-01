@@ -29,8 +29,12 @@ namespace TheLastHope.Weapons.Software
                     readyToFire = false;
                 }
             }
+			else
+			{
+				readyToFire = false;
+			}
 
-            return targetingPosition;
+			return targetingPosition;
         }
 
 
