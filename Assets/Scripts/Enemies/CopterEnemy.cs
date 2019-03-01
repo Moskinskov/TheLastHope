@@ -80,7 +80,6 @@ namespace TheLastHope.Enemies
         public override void SetDamage(float damage)
         {
             Health -= damage;
-			print(material.color);
 			material.color = Color.green;
 
         }
