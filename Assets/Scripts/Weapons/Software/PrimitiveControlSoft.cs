@@ -35,20 +35,28 @@ namespace TheLastHope.Weapons.Software
             //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
             //которая находится перед движущейся целью и по которой будет стрелять турель.
             //То есть турель должна стрелять на опережение
-            targetingPosition = target.position;
-            turrelPosition = turPosition;
-            float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
-                            target.position - turrelPosition.position).eulerAngles.y;
-
-            //Проверяем навелись мы или нет
-            if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
+            if (target != null)
             {
-                readyToFire = true;
+                targetingPosition = target.position;
+                turrelPosition = turPosition;
+                float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
+                                target.position - turrelPosition.position).eulerAngles.y;
+
+                //Проверяем навелись мы или нет
+                if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
+                {
+                    readyToFire = true;
+                }
+                else
+                {
+                    readyToFire = false;
+                }
             }
             else
             {
                 readyToFire = false;
             }
+            
             return targetingPosition;
         }
 

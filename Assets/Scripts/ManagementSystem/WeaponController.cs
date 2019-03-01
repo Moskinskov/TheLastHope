@@ -9,7 +9,6 @@ namespace TheLastHope.Weapons
 	{
 		[SerializeField] Selector selector;
 		[SerializeField] List<TurretController> listTurretControllers = new List<TurretController>();
-        [SerializeField] public bool manualMode = false;
         public void Init()
 		{
 			foreach (var turret in listTurretControllers)
@@ -36,6 +35,6 @@ namespace TheLastHope.Weapons
 			{
 				turret.TurUpdate(sceneData, deltaTime);
 			}
-		}
+        }
 	}
 }
