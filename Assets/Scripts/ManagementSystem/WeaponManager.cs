@@ -35,6 +35,6 @@ namespace TheLastHope.Weapons
 			{
 				turret.TurUpdate(sceneData, deltaTime);
 			}
-		}
+        }
 	}
 }
