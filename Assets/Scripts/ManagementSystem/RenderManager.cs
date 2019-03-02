@@ -15,6 +15,7 @@ namespace TheLastHope.Management
 		{
 			_currentCam = Camera.main;
 			_camController = _currentCam.GetComponent<CameraController>();
+			_camController.Init();
 		}
 		/// <summary>
 		/// Controls all of the rendering routine.
