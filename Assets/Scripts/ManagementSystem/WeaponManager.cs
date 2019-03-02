@@ -3,12 +3,14 @@ using TheLastHope.Management.Data;
 using TheLastHope.Management;
 using System.Collections.Generic;
 using TheLastHope.Weapons.Software;
+using TheLastHope.Management.AbstractLayer;
+
 namespace TheLastHope.Weapons
 {
 	public class WeaponManager : MonoBehaviour
 	{
 		[SerializeField] Selector selector;
-		[SerializeField] List<TurretController> listTurretControllers = new List<TurretController>();
+		[SerializeField] List<ATurret> listTurretControllers = new List<ATurret>();
         public void Init()
 		{
 			foreach (var turret in listTurretControllers)

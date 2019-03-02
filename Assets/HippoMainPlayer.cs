@@ -36,7 +36,6 @@ namespace TheLastHope.Hippo
 
 		private void Die(SceneData sceneData)
 		{
-			Debug.Log("Player wasted!");
 			var _oldSpeed = sceneData.TrainSpeed;
 			sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 			int _childCount = gameObject.transform.childCount;

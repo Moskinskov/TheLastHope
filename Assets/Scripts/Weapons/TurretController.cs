@@ -20,7 +20,7 @@ namespace TheLastHope.Weapons
             float turningDir = 1;
             if (Mathf.Abs(eulerTargetRot) > 180)
                 turningDir *= -1;
-            if (Mathf.Abs(eulerTargetRot) < turningAngularSpeed* deltaTime)
+            if (Mathf.Abs(eulerTargetRot) < turningAngularSpeed * deltaTime)
             {
                 gameObject.transform.rotation *= Quaternion.AngleAxis(eulerTargetRot * deltaTime, Vector3.up);           
             }

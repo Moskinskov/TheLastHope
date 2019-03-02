@@ -20,6 +20,5 @@ namespace TheLastHope.Management.AbstractLayer
         public abstract void OnDepopulate();
 		public abstract void OnPopulate();
 		public abstract void OnTriggerEnter(Collider collision);
-
 	}
 }
