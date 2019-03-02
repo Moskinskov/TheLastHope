@@ -56,12 +56,6 @@ namespace TheLastHope.Weapons
             }
             TurnTurret(Time.deltaTime);
         }
-        //меняем режим стрельбы
-        public virtual void SwitchMode()
-        {
-            manualMode = !manualMode;
-        }
-
         public override void Init()
         {
             soft.Init();

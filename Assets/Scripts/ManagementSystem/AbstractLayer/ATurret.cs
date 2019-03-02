@@ -21,6 +21,11 @@ namespace TheLastHope.Management.AbstractLayer
 
         public abstract void Init();
 
+        //меняем режим стрельбы
+        public void SwitchMode()
+        {
+            manualMode = !manualMode;
+        }
     }
 }
 

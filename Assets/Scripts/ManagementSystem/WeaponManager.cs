@@ -10,7 +10,7 @@ namespace TheLastHope.Weapons
 	public class WeaponManager : MonoBehaviour
 	{
 		[SerializeField] Selector selector;
-		[SerializeField] List<ATurret> listTurretControllers = new List<ATurret>();
+		[SerializeField] List<TurretController> listTurretControllers = new List<TurretController>();
         public void Init()
 		{
 			foreach (var turret in listTurretControllers)

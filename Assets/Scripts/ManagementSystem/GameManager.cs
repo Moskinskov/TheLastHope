@@ -33,7 +33,10 @@ namespace TheLastHope.Management
             generatorManager.Initialize(sceneData);
             weaponController.Init();
 			renderManager.Init();
-            skillManager.Init();
+            if (skillManager != null)
+            {
+                skillManager.Init();
+            }
         }
 
         // Update is called once per frame
@@ -49,7 +52,10 @@ namespace TheLastHope.Management
             weaponController.UpdateWeapons(sceneData, Time.deltaTime);
             mainPlayer.UpdatePlayer(sceneData);
 			renderManager.UpdateRender(sceneData);
-            skillManager.SkillUpdate(sceneData);
+            if (skillManager != null)
+            {
+                skillManager.SkillUpdate(sceneData);
+            }
         }
 
 	
