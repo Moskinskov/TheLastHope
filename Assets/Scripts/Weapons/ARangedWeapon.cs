@@ -83,7 +83,6 @@ namespace TheLastHope.Weapons
 		protected virtual void Update()
 		{
 			_delay.Update();
-
 		}
 	}
 }

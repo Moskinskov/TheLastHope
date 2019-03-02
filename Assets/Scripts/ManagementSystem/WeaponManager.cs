@@ -3,6 +3,8 @@ using TheLastHope.Management.Data;
 using TheLastHope.Management;
 using System.Collections.Generic;
 using TheLastHope.Weapons.Software;
+using TheLastHope.Management.AbstractLayer;
+
 namespace TheLastHope.Weapons
 {
 	public class WeaponManager : MonoBehaviour

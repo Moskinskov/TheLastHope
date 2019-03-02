@@ -21,7 +21,7 @@ namespace TheLastHope.Management
         [SerializeField] WeaponManager weaponController;
         [SerializeField] HippoMainPlayer mainPlayer;
 		[SerializeField] RenderManager renderManager;
-
+        [SerializeField] SkillManager skillManager;
         // Start is called before the first frame update
         void Start()
         {
@@ -33,7 +33,10 @@ namespace TheLastHope.Management
             generatorManager.Initialize(sceneData);
             weaponController.Init();
 			renderManager.Init();
-
+            if (skillManager != null)
+            {
+                skillManager.Init();
+            }
         }
 
         // Update is called once per frame
@@ -49,6 +52,10 @@ namespace TheLastHope.Management
             weaponController.UpdateWeapons(sceneData, Time.deltaTime);
             mainPlayer.UpdatePlayer(sceneData);
 			renderManager.UpdateRender(sceneData);
+            if (skillManager != null)
+            {
+                skillManager.SkillUpdate(sceneData);
+            }
         }
 
 	
