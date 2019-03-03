@@ -49,6 +49,18 @@ namespace TheLastHope.Management.Data
         /// Current train speed.
         /// </summary>
         public float TrainSpeed { get; set; }
+        /// <summary>
+        /// Length of vertical (from camera) line. Used for counting driven path.
+        /// </summary>
+        public float LineLength { get; set; }
+        /// <summary>
+        /// Store number of driven lines;
+        /// </summary>
+        public int CurrentLine { get; set; }
+        /// <summary>
+        /// Name of current level.
+        /// </summary>
+        public string CurrentLevel { get; set; }
 
 		public SceneData()
 		{

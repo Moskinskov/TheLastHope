@@ -96,17 +96,15 @@ namespace TheLastHope.Generators
                 Initialization();
             }
 
-            if (sceneData.Props[sceneData.Props.Count - 1].transform.position.x < positions[0].x - 10)
+            for (int i = 0; i < 5 ; i++)
             {
-                for (int i = 0 + (5 * activeColumn); i < 5 + (5 * activeColumn); i++)
+                if (objects[i] != null)
                 {
-                    if (objects[i] != null)
-                    {
-                        sceneData.Props.Add(Instantiate(objects[i], positions[i % 5], Quaternion.identity));
-                    }
+                    sceneData.Props.Add(Instantiate(objects[i], positions[i % 5], Quaternion.identity));
                 }
-                activeColumn++;
             }
+            activeColumn++;
+            
             if (activeColumn == 10)
             {
                 activeColumn = 0;

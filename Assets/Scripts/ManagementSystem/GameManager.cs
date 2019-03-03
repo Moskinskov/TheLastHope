@@ -12,6 +12,7 @@ namespace TheLastHope.Management
     public class GameManager : Singleton<GameManager>
     {
         SceneData sceneData;
+        PathLenghtCounter pathCounter = new PathLenghtCounter();
         [SerializeField] GeneratorManager generatorManager;
         [SerializeField] int targetEnemyCount;
         [SerializeField] int targetPropsCount;
@@ -22,6 +23,8 @@ namespace TheLastHope.Management
         [SerializeField] HippoMainPlayer mainPlayer;
 		[SerializeField] RenderManager renderManager;
         [SerializeField] SkillManager skillManager;
+        [SerializeField] float lineLenght;
+        [SerializeField] string currentLevel;
         // Start is called before the first frame update
         void Start()
         {
@@ -29,6 +32,8 @@ namespace TheLastHope.Management
             sceneData.TargetEnemyCount = targetEnemyCount;
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
+            sceneData.LineLength = lineLenght;
+            sceneData.CurrentLevel = currentLevel;
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
@@ -37,6 +42,7 @@ namespace TheLastHope.Management
             {
                 skillManager.Init();
             }
+            pathCounter.Init(sceneData);
         }
 
         // Update is called once per frame
@@ -56,6 +62,8 @@ namespace TheLastHope.Management
             {
                 skillManager.SkillUpdate(sceneData);
             }
+            pathCounter.CountLenght(sceneData, Time.deltaTime);
+            
         }
 
 	

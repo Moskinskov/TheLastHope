@@ -10,7 +10,7 @@ namespace TheLastHope.Weapons
 	public class WeaponManager : MonoBehaviour
 	{
 		[SerializeField] Selector selector;
-		[SerializeField] List<TurretController> listTurretControllers = new List<TurretController>();
+		[SerializeField] List<ATurret> listTurretControllers = new List<ATurret>();
         public void Init()
 		{
 			foreach (var turret in listTurretControllers)
@@ -29,9 +29,9 @@ namespace TheLastHope.Weapons
             //Fire2 - пкм. При нажатии пкм на турель, мы меняем режим ее стрельбы, если это нам позволяет софт
             GameObject selectedTurret = selector.GetSelectedGameObject();
             if (Input.GetButtonDown("Fire2") &&
-                selectedTurret.GetComponentInChildren<TurretController>() != null)
+                selectedTurret.GetComponentInChildren<ATurret>() != null)
             {
-                selectedTurret.GetComponentInChildren<TurretController>().SwitchMode();
+                selectedTurret.GetComponentInChildren<ATurret>().SwitchMode();
             }
             foreach (var turret in listTurretControllers)
 			{

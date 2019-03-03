@@ -6,53 +6,98 @@ using TheLastHope.Management.Data;
 using TheLastHope.Enemies;
 using TheLastHope.Helpers;
 
-
-public class GeneratorManager : Singleton<GeneratorManager>
+namespace TheLastHope.Management
 {
-    [SerializeField] AGenerator enemyGen;
-    [SerializeField] AGenerator staticGen;
-    [SerializeField] AGenerator railsGen;
-    [SerializeField] List<GameObject> enemies;
-    [SerializeField] List<GameObject> enemyPatterns;
-    List<Vector3> patternPositions;
-
-    public void Initialize(SceneData sceneData)
+    public class GeneratorManager : Singleton<GeneratorManager>
     {
-        foreach(var enemy in enemies)
+        [SerializeField] AGenerator enemyGen;
+        [SerializeField] AGenerator staticGen;
+        [SerializeField] AGenerator railsGen;
+        [SerializeField] ObjectDictionary objDictionary;
+        [SerializeField] List<GameObject> enemies;
+        [SerializeField] List<GameObject> enemyPatterns;
+        [SerializeField] int lineWidth;
+        //[SerializeField] int layersCount;
+        List<Vector3> patternPositions;
+        GameObject[] enemiesArray;
+        GameObject[] groundArray;
+        GameObject[] staticArray;
+
+        int currentLine = -1;
+        LevelReader levelReader;
+        [SerializeField] char devider = ',';
+
+
+        public void Initialize(SceneData sceneData)
         {
-            sceneData.Enemies.Add(enemy);
-            enemy.GetComponent<CopterEnemy>().Initialize();
+            enemiesArray = new GameObject[lineWidth];
+            groundArray = new GameObject[lineWidth];
+            staticArray = new GameObject[lineWidth];
+            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", devider);
+            foreach (var enemy in enemies)
+            {
+                sceneData.Enemies.Add(enemy);
+                enemy.GetComponent<CopterEnemy>().Initialize();
+
+            }
+            patternPositions = new List<Vector3>();
+            foreach (var pattern in enemyPatterns)
+            {
+                sceneData.EnemiesPatterns.Add(pattern);
+                patternPositions.Add(pattern.transform.position);
+            }
+        }
+
+        public void UpdateGenerators(SceneData sceneData)
+        {
+            railsGen.Generate(sceneData);
+            if (currentLine < sceneData.CurrentLine)
+            {
+                GetLineArrays(sceneData);
+                staticGen.Generate(groundArray,sceneData);
+                staticGen.Generate(staticArray,sceneData);
+                if (enemies.Count > 0)
+                {
+                    enemyGen.Generate(enemiesArray, sceneData);
+                }
+                currentLine = sceneData.CurrentLine;
+            }
+        }
+
+        void GetLineArrays(SceneData sceneData)
+        {
+            string[] line = levelReader.GetLine(sceneData.CurrentLine);
+            if (line[0] != null)
+            {
+                var j = 0;
+                for (var i = 0; i < lineWidth; i++)
+                {
+                    print(line[i]);
+                    objDictionary.ObjectsDictionary.TryGetValue(line[i], out groundArray[j]);
+                    j++;
+                }
+                j = 0;
+                for (var i = lineWidth; i < lineWidth * 2; i++)
+                {
+                    print(line[i]);
+                    objDictionary.ObjectsDictionary.TryGetValue(line[i], out staticArray[j]);
+                    j++;
+                }
+                j = 0;
+                for (var i = lineWidth * 2; i < lineWidth * 3; i++)
+                {
+                    print(line[i]);
+                    objDictionary.ObjectsDictionary.TryGetValue(line[i], out enemiesArray[j]);
+                    j++;
+                }
+            }
+            else
+            {
+                print("Looks like file have not founded. Path " + Application.dataPath + "/Maps/" + sceneData.CurrentLevel + ".txt");
+            }
 
         }
-        patternPositions = new List<Vector3>();
-        foreach (var pattern in enemyPatterns)
-        {
-            sceneData.EnemiesPatterns.Add(pattern);
-            patternPositions.Add(pattern.transform.position);
 
-        }
-    }
-
-    public void UpdateGenerators(SceneData sceneData)
-    {
-        railsGen.Generate(sceneData);
-        staticGen.Generate(sceneData);
-        if(enemies.Count > 0)
-        {
-            enemyGen.Generate(enemies[0], sceneData, patternPositions);
-        }
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
