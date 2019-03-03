@@ -9,18 +9,9 @@ namespace TheLastHope.Weapons.Software
     public class ManualControlSoft : ASoftware
     {
 
-        public override Vector3 CalculateAim(SceneData sceneData, Transform turPosition)
+        public override Vector3 CalculateAim(Transform turPosition)
         {
             ReadyToFire = Input.GetButton("Fire1");
-            //Code below can be simplified.
-            // if (nput.GetButton("Fire1"))
-            // {
-            //     ReadyToFire = true;
-            // }
-            // else
-            // {
-            //     ReadyToFire = false;
-            // }
             return InputManager.GetMousePosIn3D();
         }
 
@@ -29,7 +20,7 @@ namespace TheLastHope.Weapons.Software
             //Ближайшая цель, попавшая в радиус обзора
             Transform closest = null;
             //Квадрат радиуса обзора, это значение потребуется при поиске ближайшей цели
-            float distance = sqrVisionRadius;
+            float distance = visionRadius;
             foreach (GameObject go in sceneData.Enemies)
             {
                 //Находим расстояние между турелью и предполагаемой целью
@@ -45,6 +36,12 @@ namespace TheLastHope.Weapons.Software
                 }
             }
             target = closest;
+        }
+
+        public override void Init()
+        {
+            canBeManual = false;
+            readyToFire = false;
         }
     }
 }

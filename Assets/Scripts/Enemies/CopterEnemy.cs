@@ -15,6 +15,7 @@ namespace TheLastHope.Enemies
         [SerializeField] private ARangedWeapon _weapon;
         [SerializeField] private float _visionDistance;
         private RaycastHit hit;
+		private Material material;
 
         /// <summary>
         /// Resets health.
@@ -27,6 +28,7 @@ namespace TheLastHope.Enemies
             base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
                                                      base.targetPosition.transform.position.y,
                                                      base.targetPosition.transform.position.z);
+			material = GetComponentInChildren<Renderer>().material;
         }
 
         /// <summary>
@@ -78,6 +80,8 @@ namespace TheLastHope.Enemies
         public override void SetDamage(float damage)
         {
             Health -= damage;
+			material.color = Color.green;
+
         }
 
         Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, GameObject targetPosition, float deltaTime)

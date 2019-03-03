@@ -8,39 +8,33 @@ namespace TheLastHope.Weapons.Software
 {
     public class AutoAndManualSoft : ASoftware
     {
-        public override Vector3 CalculateAim(SceneData sceneData, Transform turPosition)
+        public override Vector3 CalculateAim(Transform turPosition)
         {
-            if (manualMode)
+            //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
+            //которая находится перед движущейся целью и по которой будет стрелять турель.
+            //То есть турель должна стрелять на опережение
+            if (target != null)
             {
-                ReadyToFire = Input.GetButton("Fire1");
-                return InputManager.GetMousePosIn3D();
+                targetingPosition = target.position;
+                turrelPosition = turPosition;
+                float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
+                                target.position - turrelPosition.position).eulerAngles.y;
+                //Проверяем навелись мы или нет
+                if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
+                {
+                    readyToFire = true;
+                }
+                else
+                {
+                    readyToFire = false;
+                }
             }
             else
             {
-                //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
-                //которая находится перед движущейся целью и по которой будет стрелять турель.
-                //То есть турель должна стрелять на опережение
-                if (target != null)
-                {
-                    FindClosestTarget(sceneData);
-                    targetingPosition = target.position;
-                    turrelPosition = turPosition;
-                    float eulerTargetRot = Quaternion.FromToRotation(turrelPosition.forward,
-                                    target.position - turrelPosition.position).eulerAngles.y;
-                    //Проверяем навелись мы или нет
-                    if (Mathf.Abs(eulerTargetRot) > 355 || Mathf.Abs(eulerTargetRot) < 5)
-                    {
-                        readyToFire = true;
-                    }
-                    else
-                    {
-                        readyToFire = false;
-                    }
-                }
+                readyToFire = false;
+            }
 
-                return targetingPosition;
-        
-            }       
+            return targetingPosition;
         }
 
 
@@ -49,7 +43,7 @@ namespace TheLastHope.Weapons.Software
             //Ближайшая цель, попавшая в радиус обзора
             Transform closest = null;
             //Квадрат радиуса обзора, это значение потребуется при поиске ближайшей цели
-            float distance = sqrVisionRadius;
+            float distance = visionRadius * visionRadius;
             foreach (GameObject go in sceneData.Enemies)
             {
                 //Находим расстояние между турелью и предполагаемой целью
@@ -67,6 +61,11 @@ namespace TheLastHope.Weapons.Software
             target = closest;
         }
 
+        public override void Init()
+        {
+            canBeManual = true;
+            readyToFire = false;
+        }
     }
 }
 

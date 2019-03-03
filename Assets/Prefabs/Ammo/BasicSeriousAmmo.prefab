@@ -133,7 +133,7 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.2
   m_Height: 0.9456692
-  m_Direction: 0
+  m_Direction: 2
   m_Center: {x: -0.047599792, y: 0, z: 0}
 --- !u!114 &240558141
 MonoBehaviour:
@@ -150,7 +150,6 @@ MonoBehaviour:
   damage: 50
   speed: 0
   maxMagnitude: 0
-  startPoint: {x: 0, y: 0, z: 0}
 --- !u!96 &4643491161565700731
 TrailRenderer:
   serializedVersion: 2
