@@ -33,17 +33,24 @@ public class SimpleRoket : AAmmo
     {
         if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>())) Die(false);
     }
-    public void UpdateBullet()
+    public void UpdateBullet(float deltaTime)
     {
         if (target != null)
         {
+            TurnToGoal();
             Vector3 dir = Target.position - transform.position;
-            transform.position += dir.normalized * Speed;
+            transform.position += dir.normalized * Speed * deltaTime;
         }
         else
         {
             Die(true);
         }
+    }
+    public void TurnToGoal()
+    {
+        var direction = (target.position - transform.position).normalized;
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction);
     }
     private void Die(bool withSnd)
     {

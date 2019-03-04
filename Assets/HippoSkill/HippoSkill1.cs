@@ -15,9 +15,13 @@ public class HippoSkill1 : ASkill
     {
         foreach (GameObject go in sceneData.Enemies)
         {
-            SimpleRoket _bullet = Instantiate(roket, start.position, start.rotation);
-            //_bullet.Target = go.transform;
-            listAmmo.Add(_bullet);
+            Vector3 diff = go.transform.position - start.position;
+            if (diff.magnitude < skillRadius)
+            {
+                SimpleRoket _bullet = Instantiate(roket, start.position, start.rotation);
+                _bullet.Target = go.transform;
+                listAmmo.Add(_bullet);
+            }
         }
         
     }
@@ -30,7 +34,6 @@ public class HippoSkill1 : ASkill
     {
         while (true)
         {
-            print("Kek");
             foreach (SimpleRoket go in listAmmo)
             {
                 print(go);
@@ -40,15 +43,26 @@ public class HippoSkill1 : ASkill
                 }
                 else
                 {
-                    go.UpdateBullet();
+                    go.UpdateBullet(Time.deltaTime);
                 }
             }
-            print("end.");
         }
     }
     public override void SkillUpdate(SceneData sceneData)
     {
+        foreach (SimpleRoket go in listAmmo)
+        {
+            print(go);
+            if (go == null)
+            {
+                listAmmo.Remove(go);
+            }
+            else
+            {
+                go.UpdateBullet(Time.deltaTime);
+            }
+        }
+        print("End.");
         base.SkillUpdate(sceneData);
-        
     }
 }
