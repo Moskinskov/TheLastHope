@@ -8,14 +8,14 @@ public class HippoSkill1 : ASkill
 {
     [SerializeField] public Transform start;
     [SerializeField] public float skillRadius = 20;
-    [SerializeField] public SimpleRoket roket;
+    [SerializeField] public AAmmo rocket;
 
-    private List<SimpleRoket> listAmmo = new List<SimpleRoket>();
+    private List<AAmmo> listAmmo = new List<AAmmo>();
     public override void Ability(SceneData sceneData)
     {
         foreach (GameObject go in sceneData.Enemies)
         {
-            SimpleRoket _bullet = Instantiate(roket, start.position, start.rotation);
+            AAmmo _bullet = Instantiate(rocket, start.position, start.rotation);
             //_bullet.Target = go.transform;
             listAmmo.Add(_bullet);
         }
@@ -26,26 +26,26 @@ public class HippoSkill1 : ASkill
         nameKey = "Ability1";
         //StartCoroutine("UpdateBullet");
     }
-    private IEnumerator UpdateBullet()
-    {
-        while (true)
-        {
-            print("Kek");
-            foreach (SimpleRoket go in listAmmo)
-            {
-                print(go);
-                if (go == null)
-                {
-                    listAmmo.Remove(go);
-                }
-                else
-                {
-                    go.UpdateBullet();
-                }
-            }
-            print("end.");
-        }
-    }
+    //private IEnumerator UpdateBullet()
+    //{
+    //    while (true)
+    //    {
+    //        print("Kek");
+    //        foreach (AAmmo go in listAmmo)
+    //        {
+    //            print(go);
+    //            if (go == null)
+    //            {
+    //                listAmmo.Remove(go);
+    //            }
+    //            else
+    //            {
+    //                go.UpdateBullet();
+    //            }
+    //        }
+    //        print("end.");
+    //    }
+    //}
     public override void SkillUpdate(SceneData sceneData)
     {
         base.SkillUpdate(sceneData);

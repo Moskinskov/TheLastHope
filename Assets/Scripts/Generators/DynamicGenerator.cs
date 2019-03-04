@@ -18,11 +18,11 @@ namespace TheLastHope.Generators
             activeColumn = 0;
 
             positions = new Vector3[5];                                 //5 rows z={20, 10, 0, -10, -20}; 0 - rails 
-            positions[0] = new Vector3(40, 0, 20);
-            positions[1] = new Vector3(40, 0, 10);
-            positions[2] = new Vector3(40, 0, 0);
-            positions[3] = new Vector3(40, 0, -10);
-            positions[4] = new Vector3(40, 0, -20);
+            positions[0] = new Vector3(-80, 0, 20);
+            positions[1] = new Vector3(-80, 0, 10);
+            positions[2] = new Vector3(-80, 0, 0);
+            positions[3] = new Vector3(-80, 0, -10);
+            positions[4] = new Vector3(-80, 0, -20);
         }
 
         public override void Generate(SceneData sceneData)          //method for static objects?
