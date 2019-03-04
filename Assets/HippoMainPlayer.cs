@@ -36,16 +36,13 @@ namespace TheLastHope.Hippo
 
 		private void Die(SceneData sceneData)
 		{
-			var _oldSpeed = sceneData.TrainSpeed;
-			sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+			sceneData.CurrentState = GameState.Lose;
 			int _childCount = gameObject.transform.childCount;
 			for (int i = 0; i < _childCount; i++)
 			{
 				var _child = gameObject.transform.GetChild(i);
 				if (!_child.gameObject.active) _child.gameObject.SetActive(true); 
 			}
-			//List<WeaponManager> _weaponControllers;
-			//WeaponManager weaponController = GameManager.Instance.
 
 			for (int i = 0; i < _childCount; i++)
 			{

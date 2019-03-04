@@ -23,7 +23,7 @@ namespace TheLastHope.Management
         [SerializeField] HippoMainPlayer mainPlayer;
 		[SerializeField] RenderManager renderManager;
         [SerializeField] SkillManager skillManager;
-        [SerializeField] float lineLenght;
+        [SerializeField] float lineLength;
         [SerializeField] string currentLevel;
         // Start is called before the first frame update
         void Start()
@@ -32,13 +32,15 @@ namespace TheLastHope.Management
             sceneData.TargetEnemyCount = targetEnemyCount;
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
-            sceneData.LineLength = lineLenght;
+            sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
 			renderManager.Init();
-            if (skillManager != null)
+			sceneData.CurrentState = GameState.Start;
+			sceneData.CurrentState = GameState.Loop;
+			if (skillManager != null)
             {
                 skillManager.Init();
             }
@@ -51,7 +53,7 @@ namespace TheLastHope.Management
             generatorManager.UpdateGenerators(sceneData);
             foreach (var enemy in sceneData.Enemies)
             {
-                enemy.GetComponent<AEnemy>().Move(sceneData, Time.deltaTime);
+                enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
             }
             destroyer.Destroy(sceneData);
             worldMover.MoveWorld(sceneData, Time.deltaTime);
@@ -63,10 +65,28 @@ namespace TheLastHope.Management
                 skillManager.SkillUpdate(sceneData);
             }
             pathCounter.CountLenght(sceneData, Time.deltaTime);
+
+			if (sceneData.CurrentState == GameState.Lose)
+			{
+				EndGame(false, sceneData);
+			}
             
         }
 
-	
+		void EndGame(bool win, SceneData sceneData)
+		{
+			if (win)
+			{
+				var _oldSpeed = sceneData.TrainSpeed;
+				sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+			}
+			else
+			{
+				var _oldSpeed = sceneData.TrainSpeed;
+				sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+			}
+		}
+
 	}
 }
 

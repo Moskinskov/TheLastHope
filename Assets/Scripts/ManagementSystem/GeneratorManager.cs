@@ -25,7 +25,7 @@ namespace TheLastHope.Management
 
         int currentLine = -1;
         LevelReader levelReader;
-        [SerializeField] char devider = ',';
+        [SerializeField] char divider = ',';
 
 
         public void Initialize(SceneData sceneData)
@@ -33,7 +33,8 @@ namespace TheLastHope.Management
             enemiesArray = new GameObject[lineWidth];
             groundArray = new GameObject[lineWidth];
             staticArray = new GameObject[lineWidth];
-            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", devider);
+            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", divider);
+			print(levelReader.levelToRead.ToString());
             foreach (var enemy in enemies)
             {
                 sceneData.Enemies.Add(enemy);
@@ -72,26 +73,23 @@ namespace TheLastHope.Management
                 var j = 0;
                 for (var i = 0; i < lineWidth; i++)
                 {
-                    print(line[i]);
                     objDictionary.ObjectsDictionary.TryGetValue(line[i], out groundArray[j]);
                     j++;
                 }
                 j = 0;
                 for (var i = lineWidth; i < lineWidth * 2; i++)
                 {
-                    print(line[i]);
                     objDictionary.ObjectsDictionary.TryGetValue(line[i], out staticArray[j]);
                     j++;
                 }
                 j = 0;
                 for (var i = lineWidth * 2; i < lineWidth * 3; i++)
                 {
-                    print(line[i]);
                     objDictionary.ObjectsDictionary.TryGetValue(line[i], out enemiesArray[j]);
                     j++;
                 }
-            }
-            else
+			}
+			else
             {
                 print("Looks like file have not founded. Path " + Application.dataPath + "/Maps/" + sceneData.CurrentLevel + ".txt");
             }

@@ -5,6 +5,7 @@ using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management;
 using TheLastHope.Management.Data;
 using TheLastHope.Weapons;
+using TheLastHope.Helpers;
 
 namespace TheLastHope.Enemies
 {
@@ -14,22 +15,26 @@ namespace TheLastHope.Enemies
         [SerializeField] private float _speedSmoother;
         [SerializeField] private ARangedWeapon _weapon;
         [SerializeField] private float _visionDistance;
+		[SerializeField] private Texture _damageTex;
         private RaycastHit hit;
-		private Material material;
+		private Renderer[] renderers;
+		private Color _initColor;
+		private Texture _initTexture;
+		private Timer timer;
 
-        /// <summary>
-        /// Resets health.
-        /// </summary>
-        public override void Initialize()
+		/// <summary>
+		/// Resets health.
+		/// </summary>
+		public override void Initialize()
         {
             base.Health = base.maxHealth;
-            //base.currentSpeed = new Vector3(base.maxSpeed/2, 0f, 0f);
-            //base.currentAcceleration = new Vector3(base.maxAcceleration / 2, 0f, 0f);
             base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
                                                      base.targetPosition.transform.position.y,
                                                      base.targetPosition.transform.position.z);
-			material = GetComponentInChildren<Renderer>().material;
-        }
+			renderers = GetComponentsInChildren<Renderer>();
+			_initTexture = renderers[2].material.mainTexture;
+			timer = new Timer();
+		}
 
         /// <summary>
         /// Set target position for enemy to be there.
@@ -45,11 +50,12 @@ namespace TheLastHope.Enemies
         /// </summary>
         /// <param name="sceneData"></param>
         /// <param name="deltaTime"></param>
-        public override void Move(SceneData sceneData, float deltaTime)
+        public override void EnemyUpdate(SceneData sceneData, float deltaTime)
         {
-            //base.currentAcceleration = GetCurrentAcceleration(base.targetPosition, base.maxAcceleration);
-            //base.currentSpeed = GetCurrentSpeed(base.currentSpeed, base.currentAcceleration, deltaTime);
-            if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
+			timer.Update();
+			print(timer.Elapsed);
+			if (timer.IsEvent()) ChangeTex(false);
+			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
             {
                 Vector3 speed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
                 base.currentSpeed = Vector3.Lerp(base.currentSpeed, speed, _speedSmoother);
@@ -68,7 +74,7 @@ namespace TheLastHope.Enemies
                 {
                     this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
                     Health = 0;
-                    //Tell Singleton to destroy this enemy;
+                    //Tell Destroyer to destroy this enemy;
                 }
             }
         }
@@ -80,9 +86,8 @@ namespace TheLastHope.Enemies
         public override void SetDamage(float damage)
         {
             Health -= damage;
-			material.color = Color.green;
-
-        }
+			ChangeTex(true);
+		}
 
         Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, GameObject targetPosition, float deltaTime)
         {
@@ -95,6 +100,25 @@ namespace TheLastHope.Enemies
                               targetPosition.transform.position.x - this.transform.position.x).normalized * maxSpeed;
         }
 
+		private void ChangeTex(bool isDamage)
+		{
+			if (isDamage)
+			{
+
+				foreach (Renderer rend in renderers)
+				{
+					rend.material.mainTexture = _damageTex;
+				}
+				timer.Start(0.1f);
+			}
+			else
+			{
+				foreach (Renderer rend in renderers)
+				{
+					rend.material.mainTexture = _initTexture;
+				}
+			}
+		}
 
         //Vector3 GetCurrentSpeed(Vector3 currentSpeed, Vector3 currentAcceleration, float deltaTime)
         //{

@@ -4,15 +4,15 @@ namespace TheLastHope.Management
 {
     public class LevelReader
     {
-        string levelToRead = string.Empty;
+        public string levelToRead = string.Empty;
         string[] level;
-        char devider;
+        char divider;
 
 
-        public LevelReader(string levelToRead, char devider)
+        public LevelReader(string levelToRead, char divider)
         {
             this.levelToRead = levelToRead;
-            this.devider = devider;
+            this.divider = divider;
 
             if (File.Exists(levelToRead))
             {
@@ -28,11 +28,11 @@ namespace TheLastHope.Management
         {
             if (level != null)
             {
-                return level[lineNumber].Split(devider);
+                return level[lineNumber].Split(divider);
             }
             else
             {
-                return new string[15];
+                return null;
             }
         }
 

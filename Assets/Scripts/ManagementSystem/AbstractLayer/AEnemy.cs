@@ -17,7 +17,7 @@ namespace TheLastHope.Management.AbstractLayer
         internal Vector3 currentDriftingPoint;
 
         public abstract void SetTargetPosition(GameObject targetPosition);
-        public abstract void Move(SceneData sceneData, float deltaTime);
+        public abstract void EnemyUpdate(SceneData sceneData, float deltaTime);
         public abstract void Die();
     }
 }

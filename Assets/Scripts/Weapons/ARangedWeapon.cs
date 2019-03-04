@@ -80,7 +80,7 @@ namespace TheLastHope.Weapons
 			_currentAmmoInClip = _clipSize;
 
 		}
-		protected virtual void Update()
+		protected virtual void Update() //KILL ME!
 		{
 			_delay.Update();
 		}
