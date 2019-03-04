@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using System.Collections.Generic;
 using TheLastHope.Management.Data;
 using TheLastHope.Management.AbstractLayer;
@@ -48,7 +48,7 @@ namespace TheLastHope.Generators
 		}
 
 
-		public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
+		public override void Generate(List<GameObject> obj, SceneData sceneData, List<Vector3> positions)
 		{
 			throw new NotImplementedException();
 		}

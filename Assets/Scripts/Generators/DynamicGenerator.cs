@@ -30,21 +30,39 @@ namespace TheLastHope.Generators
 			throw new NotImplementedException();
 		}
 
-		public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
-		{
-			if (sceneData.Enemies.Count < sceneData.TargetEnemyCount)
-			{
-				for (int i = sceneData.TargetEnemyCount - sceneData.Enemies.Count; i < sceneData.TargetEnemyCount; i++)
-				{
-					GameObject enemy = Instantiate(
-					obj,
-					positions[0] + new Vector3((i * 8), 0, (i * 10) - 30),                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
-					Quaternion.identity);
-					enemy.GetComponentInChildren<AEnemy>().Initialize();
-					sceneData.Enemies.Add(enemy);
-				}
-			}
-		}
+        public override void Generate(List<GameObject> objList, SceneData sceneData, List<Vector3> positions)
+        {
+            if (sceneData.Enemies.Count < sceneData.TargetEnemyCount)
+            {
+                var i = 0;
+                foreach(var enemy in objList)
+                {
+                    GameObject genEnemy = Instantiate(
+                    enemy,
+                    positions[objList.IndexOf(enemy)],                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
+                    Quaternion.identity);
+                    enemy.GetComponentInChildren<AEnemy>().Initialize();
+                    sceneData.Enemies.Add(enemy);
+                }
+            }
+        }
+
+		// public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
+		// {
+		// 	if (sceneData.Enemies.Count < sceneData.TargetEnemyCount)
+		// 	{
+		// 		for (int i = sceneData.TargetEnemyCount - sceneData.Enemies.Count; i < sceneData.TargetEnemyCount; i++)
+		// 		{
+		// 			GameObject enemy = Instantiate(
+		// 			obj,
+		// 			positions[0] + new Vector3((i * 8), 0, (i * 10) - 30),                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
+		// 			Quaternion.identity);
+		// 			enemy.GetComponentInChildren<AEnemy>().Initialize();
+		// 			sceneData.Enemies.Add(enemy);
+		// 		}
+		// 	}
+		// }
+        
         /// <summary>
         /// Generates enemies by pattern.
         /// </summary>

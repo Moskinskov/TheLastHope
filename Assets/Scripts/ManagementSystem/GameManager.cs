@@ -9,10 +9,13 @@ using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Management
 {
+    /// <summary>
+    /// Class that controls whole scene.
+    /// </summary>
     public class GameManager : Singleton<GameManager>
     {
         SceneData sceneData;
-        PathLenghtCounter pathCounter = new PathLenghtCounter();
+        PathLengthCounter pathCounter = new PathLengthCounter();
         [SerializeField] GeneratorManager generatorManager;
         [SerializeField] int targetEnemyCount;
         [SerializeField] int targetPropsCount;
@@ -20,11 +23,13 @@ namespace TheLastHope.Management
         [SerializeField] AWorldMover worldMover;
         [SerializeField] ADestroyer destroyer;
         [SerializeField] WeaponManager weaponController;
-        [SerializeField] HippoMainPlayer mainPlayer;
-		[SerializeField] RenderManager renderManager;
+        [SerializeField] HippoMainPlayer hippoPlayer;
+        [SerializeField] RenderManager renderManager;
         [SerializeField] SkillManager skillManager;
+        [SerializeField] TriggerManager triggerManager;
         [SerializeField] float lineLength;
         [SerializeField] string currentLevel;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -37,56 +42,73 @@ namespace TheLastHope.Management
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
-			renderManager.Init();
-			sceneData.CurrentState = GameState.Start;
-			sceneData.CurrentState = GameState.Loop;
-			if (skillManager != null)
+            renderManager.Init();
+            triggerManager.Init(generatorManager);
+            if (skillManager != null)
             {
                 skillManager.Init();
             }
             pathCounter.Init(sceneData);
-        }
+			sceneData.CurrentState = GameState.Start;
+			sceneData.CurrentState = GameState.Preroll;
+			sceneData.CurrentState = GameState.Loop;
+		}
 
         // Update is called once per frame
         void Update()
         {
-            generatorManager.UpdateGenerators(sceneData);
-            foreach (var enemy in sceneData.Enemies)
-            {
-                enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
-            }
-            destroyer.Destroy(sceneData);
-            worldMover.MoveWorld(sceneData, Time.deltaTime);
-            weaponController.UpdateWeapons(sceneData, Time.deltaTime);
-            mainPlayer.UpdatePlayer(sceneData);
-			renderManager.UpdateRender(sceneData);
-            if (skillManager != null)
-            {
-                skillManager.SkillUpdate(sceneData);
-            }
-            pathCounter.CountLenght(sceneData, Time.deltaTime);
+			foreach (var enemy in sceneData.Enemies)
+			{
+				enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+			}
 
-			if (sceneData.CurrentState == GameState.Lose)
+			destroyer.Destroy(sceneData);
+			worldMover.MoveWorld(sceneData, Time.deltaTime);
+			hippoPlayer.UpdatePlayer(sceneData);
+
+			if (sceneData.CurrentState == GameState.Loop)
+			{
+				generatorManager.UpdateGenerators(sceneData);
+				weaponController.UpdateWeapons(sceneData, Time.deltaTime);
+				renderManager.UpdateRender(sceneData);
+				if (skillManager != null)
+				{
+					skillManager.SkillUpdate(sceneData);
+				}
+				pathCounter.CountLenght(sceneData, Time.deltaTime);
+				triggerManager.ExecuteCurrentEvents(sceneData);
+			}
+
+            else if (sceneData.CurrentState == GameState.Lose)
 			{
 				EndGame(false, sceneData);
+				generatorManager.UpdateGenerators(sceneData);
 			}
-            
-        }
-
-		void EndGame(bool win, SceneData sceneData)
-		{
-			if (win)
+			else if (sceneData.CurrentState == GameState.Win)
 			{
-				var _oldSpeed = sceneData.TrainSpeed;
-				sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
-			}
-			else
-			{
-				var _oldSpeed = sceneData.TrainSpeed;
-				sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+				EndGame(true, sceneData);
+				foreach (var enemy in sceneData.Enemies)
+				{
+					enemy.GetComponent<AEnemy>().Die();
+				}
 			}
 		}
 
-	}
+        void EndGame(bool win, SceneData sceneData)
+        {
+            if (win)
+            {
+                var _oldSpeed = sceneData.TrainSpeed;
+                sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+				print("You win!");
+            }
+            else
+            {
+                var _oldSpeed = sceneData.TrainSpeed;
+                sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
+				print("You lose!");
+			}
+        }   
+    }
 }
 

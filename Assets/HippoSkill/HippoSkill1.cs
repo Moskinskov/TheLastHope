@@ -8,9 +8,9 @@ public class HippoSkill1 : ASkill
 {
     [SerializeField] public Transform start;
     [SerializeField] public float skillRadius = 20;
-    [SerializeField] public SimpleRoket roket;
+    [SerializeField] public SimpleRocket rocket;
 
-    private List<SimpleRoket> listAmmo = new List<SimpleRoket>();
+    private List<SimpleRocket> listAmmo = new List<SimpleRocket>();
     public override void Ability(SceneData sceneData)
     {
         foreach (GameObject go in sceneData.Enemies)
@@ -18,7 +18,7 @@ public class HippoSkill1 : ASkill
             Vector3 diff = go.transform.position - start.position;
             if (diff.magnitude < skillRadius)
             {
-                SimpleRoket _bullet = Instantiate(roket, start.position, start.rotation);
+                SimpleRocket _bullet = Instantiate(rocket, start.position, start.rotation);
                 _bullet.Target = go.transform;
                 listAmmo.Add(_bullet);
             }
@@ -28,29 +28,29 @@ public class HippoSkill1 : ASkill
     public override void Init()
     {
         nameKey = "Ability1";
-        //StartCoroutine("UpdateBullet");
+
     }
-    private IEnumerator UpdateBullet()
-    {
-        while (true)
-        {
-            foreach (SimpleRoket go in listAmmo)
-            {
-                print(go);
-                if (go == null)
-                {
-                    listAmmo.Remove(go);
-                }
-                else
-                {
-                    go.UpdateBullet(Time.deltaTime);
-                }
-            }
-        }
-    }
+    //private IEnumerator UpdateBullet()
+    //{
+    //    while (true)
+    //    {
+    //        foreach (SimpleRocket go in listAmmo)
+    //        {
+    //            print(go);
+    //            if (go == null)
+    //            {
+    //                listAmmo.Remove(go);
+    //            }
+    //            else
+    //            {
+    //                go.UpdateBullet(Time.deltaTime);
+    //            }
+    //        }
+    //    }
+    //}
     public override void SkillUpdate(SceneData sceneData)
     {
-        foreach (SimpleRoket go in listAmmo)
+        foreach (SimpleRocket go in listAmmo)
         {
             print(go);
             if (go == null)

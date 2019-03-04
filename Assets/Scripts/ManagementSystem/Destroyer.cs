@@ -8,6 +8,10 @@ using TheLastHope.Management.AbstractLayer;
 class Destroyer : ADestroyer
 {
     [SerializeField] private float _xDestroyCoord;
+    /// <summary>
+    /// Destroy objects according to conditions.
+    /// </summary>
+    /// <param name="sceneData"></param>
     public override void Destroy(SceneData sceneData)
     {
         DestroyInList(sceneData.Props);

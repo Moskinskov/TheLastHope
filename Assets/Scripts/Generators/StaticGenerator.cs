@@ -66,7 +66,7 @@ namespace TheLastHope.Generators
             */
 		}
 
-		public override void Generate(GameObject gameObject, SceneData sceneData, List<Vector3> positions)
+		public override void Generate(List<GameObject> gameObject, SceneData sceneData, List<Vector3> positions)
 		{
 			throw new System.NotImplementedException();
 		}
@@ -76,7 +76,7 @@ namespace TheLastHope.Generators
         {
             activeColumn = 0;
 
-            positions = new Vector3[5];                                 //5 rows z={20, 10, 0, -10, -20}; 0 - rails 
+            positions = new Vector3[5];                                 //5 rows z={20, 10, 0, -10, -20}; 0 — rails 
             positions[0] = new Vector3(80, 0, 20);
             positions[1] = new Vector3(80, 0, 10);
             positions[2] = new Vector3(80, 0, 0);

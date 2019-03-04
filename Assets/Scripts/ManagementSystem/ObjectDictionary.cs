@@ -5,12 +5,16 @@ using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Management
 {
+    /// <summary>
+    /// Class that creates and contains object dictionary. Being used to makes Generator Manager's life easier.
+    /// </summary>
     public class ObjectDictionary : MonoBehaviour
     {
         [SerializeField] List<GameObject> enemiesList = new List<GameObject>();
         [SerializeField] List<GameObject> groundList = new List<GameObject>();
         [SerializeField] List<GameObject> staticObjsList = new List<GameObject>();
-        public Dictionary<string, GameObject> ObjectsDictionary = new Dictionary<string, GameObject>();
+        [SerializeField] List<GameObject> triggerObjList = new List<GameObject>();
+        public Dictionary<string, GameObject> ObjectsDictionary { get; set; }
 
         private void Awake()
         {
@@ -19,15 +23,11 @@ namespace TheLastHope.Management
         // Start is called before the first frame update
         void Start()
         {
+            ObjectsDictionary = new Dictionary<string, GameObject>();
             SetupDictionary("E.", enemiesList, ObjectsDictionary);
             SetupDictionary("G.", groundList, ObjectsDictionary);
             SetupDictionary("S.", staticObjsList, ObjectsDictionary);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            SetupDictionary("T.", triggerObjList, ObjectsDictionary);
         }
 
         void SetupDictionary(string prefix, List<GameObject> list, Dictionary<string,GameObject> dict)

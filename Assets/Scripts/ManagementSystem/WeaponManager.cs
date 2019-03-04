@@ -7,6 +7,9 @@ using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    /// Class that manages weapons.
+    /// </summary>
 	public class WeaponManager : MonoBehaviour
 	{
 		[SerializeField] Selector selector;

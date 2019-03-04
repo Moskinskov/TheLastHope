@@ -2,17 +2,24 @@
 
 namespace TheLastHope.Management
 {
+    /// <summary>
+    /// Is used for getting level's map from file.
+    /// </summary>
     public class LevelReader
     {
-        public string levelToRead = string.Empty;
+        string levelToRead = string.Empty;
         string[] level;
         char divider;
 
-
-        public LevelReader(string levelToRead, char divider)
+        /// <summary>
+        /// Reads map from file.
+        /// </summary>
+        /// <param name="levelToRead">Name of map-file without extension.</param>
+        /// <param name="devider">Separator of elements in one string of map.</param>
+        public LevelReader(string levelToRead, char devider)
         {
             this.levelToRead = levelToRead;
-            this.divider = divider;
+            this.divider = devider;
 
             if (File.Exists(levelToRead))
             {
@@ -32,7 +39,7 @@ namespace TheLastHope.Management
             }
             else
             {
-                return null;
+                return new string[15];
             }
         }
 

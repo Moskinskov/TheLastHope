@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace TheLastHope.Management
 {
+    /// <summary>
+    /// Class that makes select gameObjects easier.
+    /// </summary>
     public class Selector : MonoBehaviour
     {
+        /// <summary>
+        /// Returns selected gameObject.
+        /// </summary>
+        /// <returns></returns>
         public GameObject GetSelectedGameObject()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
