@@ -53,7 +53,6 @@ namespace TheLastHope.Enemies
         public override void EnemyUpdate(SceneData sceneData, float deltaTime)
         {
 			timer.Update();
-			print(timer.Elapsed);
 			if (timer.IsEvent()) ChangeTex(false);
 			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
             {
