@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 240558144}
   - component: {fileID: 240558139}
   - component: {fileID: 240558142}
-  - component: {fileID: 4346016917346436330}
+  - component: {fileID: 2828636802105262265}
   - component: {fileID: 240558143}
   - component: {fileID: 4643491161565700731}
   - component: {fileID: 4627626514179620968}
   - component: {fileID: 3714793884591589043}
   m_Layer: 9
-  m_Name: Roket
+  m_Name: "Ro\u0441ket"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4346016917346436330
+--- !u!114 &2828636802105262265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828b3b582a226a645b9b58a78669d3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 5
   speed: 15
-  maxMagnitude: 0
+  maxMagnitude: 5
 --- !u!136 &240558143
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -457,6 +457,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 240558140}
     m_Modifications:
+    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+      propertyPath: m_Name
+      value: HitEffect_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4718059927425676, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -501,18 +513,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
-      propertyPath: m_Name
-      value: HitEffect_A
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 1493136983426320, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -521,12 +521,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 198606588566830260, guid: 643639841fb531e4ba8097fed4eb9ac7,
+    - target: {fileID: 198532743192405386, guid: 643639841fb531e4ba8097fed4eb9ac7,
         type: 3}
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198532743192405386, guid: 643639841fb531e4ba8097fed4eb9ac7,
+    - target: {fileID: 198606588566830260, guid: 643639841fb531e4ba8097fed4eb9ac7,
         type: 3}
       propertyPath: looping
       value: 0

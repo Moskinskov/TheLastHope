@@ -23,7 +23,7 @@ public class HippoSkill1 : ASkill
                 listAmmo.Add(_bullet);
             }
         }
-        
+        print(listAmmo.Count);
     }
     public override void Init()
     {
@@ -50,19 +50,18 @@ public class HippoSkill1 : ASkill
     //}
     public override void SkillUpdate(SceneData sceneData)
     {
-        foreach (SimpleRocket go in listAmmo)
+        print(listAmmo.Count);
+        for (int i = listAmmo.Count - 1; i >= 0; i--)
         {
-            print(go);
-            if (go == null)
+            if (listAmmo[i] == null)
             {
-                listAmmo.Remove(go);
-            }
-            else
-            {
-                go.UpdateBullet(Time.deltaTime);
+                listAmmo.Remove(listAmmo[i]);
             }
         }
-        print("End.");
-        base.SkillUpdate(sceneData);
+        base.SkillUpdate(sceneData);      
+        foreach (SimpleRocket go in listAmmo)
+        {
+            go.UpdateBullet(Time.deltaTime);
+        }
     }
 }

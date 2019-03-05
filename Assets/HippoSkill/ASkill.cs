@@ -18,6 +18,7 @@ public abstract class ASkill : MonoBehaviour
     {
         if (_delay.Elapsed == -1)
         {
+            print("SkillActivated.");
             Ability(sceneData);
             _delay.Start(cooldown);
         }
@@ -27,8 +28,7 @@ public abstract class ASkill : MonoBehaviour
     public virtual void SkillUpdate(SceneData sceneData)
     {
         if (Input.GetButtonDown(nameKey))
-        {
-            print("SkillActivated.");
+        {    
             Activate(sceneData);
         }
         _delay.Update();
