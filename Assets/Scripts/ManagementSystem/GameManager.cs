@@ -87,10 +87,6 @@ namespace TheLastHope.Management
 			else if (sceneData.CurrentState == GameState.Win)
 			{
 				EndGame(true, sceneData);
-				foreach (var enemy in sceneData.Enemies)
-				{
-					enemy.GetComponent<AEnemy>().Die();
-				}
 			}
 		}
 
@@ -101,7 +97,7 @@ namespace TheLastHope.Management
                 var _oldSpeed = sceneData.TrainSpeed;
                 sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 				print("You win!");
-            }
+			}
             else
             {
                 var _oldSpeed = sceneData.TrainSpeed;

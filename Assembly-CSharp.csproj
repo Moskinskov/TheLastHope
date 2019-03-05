@@ -208,6 +208,7 @@
     <Compile Include="Assets\Scripts\TODO\BasicAutoWeapon.cs" />
     <Compile Include="Assets\Scripts\Triggers\TriggerEndMap.cs" />
     <Compile Include="Assets\Scripts\Triggers\TriggerEnemyGen.cs" />
+    <Compile Include="Assets\Scripts\UI\UIObjectOverlay.cs" />
     <Compile Include="Assets\Scripts\Weapons\AEnergeticWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\LaserGun.cs" />
