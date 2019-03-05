@@ -50,7 +50,6 @@ public class HippoSkill1 : ASkill
     //}
     public override void SkillUpdate(SceneData sceneData)
     {
-        print(listAmmo.Count);
         for (int i = listAmmo.Count - 1; i >= 0; i--)
         {
             if (listAmmo[i] == null)
