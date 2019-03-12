@@ -29,6 +29,8 @@ namespace TheLastHope.Management
         [SerializeField] TriggerManager triggerManager;
         [SerializeField] float lineLength;
         [SerializeField] string currentLevel;
+		[SerializeField] Canvas winCanvas;
+		[SerializeField] Canvas looseCanvas;
 
         // Start is called before the first frame update
         void Start()
@@ -97,14 +99,26 @@ namespace TheLastHope.Management
                 var _oldSpeed = sceneData.TrainSpeed;
                 sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 				print("You win!");
+				winCanvas.gameObject.active = true;
 			}
             else
             {
                 var _oldSpeed = sceneData.TrainSpeed;
                 sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 				print("You lose!");
+				looseCanvas.gameObject.active = true;
 			}
-        }   
+        }
+		
+		public void StartOver()
+		{
+			Application.LoadLevel("MainScene");
+		}
+
+		public void Exit()
+		{
+			Application.Quit();
+		}
     }
 }
 
