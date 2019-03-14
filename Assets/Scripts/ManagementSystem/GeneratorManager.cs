@@ -28,7 +28,7 @@ namespace TheLastHope.Management
         GameObject[] triggerArray;
         int currentLine = -1;
         LevelReader levelReader;
-        [SerializeField] char devider = ',';
+        [SerializeField] char divider = ',';
 
         /// <summary>
         /// Initializes generator manager.
@@ -40,7 +40,8 @@ namespace TheLastHope.Management
             groundArray = new GameObject[lineWidth];
             staticArray = new GameObject[lineWidth];
             triggerArray = new GameObject[lineWidth];
-            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", devider);
+            //TODO: Change to portable version.
+            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", divider);
             foreach (var enemy in enemies)
             {
                 sceneData.Enemies.Add(enemy);
