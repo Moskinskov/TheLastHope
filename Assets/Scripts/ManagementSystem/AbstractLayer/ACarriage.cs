@@ -13,7 +13,7 @@ namespace TheLastHope.Management.AbstractLayer
         }
 
         // Update is called once per frame
-        public virtual void Update()
+        public virtual void UpdateCarriage()
         {
 
         }

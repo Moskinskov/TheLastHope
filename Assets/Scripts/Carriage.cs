@@ -23,7 +23,7 @@ public class Carriage : ACarriage
     }
 
     // Update is called once per frame
-    public override void Update()
+    public override void UpdateCarriage()
     {
         bool gotPoint = false;
         x = transform.position.x;

@@ -208,6 +208,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\PoolManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\RenderManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Selector.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\TrainManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\TriggerManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\ManualTurretPlatform.cs" />

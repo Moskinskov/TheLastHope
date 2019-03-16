@@ -15,7 +15,7 @@ namespace TheLastHope.Management
     {
         [SerializeField] AGenerator enemyGen;
         [SerializeField] AGenerator staticGen;
-        [SerializeField] AGenerator railsGen;
+        //[SerializeField] AGenerator railsGen;
         [SerializeField] ObjectDictionary objDictionary;
         [SerializeField] List<GameObject> enemies;
         [SerializeField] List<GameObject> enemyPatterns;
@@ -26,6 +26,7 @@ namespace TheLastHope.Management
         GameObject[] groundArray;
         GameObject[] staticArray;
         GameObject[] triggerArray;
+        GameObject[] railArray;
         int currentLine = -1;
         LevelReader levelReader;
         [SerializeField] char divider = ',';
@@ -40,6 +41,7 @@ namespace TheLastHope.Management
             groundArray = new GameObject[lineWidth];
             staticArray = new GameObject[lineWidth];
             triggerArray = new GameObject[lineWidth];
+            railArray = new GameObject[lineWidth];
             //TODO: Change to portable version.
             levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", divider);
             foreach (var enemy in enemies)
@@ -63,13 +65,15 @@ namespace TheLastHope.Management
         public void UpdateGenerators(SceneData sceneData)
         {
             //TODO rewrite this method. Map-file must have influence on it.
-            railsGen.Generate(sceneData);
+            //railsGen.Generate(sceneData);
             if (currentLine < sceneData.CurrentLine)
             {
+                print("frame:" + Time.frameCount);
                 GetLineArrays(sceneData);
                 staticGen.Generate(groundArray,sceneData);
                 staticGen.Generate(staticArray,sceneData);
                 staticGen.Generate(triggerArray, sceneData);
+                staticGen.Generate(railArray, sceneData);
                 if (enemies.Count > 0)
                 {
                     enemyGen.Generate(enemiesArray, sceneData);
@@ -126,6 +130,13 @@ namespace TheLastHope.Management
                 {
                     //print(line[i]);
                     objDictionary.ObjectsDictionary.TryGetValue(line[i], out triggerArray[j]);
+                    j++;
+                }
+                j = 0;
+                for (var i = lineWidth * 4; i < lineWidth * 5; i++)
+                {
+                    //print(line[i]);
+                    objDictionary.ObjectsDictionary.TryGetValue(line[i], out railArray[j]);
                     j++;
                 }
             }

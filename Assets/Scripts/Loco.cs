@@ -16,7 +16,7 @@ public class Loco: ACarriage
     }
 
     // Update is called once per frame
-    public override void Update()
+    public override void UpdateCarriage()
     {
         x = transform.position.x;
         Debug.DrawRay(transform.position, -transform.up);
