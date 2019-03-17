@@ -138,10 +138,7 @@ namespace TheLastHope.Weapons
             if (!_usingLaser)
             {
                 _origLR.positionCount = 2;
-                foreach (var enemy in _nearestEnemies)
-                {
-                    _nearestEnemies.Remove(enemy);
-                }
+                _nearestEnemies.Clear();
 
                 if (!_electroEffect.isStopped)
                     _electroEffect.Stop();
