@@ -233,6 +233,7 @@
     <Compile Include="Assets\Scripts\Workers\CursorSetter.cs" />
     <Compile Include="Assets\Scripts\Workers\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\WorldMovement.cs" />
+    <Compile Include="Assets\Starter.cs" />
     <Compile Include="Assets\Turrel\Scripts\BulletController.cs" />
     <Compile Include="Assets\Turrel\Scripts\TurretController.cs" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\DepthOfField.shader" />
