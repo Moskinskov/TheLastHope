@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 8}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -70,10 +70,10 @@ MonoBehaviour:
     y: 0
     width: 1400
     height: 618
-  m_MinSize: {x: 406, y: 224}
-  m_MaxSize: {x: 8006, y: 4024}
+  m_MinSize: {x: 404, y: 224}
+  m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 28
+  controlID: 60
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -122,10 +122,10 @@ MonoBehaviour:
     y: 0
     width: 1400
     height: 927
-  m_MinSize: {x: 406, y: 498}
+  m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 27
+  controlID: 59
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,10 +147,10 @@ MonoBehaviour:
     y: 30
     width: 1680
     height: 927
-  m_MinSize: {x: 683, y: 498}
-  m_MaxSize: {x: 14004, y: 14048}
+  m_MinSize: {x: 679, y: 498}
+  m_MaxSize: {x: 14002, y: 14048}
   vertical: 0
-  controlID: 26
+  controlID: 58
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -199,7 +199,7 @@ MonoBehaviour:
     y: 0
     width: 1680
     height: 977
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &9
 MonoBehaviour:
@@ -336,20 +336,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Enemies
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Enemies
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\OneDrive\Projects\Unity\Local\The Last Hope\thelasthope
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 80}
-    m_SelectedIDs: 3e320000
-    m_LastClickedID: 12862
-    m_ExpandedIDs: 000000007a290000522e0000ce2e0000522f00006e2f0000ca2f000016300000a0300000d2300000fa300000aa310000f43100003c3e00003e3e0000403e0000423e0000443e000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 922c0000
+    m_LastClickedID: 11410
+    m_ExpandedIDs: 00000000922c000066310000de3100005c32000076320000d032000014330000a0330000ce330000f63300007e3400009e340000d83400009e400000a0400000a2400000a4400000a640000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -377,7 +377,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007a290000522e0000ce2e0000522f00006e2f0000ca2f000016300000a0300000d2300000fa300000aa310000f43100003c3e00003e3e0000403e0000423e0000443e0000
+    m_ExpandedIDs: 00000000922c000066310000de3100005c32000076320000d032000014330000a0330000ce330000f63300009e340000d83400009e400000a0400000a2400000a4400000a6400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -496,9 +496,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: cafbffff
-      m_LastClickedID: 0
-      m_ExpandedIDs: ccfbffff
+      m_SelectedIDs: 5e440000
+      m_LastClickedID: 17502
+      m_ExpandedIDs: 0ecbffff70ceffff62d2ffffc6d9ffff0cebffff0eebffffa8f1ffff6ef7ffff1c4100005a42000054450000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -554,9 +554,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.66944855, y: -65.30354, z: 200.94485}
+    m_Target: {x: -4.2073765, y: 5.649371, z: 51.86241}
     speed: 2
-    m_Value: {x: 0.66944855, y: -65.30354, z: 200.94485}
+    m_Value: {x: -4.2073765, y: 5.649371, z: 51.86241}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -584,13 +584,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.19232033, y: 0.0026762811, z: -0.00051605515, w: 0.9813285}
+    m_Target: {x: 0.0045066653, y: 0.10453367, z: -0.00046538262, w: 0.99451107}
     speed: 2
-    m_Value: {x: 0.19232033, y: 0.0026762811, z: -0.00051605515, w: 0.9813285}
+    m_Value: {x: 0.0045066653, y: 0.10453367, z: -0.00046538262, w: 0.99451107}
   m_Size:
-    m_Target: 226.81004
+    m_Target: 87.249146
     speed: 2
-    m_Value: 226.81004
+    m_Value: 87.249146
   m_Ortho:
     m_Target: 0
     speed: 2

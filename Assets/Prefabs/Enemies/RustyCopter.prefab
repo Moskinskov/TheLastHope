@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 5675751779996258068}
   m_Layer: 0
   m_Name: RustyCopter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,7 +322,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5675751779996257512}
-  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
   m_LocalPosition: {x: -0.89263386, y: 48.49, z: -0.01209092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -343,17 +343,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83bd3c3630591674a857423b9e6ba923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
-  isDestructable: 1
-  health: 100
   maxHealth: 100
   maxSpeed: 25
   maxAcceleration: 10
   target: {fileID: 0}
   targetPosition: {fileID: 0}
   driftingRadius: 30
-  driftingSpeedDivider: 2
-  speedSmoother: 0.01
+  _driftingSpeedDivider: 0
+  _speedSmoother: 0
+  _weapon: {fileID: 0}
+  _visionDistance: 0
+  _damageTex: {fileID: 0}
 --- !u!65 &5675751779996258070
 BoxCollider:
   m_ObjectHideFlags: 0

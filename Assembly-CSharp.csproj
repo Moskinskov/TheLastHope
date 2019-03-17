@@ -214,6 +214,10 @@
     <Compile Include="Assets\Scripts\ManualTurretPlatform.cs" />
     <Compile Include="Assets\Scripts\ObjMoverTEMP.cs" />
     <Compile Include="Assets\Scripts\Rail.cs" />
+    <Compile Include="Assets\Scripts\Tests\CanvasInventoryElement.cs" />
+    <Compile Include="Assets\Scripts\Tests\DragPanel.cs" />
+    <Compile Include="Assets\Scripts\Tests\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Tests\InventoryElement.cs" />
     <Compile Include="Assets\Scripts\Tests\SingletonTest.cs" />
     <Compile Include="Assets\Scripts\TODO\BasicAutoWeapon.cs" />
     <Compile Include="Assets\Scripts\Triggers\TriggerEndMap.cs" />
@@ -221,6 +225,7 @@
     <Compile Include="Assets\Scripts\UI\UIObjectOverlay.cs" />
     <Compile Include="Assets\Scripts\Weapons\AEnergeticWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\ARangedWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\ElectroGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\LaserGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\MachineGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
