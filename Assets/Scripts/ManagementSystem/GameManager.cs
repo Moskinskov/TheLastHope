@@ -27,6 +27,7 @@ namespace TheLastHope.Management
         [SerializeField] RenderManager renderManager;
         [SerializeField] SkillManager skillManager;
         [SerializeField] TriggerManager triggerManager;
+        [SerializeField] TrainManager trainManager;
         [SerializeField] float lineLength;
         [SerializeField] string currentLevel;
 		[SerializeField] Canvas winCanvas;
@@ -45,6 +46,7 @@ namespace TheLastHope.Management
             generatorManager.Initialize(sceneData);
             weaponController.Init();
             renderManager.Init();
+            trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
             if (skillManager != null)
             {
@@ -59,14 +61,7 @@ namespace TheLastHope.Management
         // Update is called once per frame
         void Update()
         {
-			foreach (var enemy in sceneData.Enemies)
-			{
-				enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
-			}
 
-			destroyer.Destroy(sceneData);
-			worldMover.MoveWorld(sceneData, Time.deltaTime);
-			hippoPlayer.UpdatePlayer(sceneData);
 
 			if (sceneData.CurrentState == GameState.Loop)
 			{
@@ -90,7 +85,16 @@ namespace TheLastHope.Management
 			{
 				EndGame(true, sceneData);
 			}
-		}
+
+            foreach (var enemy in sceneData.Enemies)
+            {
+                enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+            }
+
+            destroyer.Destroy(sceneData);
+            worldMover.MoveWorld(sceneData, Time.deltaTime);
+            hippoPlayer.UpdatePlayer(sceneData);
+        }
 
         void EndGame(bool win, SceneData sceneData)
         {
