@@ -15,7 +15,7 @@ namespace TheLastHope.Management
     {
         [SerializeField] AGenerator enemyGen;
         [SerializeField] AGenerator staticGen;
-        //[SerializeField] AGenerator railsGen;
+        [SerializeField] AGenerator railsGen;
         [SerializeField] ObjectDictionary objDictionary;
         [SerializeField] List<GameObject> enemies;
         [SerializeField] List<GameObject> enemyPatterns;
@@ -68,12 +68,12 @@ namespace TheLastHope.Management
             //railsGen.Generate(sceneData);
             if (currentLine < sceneData.CurrentLine)
             {
-                print("frame:" + Time.frameCount);
+                //print("frame:" + Time.frameCount);
                 GetLineArrays(sceneData);
                 staticGen.Generate(groundArray,sceneData);
                 staticGen.Generate(staticArray,sceneData);
                 staticGen.Generate(triggerArray, sceneData);
-                staticGen.Generate(railArray, sceneData);
+                railsGen.Generate(railArray, sceneData);
                 if (enemies.Count > 0)
                 {
                     enemyGen.Generate(enemiesArray, sceneData);

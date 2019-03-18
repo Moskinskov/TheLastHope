@@ -29,9 +29,12 @@ namespace TheLastHope.Management
         [SerializeField] TriggerManager triggerManager;
         [SerializeField] TrainManager trainManager;
         [SerializeField] float lineLength;
+        [SerializeField] int linesCount;
         [SerializeField] string currentLevel;
 		[SerializeField] Canvas winCanvas;
 		[SerializeField] Canvas looseCanvas;
+        [Tooltip("Number of lines to pregenerate scene")] 
+        [SerializeField] int firstFrameLengthInLines = 14;
 
         // Start is called before the first frame update
         void Start()
@@ -42,6 +45,7 @@ namespace TheLastHope.Management
             sceneData.TrainSpeed = trainSpeed;
             sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;
+            sceneData.LinesCount = linesCount;
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
@@ -53,6 +57,7 @@ namespace TheLastHope.Management
                 skillManager.Init();
             }
             pathCounter.Init(sceneData);
+            GenerateFirstArea();
 			sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
 			sceneData.CurrentState = GameState.Loop;
@@ -74,6 +79,7 @@ namespace TheLastHope.Management
 				}
 				pathCounter.CountLenght(sceneData, Time.deltaTime);
 				triggerManager.ExecuteCurrentEvents(sceneData);
+                trainManager.UpdateTrain(sceneData);
 			}
 
             else if (sceneData.CurrentState == GameState.Lose)
@@ -123,6 +129,16 @@ namespace TheLastHope.Management
 		{
 			Application.Quit();
 		}
+
+        void GenerateFirstArea()
+        {
+            for(var i=0; i<firstFrameLengthInLines;i++)
+            {
+                generatorManager.UpdateGenerators(sceneData);
+                worldMover.MoveWorld(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
+                pathCounter.CountLenght(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
+            }
+        }
     }
 }
 

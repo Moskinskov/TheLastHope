@@ -42,7 +42,7 @@ namespace TheLastHope.Hippo
 			Ray ray = new Ray(transform.position, transform.forward);
 			RaycastHit hitInfo = new RaycastHit();
 			Debug.DrawLine(transform.position, transform.forward, Color.red);
-			if (Physics.Raycast(ray, out hitInfo, _raycastDepth))
+			if (Physics.Raycast(ray, out hitInfo, _raycastDepth) && hitInfo.collider.isTrigger)
 			{
 				print("I had hit a trigger!");
 				return hitInfo.collider.gameObject;
