@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
@@ -26,10 +27,14 @@ namespace TheLastHope.Weapons
         private float _recoveryPerSecond;
         [SerializeField]
         private float _minActiveEnergy;
-        //------------------------------------------------------//
-        [SerializeField] private float _radiusElectro;
+		[SerializeField]
+		private float _maxRange;
+		//------------------------------------------------------//
+		[SerializeField] private float _radiusElectro;
         private List<GameObject> _allEnemies;
         private List<AEnemy> _nearestEnemies;
+		private IEnumerator coroutine;
+		private bool _isPlaying;
 
 
         private void Awake()
@@ -39,7 +44,8 @@ namespace TheLastHope.Weapons
             _coreEnergyPerSecond = _energyPerSecond;
             _coreRecoveryPerSecond = _recoveryPerSecond;
             _coreMinActiveEnergy = _minActiveEnergy;
-            _origLR = _electroLineRenderer;
+			_coreMaxRange = _maxRange;
+			_origLR = _electroLineRenderer;
 
             if (!_electroEffect.isStopped)
                 _electroEffect.Stop();
@@ -63,27 +69,30 @@ namespace TheLastHope.Weapons
                 return;
 
             _usingLaser = true;
-            _timerEndOfFire.Start(0.05f);
-            WeaponMethod();
-        }
+            _timerEndOfFire.Start(0.005f); //MAAAGIC NUMBEEEERS!!!
+			if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
+			{
+				if (hit.distance <= _maxRange && hit.transform.tag == "Enemy")
+				{
+					WeaponMethod(hit);
+				}
+			}
+		}
 
-        protected override void WeaponMethod()
+        protected override void WeaponMethod(RaycastHit hit)
         {
-            if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
-            {
-                if (hit.transform.GetComponent<AEnemy>())
-                {
-                    FindTheNearestEnemies(hit.transform.GetComponent<AEnemy>());
-                    HitTheEnemies();
-                    SetLRToTarget(hit);
+                FindTheNearestEnemies(hit.transform.GetComponent<AEnemy>());
+                HitTheEnemies();
+                SetLRToTarget(hit);
 
-                    _electroEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-                    if (!_electroEffect.isPlaying)
-                        _electroEffect.Play();
-                    if (!_electroAudioSource.isPlaying)
-                        _electroAudioSource.Play();
-                }
-            }
+				coroutine = Effect(2.0f, hit);
+
+			if (!_isPlaying)
+			{
+				_isPlaying = true;
+				StartCoroutine(coroutine);
+			}
+
         }
 
         protected override void SetLRToTarget(RaycastHit hit)
@@ -142,9 +151,24 @@ namespace TheLastHope.Weapons
 
                 if (!_electroEffect.isStopped)
                     _electroEffect.Stop();
-                if (_electroAudioSource.isPlaying)
-                    _electroAudioSource.Stop();
+                //if (_electroAudioSource.isPlaying)
+                    //_electroAudioSource.Stop();
             }
         }
-    }
+
+		private IEnumerator Effect(float waitTime, RaycastHit hit)
+		{
+			_electroEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+			if (!_electroEffect.isPlaying)
+				_electroEffect.Play();
+			if (!_electroAudioSource.isPlaying)
+				_electroAudioSource.Play();
+
+			yield return new WaitForSeconds(_electroAudioSource.clip.length);
+
+			_isPlaying = false;
+
+		}
+
+	}
 }

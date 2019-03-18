@@ -3881,7 +3881,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 1
     lifetime:
@@ -3938,7 +3938,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minVertexDistance: 0.2
-    textureMode: 0
+    textureMode: 1
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -4712,8 +4712,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bee3bb5eb96278543a1a06685c883882, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8350849aae5998e4ca0f12fcd3e9c157, type: 2}
+  - {fileID: 2100000, guid: abc49fa8b01f5314c880641bc7c5986d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

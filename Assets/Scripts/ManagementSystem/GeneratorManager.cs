@@ -47,7 +47,7 @@ namespace TheLastHope.Management
             foreach (var enemy in enemies)
             {
                 sceneData.Enemies.Add(enemy);
-                enemy.GetComponent<CopterEnemy>().Initialize();
+                enemy.GetComponent<CopterEnemy>().Init();
 
             }
             patternPositions = new List<Vector3>();
@@ -68,7 +68,6 @@ namespace TheLastHope.Management
             //railsGen.Generate(sceneData);
             if (currentLine < sceneData.CurrentLine)
             {
-                print("frame:" + Time.frameCount);
                 GetLineArrays(sceneData);
                 staticGen.Generate(groundArray,sceneData);
                 staticGen.Generate(staticArray,sceneData);

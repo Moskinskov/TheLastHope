@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Weapons;
 using TheLastHope.Management.AbstractLayer;
-using TheLastHope.Hippo;
+using TheLastHope.Player;
 
 namespace TheLastHope.Ammo
 {
@@ -23,7 +23,7 @@ namespace TheLastHope.Ammo
         {
             try
             {
-                collision.gameObject.GetComponent<HippoMainPlayer>().SetDamage(damage);
+                collision.gameObject.GetComponent<MainPlayer>().SetDamage(damage);
                 Die(true);
             }
             catch { };

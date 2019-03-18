@@ -25,9 +25,10 @@ namespace TheLastHope.Enemies
 		/// <summary>
 		/// Resets health.
 		/// </summary>
-		public override void Initialize()
+		public override void Init()
         {
-            base.Health = base.maxHealth;
+			base.MaxHealth = maxHealth;
+            base.Health = base.MaxHealth;
             base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
                                                      base.targetPosition.transform.position.y,
                                                      base.targetPosition.transform.position.z);

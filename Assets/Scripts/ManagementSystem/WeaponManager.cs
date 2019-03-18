@@ -31,11 +31,11 @@ namespace TheLastHope.Weapons
 		{
             //Fire2 - пкм. При нажатии пкм на турель, мы меняем режим ее стрельбы, если это нам позволяет софт
             GameObject selectedTurret = selector.GetSelectedGameObject();
-            if (Input.GetButtonDown("Fire2") &&
-                selectedTurret.GetComponentInChildren<ATurret>() != null)
-            {
-                selectedTurret.GetComponentInChildren<ATurret>().SwitchMode();
-            }
+            //if (Input.GetButtonDown("Fire2") &&
+            //    selectedTurret.GetComponentInChildren<ATurret>() != null)
+            //{
+            //    selectedTurret.GetComponentInChildren<ATurret>().SwitchMode();
+            //}
             foreach (var turret in listTurretControllers)
 			{
 				turret.TurUpdate(sceneData, deltaTime);

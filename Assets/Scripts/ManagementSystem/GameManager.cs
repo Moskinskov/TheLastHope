@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.Data;
 using TheLastHope.Weapons;
-using TheLastHope.Hippo;
+using TheLastHope.Player;
+//using TheLastHope.Hippo; // Temporary. For the Hippo needs.
 using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 
@@ -23,11 +24,12 @@ namespace TheLastHope.Management
         [SerializeField] AWorldMover worldMover;
         [SerializeField] ADestroyer destroyer;
         [SerializeField] WeaponManager weaponController;
-        [SerializeField] HippoMainPlayer hippoPlayer;
+        [SerializeField] MainPlayer hippoPlayer;
         [SerializeField] RenderManager renderManager;
         [SerializeField] SkillManager skillManager;
         [SerializeField] TriggerManager triggerManager;
         [SerializeField] TrainManager trainManager;
+		[SerializeField] UIManager uiManager;
         [SerializeField] float lineLength;
         [SerializeField] string currentLevel;
 		[SerializeField] Canvas winCanvas;
@@ -48,6 +50,7 @@ namespace TheLastHope.Management
             renderManager.Init();
             trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
+			uiManager.Init();
             if (skillManager != null)
             {
                 skillManager.Init();
@@ -104,6 +107,11 @@ namespace TheLastHope.Management
                 sceneData.TrainSpeed = Mathf.Lerp(_oldSpeed, 0, Time.deltaTime);
 				print("You win!");
 				winCanvas.gameObject.active = true;
+				foreach (GameObject enemy in sceneData.Enemies)
+				{
+					var enemyController = enemy.GetComponent<AEnemy>();
+					enemyController.Health = 0;
+				}
 			}
             else
             {

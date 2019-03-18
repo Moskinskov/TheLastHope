@@ -63,8 +63,8 @@ namespace TheLastHope.Weapons.Software
 
         public override void Init()
         {
-            canBeManual = true;
-            readyToFire = false;
+            //canBeManual = true;
+            //readyToFire = false;
         }
     }
 }

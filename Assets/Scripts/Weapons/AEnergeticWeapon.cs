@@ -12,6 +12,7 @@ namespace TheLastHope.Weapons
         protected float _coreRecoveryPerSecond;               //time needed for the full recovery (use Timer)
         protected float _coreCurrentCharge;                   //current level of charge
         protected float _coreMinActiveEnergy;                 //min energy for using laser
+		protected float _coreMaxRange;						  //maximal range of the weapon
         //----------------------------------------------------------------------------------------------------//
         protected bool _usingLaser;
         protected bool _isLoadEnergy = true;
@@ -25,9 +26,9 @@ namespace TheLastHope.Weapons
             _origLR.enabled = false;
         }
 
-        #region Abstruct Methods
+        #region Abstract Methods
 
-        protected abstract void WeaponMethod();
+        protected abstract void WeaponMethod(RaycastHit hit);
         protected abstract void SetLRToTarget(RaycastHit hit);
         protected abstract void LocalChecks();
 
@@ -36,7 +37,8 @@ namespace TheLastHope.Weapons
         /// <summary>
         /// It should be set to Update
         /// </summary>
-        protected void CoreChecks()
+		/// 
+        protected virtual void CoreChecks()
         {
             if (_timerEndOfFire.IsEvent())
             {
