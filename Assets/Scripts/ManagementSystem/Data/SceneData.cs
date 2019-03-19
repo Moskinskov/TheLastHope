@@ -59,6 +59,10 @@ namespace TheLastHope.Management.Data
         /// Store number of driven lines;
         /// </summary>
         public int CurrentLine { get; set; }
+		/// <summary>
+		/// Overall lines count;
+		/// </summary>
+		public int LinesOverall { get; set; }
         /// <summary>
         /// Name of current level.
         /// </summary>

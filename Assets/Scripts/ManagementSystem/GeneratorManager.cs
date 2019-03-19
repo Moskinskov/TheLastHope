@@ -29,13 +29,16 @@ namespace TheLastHope.Management
         GameObject[] railArray;
         int currentLine = -1;
         LevelReader levelReader;
+		int levelLenght;
         [SerializeField] char divider = ',';
 
-        /// <summary>
-        /// Initializes generator manager.
-        /// </summary>
-        /// <param name="sceneData"></param>
-        public void Initialize(SceneData sceneData)
+		public int LevelLenght { get => levelLenght;}
+
+		/// <summary>
+		/// Initializes generator manager.
+		/// </summary>
+		/// <param name="sceneData"></param>
+		public void Initialize(SceneData sceneData)
         {
             enemiesArray = new GameObject[lineWidth];
             groundArray = new GameObject[lineWidth];
@@ -44,6 +47,7 @@ namespace TheLastHope.Management
             railArray = new GameObject[lineWidth];
             //TODO: Change to portable version.
             levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", divider);
+			levelLenght = levelReader.LevelLength;
             foreach (var enemy in enemies)
             {
                 sceneData.Enemies.Add(enemy);
@@ -141,7 +145,7 @@ namespace TheLastHope.Management
             }
             else
             {
-                print("Looks like map-file have not founded. Path " + Application.dataPath + "/Maps/" + sceneData.CurrentLevel + ".txt");
+                print("Looks like map-file have not found. Path " + Application.dataPath + "/Maps/" + sceneData.CurrentLevel + ".txt");
             }
 
         }

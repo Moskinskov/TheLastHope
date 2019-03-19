@@ -27,6 +27,7 @@ namespace TheLastHope.Enemies
 		/// </summary>
 		public override void Init()
         {
+			_weapon.Init();
 			base.MaxHealth = maxHealth;
             base.Health = base.MaxHealth;
             base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
@@ -53,6 +54,7 @@ namespace TheLastHope.Enemies
         /// <param name="deltaTime"></param>
         public override void EnemyUpdate(SceneData sceneData, float deltaTime)
         {
+			_weapon.WeaponUpdate();
 			timer.Update();
 			if (timer.IsEvent()) ChangeTex(false);
 			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))

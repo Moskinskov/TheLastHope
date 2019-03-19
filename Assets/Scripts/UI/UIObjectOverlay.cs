@@ -27,8 +27,6 @@ namespace TheLastHope.UI {
 		private void getInfo()
 		{	
 				_healthBarImage.fillAmount = _currentHealth;
-				print(_currentHealth);
-				_frame.gameObject.transform.localScale = _overlaySize;
 		}
 
 		public void ShowOverlay(bool frame)

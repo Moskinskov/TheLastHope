@@ -20,7 +20,7 @@ namespace TheLastHope.Weapons
         protected Timer _timerEndOfFire = new Timer();
         protected LineRenderer _origLR;
 
-        private void Start()
+        public override void Init()
         {
             _coreCurrentCharge = _coreEnergyCapacity;
             _origLR.enabled = false;

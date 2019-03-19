@@ -24,7 +24,7 @@ namespace TheLastHope.Management
         [SerializeField] AWorldMover worldMover;
         [SerializeField] ADestroyer destroyer;
         [SerializeField] WeaponManager weaponController;
-        [SerializeField] MainPlayer hippoPlayer;
+        [SerializeField] MainPlayer mainPlayer;
         [SerializeField] RenderManager renderManager;
         [SerializeField] SkillManager skillManager;
         [SerializeField] TriggerManager triggerManager;
@@ -43,19 +43,21 @@ namespace TheLastHope.Management
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
             sceneData.LineLength = lineLength;
-            sceneData.CurrentLevel = currentLevel;
+            sceneData.CurrentLevel = currentLevel;			
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
             renderManager.Init();
             trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
-			uiManager.Init();
+			uiManager.Init(sceneData);
+			mainPlayer.Init();
             if (skillManager != null)
             {
                 skillManager.Init();
             }
             pathCounter.Init(sceneData);
+			sceneData.LinesOverall = generatorManager.LevelLenght;
 			sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
 			sceneData.CurrentState = GameState.Loop;
@@ -71,15 +73,20 @@ namespace TheLastHope.Management
 				generatorManager.UpdateGenerators(sceneData);
 				weaponController.UpdateWeapons(sceneData, Time.deltaTime);
 				renderManager.UpdateRender(sceneData);
+				uiManager.UIUpdate(sceneData, pathCounter);
 				if (skillManager != null)
 				{
 					skillManager.SkillUpdate(sceneData);
 				}
 				pathCounter.CountLenght(sceneData, Time.deltaTime);
 				triggerManager.ExecuteCurrentEvents(sceneData);
+
+				//******************************************//
+				//Temp Progress Bar
+				//******************************************//
 			}
 
-            else if (sceneData.CurrentState == GameState.Lose)
+			else if (sceneData.CurrentState == GameState.Lose)
 			{
 				EndGame(false, sceneData);
 				generatorManager.UpdateGenerators(sceneData);
@@ -96,7 +103,7 @@ namespace TheLastHope.Management
 
             destroyer.Destroy(sceneData);
             worldMover.MoveWorld(sceneData, Time.deltaTime);
-            hippoPlayer.UpdatePlayer(sceneData);
+            mainPlayer.UpdatePlayer(sceneData);
         }
 
         void EndGame(bool win, SceneData sceneData)

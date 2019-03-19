@@ -13,10 +13,10 @@ namespace TheLastHope.Weapons
 	public class WeaponManager : MonoBehaviour
 	{
 		[SerializeField] Selector selector;
-		[SerializeField] List<ATurret> listTurretControllers = new List<ATurret>();
+		[SerializeField] List<ATurret> turretList = new List<ATurret>();
         public void Init()
 		{
-			foreach (var turret in listTurretControllers)
+			foreach (var turret in turretList)
 			{
                 turret.Init();
 			}
@@ -36,9 +36,9 @@ namespace TheLastHope.Weapons
             //{
             //    selectedTurret.GetComponentInChildren<ATurret>().SwitchMode();
             //}
-            foreach (var turret in listTurretControllers)
+            foreach (var turret in turretList)
 			{
-				turret.TurUpdate(sceneData, deltaTime);
+				if(turret.IsActive) turret.TurUpdate(sceneData, deltaTime);
 			}
         }
 	}

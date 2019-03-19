@@ -12,8 +12,9 @@ namespace TheLastHope.Weapons
     {
 		[SerializeField] private float _maxHealth;
         private Vector3 aimingPoint;
-        //Вращает турель в сторону точки ффz
-        public override void TurnTurret(float deltaTime)
+		private ParticleSystem _effect;
+		//Вращает турель в сторону точки ффz
+		public override void TurnTurret(float deltaTime)
         {
             float eulerTargetRot = Quaternion.FromToRotation(transform.forward,
                             aimingPoint - transform.position).eulerAngles.y;
@@ -27,13 +28,13 @@ namespace TheLastHope.Weapons
             }
             else
             {
-                gameObject.transform.rotation *= Quaternion.AngleAxis( turningAngularSpeed * turningDir * deltaTime,
-                                                                     Vector3.up);       
+                gameObject.transform.rotation *= Quaternion.AngleAxis( turningAngularSpeed * turningDir * deltaTime, Vector3.up);       
             }
         }
        
         public override void TurUpdate(SceneData sceneData, float deltaTime)
         {
+			weapon.WeaponUpdate();
             //Проверяем включен ли ручной режим на турели и возможен ли он при установленном софте
             if (manualMode && soft.canBeManual)
             {
@@ -56,17 +57,30 @@ namespace TheLastHope.Weapons
                 }
             }
             TurnTurret(Time.deltaTime);
+
+			if (Health <= 0) Die();
 		}
         public override void Init()
         {
-            soft.Init();
+			base.IsActive = true;
+			soft.Init();
 			base.MaxHealth = _maxHealth;
 			base.Health = base.MaxHealth;
+			_effect = GetComponent<ParticleSystem>();
+			if (_effect) _effect.Stop();
+			weapon.Init();
         }
 
 		public override void SetDamage(float damage)
 		{
 			base.Health -= damage;
+			
+		}
+
+		public void Die()
+		{
+			if (_effect) _effect.Play();
+			base.IsActive = false;
 		}
 
 

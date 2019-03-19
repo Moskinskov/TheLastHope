@@ -37,7 +37,7 @@ namespace TheLastHope.Weapons
 		private bool _isPlaying;
 
 
-        private void Awake()
+        public override void Init()
         {
             _coreDamagePerSecond = _damagePerSecond;
             _coreEnergyCapacity = _energyCapacity;
@@ -52,7 +52,7 @@ namespace TheLastHope.Weapons
             _nearestEnemies = new List<AEnemy>();
         }
 
-        private void Update()
+        public override void WeaponUpdate()
         {
             _timerEndOfFire.Update();
             CoreChecks();
@@ -69,7 +69,7 @@ namespace TheLastHope.Weapons
                 return;
 
             _usingLaser = true;
-            _timerEndOfFire.Start(0.005f); //MAAAGIC NUMBEEEERS!!!
+            _timerEndOfFire.Start(0.005f); //MAGIC NUMBERS!!!
 			if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
 			{
 				if (hit.distance <= _maxRange && hit.transform.tag == "Enemy")

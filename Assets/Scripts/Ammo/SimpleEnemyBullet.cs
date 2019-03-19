@@ -21,12 +21,15 @@ namespace TheLastHope.Ammo
 
         public override void OnTriggerEnter(Collider collision)
         {
-            try
-            {
-                collision.gameObject.GetComponent<MainPlayer>().SetDamage(damage);
-                Die(true);
-            }
-            catch { };
+			if (collision.tag == "Player")
+			{
+				try
+				{
+					collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
+					Die(true);
+				}
+				catch { };
+			}
         }
 
         private void OnCollisionEnter(Collision collision)

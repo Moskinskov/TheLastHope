@@ -4,6 +4,7 @@ using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Player;
 using TheLastHope.Management.Data;
+using TheLastHope.Helpers;
 
 namespace TheLastHope.UI {
 
@@ -17,28 +18,44 @@ namespace TheLastHope.UI {
 		private ObjType _currentType;
 		private Vector3 _overlaySize;
 		private bool _isUnderControl;
+		private float _oldHealth;
+		private Timer _timer;
+		private IEnumerator coroutine;
 
 		[SerializeField]
 		private bool _showOnDamage;
+		[SerializeField]
+		private float _showTime = 1.0f;
 
 		public void Init()
 		{
 			_baseObject = GetComponentInChildren<ABaseObject>();
+			if (!_baseObject) GetComponent<ABaseObject>();
 			_healthBarValue = _baseObject.MaxHealth;
 			_overlay = this.gameObject.GetComponentInChildren<UIObjectOverlay>();
+			_oldHealth = _baseObject.Health;
 
 			if (_baseObject.GetComponentInChildren<AEnemy>()) _currentType = ObjType.Enemy;
 			else if (_baseObject.GetComponentInChildren<ATurret>()) _currentType = ObjType.Turret;
 			else if (_baseObject.GetComponentInChildren<MainPlayer>()) _currentType = ObjType.Loco;
 			HideOverlay();
+			_timer = new Timer();
 		}
+
+		public void OverlayUpdate()
+		{
+			if (_baseObject.Health != _oldHealth && _showOnDamage && _baseObject.IsActive && !_isUnderControl)
+			{
+				coroutine = DamageUI(_showTime);
+				StartCoroutine(coroutine);
+			}
+		}
+
 
 		public void CountHealth()
 		{
-			print(_baseObject.Health);
 			_healthBarValue = _baseObject.Health / _baseObject.MaxHealth;
 			_overlay.CurrentHealth = _healthBarValue;
-			print("Current Health: " + _healthBarValue + " as a result of " + _baseObject.Health + " / " + _baseObject.MaxHealth);
 		}
 
 
@@ -85,6 +102,15 @@ namespace TheLastHope.UI {
 				_isUnderControl = false;
 				_baseObject.GetComponentInChildren<ATurret>().SwitchMode();
 			}
+		}
+
+		private IEnumerator DamageUI(float waitTime)
+		{
+			CountHealth();
+			ShowOverlay();
+			yield return new WaitForSeconds(waitTime);
+			HideOverlay();
+			_oldHealth = _baseObject.Health;
 		}
 	}
 

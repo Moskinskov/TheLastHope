@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Enemy
-  visionRadius: 50
-  searchTimeDelay: 0.2
+  visionRadius: 35
+  searchTimeDelay: 1
   canBeManual: 0

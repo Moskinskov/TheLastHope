@@ -75,12 +75,12 @@ namespace TheLastHope.Weapons
 			get { return _audioPlayer; }
 			set { _audioPlayer = value; }
 		}
-		protected virtual void Start()
+		public override void Init()
 		{
 			_currentAmmoInClip = _clipSize;
 
 		}
-		protected virtual void Update() //KILL ME!
+		public override void WeaponUpdate()
 		{
 			_delay.Update();
 		}

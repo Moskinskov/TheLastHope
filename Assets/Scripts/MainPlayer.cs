@@ -19,6 +19,7 @@ namespace TheLastHope.Player
 
 		[SerializeField]
 		private float _maxHealth;
+		
 
 		//private void OnGUI()
 		//{
@@ -74,11 +75,12 @@ namespace TheLastHope.Player
 				var _child = gameObject.transform.GetChild(i);
 				if (!_child.gameObject.active) _child.gameObject.SetActive(true);
 			}
+			base.IsActive = false;
 		}
 
 		public override void Init()
 		{
-			throw new NotImplementedException();
+			base.IsActive = true;
 		}
 
 	}

@@ -31,7 +31,7 @@ namespace TheLastHope.Weapons
 		private IEnumerator coroutine;
 		private bool _isPlaying;
 
-		private void Awake()
+		public override void Init()
         {
             _coreDamagePerSecond = _damagePerSecond;
             _coreEnergyCapacity = _energyCapacity;
@@ -47,12 +47,12 @@ namespace TheLastHope.Weapons
 			    _laserAudioSource.Stop();
 		}
 
-		private void Update()
+		public override void WeaponUpdate()
         {
-            _timerEndOfFire.Update();
-            CoreChecks();
-            LocalChecks();
-        }
+			_timerEndOfFire.Update();
+			CoreChecks();
+			LocalChecks();
+		}
 
         public override void Fire(SceneData sceneData)
         {
