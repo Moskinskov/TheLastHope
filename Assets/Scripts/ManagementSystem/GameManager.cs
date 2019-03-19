@@ -31,9 +31,12 @@ namespace TheLastHope.Management
         [SerializeField] TrainManager trainManager;
 		[SerializeField] UIManager uiManager;
         [SerializeField] float lineLength;
+        [SerializeField] int linesCount;
         [SerializeField] string currentLevel;
 		[SerializeField] Canvas winCanvas;
 		[SerializeField] Canvas looseCanvas;
+        [Tooltip("Number of lines to pregenerate scene")] 
+        [SerializeField] int firstFrameLengthInLines = 14;
 
         // Start is called before the first frame update
         void Start()
@@ -43,7 +46,12 @@ namespace TheLastHope.Management
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
             sceneData.LineLength = lineLength;
+<<<<<<< HEAD
             sceneData.CurrentLevel = currentLevel;			
+=======
+            sceneData.CurrentLevel = currentLevel;
+            sceneData.LinesCount = linesCount;
+>>>>>>> a419f0cf509448df064973e35f3abb987a6a466b
             worldMover.SetupMover(sceneData);
             generatorManager.Initialize(sceneData);
             weaponController.Init();
@@ -57,7 +65,11 @@ namespace TheLastHope.Management
                 skillManager.Init();
             }
             pathCounter.Init(sceneData);
+<<<<<<< HEAD
 			sceneData.LinesOverall = generatorManager.LevelLenght;
+=======
+            GenerateFirstArea();
+>>>>>>> a419f0cf509448df064973e35f3abb987a6a466b
 			sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
 			sceneData.CurrentState = GameState.Loop;
@@ -80,10 +92,14 @@ namespace TheLastHope.Management
 				}
 				pathCounter.CountLenght(sceneData, Time.deltaTime);
 				triggerManager.ExecuteCurrentEvents(sceneData);
+<<<<<<< HEAD
 
 				//******************************************//
 				//Temp Progress Bar
 				//******************************************//
+=======
+                trainManager.UpdateTrain(sceneData);
+>>>>>>> a419f0cf509448df064973e35f3abb987a6a466b
 			}
 
 			else if (sceneData.CurrentState == GameState.Lose)
@@ -138,6 +154,16 @@ namespace TheLastHope.Management
 		{
 			Application.Quit();
 		}
+
+        void GenerateFirstArea()
+        {
+            for(var i=0; i<firstFrameLengthInLines;i++)
+            {
+                generatorManager.UpdateGenerators(sceneData);
+                worldMover.MoveWorld(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
+                pathCounter.CountLenght(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
+            }
+        }
     }
 }
 

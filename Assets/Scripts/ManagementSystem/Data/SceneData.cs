@@ -56,6 +56,10 @@ namespace TheLastHope.Management.Data
         /// </summary>
         public float LineLength { get; set; }
         /// <summary>
+        /// Number of horizontalLines on scene.
+        /// </summary>
+        public int LinesCount { get; set; }
+        /// <summary>
         /// Store number of driven lines;
         /// </summary>
         public int CurrentLine { get; set; }

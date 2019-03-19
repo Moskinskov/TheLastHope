@@ -9,6 +9,7 @@ public class Carriage : ACarriage
     [SerializeField] float step;
     [SerializeField] float accuracy;
     [SerializeField] float lerpStep;
+    [SerializeField] float clearance = 0.1f;
     RaycastHit hitInfo;
     float x;
     float circleParam;
@@ -36,7 +37,7 @@ public class Carriage : ACarriage
                                         - hitInfo.collider.gameObject.transform.position.x)
                                         / hitInfo.collider.gameObject.GetComponent<ARail>().Length;
             circleParam = 0f;
-
+            //print("Car" + " " + hitInfo.collider.gameObject.name + " " + hitInfo.collider.gameObject.GetComponent<ARail>().ToString());
             Vector3 pointCircleZPositive = new Vector3(0,0,0);
             Vector3 pointCircleZNegative = new Vector3(0,0,0);
             Vector3 pointBezier;
@@ -45,7 +46,7 @@ public class Carriage : ACarriage
 
             //float normalizationValue = -hitInfo.collider.gameObject.transform.position.x / hitInfo.collider.gameObject.GetComponent<ARail>().Length - startParam;
             //print($" normVal {normalizationValue}");
-            print($"{Time.frameCount}");
+            //print($"{Time.frameCount}");
             //print($"p: {param} sp: {-hitInfo.collider.gameObject.transform.position.x / hitInfo.collider.gameObject.GetComponent<ARail>().Length}");
             while (circleParam < Mathf.PI)
             {
@@ -74,7 +75,7 @@ public class Carriage : ACarriage
 
                     if (gotPoint)
                     {
-                        print($"TRUE! {(pointNearest - pointCircleZPositive).magnitude} {(pointNearest - pointCircleZNegative).magnitude} || {Time.frameCount}");
+                        //print($"TRUE! {(pointNearest - pointCircleZPositive).magnitude} {(pointNearest - pointCircleZNegative).magnitude} || {Time.frameCount}");
                         break;
                     }
                     bezierParam += step;
@@ -84,14 +85,20 @@ public class Carriage : ACarriage
                 circleParam += step;
             }
             Debug.DrawLine(Vector3.zero, pointNearest, Color.green);
+            pointNearest = new Vector3(pointNearest.x, pointNearest.y+clearance, pointNearest.z);
             //transform.position = hitInfo.collider.gameObject.GetComponent<ARail>().Curve.GetPoint(param);
             if (gotPoint) transform.position = Vector3.Lerp(transform.position, pointNearest, lerpStep);
             else
             {
                 transform.position = Vector3.Lerp(transform.position,pointNearest,lerpStep);
-                print($"FALSE! {(pointNearest - pointCircleZPositive).magnitude} {(pointNearest - pointCircleZNegative).magnitude} || {Time.frameCount}");
+                //print($"FALSE! {(pointNearest - pointCircleZPositive).magnitude} {(pointNearest - pointCircleZNegative).magnitude} || {Time.frameCount}");
             }
-            transform.LookAt(connector.transform.position);
+
         }
+        else
+        {
+            //print("LOST");
+        }
+        transform.LookAt(connector.transform.position);
     }
 }
