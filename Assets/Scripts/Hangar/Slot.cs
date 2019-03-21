@@ -5,9 +5,9 @@ namespace TheLastHope.Hangar
 {
     public class Slot : MonoBehaviour, IDropHandler
     {
-        public bool isInventory = true;
-        public bool isVacant = true;
-        public int number;
+        public bool isInventory = true;             //Slots of inventory or not
+        public bool isVacant = true;    
+        public int number;                          //Number of a slot
         public GameObject item
         {
             get
@@ -16,11 +16,6 @@ namespace TheLastHope.Hangar
                     return transform.GetChild(0).gameObject;
                 return null;
             }
-            set
-            {
-                item = value;
-                item.transform.SetParent(transform);
-            }
         }
         public void OnDrop(PointerEventData eventData)
         {
@@ -28,13 +23,13 @@ namespace TheLastHope.Hangar
             {
                 if (!Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                 {
-                    HangarData.instance.currentCarrage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
-                    HangarData.instance.currentCarrage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
+                    HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
+                    HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
                 }
                 if (!isInventory && Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                 {
-                    HangarData.instance.positionController.itemsOnCarrage.Add(item);
-                    HangarData.instance.currentCarrage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
+                    HangarData.instance.positionController.itemsOnCarriage.Add(item);
+                    HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
                 }
                 Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;
                 Item.itemBeingDragged.transform.SetParent(transform);

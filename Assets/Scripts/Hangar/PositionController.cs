@@ -7,11 +7,11 @@ namespace TheLastHope.Hangar
 {
     public class PositionController : MonoBehaviour
     {
-        [HideInInspector]public List<GameObject> itemsOnCarrage;
+        [HideInInspector]public List<GameObject> itemsOnCarriage;
         [HideInInspector]public List<GameObject> squareSlots;
         void Start()
         {
-            itemsOnCarrage = new List<GameObject>();
+            itemsOnCarriage = new List<GameObject>();
             squareSlots = new List<GameObject>();
 
             InitSlots();
@@ -25,7 +25,7 @@ namespace TheLastHope.Hangar
         /// </summary>
         private void InitSlots()
         {
-            for (int i = 0; i < HangarData.instance.currentCarrage.squareTypeCount; i++)
+            for (int i = 0; i < HangarData.instance.currentCarriage.squareTypeCount; i++)
             {
                 GameObject slot = new GameObject() { name = $"Slot_{i}" };
                 slot.AddComponent<RectTransform>();

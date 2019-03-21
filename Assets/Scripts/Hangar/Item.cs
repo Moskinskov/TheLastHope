@@ -53,10 +53,10 @@ namespace TheLastHope.Hangar
                 {
                     if (HangarData.instance.inventiry.transform.GetComponentsInChildren<Slot>()[i].isVacant)
                     {
-                        HangarData.instance.currentCarrage.GetComponent<Container>().RemoveHardware(transform.parent.GetComponent<Slot>().number);
+                        HangarData.instance.currentCarriage.GetComponent<Container>().RemoveHardware(transform.parent.GetComponent<Slot>().number);
                         transform.parent = HangarData.instance.inventiry.transform.GetChild(i);
                         HangarData.instance.inventiry.transform.GetChild(i).GetComponent<Slot>().isVacant = false;
-                        controller.itemsOnCarrage.Remove(gameObject);
+                        controller.itemsOnCarriage.Remove(gameObject);
                         controller.EndItemDragging();
                         return;
                     }

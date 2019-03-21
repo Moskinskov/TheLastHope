@@ -8,13 +8,13 @@ namespace TheLastHope.Hangar
         public PositionController positionController;
         public Inventory inventiry;
         [SerializeField] private Container[] train;
-        [HideInInspector] public Container currentCarrage;
+        [HideInInspector] public Container currentCarriage;
 
         public static HangarData instance;
 
         void Awake()
         {
-            currentCarrage = train[0];
+            currentCarriage = train[0];
         }
         public HangarData()
         {

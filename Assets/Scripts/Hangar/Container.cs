@@ -6,9 +6,9 @@ namespace TheLastHope.Hangar
 {
     public class Container : MonoBehaviour
     {
-        public List<GameObject> hardwares;
-        public List<Transform> weaponPositions;
-        public int squareTypeCount;
+        public List<GameObject> hardwares;                        //list of hardwares in carriage
+        public List<Transform> weaponPositions;                   //available weapon positions
+        public int squareTypeCount;                               //qouatity of positions with type TypePosition.square
         void Start()
         {
             hardwares = new List<GameObject>();
