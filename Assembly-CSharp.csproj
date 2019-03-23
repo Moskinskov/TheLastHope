@@ -164,10 +164,9 @@
     <Compile Include="Assets\HippoSkill\SkillManager.cs" />
     <Compile Include="Assets\HippoSkill\UltimateWeapon.cs" />
     <Compile Include="Assets\MouseEnt.cs" />
-    <Compile Include="Assets\Scenes\GlobalMap\ImageControll.cs" />
+    <Compile Include="Assets\Scenes\GlobalMap\EventController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PointController.cs" />
-    <Compile Include="Assets\Scenes\GlobalMap\ScaleUI.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleEnemyBullet.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />

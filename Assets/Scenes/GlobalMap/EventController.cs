@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImageControll : MonoBehaviour
+public class EventController : MonoBehaviour
 {
-    [SerializeField] protected RectTransform canvas;
+    void SetCurSity(PointController city)
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,6 @@ public class ImageControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 }

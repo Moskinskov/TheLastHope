@@ -10,7 +10,10 @@ public class PointController : MonoBehaviour
     [SerializeField] public string name;
     [SerializeField] private bool curActive = false;
     [SerializeField] private bool canActive = false;
-    
+
+    public bool CanActive { get => canActive; set => canActive = value; }
+    public bool CurActive { get => curActive; set => curActive = value; }
+
     // Start is called before the first frame update
     void Start()
     {
