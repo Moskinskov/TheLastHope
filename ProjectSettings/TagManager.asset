@@ -29,10 +29,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - behind
+  - midle
+  - front
+  - ultrafront
   - 
   - 
   - 
@@ -41,4 +41,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: map
+    uniqueID: 619164651
+    locked: 0
+  - name: iconOnmap
+    uniqueID: 3704708593
+    locked: 0
+  - name: buttonOnmap
+    uniqueID: 3883349057
+    locked: 0
+  - name: panelOnmap
+    uniqueID: 3545446689
     locked: 0
