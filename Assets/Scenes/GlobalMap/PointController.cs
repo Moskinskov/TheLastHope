@@ -20,7 +20,15 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     [SerializeField] public UiController ui;
     public void OnPointerClick(PointerEventData eventData)
     {
-        ui.OpenCloseUi(this);
+        if (this != path.startPoint)
+        {
+            path.clearRoad();
+            path.searchRoad(this.num);
+            if (ui.OpenCloseUi(this, path.GetDistance(this.num), path.GetNextCity()))
+            {
+                path.drawRoad(Color.blue, this.num);
+            }
+        }
     }
 
     // Start is called before the first frame update

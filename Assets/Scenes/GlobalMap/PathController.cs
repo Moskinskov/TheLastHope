@@ -6,6 +6,7 @@ public class PathController : MonoBehaviour
     [SerializeField] public PointController startPoint;// Текущая и стартовая позиция
     [SerializeField] public int countPoints; // Число вершин
     [SerializeField] private int[,] matrix; //Матрица дистанций от i до j
+    [SerializeField] private int[,] matrix2;
     [SerializeField] private PointController[] mapsObj;
     [SerializeField] List<int> road;
 
@@ -18,7 +19,11 @@ public class PathController : MonoBehaviour
             {
                 for (int i = 0; i < countPoints; ++i)
                 {
-                    matrix[i, j] = Mathf.Min(matrix[i, j], matrix[i, k] + matrix[k, j]);
+                    if (matrix[i, j] > matrix[i, k] + matrix[k, j])
+                    {
+                        matrix[i, j] = matrix[i, k] + matrix[k, j];
+                        matrix2[i, j] = matrix2[i, k] >= 0 ? matrix2[i, k] : k;
+                    }
                 }
             }
         }
@@ -55,20 +60,34 @@ public class PathController : MonoBehaviour
         }
     }
 
-    private List<int> searchRoad(int numStart, int numEnd)
+    public void searchRoad(int numEnd)
     {
-        
-
-
-
-
-        return road;
+        road.Clear();
+        road.Add(startPoint.num);
+        int cur = startPoint.num;
+        while(matrix2[cur, numEnd] >= 0)
+        {
+            cur = matrix2[cur, numEnd];
+            road.Add(cur);
+        }
+        if (matrix2[cur, numEnd] == -2)
+        {
+            road.Add(numEnd);
+        } 
     }
     #endregion
 
 
+    public void clearRoad()
+    {
+        for (int i = 1; i < road.Count; i++)
+        {
+            mapsObj[road[i]].setColor(Color.white);
+        }
+        mapsObj[0].setColor(Color.green);
+    }
 
-    void drawRoad(Color clr)
+    public void drawRoad(Color clr, int numEnd)
     {
         foreach (int p in road)
         {
@@ -87,12 +106,27 @@ public class PathController : MonoBehaviour
             print(str);
         }
     }
+    public int GetDistance(int end)
+    {
+        return matrix[startPoint.num, end];
+    }
+    public PointController GetNextCity()
+    {
+        return mapsObj[road[1]];
+    }
+    public void StartLevel()
+    {
+        //startPoint.name Имя стартового города
+        //mapsObj[road[0]].name Имя следующего города
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         road = new List<int>();
         mapsObj = new PointController[countPoints];
         matrix = new int[countPoints, countPoints];
+        matrix2 = new int[countPoints, countPoints];
         for (int i = 0; i < countPoints; i++)
         {
             for (int j = 0; j < countPoints; j++)
@@ -100,12 +134,13 @@ public class PathController : MonoBehaviour
                 if (i == j)
                 {
                     matrix[i, j] = 0;
+                    matrix2[i, j] = -1;
                 }
                 else
                 {
                     matrix[i, j] = 1000000000;
+                    matrix2[i, j] = -2;
                 }
-                
             }
         }
         BFS();
