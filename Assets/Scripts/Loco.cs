@@ -24,6 +24,7 @@ public class Loco: ACarriage
         if( hitInfo.collider
             && hitInfo.collider.gameObject.GetComponent<ARail>())
         {
+            //print("LOCO"  + " " + hitInfo.collider.gameObject.name + " " + hitInfo.collider.gameObject.GetComponent<ARail>().ToString());
             param = (transform.position.x
                                         - hitInfo.collider.gameObject.transform.position.x)
                                         / hitInfo.collider.gameObject.GetComponent<ARail>().Length;
@@ -33,6 +34,7 @@ public class Loco: ACarriage
             transform.position = new Vector3(x, transform.position.y, transform.position.z);
             transform.rotation = hitInfo.collider.gameObject.GetComponent<ARail>().Curve.GetQuaternionDirection(param);
         }
+        
 
     }
 }
