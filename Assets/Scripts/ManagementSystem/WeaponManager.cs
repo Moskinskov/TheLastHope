@@ -14,9 +14,12 @@ namespace TheLastHope.Weapons
 	{
 		[SerializeField] Selector selector;
 		[SerializeField] List<ATurret> turretList = new List<ATurret>();
-        public void Init()
+
+		public List<ATurret> TurretList { get => turretList; set => turretList = value; }
+
+		public void Init()
 		{
-			foreach (var turret in turretList)
+			foreach (var turret in TurretList)
 			{
                 turret.Init();
 			}
@@ -36,7 +39,7 @@ namespace TheLastHope.Weapons
             //{
             //    selectedTurret.GetComponentInChildren<ATurret>().SwitchMode();
             //}
-            foreach (var turret in turretList)
+            foreach (var turret in TurretList)
 			{
 				if(turret.IsActive) turret.TurUpdate(sceneData, deltaTime);
 			}

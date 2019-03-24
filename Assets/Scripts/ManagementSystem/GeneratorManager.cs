@@ -38,7 +38,7 @@ namespace TheLastHope.Management
 		/// Initializes generator manager.
 		/// </summary>
 		/// <param name="sceneData"></param>
-		public void Initialize(SceneData sceneData)
+		public void Init(SceneData sceneData)
         {
             enemiesArray = new GameObject[lineWidth];
             groundArray = new GameObject[lineWidth];
@@ -51,7 +51,7 @@ namespace TheLastHope.Management
             foreach (var enemy in enemies)
             {
                 sceneData.Enemies.Add(enemy);
-                enemy.GetComponent<CopterEnemy>().Init();
+                enemy.GetComponent<AEnemy>().Init();
 
             }
             patternPositions = new List<Vector3>();

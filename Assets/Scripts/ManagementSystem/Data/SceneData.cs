@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Management.Data
 {
@@ -13,6 +14,7 @@ namespace TheLastHope.Management.Data
         List<GameObject> enemiesPatterns = new List<GameObject>();
         List<GameObject> ammos = new List<GameObject>();
         List<GameObject> triggers = new List<GameObject>();
+		List<ABaseObject> trainStuff = new List<ABaseObject>();
         private GameState State; 
 
         /// <summary>
@@ -67,15 +69,19 @@ namespace TheLastHope.Management.Data
         /// Name of current level.
         /// </summary>
         public string CurrentLevel { get; set; }
-
         /// <summary>
         /// List of current triggers.
         /// </summary>
-        public List<GameObject> Triggers { get {return triggers; } set { triggers = value; } }
+        public List<GameObject> Triggers { get => triggers; set => triggers = value; }
+		/// <summary>
+		/// List of all things that belong to the train.
+		/// </summary>
+		public List<ABaseObject> TrainStuff { get => trainStuff; set => trainStuff = value; }
 
-        public GameState CurrentState { get; set; }
 
-        public SceneData()
+		public GameState CurrentState { get; set; }
+
+		public SceneData()
 		{
 		}
 

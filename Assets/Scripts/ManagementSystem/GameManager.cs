@@ -7,6 +7,7 @@ using TheLastHope.Player;
 //using TheLastHope.Hippo; // Temporary. For the Hippo needs.
 using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
+using System;
 
 namespace TheLastHope.Management
 {
@@ -45,13 +46,14 @@ namespace TheLastHope.Management
             sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;			
             worldMover.SetupMover(sceneData);
-            generatorManager.Initialize(sceneData);
+            generatorManager.Init(sceneData);
             weaponController.Init();
             renderManager.Init();
             trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
 			uiManager.Init(sceneData);
 			mainPlayer.Init();
+			trainStuffAdd();
             if (skillManager != null)
             {
                 skillManager.Init();
@@ -63,8 +65,19 @@ namespace TheLastHope.Management
 			sceneData.CurrentState = GameState.Loop;
 		}
 
-        // Update is called once per frame
-        void Update()
+		private void trainStuffAdd()
+		{
+			foreach (ABaseObject tur in weaponController.TurretList)
+			{
+				sceneData.TrainStuff.Add(tur);
+				print(sceneData.TrainStuff);
+			}
+
+			sceneData.TrainStuff.Add(mainPlayer);
+		}
+
+		// Update is called once per frame
+		void Update()
         {
 
 

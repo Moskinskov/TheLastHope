@@ -168,6 +168,7 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Carriage.cs" />
+    <Compile Include="Assets\Scripts\Enemies\BuggyEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\CopterEnemy.cs" />
     <Compile Include="Assets\Scripts\Generators\DynamicGenerator.cs" />
     <Compile Include="Assets\Scripts\Generators\RailGenerator.cs" />
@@ -228,12 +229,14 @@
     <Compile Include="Assets\Scripts\Weapons\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\BasicTurret.cs" />
     <Compile Include="Assets\Scripts\Weapons\ElectroGun.cs" />
+    <Compile Include="Assets\Scripts\Weapons\GatlingGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\LaserGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\MachineGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
     <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\ASoftware.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\AutoAndManualSoft.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Software\BasicEnemySoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\ManualControlSoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\PrimitiveControlSoft.cs" />
     <Compile Include="Assets\Scripts\Workers\CursorSetter.cs" />

@@ -25,9 +25,11 @@ namespace TheLastHope.Weapons
 		[SerializeField] protected int[] _firingModesAvailable; //available firing modes
 		[SerializeField] protected AAmmo _ammo; //ammunition to fire
 		[SerializeField] Transform _muzzle; // Система координат для вылета пули
+		[SerializeField] protected GameObject _barrel;
+		[SerializeField] protected GameObject _muzzleFlash;
 		#endregion
 
-        public float Force { get { return _force; } set { _force = value; } }
+		public float Force { get { return _force; } set { _force = value; } }
         public Transform Muzzle { get { return _muzzle; }  set { _muzzle = value; } }
 
 		#region Protected Variables
@@ -60,9 +62,10 @@ namespace TheLastHope.Weapons
 			}
 			if (_readyToFire && _ammo)
 			{
+				if (_muzzleFlash) _muzzleFlash.SetActive(true);
 				Shot(sceneData);
 				var snd = this.GetComponent<AudioSource>();
-				snd.Play();
+				if(snd) snd.Play();
 				_delay.Start(_rateOfFire);
 				_readyToFire = false;
 				_currentAmmoInClip -= 1;
@@ -82,6 +85,7 @@ namespace TheLastHope.Weapons
 		}
 		public override void WeaponUpdate()
 		{
+			if (_muzzleFlash) _muzzleFlash.SetActive(false);
 			_delay.Update();
 		}
 	}

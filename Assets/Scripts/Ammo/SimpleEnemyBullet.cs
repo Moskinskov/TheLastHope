@@ -47,7 +47,7 @@ namespace TheLastHope.Ammo
             {
                 if (withSnd) snd.Play();
             }
-            Destroy(this.gameObject, 0.3f);
+            Destroy(this.gameObject, 0.0f);
         }
     }
 }
