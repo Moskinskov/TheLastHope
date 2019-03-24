@@ -1,23 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PointController : MonoBehaviour
+[Serializable]
+public struct Points
 {
-    [SerializeField] public GameObject Arrow = null;
-    [SerializeField] public List<GameObject> Neighboring;
-    [SerializeField] public List<float> Distance;
-    [SerializeField] public string name;
-    [SerializeField] private bool curActive = false;
-    [SerializeField] private bool canActive = false;
+    public PointController point;
+    public int dist;
+}
 
-    public bool CanActive { get => canActive; set => canActive = value; }
-    public bool CurActive { get => curActive; set => curActive = value; }
+public class PointController : MonoBehaviour, IPointerClickHandler
+{
+    [SerializeField] public int num;
+    [SerializeField] public Points[] Neightboring;
+    [SerializeField] public PathController path;
+    [SerializeField] public UiController ui;
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ui.OpenCloseUi(this);
+    }
 
     // Start is called before the first frame update
+
+    public void setColor(Color clr)
+    {
+        GetComponent<Image>().color = clr;
+
+
+    }
     void Start()
     {
-        
+        //GetComponent<Image>().color = Color.red;
     }
 
     // Update is called once per frame
