@@ -85,7 +85,6 @@ namespace TheLastHope.Management
 		void Update()
         {
 
-
 			if (sceneData.CurrentState == GameState.Loop)
 			{
 				generatorManager.UpdateGenerators(sceneData);

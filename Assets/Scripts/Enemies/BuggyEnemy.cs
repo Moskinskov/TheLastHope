@@ -19,42 +19,53 @@ namespace TheLastHope.Enemies
 		[SerializeField] private List<GameObject> _frontWheels;
 		[SerializeField] private List<GameObject> _rearWheels;
 		[SerializeField] private float _visionSpread;
-	
+		[SerializeField] private float _turnSpeed;
+		[SerializeField] private float _turnRatio;
+
 		private RaycastHit hit;
 		private Renderer[] renderers;
 		private Color _initColor;
 		private Texture _initTexture;
 		private Timer timer;
 		private List<GameObject> _wheels;
+		private List<Texture> _textures;
 		private Vector3 _leftEyeVector;
 		private Vector3 _rightEyeVector;
+		private bool _isAlive;
+
+
 
 		/// <summary>
 		/// Resets health.
 		/// </summary>
 		public override void Init()
-        {
-			_turret.Init();
-			base.MaxHealth = maxHealth;
-            base.Health = base.MaxHealth;
-            base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
-                                                     base.targetPosition.transform.position.y,
-                                                     base.targetPosition.transform.position.z);
-			renderers = GetComponentsInChildren<Renderer>();
-			_initTexture = renderers[2].material.mainTexture;
+		{
+			_textures = new List<Texture>();
 			timer = new Timer();
-			_wheels = new List<GameObject>();
-			InitVision();
+			renderers = GetComponentsInChildren<Renderer>();
+			foreach (Renderer rend in renderers)
+			{
+				if (rend) _textures.Add(rend.material.mainTexture);
+			}
 		}
 
-		/// <summary>
-		/// Set target position for enemy to be there.
-		/// </summary>
-		/// <param name="targetPosition"></param>
-		public override void SetTargetPosition(GameObject targetPosition)
+		public override void Init(SceneData sceneData)
         {
-            base.targetPosition = targetPosition;
-        }
+			_turret.Init();
+			_isAlive = true;
+			IsActive = true;
+			base.MaxHealth = maxHealth;
+            base.Health = base.MaxHealth;
+			int _rndCar = Random.Range(1, sceneData.TrainCars.Count);
+			target = sceneData.TrainCars[_rndCar].gameObject.transform;
+			this.targetPosition = target;
+			base.currentDriftingPoint = new Vector3(this.targetPosition.position.x,
+                                                     this.targetPosition.position.y,
+                                                     this.targetPosition.position.z);
+			_wheels = new List<GameObject>();
+			InitVision();
+			Init();
+		}
 
 		/// <summary>
 		/// Moves this enemy according it's posibilities and targets.
@@ -73,42 +84,56 @@ namespace TheLastHope.Enemies
 
 		public override void EnemyUpdate(SceneData sceneData, float deltaTime)
 		{
-			RotateWheels(sceneData);
-			_turret.TurUpdate(sceneData, deltaTime);
-			timer.Update();
-
 			if (timer.IsEvent()) ChangeTex(false);
-			Move(sceneData, deltaTime);
-
-			if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+			if (Health < 0 && _isAlive)
 			{
-				if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance))
+				Die();
+				sceneData.Props.Insert((sceneData.Props.Count-2), this.gameObject);
+			}
+			if (_isAlive)
+			{
+				RotateWheels(sceneData);
+				_turret.TurUpdate(sceneData, deltaTime);
+				timer.TimerUpdate();
+				Move(sceneData, deltaTime);
+				if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity))
 				{
-					_turret.TurnTurret(2);
-					Turn();
+					if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance))
+					{
+						_turret.TurnTurret(2);
+						Turn();
+					}
+
+					else if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
+					{
+						this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
+						Health = 0;
+						//Tell Destroyer to destroy this enemy;
+					}
+
+					else if ((hit.transform.tag == "Prop" || hit.transform.tag == "Enemy") && (hit.distance < _visionDistance))
+					{
+						print("I SEE A PROP!");
+						Turn();
+					}
 				}
 
-				else if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
-				{
-					this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
-					Health = 0;
-					//Tell Destroyer to destroy this enemy;
-				}
-
-				else if((hit.transform.tag == "Prop") && (hit.distance < _visionDistance))
-				{
-					Turn();
-				}
 			}
 
-			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _visionDistance, Color.red);
+			else
+			{
+
+			}
+
+
+			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * _visionDistance, Color.red);
 			Debug.DrawRay(transform.position, transform.TransformDirection(_leftEyeVector) * _visionDistance, Color.red);
 			Debug.DrawRay(transform.position, transform.TransformDirection(_rightEyeVector) * _visionDistance, Color.red);
 		}
 
 		private void Turn()
 		{
-
+			if(IsActive && _isAlive) transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, transform.position.z + _turnRatio, Time.deltaTime/_turnSpeed));
 		}
 
 		
@@ -133,7 +158,7 @@ namespace TheLastHope.Enemies
 			ChangeTex(true);
 		}
 
-        Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, GameObject targetPosition, float deltaTime)
+        Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, Transform targetPosition, float deltaTime)
         {
             if (Mathf.Abs(targetPosition.transform.position.x - this.transform.position.x) < driftingRadius &&
                 Mathf.Abs(targetPosition.transform.position.x - this.transform.position.x) < driftingRadius)
@@ -146,7 +171,7 @@ namespace TheLastHope.Enemies
 
 		private void ChangeTex(bool isDamage)
 		{
-			if (isDamage)
+			if (isDamage && IsActive)
 			{
 
 				foreach (Renderer rend in renderers)
@@ -157,9 +182,9 @@ namespace TheLastHope.Enemies
 			}
 			else
 			{
-				foreach (Renderer rend in renderers)
+				for (int i = 0; i < renderers.Length; i++)
 				{
-					rend.material.mainTexture = _initTexture;
+					renderers[i].material.mainTexture = _textures[i];
 				}
 			}
 		}
@@ -168,20 +193,29 @@ namespace TheLastHope.Enemies
         {
             if (Mathf.Abs(currentDriftingPoint.x - transform.position.x) < driftingRadius / 10 &&
                 Mathf.Abs(currentDriftingPoint.z - transform.position.z) < driftingRadius / 10)
-                currentDriftingPoint = new Vector3(Random.Range(base.targetPosition.transform.position.x - driftingRadius,
-                                                                base.targetPosition.transform.position.x + driftingRadius),
+                currentDriftingPoint = new Vector3(Random.Range(targetPosition.position.x - driftingRadius,
+                                                                targetPosition.position.x + driftingRadius),
                                                    0,
-                                                   Random.Range(base.targetPosition.transform.position.z - driftingRadius,
-                                                                base.targetPosition.transform.position.z + driftingRadius));
+                                                   Random.Range(targetPosition.position.z - driftingRadius,
+                                                                targetPosition.position.z + driftingRadius));
             return new Vector3(currentDriftingPoint.x - transform.position.x, 0, currentDriftingPoint.z - transform.position.z);
         }
 
         public override void Die()
         {
             var _explosion = this.gameObject.transform.GetChild(1);
-            var _copter = this.gameObject;
+            var _buggy = this.gameObject;
 			var _snd = this.gameObject.GetComponent<AudioSource>();
-			_copter.gameObject.SetActive(false);
+			Rigidbody[] _rigidBodies = this.gameObject.GetComponentsInChildren<Rigidbody>();
+			//_buggy.gameObject.SetActive(false);
+			IsActive = false;
+			_isAlive = false;
+			foreach (Rigidbody rb in _rigidBodies)
+			{
+				rb.isKinematic = false;
+				rb.AddRelativeForce(transform.forward * 70, ForceMode.Impulse);
+				rb.AddExplosionForce(50, transform.position, 100);
+			}
             _explosion.gameObject.SetActive(true);
             if (_snd) _snd.Play();
 			this.gameObject.GetComponent<Collider>().enabled = false;

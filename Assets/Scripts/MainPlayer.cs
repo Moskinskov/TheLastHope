@@ -19,12 +19,22 @@ namespace TheLastHope.Player
 
 		[SerializeField]
 		private float _maxHealth;
-		
+
 
 		//private void OnGUI()
 		//{
 		//	GUI.Label(new Rect(10, 10, 200, 20), ("Player's health: " + _health.ToString()));
 		//}
+
+		public override void Init()
+		{
+			base.IsActive = true;
+		}
+
+		public override void Init(SceneData sceneData)
+		{
+			throw new System.NotImplementedException();
+		}
 
 		public override void SetDamage(float damage)
 		{
@@ -76,11 +86,6 @@ namespace TheLastHope.Player
 				if (!_child.gameObject.active) _child.gameObject.SetActive(true);
 			}
 			base.IsActive = false;
-		}
-
-		public override void Init()
-		{
-			base.IsActive = true;
 		}
 
 	}

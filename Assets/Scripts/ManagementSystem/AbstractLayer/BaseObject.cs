@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheLastHope.Management.Data;
 
 
 namespace TheLastHope.Management.AbstractLayer
@@ -14,6 +15,7 @@ namespace TheLastHope.Management.AbstractLayer
 		public float Health { get; set; }
 
 		public abstract void Init();
+		public abstract void Init(SceneData sceneData);
         public abstract void SetDamage(float damage);
 
     }

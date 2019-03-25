@@ -23,7 +23,7 @@ namespace TheLastHope.Helpers
             Duration = TimeSpan.Zero;
         }
 
-        public void Update()
+        public void TimerUpdate()
         {
             if (_elapsed > 0)
             {

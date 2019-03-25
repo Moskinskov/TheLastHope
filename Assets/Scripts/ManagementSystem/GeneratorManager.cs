@@ -48,12 +48,6 @@ namespace TheLastHope.Management
             //TODO: Change to portable version.
             levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", divider);
 			levelLenght = levelReader.LevelLength;
-            foreach (var enemy in enemies)
-            {
-                sceneData.Enemies.Add(enemy);
-                enemy.GetComponent<AEnemy>().Init();
-
-            }
             patternPositions = new List<Vector3>();
             foreach (var pattern in enemyPatterns)
             {

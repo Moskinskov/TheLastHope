@@ -46,17 +46,20 @@ namespace TheLastHope.Weapons.Software
             float distance = visionRadius * visionRadius;
             foreach (GameObject go in sceneData.Enemies)
             {
-                //Находим расстояние между турелью и предполагаемой целью
-                Vector3 diff = go.transform.position - this.gameObject.transform.position;
-                //С точки зрения производительности быстрее сравнить квадраты расстояний,
-                //чем делать лишнюю операцию извлечения квадратного корня
-                float curDistance = diff.sqrMagnitude;
-                //если найдена цель в радиусе поражения, то запоминаем её
-                if (curDistance < distance)
-                {
-                    closest = go.transform;
-                    distance = curDistance;
-                }
+				if (go != null)
+				{
+					//Находим расстояние между турелью и предполагаемой целью
+					Vector3 diff = go.transform.position - this.gameObject.transform.position;
+					//С точки зрения производительности быстрее сравнить квадраты расстояний,
+					//чем делать лишнюю операцию извлечения квадратного корня
+					float curDistance = diff.sqrMagnitude;
+					//если найдена цель в радиусе поражения, то запоминаем её
+					if (curDistance < distance)
+					{
+						closest = go.transform;
+						distance = curDistance;
+					}
+				}
             }
             target = closest;
         }

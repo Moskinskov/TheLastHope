@@ -13,6 +13,24 @@ namespace TheLastHope.Weapons
 		[SerializeField] private float _maxHealth;
         private Vector3 aimingPoint;
 		private ParticleSystem _effect;
+
+		public override void Init(SceneData sceneData)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public override void Init()
+		{
+			base.IsActive = true;
+			soft.Init();
+			base.MaxHealth = _maxHealth;
+			base.Health = base.MaxHealth;
+			_effect = GetComponent<ParticleSystem>();
+			if (_effect) _effect.Stop();
+			weapon.Init();
+		}
+
+
 		//Вращает турель в сторону точки ффz
 		public override void TurnTurret(float deltaTime)
         {
@@ -60,16 +78,6 @@ namespace TheLastHope.Weapons
 
 			if (Health <= 0) Die();
 		}
-        public override void Init()
-        {
-			base.IsActive = true;
-			soft.Init();
-			base.MaxHealth = _maxHealth;
-			base.Health = base.MaxHealth;
-			_effect = GetComponent<ParticleSystem>();
-			if (_effect) _effect.Stop();
-			weapon.Init();
-        }
 
 		public override void SetDamage(float damage)
 		{

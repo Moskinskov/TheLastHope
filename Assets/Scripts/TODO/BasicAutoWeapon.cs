@@ -53,8 +53,8 @@ public class BasicAutoWeapon : MonoBehaviour
     }
     private void Update()
     {
-        _timerOfFire.Update();
-        _timerOfReload.Update();
+        _timerOfFire.TimerUpdate();
+        _timerOfReload.TimerUpdate();
 
         CheckForRateOfFire();
         CheckForReload();
