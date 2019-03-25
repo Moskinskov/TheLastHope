@@ -9,25 +9,31 @@ public class UiController : MonoBehaviour
     [SerializeField] public Canvas canUi;
     [SerializeField] private bool uiActive;
     [SerializeField] private PointController turnPoint;
-    [SerializeField] public Text sityName;
-    public void OpenCloseUi(PointController kek)
+    [SerializeField] public Text targetName;
+    [SerializeField] public Text distanceFromTarget;
+    [SerializeField] public Text nextCity;
+    public bool OpenCloseUi(PointController target, int dist, PointController nextCity)
     {
-        if (uiActive)
+        turnPoint = target;
+        if (uiActive && target == turnPoint)
         {
             canUi.sortingOrder = 0;
             canMap.sortingOrder = 1;
             uiActive = false;
-            turnPoint.setColor(Color.white);
-            sityName.text = "";
+            target.setColor(Color.white);
+            targetName.text = "";
+            return false;
         }
         else
         {
             canUi.sortingOrder = 1;
             canMap.sortingOrder = 0;
-            turnPoint = kek;
             uiActive = true;
-            sityName.text = "  Sity:  " + turnPoint.name;
-            turnPoint.setColor(Color.yellow);
+            targetName.text = "  City:  " + target.name;
+            distanceFromTarget.text = "  Distance:  " + dist;
+            this.nextCity.text = "  Next city where are you going :  " + nextCity.name;
+            target.setColor(Color.yellow);
+            return true;
         }
     }
     // Start is called before the first frame update

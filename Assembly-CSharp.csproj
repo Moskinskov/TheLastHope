@@ -281,6 +281,7 @@
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Common.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
+    <None Include="Assets\Scenes\LvlName.txt" />
     <None Include="Assets\Effects\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\Maps\README.txt" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Bloom.cginc" />
