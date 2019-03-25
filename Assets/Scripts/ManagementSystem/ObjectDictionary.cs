@@ -14,6 +14,7 @@ namespace TheLastHope.Management
         [SerializeField] List<GameObject> groundList = new List<GameObject>();
         [SerializeField] List<GameObject> staticObjsList = new List<GameObject>();
         [SerializeField] List<GameObject> triggerObjList = new List<GameObject>();
+        [SerializeField] List<GameObject> railsObjList = new List<GameObject>();
         public Dictionary<string, GameObject> ObjectsDictionary { get; set; }
 
         private void Awake()
@@ -28,6 +29,7 @@ namespace TheLastHope.Management
             SetupDictionary("G.", groundList, ObjectsDictionary);
             SetupDictionary("S.", staticObjsList, ObjectsDictionary);
             SetupDictionary("T.", triggerObjList, ObjectsDictionary);
+            SetupDictionary("R.", railsObjList, ObjectsDictionary);
         }
 
         void SetupDictionary(string prefix, List<GameObject> list, Dictionary<string,GameObject> dict)

@@ -6,6 +6,6 @@ namespace TheLastHope.Management.Data
 {
 	public enum GameState
 	{
-		Start, Preroll, Loop, Lose, Win
+		Start, Preroll, Loop, Lose, Win, Wait
 	}
 }

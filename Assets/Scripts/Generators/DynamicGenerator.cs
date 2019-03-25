@@ -41,7 +41,7 @@ namespace TheLastHope.Generators
                     enemy,
                     positions[objList.IndexOf(enemy)],                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
                     Quaternion.identity);
-                    enemy.GetComponentInChildren<AEnemy>().Initialize();
+                    enemy.GetComponentInChildren<AEnemy>().Init();
                     sceneData.Enemies.Add(enemy);
                 }
             }
@@ -80,7 +80,7 @@ namespace TheLastHope.Generators
                 if (objects[i] != null)
                 {
                     GameObject enemy = Instantiate(objects[i], positions[i % 5], Quaternion.identity);
-                    enemy.GetComponentInChildren<AEnemy>().Initialize();
+                    enemy.GetComponentInChildren<AEnemy>().Init();
                     sceneData.Enemies.Add(enemy);
                 }
             }

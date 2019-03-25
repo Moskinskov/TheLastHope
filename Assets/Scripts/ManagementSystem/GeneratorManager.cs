@@ -26,25 +26,32 @@ namespace TheLastHope.Management
         GameObject[] groundArray;
         GameObject[] staticArray;
         GameObject[] triggerArray;
+        GameObject[] railArray;
         int currentLine = -1;
         LevelReader levelReader;
-        [SerializeField] char devider = ',';
+		int levelLenght;
+        [SerializeField] char divider = ',';
 
-        /// <summary>
-        /// Initializes generator manager.
-        /// </summary>
-        /// <param name="sceneData"></param>
-        public void Initialize(SceneData sceneData)
+		public int LevelLenght { get => levelLenght;}
+
+		/// <summary>
+		/// Initializes generator manager.
+		/// </summary>
+		/// <param name="sceneData"></param>
+		public void Init(SceneData sceneData)
         {
             enemiesArray = new GameObject[lineWidth];
             groundArray = new GameObject[lineWidth];
             staticArray = new GameObject[lineWidth];
             triggerArray = new GameObject[lineWidth];
-            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", devider);
+            railArray = new GameObject[lineWidth];
+            //TODO: Change to portable version.
+            levelReader = new LevelReader(Application.dataPath + "/Maps/" + sceneData.CurrentLevel +".txt", divider);
+			levelLenght = levelReader.LevelLength;
             foreach (var enemy in enemies)
             {
                 sceneData.Enemies.Add(enemy);
-                enemy.GetComponent<CopterEnemy>().Initialize();
+                enemy.GetComponent<AEnemy>().Init();
 
             }
             patternPositions = new List<Vector3>();
@@ -62,13 +69,14 @@ namespace TheLastHope.Management
         public void UpdateGenerators(SceneData sceneData)
         {
             //TODO rewrite this method. Map-file must have influence on it.
-            railsGen.Generate(sceneData);
+            //railsGen.Generate(sceneData);
             if (currentLine < sceneData.CurrentLine)
             {
                 GetLineArrays(sceneData);
                 staticGen.Generate(groundArray,sceneData);
                 staticGen.Generate(staticArray,sceneData);
                 staticGen.Generate(triggerArray, sceneData);
+                railsGen.Generate(railArray, sceneData);
                 if (enemies.Count > 0)
                 {
                     enemyGen.Generate(enemiesArray, sceneData);
@@ -127,10 +135,17 @@ namespace TheLastHope.Management
                     objDictionary.ObjectsDictionary.TryGetValue(line[i], out triggerArray[j]);
                     j++;
                 }
+                j = 0;
+                for (var i = lineWidth * 4; i < lineWidth * 5; i++)
+                {
+                    //print(line[i]);
+                    objDictionary.ObjectsDictionary.TryGetValue(line[i], out railArray[j]);
+                    j++;
+                }
             }
             else
             {
-                print("Looks like map-file have not founded. Path " + Application.dataPath + "/Maps/" + sceneData.CurrentLevel + ".txt");
+                print("Looks like map-file have not found. Path " + Application.dataPath + "/Maps/" + sceneData.CurrentLevel + ".txt");
             }
 
         }

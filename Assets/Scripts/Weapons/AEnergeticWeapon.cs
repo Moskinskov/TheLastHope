@@ -1,131 +1,68 @@
 ﻿using TheLastHope.Helpers;
-using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
-using TheLastHope.Management.Data;
+using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
     public abstract class AEnergeticWeapon : AWeapon
     {
-        protected float _energyCapacity;                  //maximal charge
-        protected float _energyPerSecond;                 //energy being consumed per second
-        protected float _damagePerSecond;                 //amount of damage being applied every second
-        protected float _recoveryPerSecond;               //time needed for the full recovery (use Timer)
-        protected float _currentCharge;                   //current level of charge
-        protected bool _impulse = true;                   //if true, firing is available only when _currentCharge is equal to _energyCapacity
-        protected Transform _muzzle;                      //child transform that casts the fire
-        protected float _minActiveEnergy;
-        protected ParticleSystem _laserEffect;
+        protected float _coreEnergyCapacity;                  //maximal charge
+        protected float _coreEnergyPerSecond;                 //energy being consumed per second
+        protected float _coreDamagePerSecond;                 //amount of damage being applied every second
+        protected float _coreRecoveryPerSecond;               //time needed for the full recovery (use Timer)
+        protected float _coreCurrentCharge;                   //current level of charge
+        protected float _coreMinActiveEnergy;                 //min energy for using laser
+		protected float _coreMaxRange;						  //maximal range of the weapon
+        //----------------------------------------------------------------------------------------------------//
+        protected bool _usingLaser;
+        protected bool _isLoadEnergy = true;
 
-        protected AudioSource AudioSource { get; set; }
         protected Timer _timerEndOfFire = new Timer();
         protected LineRenderer _origLR;
 
-        private bool _usingLaser;
-        private bool _isLoadEnergy = true;
-
-        private void Start()
+        public override void Init()
         {
-            _currentCharge = _energyCapacity;
-            _laserEffect.Stop();
+            _coreCurrentCharge = _coreEnergyCapacity;
+            _origLR.enabled = false;
         }
 
-        private void Update()
-        {
-            _timerEndOfFire.Update();
-            AllChecks();
-            Laser();
-        }
+        #region Abstract Methods
 
-        #region Weapon Methods
-
-        public override void Fire(SceneData sceneData)
-        {
-            Shot(sceneData);
-        }
-
-        public virtual void Shot(SceneData sceneData)
-        {
-            if (!_isLoadEnergy) return;
-            _usingLaser = true;
-            _timerEndOfFire.Start(0.05f);
-        }
-        protected void Reload()
-        {
-
-        }
+        protected abstract void WeaponMethod(RaycastHit hit);
+        protected abstract void SetLRToTarget(RaycastHit hit);
+        protected abstract void LocalChecks();
 
         #endregion
-
-        #region SomeFunctions
-
+        
         /// <summary>
-        /// Постоянно отрисовывающийся лазер
+        /// It should be set to Update
         /// </summary>
-        private void Laser()
-        {
-            if (!_usingLaser)
-            {
-                SetLRToTarget(_muzzle.position);
-            }
-            else
-            {
-                if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
-                {
-                    SetLRToTarget(hit.point);
-
-                    if (hit.transform.GetComponent<AEnemy>())
-                    {
-
-                        _laserEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-                        _laserEffect.Play();
-
-                        hit.transform.GetComponent<AEnemy>().SetDamage(_damagePerSecond * Time.deltaTime);
-                        _currentCharge -= _energyPerSecond * Time.deltaTime;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Направляем луч(LR) в нужное место
-        /// </summary>
-        /// <param name="target">цель луча</param>
-        private void SetLRToTarget(Vector3 target)
-        {
-            _origLR.SetPosition(0, _muzzle.position);
-            _origLR.SetPosition(1, target);
-        }
-        /// <summary>
-        /// Необходимые проверки
-        /// </summary>
-        private void AllChecks()
+		/// 
+        protected virtual void CoreChecks()
         {
             if (_timerEndOfFire.IsEvent())
             {
                 _usingLaser = false;
-                _laserEffect.Stop();
-            }
-            if (!_usingLaser)
-            {
-                _currentCharge += _energyPerSecond * Time.deltaTime;
             }
 
-            if (_currentCharge < 0)
+            if (!_usingLaser)
             {
-                _currentCharge = 0;
+                _coreCurrentCharge += _coreEnergyPerSecond * Time.deltaTime;
+                _origLR.enabled = false;
+            }
+
+            if (_coreCurrentCharge < 0)
+            {
+                _coreCurrentCharge = 0;
                 _usingLaser = false;
                 _isLoadEnergy = false;
             }
 
-            if (_currentCharge > _energyCapacity)
-                _currentCharge = _energyCapacity;
+            if (_coreCurrentCharge > _coreEnergyCapacity)
+                _coreCurrentCharge = _coreEnergyCapacity;
 
-            if (!_isLoadEnergy && _currentCharge >= _minActiveEnergy)
+            if (!_isLoadEnergy && _coreCurrentCharge >= _coreMinActiveEnergy)
                 _isLoadEnergy = true;
         }
-
-        #endregion
-
     }
 }

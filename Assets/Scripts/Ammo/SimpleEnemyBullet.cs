@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Weapons;
 using TheLastHope.Management.AbstractLayer;
-using TheLastHope.Hippo;
+using TheLastHope.Player;
 
 namespace TheLastHope.Ammo
 {
@@ -21,12 +21,15 @@ namespace TheLastHope.Ammo
 
         public override void OnTriggerEnter(Collider collision)
         {
-            try
-            {
-                collision.gameObject.GetComponent<HippoMainPlayer>().SetDamage(damage);
-                Die(true);
-            }
-            catch { };
+			if (collision.tag == "Player")
+			{
+				try
+				{
+					collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
+					Die(true);
+				}
+				catch { };
+			}
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -44,7 +47,7 @@ namespace TheLastHope.Ammo
             {
                 if (withSnd) snd.Play();
             }
-            Destroy(this.gameObject, 0.3f);
+            Destroy(this.gameObject, 0.0f);
         }
     }
 }

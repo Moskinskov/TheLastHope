@@ -15,8 +15,9 @@ namespace TheLastHope.Weapons.Software
         //Турель будет самостоятельно выбирать ближайшую цель для атаки,
         //поиск цели будет осуществлен с помощью корутина 1 раз в searchTimeDelay секунд
         [SerializeField] internal float searchTimeDelay = 1f;
-        //Текущая цель турели
-        internal Transform target;
+		[SerializeField] internal bool canBeManual = false;
+		//Текущая цель турели
+		internal Transform target;
         //Предыдущее положение цели
         private Vector3 previousTargetPosition;
         //Скорость цели
@@ -27,7 +28,6 @@ namespace TheLastHope.Weapons.Software
         internal Vector3 targetingPosition = new Vector3(0, 0, 0);
         internal Transform turrelPosition;
         private float projectileSpeed;
-        internal bool canBeManual = false;
 
         public bool ReadyToFire { get => readyToFire; set => readyToFire = value; }
         public Transform Target { get => target; set => target = value; }
