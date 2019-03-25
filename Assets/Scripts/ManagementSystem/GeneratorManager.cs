@@ -72,10 +72,6 @@ namespace TheLastHope.Management
             //railsGen.Generate(sceneData);
             if (currentLine < sceneData.CurrentLine)
             {
-<<<<<<< HEAD
-=======
-                //print("frame:" + Time.frameCount);
->>>>>>> a419f0cf509448df064973e35f3abb987a6a466b
                 GetLineArrays(sceneData);
                 staticGen.Generate(groundArray,sceneData);
                 staticGen.Generate(staticArray,sceneData);
