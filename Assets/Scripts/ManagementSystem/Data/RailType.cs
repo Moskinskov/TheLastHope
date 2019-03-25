@@ -6,7 +6,7 @@ namespace TheLastHope.Management.Data
 {
     public enum RailType
     {
-        Stright,
+        Straight,
         UpStart,
         UpMiddle,
         UpEnd,

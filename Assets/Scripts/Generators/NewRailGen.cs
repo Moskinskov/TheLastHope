@@ -46,7 +46,7 @@ namespace TheLastHope.Generators
                 {
                     if (obj)
                     {
-                        if (obj.GetComponent<ARail>().Type == RailType.Stright)
+                        if (obj.GetComponent<ARail>().Type == RailType.Straight)
                         {
                             middleCount = 0;
                             break;
