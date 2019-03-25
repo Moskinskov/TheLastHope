@@ -24,9 +24,11 @@ namespace TheLastHope.Hangar
         {
             hardwares[index] = Instantiate(hardware);
             hardwares[index].transform.position = weaponPositions[index].position;
+            hardwares[index].transform.SetParent(weaponPositions[index]);
         }
         public void RemoveHardware(int index)
         {
+            print("Remove");
             Destroy(hardwares[index]);
             hardwares[index] = null;
         }
