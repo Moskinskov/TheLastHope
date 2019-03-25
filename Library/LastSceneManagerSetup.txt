@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< .merge_file_a26576
-<<<<<<< HEAD
-- path: Assets/Scenes/Intro.unity
-=======
 - path: Assets/Scenes/GlitchrainPERSONAL.unity
->>>>>>> a419f0cf509448df064973e35f3abb987a6a466b
-=======
-- path: Assets/Scenes/GlobalMap/GlobalMap.unity
->>>>>>> .merge_file_a38756
   isLoaded: 1
   isActive: 1
