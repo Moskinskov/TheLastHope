@@ -77,17 +77,18 @@ public class PathController : MonoBehaviour
     }
     #endregion
 
-
-    public void clearRoad()
+    //Очишает карту от закраски маршрута. Main - цвет основной для точки
+    // start - цвет стартовой точки
+    public void clearRoad(Color main, Color start)
     {
         for (int i = 1; i < road.Count; i++)
         {
-            mapsObj[road[i]].setColor(Color.white);
+            mapsObj[road[i]].setColor(main);
         }
-        mapsObj[0].setColor(Color.green);
+        mapsObj[startPoint.num].setColor(start);
     }
-
-    public void drawRoad(Color clr, int numEnd)
+    //Красит маршрут в цвет clr
+    public void drawRoad(Color clr)
     {
         foreach (int p in road)
         {
@@ -106,10 +107,12 @@ public class PathController : MonoBehaviour
             print(str);
         }
     }
+    //Возвращает дичтанцию из startPoint в город под номером end
     public int GetDistance(int end)
     {
         return matrix[startPoint.num, end];
     }
+    //Возвращает следующий город на пути
     public PointController GetNextCity()
     {
         return mapsObj[road[1]];
@@ -117,7 +120,7 @@ public class PathController : MonoBehaviour
     public void StartLevel()
     {
         //startPoint.name Имя стартового города
-        //mapsObj[road[0]].name Имя следующего города
+        //mapsObj[road[1]].name Имя следующего города
 
     }
     // Start is called before the first frame update
@@ -145,7 +148,7 @@ public class PathController : MonoBehaviour
         }
         BFS();
         generateMatrix();
-        startPoint.setColor(Color.green);
+        clearRoad(Color.white, Color.green);
     }
 
 

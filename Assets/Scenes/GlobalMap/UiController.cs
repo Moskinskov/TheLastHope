@@ -20,7 +20,6 @@ public class UiController : MonoBehaviour
             canUi.sortingOrder = 0;
             canMap.sortingOrder = 1;
             uiActive = false;
-            target.setColor(Color.white);
             targetName.text = "";
             return false;
         }
@@ -32,7 +31,6 @@ public class UiController : MonoBehaviour
             targetName.text = "  City:  " + target.name;
             distanceFromTarget.text = "  Distance:  " + dist;
             this.nextCity.text = "  Next city where are you going :  " + nextCity.name;
-            target.setColor(Color.yellow);
             return true;
         }
     }

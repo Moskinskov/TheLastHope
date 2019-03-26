@@ -22,11 +22,11 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     {
         if (this != path.startPoint)
         {
-            path.clearRoad();
+            path.clearRoad(Color.white, Color.green);
             path.searchRoad(this.num);
             if (ui.OpenCloseUi(this, path.GetDistance(this.num), path.GetNextCity()))
             {
-                path.drawRoad(Color.blue, this.num);
+                path.drawRoad(Color.blue);
             }
         }
     }
@@ -36,8 +36,6 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     public void setColor(Color clr)
     {
         GetComponent<Image>().color = clr;
-
-
     }
     void Start()
     {
