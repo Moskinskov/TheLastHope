@@ -10596,9 +10596,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 20
-  maxAcceleration: 10
-  driftingRadius: 30
-  maxHealth: 200
+  maxAcceleration: 5
+  driftingRadius: 50
+  maxHealth: 130
   _driftingSpeedDivider: 0.5
   _speedSmoother: 0.5
   _turret: {fileID: 6491789264665482539}
@@ -10611,8 +10611,8 @@ MonoBehaviour:
   - {fileID: 6491789264380002307}
   - {fileID: 6491789264380002315}
   _visionSpread: 15
-  _turnSpeed: 6
-  _turnRatio: -60
+  _turnSpeed: 10
+  _turnRatio: 40
 --- !u!82 &6491789264380002316
 AudioSource:
   m_ObjectHideFlags: 0

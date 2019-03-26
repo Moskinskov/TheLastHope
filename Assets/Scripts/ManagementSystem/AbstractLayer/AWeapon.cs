@@ -7,7 +7,8 @@ namespace TheLastHope.Management.AbstractLayer
 {
     public abstract class AWeapon : MonoBehaviour
     {
-        public abstract void Fire(SceneData sceneData);
+		public bool IsActive { get; set; }
+		public abstract void Fire(SceneData sceneData);
 		public abstract void WeaponUpdate();
 		public abstract void Init();
     }

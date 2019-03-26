@@ -163,7 +163,6 @@
     <Compile Include="Assets\HippoSkill\SimpleRocket.cs" />
     <Compile Include="Assets\HippoSkill\SkillManager.cs" />
     <Compile Include="Assets\HippoSkill\UltimateWeapon.cs" />
-    <Compile Include="Assets\Scenes\GlobalMap\EventController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PathController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PointController.cs" />
@@ -180,6 +179,12 @@
     <Compile Include="Assets\Scripts\Generators\RailGenerator.cs" />
     <Compile Include="Assets\Scripts\Generators\StaticGenerator.cs" />
     <Compile Include="Assets\Scripts\GroundScroller.cs" />
+    <Compile Include="Assets\Scripts\Hangar\Container.cs" />
+    <Compile Include="Assets\Scripts\Hangar\HangarData.cs" />
+    <Compile Include="Assets\Scripts\Hangar\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Hangar\Item.cs" />
+    <Compile Include="Assets\Scripts\Hangar\PositionController.cs" />
+    <Compile Include="Assets\Scripts\Hangar\Slot.cs" />
     <Compile Include="Assets\Scripts\Helpers\Bezier.cs" />
     <Compile Include="Assets\Scripts\Helpers\BezierCurve.cs" />
     <Compile Include="Assets\Scripts\Helpers\Singleton.cs" />
@@ -192,6 +197,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ADestroyer.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEnemy.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AGenerator.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AHardware.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ARail.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ATrigger.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ATurret.cs" />
@@ -246,6 +252,7 @@
     <Compile Include="Assets\Scripts\Weapons\Software\BasicEnemySoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\ManualControlSoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\PrimitiveControlSoft.cs" />
+    <Compile Include="Assets\Scripts\Weapons\SquareHardware.cs" />
     <Compile Include="Assets\Scripts\Workers\CursorSetter.cs" />
     <Compile Include="Assets\Scripts\Workers\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Workers\UIOverlayController.cs" />
@@ -279,10 +286,12 @@
     <None Include="Assets\Effects\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
     <None Include="Assets\Effects\Cinemachine\ReleaseNotes.txt" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
+    <None Include="Assets\Laser\laserShader 1.shader" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Common.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\Scenes\LvlName.txt" />
     <None Include="Assets\Effects\PostProcessing\Editor Resources\UI\Trackball.shader" />
+    <None Include="Assets\Laser\laserShader.shader" />
     <None Include="Assets\Maps\README.txt" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\TAA.shader" />

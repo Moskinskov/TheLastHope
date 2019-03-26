@@ -45,6 +45,8 @@ namespace TheLastHope.Weapons
                 _laserEffect.Stop();
 			if (_laserAudioSource.isPlaying)
 			    _laserAudioSource.Stop();
+
+			IsActive = true;
 		}
 
 		public override void WeaponUpdate()
@@ -52,6 +54,7 @@ namespace TheLastHope.Weapons
 			_timerEndOfFire.TimerUpdate();
 			CoreChecks();
 			LocalChecks();
+			if (IsActive == false) _laserEffect.Stop();
 		}
 
         public override void Fire(SceneData sceneData)
@@ -61,7 +64,7 @@ namespace TheLastHope.Weapons
             _timerEndOfFire.Start(0.005f);
 			if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
 			{
-				if (hit.distance <= _maxRange)
+				if (hit.distance <= _maxRange && IsActive == true)
 				{
 					WeaponMethod(hit);
 				}

@@ -10,6 +10,8 @@ public class PathController : MonoBehaviour
     [SerializeField] private PointController[] mapsObj;
     [SerializeField] List<int> road;
 
+	private Color _initColor;
+
     #region Math-Calculate function
     private void generateMatrix()
     {
@@ -80,9 +82,10 @@ public class PathController : MonoBehaviour
 
     public void clearRoad()
     {
-        for (int i = 1; i < road.Count; i++)
+		_initColor = new Color(17, 86, 33);
+		for (int i = 1; i < road.Count; i++)
         {
-            mapsObj[road[i]].setColor(Color.white);
+            mapsObj[road[i]].setColor(_initColor);
         }
         mapsObj[0].setColor(Color.green);
     }
@@ -120,7 +123,6 @@ public class PathController : MonoBehaviour
         //mapsObj[road[0]].name Имя следующего города
 
     }
-    // Start is called before the first frame update
     void Start()
     {
         road = new List<int>();
@@ -148,11 +150,4 @@ public class PathController : MonoBehaviour
         startPoint.setColor(Color.green);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
 }

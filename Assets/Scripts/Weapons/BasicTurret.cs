@@ -89,6 +89,7 @@ namespace TheLastHope.Weapons
 		{
 			if (_effect) _effect.Play();
 			base.IsActive = false;
+			weapon.IsActive = false;
 		}
 
 

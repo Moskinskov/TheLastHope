@@ -12,15 +12,24 @@ public class UiController : MonoBehaviour
     [SerializeField] public Text targetName;
     [SerializeField] public Text distanceFromTarget;
     [SerializeField] public Text nextCity;
-    public bool OpenCloseUi(PointController target, int dist, PointController nextCity)
+
+	private Color _initColor;
+
+	public void LoadLevel()
+	{
+		Application.LoadLevel("MainScene");
+	}
+
+	public bool OpenCloseUi(PointController target, int dist, PointController nextCity)
     {
-        turnPoint = target;
+		_initColor = new Color(17, 86, 33);
+		turnPoint = target;
         if (uiActive && target == turnPoint)
         {
             canUi.sortingOrder = 0;
             canMap.sortingOrder = 1;
             uiActive = false;
-            target.setColor(Color.white);
+            target.setColor(_initColor);
             targetName.text = "";
             return false;
         }
@@ -42,9 +51,4 @@ public class UiController : MonoBehaviour
         uiActive = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

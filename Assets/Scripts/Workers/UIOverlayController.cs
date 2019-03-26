@@ -72,6 +72,11 @@ namespace TheLastHope.UI {
 			//print("Mouse Exit!");
 		}
 
+		private void OnMouseDown()
+		{
+			ControlButton();
+		}
+
 		public void ShowOverlay()
 		{
 			if (_currentType == ObjType.Enemy) _overlay.ShowOverlay(true, true);

@@ -219,6 +219,7 @@ namespace TheLastHope.Enemies
             _explosion.gameObject.SetActive(true);
             if (_snd) _snd.Play();
 			this.gameObject.GetComponent<Collider>().enabled = false;
+			ChangeTex(false);
         }
 
 		public void RotateWheels(SceneData sceneData)

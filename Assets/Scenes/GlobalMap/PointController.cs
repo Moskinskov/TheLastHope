@@ -31,22 +31,9 @@ public class PointController : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Start is called before the first frame update
-
     public void setColor(Color clr)
     {
         GetComponent<Image>().color = clr;
-
-
-    }
-    void Start()
-    {
-        //GetComponent<Image>().color = Color.red;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
