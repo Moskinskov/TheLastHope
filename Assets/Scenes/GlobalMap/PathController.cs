@@ -4,11 +4,12 @@ using UnityEngine;
 public class PathController : MonoBehaviour
 {
     [SerializeField] public PointController startPoint;// Текущая и стартовая позиция
+    [SerializeField] public PointController nextKeyPoint; //Следующая ключевая цель
     [SerializeField] public int countPoints; // Число вершин
     [SerializeField] private int[,] matrix; //Матрица дистанций от i до j
     [SerializeField] private int[,] matrix2;
     [SerializeField] private PointController[] mapsObj;
-    [SerializeField] List<int> road;
+    [SerializeField] public List<int> road;
 
 	private Color _initColor;
 
@@ -62,11 +63,11 @@ public class PathController : MonoBehaviour
         }
     }
 
-    public void searchRoad(int numEnd)
+    public bool searchRoad(int numStart, int numEnd)
     {
         road.Clear();
-        road.Add(startPoint.num);
-        int cur = startPoint.num;
+        road.Add(numStart);
+        int cur = numStart;
         while(matrix2[cur, numEnd] >= 0)
         {
             cur = matrix2[cur, numEnd];
@@ -75,22 +76,57 @@ public class PathController : MonoBehaviour
         if (matrix2[cur, numEnd] == -2)
         {
             road.Add(numEnd);
-        } 
+        }
+        return true;
+    }
+    public bool searchRoadKey(int numStart, int numEnd, int numAcross)
+    {
+        road.Clear();
+        List<int> road2 = new List<int>();
+        searchRoad(numStart, numAcross);
+        foreach (int i in road)
+        {
+            road2.Add(i);
+        }
+        searchRoad(numAcross, numEnd);
+        foreach (int i in road)
+        {
+            road2.Add(i);
+        }
+        road = road2;
+        int temp = 0;
+        foreach (int i in road)
+        {
+            if (i == numStart)
+            {
+                temp++;
+            }
+        }
+        if (temp > 1)
+        {
+            return false;
+        }
+        return true;
     }
     #endregion
 
-
-    public void clearRoad()
+    //Очишает карту от закраски маршрута. Main - цвет основной для точки
+    // start - цвет стартовой точки
+    public void clearRoad(Color main, Color start)
     {
 		_initColor = new Color(17, 86, 33);
 		for (int i = 1; i < road.Count; i++)
         {
+<<<<<<< HEAD
             mapsObj[road[i]].setColor(_initColor);
+=======
+            mapsObj[road[i]].setColor(main);
+>>>>>>> MakeMap
         }
-        mapsObj[0].setColor(Color.green);
+        mapsObj[startPoint.num].setColor(start);
     }
-
-    public void drawRoad(Color clr, int numEnd)
+    //Красит маршрут в цвет clr
+    public void drawRoad(Color clr)
     {
         foreach (int p in road)
         {
@@ -109,10 +145,12 @@ public class PathController : MonoBehaviour
             print(str);
         }
     }
+    //Возвращает дичтанцию из startPoint в город под номером end
     public int GetDistance(int end)
     {
         return matrix[startPoint.num, end];
     }
+    //Возвращает следующий город на пути
     public PointController GetNextCity()
     {
         return mapsObj[road[1]];
@@ -120,10 +158,14 @@ public class PathController : MonoBehaviour
     public void StartLevel()
     {
         //startPoint.name Имя стартового города
-        //mapsObj[road[0]].name Имя следующего города
+        //mapsObj[road[1]].name Имя следующего города
 
     }
+<<<<<<< HEAD
     void Start()
+=======
+    public void Init()
+>>>>>>> MakeMap
     {
         road = new List<int>();
         mapsObj = new PointController[countPoints];
@@ -147,7 +189,11 @@ public class PathController : MonoBehaviour
         }
         BFS();
         generateMatrix();
+<<<<<<< HEAD
         startPoint.setColor(Color.green);
     }
 
+=======
+    }
+>>>>>>> MakeMap
 }
