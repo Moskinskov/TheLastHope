@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -165,14 +165,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 4
   Neightboring:
-  - point: {fileID: 1589538503}
+  - point: {fileID: 116162897}
     dist: 5
   - point: {fileID: 73179096}
     dist: 6
-  - point: {fileID: 116162897}
-    dist: 5
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &18909305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,8 +300,9 @@ MonoBehaviour:
     dist: 8
   - point: {fileID: 2140497189}
     dist: 12
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &51426170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,8 +469,9 @@ MonoBehaviour:
     dist: 3
   - point: {fileID: 18909304}
     dist: 6
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &73179097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,8 +619,13 @@ MonoBehaviour:
     dist: 5
   - point: {fileID: 944654466}
     dist: 14
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  - point: {fileID: 1329474708}
+    dist: 5
+  - point: {fileID: 1324856975}
+    dist: 4
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 1
+  IsOpenPoint: 0
 --- !u!114 &116162898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,8 +935,9 @@ MonoBehaviour:
     dist: 12
   - point: {fileID: 1967308039}
     dist: 9
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &452536347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,8 +1175,9 @@ MonoBehaviour:
     dist: 10
   - point: {fileID: 1329474708}
     dist: 8
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!1 &532630577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,8 +1560,9 @@ MonoBehaviour:
     dist: 3
   - point: {fileID: 1589538503}
     dist: 7
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &689031860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,8 +1859,9 @@ MonoBehaviour:
     dist: 10
   - point: {fileID: 2120317255}
     dist: 7
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &944654467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2227,11 +2237,12 @@ MonoBehaviour:
   num: 6
   Neightboring:
   - point: {fileID: 1589538503}
-    dist: 9
-  - point: {fileID: 1329474708}
+    dist: 5
+  - point: {fileID: 116162897}
     dist: 4
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &1324856976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2375,16 +2386,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 7
   Neightboring:
-  - point: {fileID: 1324856975}
-    dist: 4
+  - point: {fileID: 501098984}
+    dist: 8
   - point: {fileID: 2140497189}
     dist: 10
   - point: {fileID: 2120317255}
     dist: 5
-  - point: {fileID: 501098984}
-    dist: 8
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  - point: {fileID: 116162897}
+    dist: 5
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &1329474709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2589,6 +2601,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac3445368fd1ff4292edcd7c99a0a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1527635995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527635997}
+  - component: {fileID: 1527635996}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1527635996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527635995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37152a30dd8acc84f8c6916b8ee64f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 2000443606}
+  ui: {fileID: 542438893}
+  roadClr: {r: 0, g: 0.488204, b: 1, a: 1}
+  pointClr: {r: 1, g: 1, b: 1, a: 1}
+  currentClr: {r: 0, g: 1, b: 0.0408051, a: 1}
+--- !u!4 &1527635997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527635995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 705.24084, y: 126.863594, z: -2.9756656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1576479855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,11 +2779,10 @@ MonoBehaviour:
   - point: {fileID: 689031859}
     dist: 7
   - point: {fileID: 1324856975}
-    dist: 9
-  - point: {fileID: 18909304}
     dist: 5
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &1589538504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,8 +3199,9 @@ MonoBehaviour:
   Neightboring:
   - point: {fileID: 689031859}
     dist: 5
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!1 &1806484720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3448,8 +3508,9 @@ MonoBehaviour:
     dist: 8
   - point: {fileID: 2120317255}
     dist: 13
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &1967308040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3569,7 +3630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bfd78533aa67849a08e6098e75abd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 1788480482}
+  startPoint: {fileID: 689031859}
+  nextKeyPoint: {fileID: 116162897}
   countPoints: 15
   mapsObj: []
   road: 
@@ -3646,8 +3708,9 @@ MonoBehaviour:
     dist: 13
   - point: {fileID: 1329474708}
     dist: 5
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!114 &2120317256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3776,8 +3839,9 @@ MonoBehaviour:
     dist: 12
   - point: {fileID: 1329474708}
     dist: 10
-  path: {fileID: 2000443606}
-  ui: {fileID: 542438893}
+  mapMan: {fileID: 1527635996}
+  IsKeyPoint: 0
+  IsOpenPoint: 0
 --- !u!224 &2140497190
 RectTransform:
   m_ObjectHideFlags: 0

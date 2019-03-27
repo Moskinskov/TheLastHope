@@ -16,19 +16,12 @@ public class PointController : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public int num;
     [SerializeField] public Points[] Neightboring;
-    [SerializeField] public PathController path;
-    [SerializeField] public UiController ui;
+    [SerializeField] public MapManager mapMan;
+    [SerializeField] public bool IsKeyPoint = false;
+    [SerializeField] public bool IsOpenPoint = false;
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (this != path.startPoint)
-        {
-            path.clearRoad(Color.white, Color.green);
-            path.searchRoad(this.num);
-            if (ui.OpenCloseUi(this, path.GetDistance(this.num), path.GetNextCity()))
-            {
-                path.drawRoad(Color.blue);
-            }
-        }
+        mapMan.PointEnter(this);
     }
 
     // Start is called before the first frame update

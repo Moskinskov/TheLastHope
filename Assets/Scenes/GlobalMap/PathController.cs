@@ -4,11 +4,12 @@ using UnityEngine;
 public class PathController : MonoBehaviour
 {
     [SerializeField] public PointController startPoint;// Текущая и стартовая позиция
+    [SerializeField] public PointController nextKeyPoint; //Следующая ключевая цель
     [SerializeField] public int countPoints; // Число вершин
     [SerializeField] private int[,] matrix; //Матрица дистанций от i до j
     [SerializeField] private int[,] matrix2;
     [SerializeField] private PointController[] mapsObj;
-    [SerializeField] List<int> road;
+    [SerializeField] public List<int> road;
 
     #region Math-Calculate function
     private void generateMatrix()
@@ -60,11 +61,11 @@ public class PathController : MonoBehaviour
         }
     }
 
-    public void searchRoad(int numEnd)
+    public bool searchRoad(int numStart, int numEnd)
     {
         road.Clear();
-        road.Add(startPoint.num);
-        int cur = startPoint.num;
+        road.Add(numStart);
+        int cur = numStart;
         while(matrix2[cur, numEnd] >= 0)
         {
             cur = matrix2[cur, numEnd];
@@ -73,7 +74,37 @@ public class PathController : MonoBehaviour
         if (matrix2[cur, numEnd] == -2)
         {
             road.Add(numEnd);
-        } 
+        }
+        return true;
+    }
+    public bool searchRoadKey(int numStart, int numEnd, int numAcross)
+    {
+        road.Clear();
+        List<int> road2 = new List<int>();
+        searchRoad(numStart, numAcross);
+        foreach (int i in road)
+        {
+            road2.Add(i);
+        }
+        searchRoad(numAcross, numEnd);
+        foreach (int i in road)
+        {
+            road2.Add(i);
+        }
+        road = road2;
+        int temp = 0;
+        foreach (int i in road)
+        {
+            if (i == numStart)
+            {
+                temp++;
+            }
+        }
+        if (temp > 1)
+        {
+            return false;
+        }
+        return true;
     }
     #endregion
 
@@ -123,8 +154,7 @@ public class PathController : MonoBehaviour
         //mapsObj[road[1]].name Имя следующего города
 
     }
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         road = new List<int>();
         mapsObj = new PointController[countPoints];
@@ -148,14 +178,5 @@ public class PathController : MonoBehaviour
         }
         BFS();
         generateMatrix();
-        clearRoad(Color.white, Color.green);
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
 }
