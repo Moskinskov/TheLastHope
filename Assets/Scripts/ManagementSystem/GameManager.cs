@@ -41,6 +41,8 @@ namespace TheLastHope.Management
         [SerializeField] int firstFrameLengthInLines = 14;
         [SerializeField] HangarData hangar;
 
+        [SerializeField] int PlayerStartCredit;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -51,6 +53,8 @@ namespace TheLastHope.Management
             sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;
             sceneData.LinesCount = linesCount;
+            sceneData.Player = new Player();
+            sceneData.Player.Credit = PlayerStartCredit;
             worldMover.SetupMover(sceneData);
             generatorManager.Init(sceneData);
             renderManager.Init();
