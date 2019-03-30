@@ -6,6 +6,7 @@ using TheLastHope.Management.AbstractLayer;
 public class Carriage : ACarriage
 {
     [SerializeField] GameObject connector;
+    public GameObject Connector {get {return connector;} set { connector = value; } }
     [SerializeField] float step;
     [SerializeField] float accuracy;
     [SerializeField] float lerpStep;

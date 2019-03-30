@@ -13,12 +13,13 @@ namespace TheLastHope.Weapons
 	public class WeaponManager : MonoBehaviour
 	{
 		[SerializeField] Selector selector;
-		[SerializeField] List<ATurret> turretList = new List<ATurret>();
+		[SerializeField] ATurret[] turretArray;
 
-		public List<ATurret> TurretList { get => turretList; set => turretList = value; }
+		public ATurret[] TurretList { get => turretArray; set => turretArray = value; }
 
-		public void Init()
+		public void Init(SceneData sceneData)
 		{
+            turretArray = FindObjectsOfType<ATurret>();
 			foreach (var turret in TurretList)
 			{
                 turret.Init();

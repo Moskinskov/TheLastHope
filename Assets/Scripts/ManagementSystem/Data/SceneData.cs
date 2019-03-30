@@ -82,6 +82,8 @@ namespace TheLastHope.Management.Data
 		/// </summary>
 		public List<ABaseObject> TrainStuff { get => trainStuff; set => trainStuff = value; }
 
+        public Player Player { get; set; }
+
 
 		public GameState CurrentState { get; set; }
 

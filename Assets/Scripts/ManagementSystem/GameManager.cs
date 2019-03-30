@@ -38,25 +38,34 @@ namespace TheLastHope.Management
 		[SerializeField] Canvas looseCanvas;
         [Tooltip("Number of lines to pregenerate scene")] 
         [SerializeField] int firstFrameLengthInLines = 14;
+        GameObject playerTrain;
+        [SerializeField] int credits;
+        Player player;
 
         // Start is called before the first frame update
         void Start()
         {
+            SaveLoadManager.objectsDictionary = FindObjectOfType<ObjectDictionary>();
+            SaveLoadManager.Load(out playerTrain, out player);
             sceneData = new SceneData();
+            mainPlayer = playerTrain.GetComponentInChildren<MainPlayer>();
+            trainManager = playerTrain.GetComponentInChildren<TrainManager>();
+            trainManager.Init(sceneData);
+            mainPlayer.Init();
             sceneData.TargetEnemyCount = targetEnemyCount;
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
             sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;
             sceneData.LinesCount = linesCount;
+            sceneData.Player = player;
             worldMover.SetupMover(sceneData);
             generatorManager.Init(sceneData);
-            weaponController.Init();
+            weaponController.Init(sceneData);
             renderManager.Init();
-            trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
 			uiManager.Init(sceneData);
-			mainPlayer.Init();
+
 			trainStuffAdd();
             if (skillManager != null)
             {
@@ -68,6 +77,7 @@ namespace TheLastHope.Management
 			sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
 			sceneData.CurrentState = GameState.Loop;
+            SaveLoadManager.SavePlayer(playerTrain, sceneData.Player);
 		}
 
 		private void trainStuffAdd()
@@ -84,7 +94,6 @@ namespace TheLastHope.Management
 		// Update is called once per frame
 		void Update()
         {
-
 			if (sceneData.CurrentState == GameState.Loop)
 			{
 				generatorManager.UpdateGenerators(sceneData);
