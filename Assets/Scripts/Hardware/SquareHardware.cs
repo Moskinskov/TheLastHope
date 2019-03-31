@@ -2,7 +2,7 @@
 using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
 
-namespace TheLastHope.Weapons
+namespace TheLastHope.Hardware
 {
     class SquareHardware : AHardware
     {
