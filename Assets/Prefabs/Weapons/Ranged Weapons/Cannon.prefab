@@ -110,8 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 3516269878824943436}
   soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
-  turningAngularSpeed: 45
   manualMode: 0
+  turningAngularSpeed: 45
+  _maxHealth: 0
 --- !u!1 &3516269878446888778
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +448,8 @@ MonoBehaviour:
   _firingModesAvailable: 
   _ammo: {fileID: 240558141, guid: 706898fbe57b38a49873e78ff07eb83b, type: 3}
   _muzzle: {fileID: 3516269879379269383}
+  _barrel: {fileID: 3516269879379269380}
+  _muzzleFlash: {fileID: 0}
 --- !u!82 &3516269878824943437
 AudioSource:
   m_ObjectHideFlags: 0
