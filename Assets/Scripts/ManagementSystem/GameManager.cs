@@ -8,7 +8,6 @@ using TheLastHope.Player;
 using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 using System;
-using TheLastHope.Hangar;
 
 namespace TheLastHope.Management
 {
@@ -39,30 +38,35 @@ namespace TheLastHope.Management
 		[SerializeField] Canvas looseCanvas;
         [Tooltip("Number of lines to pregenerate scene")] 
         [SerializeField] int firstFrameLengthInLines = 14;
-        [SerializeField] HangarData hangar;
-
-        [SerializeField] int PlayerStartCredit;
+        GameObject playerTrain;
+        [SerializeField] int credits;
+        Player player;
 
         // Start is called before the first frame update
         void Start()
         {
+            SaveLoadManager.objectsDictionary = FindObjectOfType<ObjectDictionary>();
+            SaveLoadManager.Load(out playerTrain, out player);
             sceneData = new SceneData();
+            mainPlayer = playerTrain.GetComponentInChildren<MainPlayer>();
+            trainManager = playerTrain.GetComponentInChildren<TrainManager>();
+            trainManager.Init(sceneData);
+            mainPlayer.Init();
             sceneData.TargetEnemyCount = targetEnemyCount;
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
             sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;
             sceneData.LinesCount = linesCount;
-            sceneData.Player = new Player();
-            sceneData.Player.Credit = PlayerStartCredit;
+            sceneData.Player = player;
             worldMover.SetupMover(sceneData);
             generatorManager.Init(sceneData);
+            weaponController.Init(sceneData);
             renderManager.Init();
-            trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
+			uiManager.Init(sceneData);
 
-			mainPlayer.Init();
-
+			trainStuffAdd();
             if (skillManager != null)
             {
                 skillManager.Init();
@@ -70,9 +74,10 @@ namespace TheLastHope.Management
             pathCounter.Init(sceneData);
 			sceneData.LinesOverall = generatorManager.LevelLenght;
             GenerateFirstArea();
-			//sceneData.CurrentState = GameState.Start;
+			sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
-			//ceneData.CurrentState = GameState.Loop;
+			sceneData.CurrentState = GameState.Loop;
+            SaveLoadManager.SavePlayer(playerTrain, sceneData.Player);
 		}
 
 		private void trainStuffAdd()
@@ -89,7 +94,6 @@ namespace TheLastHope.Management
 		// Update is called once per frame
 		void Update()
         {
-
 			if (sceneData.CurrentState == GameState.Loop)
 			{
 				generatorManager.UpdateGenerators(sceneData);
@@ -106,54 +110,26 @@ namespace TheLastHope.Management
 				//Temp Progress Bar
 				//******************************************//
                 trainManager.UpdateTrain(sceneData);
-                destroyer.Destroy(sceneData);
-                worldMover.MoveWorld(sceneData, Time.deltaTime);
-                mainPlayer.UpdatePlayer(sceneData);
-                foreach (var enemy in sceneData.Enemies)
-                {
-                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
-                }
-            }
+			}
 
 			else if (sceneData.CurrentState == GameState.Lose)
 			{
 				EndGame(false, sceneData);
 				generatorManager.UpdateGenerators(sceneData);
-                destroyer.Destroy(sceneData);
-                worldMover.MoveWorld(sceneData, Time.deltaTime);
-                mainPlayer.UpdatePlayer(sceneData);
-                foreach (var enemy in sceneData.Enemies)
-                {
-                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
-                }
-            }
+			}
 			else if (sceneData.CurrentState == GameState.Win)
 			{
 				EndGame(true, sceneData);
-                destroyer.Destroy(sceneData);
-                worldMover.MoveWorld(sceneData, Time.deltaTime);
-                mainPlayer.UpdatePlayer(sceneData);
-                foreach (var enemy in sceneData.Enemies)
-                {
-                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
-                }
-            }
-            else if (sceneData.CurrentState == GameState.Preroll)
+			}
+
+            foreach (var enemy in sceneData.Enemies)
             {
-
-            }
-            else if (sceneData.CurrentState == GameState.Start)
-            {
-                hangar.SetInactive();               
-                weaponController.Init();
-                uiManager.Init(sceneData);
-                trainStuffAdd();
-                sceneData.CurrentState = GameState.Loop;
+                enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
             }
 
-
-
-
+            destroyer.Destroy(sceneData);
+            worldMover.MoveWorld(sceneData, Time.deltaTime);
+            mainPlayer.UpdatePlayer(sceneData);
         }
 
         void EndGame(bool win, SceneData sceneData)
@@ -197,12 +173,6 @@ namespace TheLastHope.Management
                 worldMover.MoveWorld(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
                 pathCounter.CountLenght(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
             }
-        }
-
-        public void RunScene()
-        {
-            hangar.SetInactive();
-            sceneData.CurrentState = GameState.Start;
         }
     }
 }

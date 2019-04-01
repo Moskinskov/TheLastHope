@@ -6,13 +6,12 @@ using TheLastHope.Management.AbstractLayer;
 
 public class TrainManager : MonoBehaviour
 {
-
-    [SerializeField] List<GameObject> cars =  new List<GameObject>();
     public void Init(SceneData sceneData)
     {
-        foreach(var car in cars)
+        ACarriage[] carriages = GameObject.FindObjectsOfType<ACarriage>();
+        foreach(var car in carriages)
         {
-            sceneData.TrainCars.Add(car);
+            sceneData.TrainCars.Add(car.gameObject);
         }
     }
     public void UpdateTrain(SceneData sceneData)

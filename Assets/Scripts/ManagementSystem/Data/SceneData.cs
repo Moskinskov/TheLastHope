@@ -15,7 +15,6 @@ namespace TheLastHope.Management.Data
         List<GameObject> ammos = new List<GameObject>();
         List<GameObject> triggers = new List<GameObject>();
 		List<ABaseObject> trainStuff = new List<ABaseObject>();
-        Player player;
         private GameState State; 
 
         /// <summary>
@@ -83,7 +82,9 @@ namespace TheLastHope.Management.Data
 		/// </summary>
 		public List<ABaseObject> TrainStuff { get => trainStuff; set => trainStuff = value; }
 
-        public Player Player{get {return player;} set {player = value;}}
+        public Player Player { get; set; }
+
+
 		public GameState CurrentState { get; set; }
 
 		public SceneData()
