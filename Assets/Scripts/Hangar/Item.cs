@@ -49,13 +49,13 @@ namespace TheLastHope.Hangar
             }
             else if (transform.parent == startParent)
             {
-                for (int i = 0; i < HangarData.instance.inventiry.transform.childCount; i++)
+                for (int i = 0; i < HangarData.instance.inventory.transform.childCount; i++)
                 {
-                    if (HangarData.instance.inventiry.transform.GetComponentsInChildren<Slot>()[i].isVacant)
+                    if (HangarData.instance.inventory.transform.GetComponentsInChildren<Slot>()[i].isVacant)
                     {
                         HangarData.instance.currentCarriage.GetComponent<Container>().RemoveHardware(transform.parent.GetComponent<Slot>().number);
-                        transform.parent = HangarData.instance.inventiry.transform.GetChild(i);
-                        HangarData.instance.inventiry.transform.GetChild(i).GetComponent<Slot>().isVacant = false;
+                        transform.parent = HangarData.instance.inventory.transform.GetChild(i);
+                        HangarData.instance.inventory.transform.GetChild(i).GetComponent<Slot>().isVacant = false;
                         controller.itemsOnCarriage.Remove(gameObject);
                         controller.EndItemDragging();
                         return;

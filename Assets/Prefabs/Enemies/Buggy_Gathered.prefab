@@ -10598,7 +10598,7 @@ MonoBehaviour:
   maxSpeed: 20
   maxAcceleration: 5
   driftingRadius: 50
-  maxHealth: 130
+  maxHealth: 250
   _driftingSpeedDivider: 0.5
   _speedSmoother: 0.5
   _turret: {fileID: 6491789264665482539}

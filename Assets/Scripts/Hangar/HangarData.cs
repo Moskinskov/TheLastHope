@@ -6,7 +6,7 @@ namespace TheLastHope.Hangar
     public class HangarData : MonoBehaviour
     {
         public PositionController positionController;
-        public Inventory inventiry;
+        public Inventory inventory;
         [SerializeField] private Container[] train;
         [HideInInspector] public Container currentCarriage;
 
@@ -23,7 +23,7 @@ namespace TheLastHope.Hangar
 
         public void SetInactive()
         {
-            inventiry.gameObject.SetActive(false);
+            inventory.gameObject.SetActive(false);
             positionController.gameObject.SetActive(false);
         }
     }

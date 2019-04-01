@@ -175,9 +175,9 @@ MonoBehaviour:
   _canChangeFiringMode: 0
   _currentFiringMode: 0
   _firingModesAvailable: 
-  _ammo: {fileID: 0}
+  _ammo: {fileID: 963044537, guid: 3839fdca990e50d41978d84222d19c47, type: 3}
   _muzzle: {fileID: 1216547829}
-  _barrel: {fileID: 0}
+  _barrel: {fileID: 1216547828}
   _muzzleFlash: {fileID: 0}
 --- !u!82 &315095380
 AudioSource:
@@ -188,7 +188,8 @@ AudioSource:
   m_GameObject: {fileID: 315095378}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 7f33ffdd416dc024fb7d63c946db6fc1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0a7608d2d7b4da140847dee5a44803e4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.881

@@ -175,9 +175,9 @@ MonoBehaviour:
   _canChangeFiringMode: 0
   _currentFiringMode: 0
   _firingModesAvailable: 
-  _ammo: {fileID: 0}
+  _ammo: {fileID: 963044537, guid: 3839fdca990e50d41978d84222d19c47, type: 3}
   _muzzle: {fileID: 1292870949555225816}
-  _barrel: {fileID: 0}
+  _barrel: {fileID: 1292870949555225817}
   _muzzleFlash: {fileID: 0}
 --- !u!82 &1292870948116870777
 AudioSource:

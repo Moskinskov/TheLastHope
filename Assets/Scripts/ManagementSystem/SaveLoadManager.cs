@@ -20,7 +20,9 @@ namespace TheLastHope.Management
         {
             string dir = Application.persistentDataPath + "/saves";
 
-            DirectoryInfo dir_i = new DirectoryInfo(dir);
+			if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+			DirectoryInfo dir_i = new DirectoryInfo(dir);
             FileInfo[] info = dir_i.GetFiles("*.save");
             foreach (FileInfo f in info)
             {
