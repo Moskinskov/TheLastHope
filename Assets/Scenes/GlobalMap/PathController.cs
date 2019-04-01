@@ -123,6 +123,7 @@ public class PathController : MonoBehaviour
     {
         foreach (int p in road)
         {
+            print(p);
             mapsObj[p].setColor(clr);
         }
     }
