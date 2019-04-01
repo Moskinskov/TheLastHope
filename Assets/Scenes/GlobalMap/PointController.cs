@@ -23,7 +23,6 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     {
         mapMan.PointEnter(this);
     }
-
     // Start is called before the first frame update
 
     public void setColor(Color clr)

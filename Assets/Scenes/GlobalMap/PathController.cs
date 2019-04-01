@@ -112,9 +112,9 @@ public class PathController : MonoBehaviour
     // start - цвет стартовой точки
     public void clearRoad(Color main, Color start)
     {
-        for (int i = 1; i < road.Count; i++)
+        for (int i = 0; i < countPoints; i++)
         {
-            mapsObj[road[i]].setColor(main);
+            mapsObj[i].setColor(main);
         }
         mapsObj[startPoint.num].setColor(start);
     }
@@ -178,5 +178,6 @@ public class PathController : MonoBehaviour
         }
         BFS();
         generateMatrix();
+        
     }
 }

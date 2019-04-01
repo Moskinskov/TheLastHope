@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CE0B6961-8845-A2B2-E193-EF51B27C4800}</ProjectGuid>
+    <ProjectGuid>{B8C8A61A-4345-CD97-1DB7-1FC67E666262}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -164,7 +164,6 @@
     <Compile Include="Assets\HippoSkill\SkillManager.cs" />
     <Compile Include="Assets\HippoSkill\UltimateWeapon.cs" />
     <Compile Include="Assets\MouseEnt.cs" />
-    <Compile Include="Assets\Scenes\GlobalMap\EventController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapManager.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PathController.cs" />
@@ -186,6 +185,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AAmmo.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ADestroyer.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEnemy.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEvent.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AGenerator.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ATrigger.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ATurret.cs" />
@@ -199,6 +199,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\Data\SceneData.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\TriggerType.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Destroyer.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\EventManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\GameManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\GeneratorManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\InputManager.cs" />
@@ -837,11 +838,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MToon.Editor.csproj">
-      <Project>{D35FED6B-CDDB-5F4A-E46C-7F317EF953FB}</Project>
+      <Project>{EF3E072D-5BD5-7B6D-538B-B622508CAF49}</Project>
       <Name>MToon.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="MToon.csproj">
-      <Project>{D6B437D0-0B8F-D8A6-DB7C-A439B71DEAA5}</Project>
+      <Project>{AFA12D56-C01D-5AA6-931A-33DB43524968}</Project>
       <Name>MToon</Name>
     </ProjectReference>
   </ItemGroup>
