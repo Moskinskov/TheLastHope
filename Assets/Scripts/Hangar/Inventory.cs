@@ -16,6 +16,7 @@ namespace TheLastHope.Hangar
             {
                 inventory.Add(Instantiate(objPool[i], transform.GetChild(i).transform));
                 inventory[i].GetComponent<Item>().controller = HangarData.instance.positionController;
+                inventory[i].GetComponent<Item>().Init();
             }
         } 
 

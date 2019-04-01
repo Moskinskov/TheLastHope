@@ -8,6 +8,7 @@ using TheLastHope.Player;
 using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 using System;
+using TheLastHope.Hangar;
 
 namespace TheLastHope.Management
 {
@@ -38,6 +39,7 @@ namespace TheLastHope.Management
 		[SerializeField] Canvas looseCanvas;
         [Tooltip("Number of lines to pregenerate scene")] 
         [SerializeField] int firstFrameLengthInLines = 14;
+        [SerializeField] HangarData hangar;
 
         // Start is called before the first frame update
         void Start()
@@ -51,13 +53,12 @@ namespace TheLastHope.Management
             sceneData.LinesCount = linesCount;
             worldMover.SetupMover(sceneData);
             generatorManager.Init(sceneData);
-            weaponController.Init();
             renderManager.Init();
             trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
-			uiManager.Init(sceneData);
+
 			mainPlayer.Init();
-			trainStuffAdd();
+
             if (skillManager != null)
             {
                 skillManager.Init();
@@ -65,9 +66,9 @@ namespace TheLastHope.Management
             pathCounter.Init(sceneData);
 			sceneData.LinesOverall = generatorManager.LevelLenght;
             GenerateFirstArea();
-			sceneData.CurrentState = GameState.Start;
+			//sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
-			sceneData.CurrentState = GameState.Loop;
+			//ceneData.CurrentState = GameState.Loop;
 		}
 
 		private void trainStuffAdd()
@@ -101,26 +102,54 @@ namespace TheLastHope.Management
 				//Temp Progress Bar
 				//******************************************//
                 trainManager.UpdateTrain(sceneData);
-			}
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
+                foreach (var enemy in sceneData.Enemies)
+                {
+                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                }
+            }
 
 			else if (sceneData.CurrentState == GameState.Lose)
 			{
 				EndGame(false, sceneData);
 				generatorManager.UpdateGenerators(sceneData);
-			}
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
+                foreach (var enemy in sceneData.Enemies)
+                {
+                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                }
+            }
 			else if (sceneData.CurrentState == GameState.Win)
 			{
 				EndGame(true, sceneData);
-			}
-
-            foreach (var enemy in sceneData.Enemies)
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
+                foreach (var enemy in sceneData.Enemies)
+                {
+                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                }
+            }
+            else if (sceneData.CurrentState == GameState.Preroll)
             {
-                enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+
+            }
+            else if (sceneData.CurrentState == GameState.Start)
+            {
+                hangar.SetInactive();               
+                weaponController.Init();
+                uiManager.Init(sceneData);
+                trainStuffAdd();
+                sceneData.CurrentState = GameState.Loop;
             }
 
-            destroyer.Destroy(sceneData);
-            worldMover.MoveWorld(sceneData, Time.deltaTime);
-            mainPlayer.UpdatePlayer(sceneData);
+
+
+
         }
 
         void EndGame(bool win, SceneData sceneData)
@@ -164,6 +193,12 @@ namespace TheLastHope.Management
                 worldMover.MoveWorld(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
                 pathCounter.CountLenght(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
             }
+        }
+
+        public void RunScene()
+        {
+            hangar.SetInactive();
+            sceneData.CurrentState = GameState.Start;
         }
     }
 }

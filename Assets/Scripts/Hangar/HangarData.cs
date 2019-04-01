@@ -20,5 +20,11 @@ namespace TheLastHope.Hangar
         {
             instance = this;
         }
+
+        public void SetInactive()
+        {
+            inventiry.gameObject.SetActive(false);
+            positionController.gameObject.SetActive(false);
+        }
     }
 }
