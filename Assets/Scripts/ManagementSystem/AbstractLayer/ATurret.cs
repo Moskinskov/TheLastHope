@@ -6,7 +6,7 @@ using TheLastHope.Weapons.Software;
 
 namespace TheLastHope.Management.AbstractLayer
 {
-    public abstract class ATurret : MonoBehaviour
+    public abstract class ATurret : ABaseObject
     {
         //Оружие турели
         [SerializeField] internal AWeapon weapon;
@@ -19,12 +19,10 @@ namespace TheLastHope.Management.AbstractLayer
 
         public abstract void TurUpdate(SceneData sceneData, float deltaTime);
 
-        public abstract void Init();
-
         //меняем режим стрельбы
-        public void SwitchMode()
+        public virtual void SwitchMode()
         {
-            manualMode = !manualMode;
+            if(soft.canBeManual) manualMode = !manualMode;
         }
     }
 }

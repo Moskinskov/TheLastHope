@@ -16,6 +16,13 @@ namespace TheLastHope.Weapons
         /// </summary>
         [SerializeField] protected int _ammoPerShot = 5;//Количество дроби
         [SerializeField] protected float _angleScatter;
+
+        public override void Init()
+        {
+            _currentAmmoInClip = _clipSize;
+            TypeOfAmmo = AmmoType.Shotgun;
+            State = WeaponState.Inactive;
+        }
         public override void Shot(SceneData sceneData)
         {
 			//Направление перпендикулярное

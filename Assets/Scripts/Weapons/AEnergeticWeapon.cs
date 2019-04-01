@@ -1,5 +1,6 @@
 ﻿using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
+using TheLastHope.Management.Data;
 using UnityEngine;
 
 namespace TheLastHope.Weapons
@@ -12,55 +13,64 @@ namespace TheLastHope.Weapons
         protected float _coreRecoveryPerSecond;               //time needed for the full recovery (use Timer)
         protected float _coreCurrentCharge;                   //current level of charge
         protected float _coreMinActiveEnergy;                 //min energy for using laser
+        protected float _coreMaxRange;						  //maximal range of the weapon
         //----------------------------------------------------------------------------------------------------//
-        protected bool _usingLaser;
-        protected bool _isLoadEnergy = true;
+        //protected bool _usingLaser;
+        //protected bool _isLoadEnergy = true;
 
         protected Timer _timerEndOfFire = new Timer();
         protected LineRenderer _origLR;
+        protected float _reloadTime;
 
-        private void Start()
+        public override void Init()
         {
             _coreCurrentCharge = _coreEnergyCapacity;
             _origLR.enabled = false;
+            TypeOfAmmo = AmmoType.Energy;
+            State = WeaponState.Active;
         }
 
-        #region Abstruct Methods
+        #region Abstract Methods
 
-        protected abstract void WeaponMethod();
+        protected abstract void WeaponMethod(RaycastHit hit);
         protected abstract void SetLRToTarget(RaycastHit hit);
         protected abstract void LocalChecks();
 
         #endregion
-        
+
         /// <summary>
         /// It should be set to Update
         /// </summary>
-        protected void CoreChecks()
+        /// 
+        protected virtual void CoreChecks()
         {
             if (_timerEndOfFire.IsEvent())
             {
-                _usingLaser = false;
+                State = WeaponState.Inactive;
             }
 
-            if (!_usingLaser)
+            if (State != WeaponState.Active)
             {
-                _coreCurrentCharge += _coreEnergyPerSecond * Time.deltaTime;
                 _origLR.enabled = false;
             }
 
-            if (_coreCurrentCharge < 0)
+            if (_coreCurrentCharge <= 0)
             {
                 _coreCurrentCharge = 0;
-                _usingLaser = false;
-                _isLoadEnergy = false;
+                State = WeaponState.empty;
             }
 
             if (_coreCurrentCharge > _coreEnergyCapacity)
                 _coreCurrentCharge = _coreEnergyCapacity;
 
-            if (!_isLoadEnergy && _coreCurrentCharge >= _coreMinActiveEnergy)
-                _isLoadEnergy = true;
+            if (State == WeaponState.empty && _coreCurrentCharge > 0)
+                State = WeaponState.Inactive;
+        }
+        public override void Reload(int ammoQuantity)
+        {
+            _coreCurrentCharge = ammoQuantity;
+            State = WeaponState.Inactive;
+            _timerEndOfFire.Start(_reloadTime);
         }
     }
 }

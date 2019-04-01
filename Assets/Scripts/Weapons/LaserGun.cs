@@ -1,4 +1,5 @@
-﻿using TheLastHope.Management.AbstractLayer;
+﻿using System.Collections;
+using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
@@ -25,21 +26,28 @@ namespace TheLastHope.Weapons
         private float _recoveryPerSecond;
         [SerializeField]
         private float _minActiveEnergy;
+        [SerializeField]
+        private float _maxRange;
+        private IEnumerator coroutine;
+        private bool _isPlaying;
 
-        private void Awake()
+        public override void Init()
         {
             _coreDamagePerSecond = _damagePerSecond;
             _coreEnergyCapacity = _energyCapacity;
             _coreEnergyPerSecond = _energyPerSecond;
             _coreRecoveryPerSecond = _recoveryPerSecond;
             _coreMinActiveEnergy = _minActiveEnergy;
+            _coreMaxRange = _maxRange;
             _origLR = _laserLineRenderer;
 
             if (!_laserEffect.isStopped)
                 _laserEffect.Stop();
+            if (_laserAudioSource.isPlaying)
+                _laserAudioSource.Stop();
         }
 
-        private void Update()
+        public override void WeaponUpdate()
         {
             _timerEndOfFire.Update();
             CoreChecks();
@@ -48,27 +56,38 @@ namespace TheLastHope.Weapons
 
         public override void Fire(SceneData sceneData)
         {
-            if (!_isLoadEnergy) return;
-            _usingLaser = true;
-            _timerEndOfFire.Start(0.05f);
-            WeaponMethod();
-        }
+            if (State != WeaponState.Inactive)
+                return;
 
-        protected override void WeaponMethod()
-        {
+            State = WeaponState.Active;
+            _timerEndOfFire.Start(0.005f);
             if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
             {
-                if (hit.transform.GetComponent<AEnemy>())
+                if (hit.distance <= _maxRange)
+                {
+                    WeaponMethod(hit);
+                }
+            }
+        }
+
+        protected override void WeaponMethod(RaycastHit hit)
+        {
+            if (hit.transform.GetComponent<AEnemy>())
+            {
+                if (hit.distance <= _maxRange)
                 {
                     HitTheEnemy(hit);
                     SetLRToTarget(hit);
 
                     _laserEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
 
-                    if (!_laserEffect.isPlaying)
-                        _laserEffect.Play();
-                    if (!_laserAudioSource.isPlaying)
-                        _laserAudioSource.Play();
+                    coroutine = Effect(2.0f, hit);
+
+                    if (!_isPlaying)
+                    {
+                        _isPlaying = true;
+                        StartCoroutine(coroutine);
+                    }
                 }
             }
         }
@@ -88,7 +107,7 @@ namespace TheLastHope.Weapons
 
         protected override void LocalChecks()
         {
-            if (!_usingLaser)
+            if (State != WeaponState.Active)
             {
                 if (!_laserEffect.isStopped)
                     _laserEffect.Stop();
@@ -96,6 +115,21 @@ namespace TheLastHope.Weapons
                     _laserAudioSource.Stop();
             }
         }
+
+        private IEnumerator Effect(float waitTime, RaycastHit hit)
+        {
+            _laserEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+            if (!_laserEffect.isPlaying)
+                _laserEffect.Play();
+            if (!_laserAudioSource.isPlaying)
+                _laserAudioSource.Play();
+
+            yield return new WaitForSeconds(_laserAudioSource.clip.length);
+
+            _isPlaying = false;
+
+        }
+
     }
 }
 

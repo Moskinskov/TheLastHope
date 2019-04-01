@@ -14,7 +14,8 @@ namespace TheLastHope.Management.AbstractLayer
         [SerializeField] internal GameObject target;        //Object to which enemy must shoot
         [SerializeField] internal GameObject targetPosition; //Place where enemy must be.
         [SerializeField] internal float driftingRadius;
-        internal Vector3 currentDriftingPoint;
+		[SerializeField] internal float maxHealth;
+		internal Vector3 currentDriftingPoint;
 
         public abstract void SetTargetPosition(GameObject targetPosition);
         public abstract void EnemyUpdate(SceneData sceneData, float deltaTime);

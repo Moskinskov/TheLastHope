@@ -11,8 +11,8 @@ namespace TheLastHope.Generators
         //Pattern structure 5 rows 9 columns, each cell 10x10
 
         private int startGenerationPosition;
-        private Vector3[] positions;                 //local temporary pattern 
-        private int activeColumn;
+        [SerializeField] private Vector3[] positions;                 //local temporary pattern 
+        int currentLine = 0;
 
 		#region Debugging
 		//[SerializeField] private GameObject[] prop;
@@ -72,18 +72,6 @@ namespace TheLastHope.Generators
 		}
         #endregion
 
-        private void Initialization()
-        {
-            activeColumn = 0;
-
-            positions = new Vector3[5];                                 //5 rows z={20, 10, 0, -10, -20}; 0 — rails 
-            positions[0] = new Vector3(80, 0, 20);
-            positions[1] = new Vector3(80, 0, 10);
-            positions[2] = new Vector3(80, 0, 0);
-            positions[3] = new Vector3(80, 0, -10);
-            positions[4] = new Vector3(80, 0, -20);
-        }
-
         /// <summary>
         /// Generate objects by pattern positions
         /// </summary>
@@ -91,23 +79,21 @@ namespace TheLastHope.Generators
         /// <param name="sceneData"></param>
 		public override void Generate(GameObject[] objects, SceneData sceneData)
         {
-            if (positions == null)                                      //temporary data
+            if(sceneData.CurrentLine > currentLine)
             {
-                Initialization();
+                float exactX = sceneData.Props[sceneData.Props.Count - 1].transform.position.x + 10;
+                for (var i = 0; i < 5; i++)
+                {
+                    positions[i] = new Vector3(exactX, positions[i].y, positions[i].z);
+                }
+                currentLine = sceneData.CurrentLine;
             }
-
             for (int i = 0; i < 5 ; i++)
             {
                 if (objects[i] != null)
                 {
                     sceneData.Props.Add(Instantiate(objects[i], positions[i % 5], Quaternion.identity));
                 }
-            }
-            activeColumn++;
-            
-            if (activeColumn == 10)
-            {
-                activeColumn = 0;
             }
 		}
 	}
