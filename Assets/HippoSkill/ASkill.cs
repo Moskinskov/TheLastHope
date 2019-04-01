@@ -31,6 +31,6 @@ public abstract class ASkill : MonoBehaviour
         {    
             Activate(sceneData);
         }
-        _delay.Update();
+        _delay.TimerUpdate();
     }
 }

@@ -37,10 +37,8 @@ class Destroyer : ADestroyer
     {
         for (var i = 0; i < list.Count; i++)
         {
-            if (list[i].GetComponent<AEnemy>().Health <= 0)
+            if (list[i].GetComponent<AEnemy>().IsActive == false)
             {
-				list[i].GetComponent<AEnemy>().Die();
-				Destroy(list[i].gameObject, 2.0f);
                 list.RemoveAt(i);
                 i--;
             }

@@ -8,11 +8,11 @@ namespace TheLastHope.Render
 	{
 		[SerializeField] [Range(1, 20)] private int cameraSpeed = 1;            //delay of camera moves; 1 - minimum
 		[SerializeField] [Range(5, 10)] private float zRange = 5;
-		[SerializeField] [Range(10, 20)] private float xRange = 10;
+		[SerializeField] [Range(10, 40)] private float xRange = 10;
 		[SerializeField] [Range(0.0f, 1.0f)] private float xBoard = 0.8f;       //when camera has to move horizontal; default: camera moves right when cursor reaches 80% of display height (and left - 20%)
 		[SerializeField] [Range(0.0f, 1.0f)] private float yBoard = 0.5f;       //when camera has to move vertical
 		[SerializeField] private int steps = 4;                                 //how fast camera coordinates changes
-		[SerializeField, Range(10, 20), Tooltip("Scrolling speed of ZOOM")] private int _scrollSpeed = 10;
+		[SerializeField, Range(10, 40), Tooltip("Scrolling speed of ZOOM")] private int _scrollSpeed = 10;
 		[SerializeField, Range(2, 3), Tooltip("How much is the fish")] private float _deepOfZoom = 2;
 		[SerializeField] [Range(60, 1000)] float cameraSpeedinFrames = 60.0f;
 		[SerializeField]
@@ -29,7 +29,7 @@ namespace TheLastHope.Render
 		private float _posY;
 		private float _posZ;
 		private Vector3 _lookAtPos;
-		private int _hightOfLook = 5;
+		private int _heightOfLook = 5;
 		private Vector3 cameraPos;
 		private float _mouseWheel;
 
@@ -114,7 +114,7 @@ namespace TheLastHope.Render
 		/// </summary>
 		private void CameraLookingAt()
 		{
-			_lookAtPos = new Vector3(transform.position.x, _hightOfLook, 0);
+			_lookAtPos = new Vector3(transform.position.x, _heightOfLook, 0);
 			_posZ = (_posY - _posYOrig) / _deepOfZoom;
 			transform.LookAt(_lookAtPos);
 		}

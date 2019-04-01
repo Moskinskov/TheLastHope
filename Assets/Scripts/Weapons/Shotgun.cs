@@ -22,7 +22,7 @@ namespace TheLastHope.Weapons
             Vector3 dirDeviation = new Vector3(Muzzle.forward.z,
                                    0,
                                    Muzzle.forward.x);
-            dirDeviation /= 10;
+            dirDeviation /= (10*_angleScatter);
             for (int i = 0; i < _ammoPerShot; i++)
             {
                 AAmmo _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);

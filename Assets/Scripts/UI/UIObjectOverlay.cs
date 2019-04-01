@@ -10,7 +10,6 @@ using TheLastHope.Management.AbstractLayer;
 namespace TheLastHope.UI {
 	public class UIObjectOverlay : MonoBehaviour
 	{
-		private ABaseObject _baseObject;
 		[SerializeField]
 		private Canvas _frame;
 		[SerializeField]
@@ -19,41 +18,42 @@ namespace TheLastHope.UI {
 		private Canvas _buttonBar;
 		[SerializeField]
 		private Image _healthBarImage;
-		private float _startHealth;
 		private float _currentHealth;
+		private Vector3 _overlaySize;
 
-		public void Init()
-		{
-			_baseObject = this.gameObject.GetComponent<ABaseObject>();
-			_startHealth = _baseObject.Health;
-			_currentHealth = _startHealth;
-		}
+		public float CurrentHealth {set => _currentHealth = value; }
+		public Vector3 OverlaySize { get => _overlaySize; set => _overlaySize = value; }
 
-		private void getHealth()
+		private void getInfo()
 		{	
-			if (_baseObject)
-			{
-				_healthBarImage.fillAmount = _currentHealth / _startHealth; 
-			}
+				_healthBarImage.fillAmount = _currentHealth;
 		}
 
 		public void ShowOverlay(bool frame)
 		{
+			getInfo();
 			if (frame) { _frame.enabled = true; }
 		}
 
 		public void ShowOverlay(bool frame, bool health)
 		{
-			getHealth();
+			getInfo();
 			if (frame) { _frame.enabled = true; }
 			if (health) { _healthBar.enabled = true; }
 		}
 		public void ShowOverlay(bool frame, bool health, bool button)
 		{
-			getHealth();
+			getInfo();
 			if (frame) { _frame.enabled = true; }
 			if (health) { _healthBar.enabled = true; }
-			if (button) { _buttonBar.enabled = true;	 }
+			if (button) { _buttonBar.enabled = true; }
+		}
+
+		public void HideOverlay()
+		{
+			_frame.enabled = false;
+			_healthBar.enabled = false;
+			_buttonBar.enabled = false; 
 		}
 
 

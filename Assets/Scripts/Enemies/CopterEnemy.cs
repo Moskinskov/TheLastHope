@@ -25,25 +25,26 @@ namespace TheLastHope.Enemies
 		/// <summary>
 		/// Resets health.
 		/// </summary>
-		public override void Initialize()
+		public override void Init(SceneData sceneData)
         {
-            base.Health = base.maxHealth;
-            base.currentDriftingPoint = new Vector3(base.targetPosition.transform.position.x,
-                                                     base.targetPosition.transform.position.y,
-                                                     base.targetPosition.transform.position.z);
+			target = sceneData.TrainCars[0].gameObject.transform;
+			this.targetPosition = sceneData.TrainCars[0].gameObject.transform;
+			currentDriftingPoint = new Vector3(this.targetPosition.position.x,
+										 this.targetPosition.position.y,
+										 this.targetPosition.position.z);
+			_weapon.Init();
+			IsActive = true;
+			MaxHealth = maxHealth;
+			Health = MaxHealth;
 			renderers = GetComponentsInChildren<Renderer>();
 			_initTexture = renderers[2].material.mainTexture;
-			timer = new Timer();
+			Init();
 		}
 
-        /// <summary>
-        /// Set target position for enemy to be there.
-        /// </summary>
-        /// <param name="targetPosition"></param>
-        public override void SetTargetPosition(GameObject targetPosition)
-        {
-            base.targetPosition = targetPosition;
-        }
+		public override void Init()
+		{
+			timer = new Timer();
+		}
 
         /// <summary>
         /// Moves this enemy according it's posibilities and targets.
@@ -52,12 +53,20 @@ namespace TheLastHope.Enemies
         /// <param name="deltaTime"></param>
         public override void EnemyUpdate(SceneData sceneData, float deltaTime)
         {
-			timer.Update();
+			if (Health < 0 && IsActive)
+			{
+				Die();
+				sceneData.Props.Insert((sceneData.Props.Count - 2), this.gameObject);
+			}
+			_weapon.WeaponUpdate();
+			timer.TimerUpdate();
 			if (timer.IsEvent()) ChangeTex(false);
 			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
             {
-                Vector3 speed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
-                base.currentSpeed = Vector3.Lerp(base.currentSpeed, speed, _speedSmoother);
+				//targetPosition = this.targetPosition;
+				print(targetPosition.name);
+                Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
+                currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
                 gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, currentSpeed);
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
                                                         gameObject.transform.position.y + currentSpeed.y * deltaTime,
@@ -88,15 +97,15 @@ namespace TheLastHope.Enemies
 			ChangeTex(true);
 		}
 
-        Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, GameObject targetPosition, float deltaTime)
+        Vector3 GetCurrentSpeed(SceneData sceneData, Vector3 currentSpeed, Transform targetPosition, float deltaTime)
         {
-            if (Mathf.Abs(targetPosition.transform.position.z - this.transform.position.z) < driftingRadius &&
-                Mathf.Abs(targetPosition.transform.position.z - this.transform.position.z) < driftingRadius)
+            if (Mathf.Abs(targetPosition.position.z - transform.position.z) < driftingRadius &&
+                Mathf.Abs(targetPosition.position.z - transform.position.z) < driftingRadius)
                 return DriftSpeed(sceneData, deltaTime).normalized * maxSpeed / _driftingSpeedDivider;
 
-            return new Vector3(targetPosition.transform.position.z - this.transform.position.z,
+            return new Vector3(targetPosition.position.z - transform.position.z,
                               0,
-                              targetPosition.transform.position.x - this.transform.position.x).normalized * maxSpeed;
+                              targetPosition.position.x - transform.position.x).normalized * maxSpeed;
         }
 
 		private void ChangeTex(bool isDamage)
@@ -138,11 +147,11 @@ namespace TheLastHope.Enemies
         {
             if (Mathf.Abs(currentDriftingPoint.x - transform.position.x) < driftingRadius / 10 &&
                 Mathf.Abs(currentDriftingPoint.z - transform.position.z) < driftingRadius / 10)
-                currentDriftingPoint = new Vector3(Random.Range(base.targetPosition.transform.position.x - driftingRadius,
-                                                                base.targetPosition.transform.position.x + driftingRadius),
+                currentDriftingPoint = new Vector3(Random.Range(targetPosition.position.x - driftingRadius,
+                                                                targetPosition.position.x + driftingRadius),
                                                    0,
-                                                   Random.Range(base.targetPosition.transform.position.z - driftingRadius,
-                                                                base.targetPosition.transform.position.z + driftingRadius));
+                                                   Random.Range(targetPosition.position.z - driftingRadius,
+                                                                targetPosition.position.z + driftingRadius));
             return new Vector3(currentDriftingPoint.x - transform.position.x, 0, currentDriftingPoint.z - transform.position.z);
         }
 
@@ -153,7 +162,9 @@ namespace TheLastHope.Enemies
             _copter.gameObject.SetActive(false);
             _explosion.gameObject.SetActive(true);
             this.gameObject.GetComponent<AudioSource>().Play();
-            this.gameObject.GetComponent<Collider>().enabled = false;
+			this.gameObject.GetComponent<Collider>().enabled = false;
+
+			IsActive = false;
         }
     }
 }

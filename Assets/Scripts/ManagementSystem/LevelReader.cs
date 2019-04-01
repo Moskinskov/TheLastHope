@@ -9,13 +9,14 @@ namespace TheLastHope.Management
     {
         string levelToRead = string.Empty;
         string[] level;
+		int levelLength;
         char divider;
 
         /// <summary>
         /// Reads map from file.
         /// </summary>
         /// <param name="levelToRead">Name of map-file without extension.</param>
-        /// <param name="devider">Separator of elements in one string of map.</param>
+        /// <param name="divider">Separator of elements in one string of map.</param>
         public LevelReader(string levelToRead, char devider)
         {
             this.levelToRead = levelToRead;
@@ -24,14 +25,18 @@ namespace TheLastHope.Management
             if (File.Exists(levelToRead))
             {
                 level = File.ReadAllLines(levelToRead);
+				levelLength = level.Length;
             }
         }
-        /// <summary>
-        /// Returns array of code of gameObject for each horizontal line.
-        /// </summary>
-        /// <param name="lineNumber">Number of current vertical line.</param>
-        /// <returns></returns>
-        public string[] GetLine(int lineNumber)
+
+		public int LevelLength { get => levelLength; }
+
+		/// <summary>
+		/// Returns array of code of gameObject for each horizontal line.
+		/// </summary>
+		/// <param name="lineNumber">Number of current vertical line.</param>
+		/// <returns></returns>
+		public string[] GetLine(int lineNumber)
         {
             if (level != null)
             {
@@ -39,7 +44,7 @@ namespace TheLastHope.Management
             }
             else
             {
-                return new string[15];
+                return new string[15]; //MAGIC NUMBERS
             }
         }
 

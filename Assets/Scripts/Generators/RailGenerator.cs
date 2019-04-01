@@ -50,12 +50,12 @@ namespace TheLastHope.Generators
 
 		public override void Generate(List<GameObject> obj, SceneData sceneData, List<Vector3> positions)
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 
 		public override void Generate(GameObject[] objects, SceneData sceneData)
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 	}
 }
