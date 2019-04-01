@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B81F3C33-3620-9271-41A4-E521843DB45B}</ProjectGuid>
+    <ProjectGuid>{B8C8A61A-4345-CD97-1DB7-1FC67E666262}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -861,9 +861,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MToon.Editor.csproj">
-      <Project>{FDE1A9E2-DD44-23DD-0AF8-BDD84751348C}</Project>      <Name>MToon.Editor</Name>    </ProjectReference>
+      <Project>{EF3E072D-5BD5-7B6D-538B-B622508CAF49}</Project>      <Name>MToon.Editor</Name>    </ProjectReference>
     <ProjectReference Include="MToon.csproj">
-      <Project>{B477E26C-AB72-F996-085C-03C9958DF3DF}</Project>      <Name>MToon</Name>    </ProjectReference>
+      <Project>{AFA12D56-C01D-5AA6-931A-33DB43524968}</Project>      <Name>MToon</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

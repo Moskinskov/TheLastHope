@@ -14,7 +14,7 @@ namespace TheLastHope.Hangar
         public GameObject hw;
         [HideInInspector]public PositionController controller;
 
-        void Awwake()
+        public void Init()
         {
             gameObject.GetComponent<Image>().sprite = hw.GetComponent<AHardware>().sprite;
         }

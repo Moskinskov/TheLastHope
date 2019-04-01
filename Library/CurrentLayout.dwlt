@@ -325,7 +325,7 @@ MonoBehaviour:
     height: 259
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
-    m_NameFilter: uimanag
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -336,20 +336,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs/Ammo
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs/Ammo
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\hlamb\OneDrive\Projects\Unity\Local\The Last Hope
+  m_LastProjectPath: C:\Users\hlamb\OneDrive\Projects\Unity\Local\The Last Hope\thelasthope
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 574}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c4290000a42e00002e2f0000e42f0000443000004830000054300000983000003a3100003e31000072310000a23100004632000068320000bc320000b8420000ba420000bc420000be420000c042000000ca9a3b
+    scrollPos: {x: 0, y: 191}
+    m_SelectedIDs: 9c580000
+    m_LastClickedID: 22684
+    m_ExpandedIDs: 000000001257000040570000a65700002a58000062580000645800006e58000096580000085900000a5900003659000058590000b8590000d2590000fc590000c8650000ca650000cc650000ce650000d065000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -377,7 +377,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c4290000a42e00002e2f0000e42f000048300000983000003e31000072310000a231000068320000bc320000b8420000ba420000bc420000be420000c0420000
+    m_ExpandedIDs: 000000001257000040570000a65700002a58000062580000645800006e58000096580000085900000a5900003659000058590000b8590000d2590000fc590000c8650000ca650000cc650000ce650000d0650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -496,23 +496,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 86eafeff
-      m_LastClickedID: -71034
-      m_ExpandedIDs: be47faffcc47faffd2f3faffccf4fafff4f4faff182cfbffbc2cfbffc22cfbff122dfbffb62dfbffbc2dfbffee2dfbff60befbff5abffbff82bffbffec00fefff400feffa473feffaa73feffb273feff86eafeff3255fffffe55ffff445fffffbce9ffff1af2ffff1cf2ffff1ef2ffff5cf3ffffcafbffffccfbffff043500008c35000036360000aa3600003e37000068370000ce3700002e38000084390000b83a0000943b00009c3b0000d83b0000cc3c0000da3c0000ea3c0000323d00005c3d0000be3d0000dc4200009e430000404400005a44000016500000d8500000fe50000094510000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: b03dffff745b00007e5b00001e5d0000405d0000265f000004600000146000008a610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Muzzle
-        m_OriginalName: Muzzle
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 112754
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 2}
       m_SearchString: 
@@ -554,9 +554,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.906474, y: 3.5032628, z: -0.41730633}
+    m_Target: {x: -6.906475, y: 3.5032616, z: -0.41730633}
     speed: 2
-    m_Value: {x: -6.906474, y: 3.5032628, z: -0.41730633}
+    m_Value: {x: -6.906475, y: 3.5032616, z: -0.41730633}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -584,13 +584,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.15811503, y: 0.018855827, z: -0.0030198065, w: -0.9872361}
+    m_Target: {x: -0.15811503, y: 0.018855829, z: -0.0030198067, w: -0.9872361}
     speed: 2
-    m_Value: {x: -0.15811503, y: 0.018855827, z: -0.0030198065, w: -0.9872361}
+    m_Value: {x: -0.15811503, y: 0.018855829, z: -0.0030198067, w: -0.9872361}
   m_Size:
-    m_Target: 28.833208
+    m_Target: 278.26852
     speed: 2
-    m_Value: 28.833208
+    m_Value: 278.26852
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -631,17 +631,17 @@ MonoBehaviour:
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 06000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -341.33334
-    m_HBaseRangeMax: 341.33334
-    m_VBaseRangeMin: -256
-    m_VBaseRangeMax: 256
+    m_HBaseRangeMin: -478.5
+    m_HBaseRangeMax: 478.5
+    m_VBaseRangeMin: -260.5
+    m_VBaseRangeMax: 260.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_LastWindowPixelSize: {x: 1435.5, y: 807}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
-  m_LowResolutionForAspectRatios: 01000000000100000100
+  m_LowResolutionForAspectRatios: 00000000000100000100
   m_XRRenderMode: 0
 --- !u!114 &18
 MonoBehaviour:
