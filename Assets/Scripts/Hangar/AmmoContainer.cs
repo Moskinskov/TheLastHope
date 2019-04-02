@@ -9,7 +9,8 @@ namespace TheLastHope.Hangar
     {
         public int maxCapacity = 1000;
         int currentCapacity;
-        void Awake() //KILL AWAKE!
+
+        public override void Init()
         {
             currentCapacity = maxCapacity;
             ammo = new Dictionary<AmmoType, int>();
@@ -18,8 +19,13 @@ namespace TheLastHope.Hangar
             {
                 [AmmoType.ADM401_84mms] = 25,
                 [AmmoType.Energy] = 25,
-                [AmmoType.M792HEI_T] = 1
+                [AmmoType.M792HEI_T] = 1,
+                [AmmoType.Shotgun] = 5
             };
+            ammo[AmmoType.ADM401_84mms] = 30;
+            ammo[AmmoType.Energy] = 30;
+            ammo[AmmoType.M792HEI_T] = 700;
+            ammo[AmmoType.Shotgun] = 200;
         }
 
         /// <summary>
@@ -49,6 +55,7 @@ namespace TheLastHope.Hangar
         /// <returns></returns>
         public override bool GetAmmo(AmmoType type, int amount)
         {
+            print($"TYPE: {type.ToString()}");
             if (ammo[type] >= amount)
             {
                 ammo[type] -= amount;

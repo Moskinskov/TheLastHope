@@ -27,7 +27,7 @@ namespace TheLastHope.Weapons
 
         public override void Init()
         {
-            _currentAmmoInClip = _clipSize;
+            currentAmmoInClip = _clipSize;
             TypeOfAmmo = AmmoType.ADM401_84mms;
             State = WeaponState.Inactive;
         }

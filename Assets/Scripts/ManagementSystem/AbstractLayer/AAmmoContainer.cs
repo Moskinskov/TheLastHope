@@ -10,6 +10,11 @@ namespace TheLastHope.Management.AbstractLayer
         public Dictionary<AmmoType, int> ammo;
         protected Dictionary<AmmoType, int> ammoSize;
 
+        public virtual void Init()
+        {
+
+        }
+
         public virtual bool GetAmmo(AmmoType type, int amount)
         {
             if(ammo[type] >= amount)

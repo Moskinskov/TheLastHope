@@ -14,6 +14,7 @@ namespace TheLastHope.Weapons
         protected float _coreCurrentCharge;                   //current level of charge
         protected float _coreMinActiveEnergy;                 //min energy for using laser
         protected float _coreMaxRange;						  //maximal range of the weapon
+        [SerializeField] int clipSize;
         //----------------------------------------------------------------------------------------------------//
         //protected bool _usingLaser;
         //protected bool _isLoadEnergy = true;
@@ -24,6 +25,7 @@ namespace TheLastHope.Weapons
 
         public override void Init()
         {
+            ClipSize = clipSize;
             _coreCurrentCharge = _coreEnergyCapacity;
             _origLR.enabled = false;
             TypeOfAmmo = AmmoType.Energy;
@@ -46,30 +48,33 @@ namespace TheLastHope.Weapons
         {
             if (_timerEndOfFire.IsEvent())
             {
-                State = WeaponState.Inactive;
+                //State = WeaponState.Inactive;
             }
 
             if (State != WeaponState.Active)
             {
+                if (_origLR)
                 _origLR.enabled = false;
             }
 
-            if (_coreCurrentCharge <= 0)
+            if (currentAmmoInClip <= 0)
             {
                 _coreCurrentCharge = 0;
-                State = WeaponState.empty;
+                //State = WeaponState.empty;
             }
 
             if (_coreCurrentCharge > _coreEnergyCapacity)
                 _coreCurrentCharge = _coreEnergyCapacity;
 
             if (State == WeaponState.empty && _coreCurrentCharge > 0)
-                State = WeaponState.Inactive;
+                //State = WeaponState.Inactive
+                ;
         }
         public override void Reload(int ammoQuantity)
         {
+            currentAmmoInClip = ammoQuantity;
             _coreCurrentCharge = ammoQuantity;
-            State = WeaponState.Inactive;
+            //State = WeaponState.Inactive;
             _timerEndOfFire.Start(_reloadTime);
         }
     }

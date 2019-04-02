@@ -14,6 +14,7 @@ namespace TheLastHope.Weapons
 	{
 		[SerializeField] Selector selector;
 		[SerializeField] ATurret[] turretArray;
+        List<AAmmoContainer> ammoContainers = new List<AAmmoContainer>();
 
 		public ATurret[] TurretList { get => turretArray; set => turretArray = value; }
 
@@ -24,6 +25,13 @@ namespace TheLastHope.Weapons
 			{
                 turret.Init();
 			}
+            ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
+            foreach(var container in ammoContainers)
+            {
+                container.Init();
+            }
+            print($"ContainerCount {ammoContainers.Count}");
+            
 		}
 
 		/// <summary>
@@ -33,6 +41,28 @@ namespace TheLastHope.Weapons
 		/// <param name="deltaTime"></param>
 		public void UpdateWeapons(SceneData sceneData, float deltaTime)
 		{
+            foreach(var turret in turretArray)
+            {
+                if (turret.weapon.State == WeaponState.empty)
+                {
+                    print($"RELOADING {turret.gameObject.name}");
+                    if (ammoContainers.ToArray()[0].GetAmmo(turret.weapon.TypeOfAmmo, turret.weapon.ClipSize))
+                    {
+                        turret.weapon.Reload(turret.weapon.ClipSize);
+                        print("R1");
+                        turret.weapon.State = WeaponState.Active;
+                    }
+                    else
+                    {
+                        print("R2");
+                        int ammoToReload = 0;
+                        ammoContainers.ToArray()[0].ammo.TryGetValue(turret.weapon.TypeOfAmmo, out ammoToReload);
+                        turret.weapon.Reload(ammoToReload);
+                        turret.weapon.State = WeaponState.Active;
+                    }
+                }
+            }
+
             //Fire2 - пкм. При нажатии пкм на турель, мы меняем режим ее стрельбы, если это нам позволяет софт
             GameObject selectedTurret = selector.GetSelectedGameObject();
             //if (Input.GetButtonDown("Fire2") &&

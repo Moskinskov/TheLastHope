@@ -67,8 +67,9 @@ namespace TheLastHope.Management
             renderManager.Init();
             triggerManager.Init(generatorManager);
             hangar.Init(sceneData);
+            
 
-			trainStuffAdd();
+            trainStuffAdd();
             if (skillManager != null)
             {
                 skillManager.Init();
@@ -102,7 +103,7 @@ namespace TheLastHope.Management
 				generatorManager.UpdateGenerators(sceneData);
 				weaponController.UpdateWeapons(sceneData, Time.deltaTime);
 				renderManager.UpdateRender(sceneData);
-				//uiManager.UIUpdate(sceneData, pathCounter);
+				uiManager.UIUpdate(sceneData, pathCounter);
 				if (skillManager != null)
 				{
 					skillManager.SkillUpdate(sceneData);
@@ -152,11 +153,12 @@ namespace TheLastHope.Management
             {
                 panelHangar.SetActive(false);
                 weaponController.Init(sceneData);
-                //uiManager.Init(sceneData);
+                uiManager.Init(sceneData);
                 sceneData.CurrentState = GameState.Loop;
             }
             else if (sceneData.CurrentState == GameState.Wait)
             {
+                
                 panelHangar.SetActive(true);
             }
 

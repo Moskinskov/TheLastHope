@@ -5,9 +5,13 @@ namespace TheLastHope.Management.AbstractLayer
 {
     public abstract class AWeapon : MonoBehaviour
     {
-        public AmmoType TypeOfAmmo { get; set; }
+        [SerializeField] AmmoType typeOfAmmo;
+        [SerializeField] internal int currentAmmoInClip;
+        public AmmoType TypeOfAmmo { get { return typeOfAmmo; } set { typeOfAmmo = value; } }
         public WeaponState State { get; set; }
 		public bool IsActive { get; set; }
+        public int ClipSize { get; set; }
+        public int CurrentAmmoInClip { get { return currentAmmoInClip; } set { currentAmmoInClip = value; } }
 
         public abstract void Fire(SceneData sceneData);
         public abstract void Reload(int ammoQuantity);

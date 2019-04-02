@@ -17,7 +17,7 @@ namespace TheLastHope.Weapons
         [SerializeField] protected float _shootingRange = 30.0f; //firing range
         [SerializeField] protected float _reloadTime = 1.0f; //reload time
         [SerializeField] private float _force = 30.0f; //power of fire
-        [SerializeField] protected int _clipSize = 5; //clip size
+        [SerializeField] protected int _clipSize; //clip size
         [SerializeField] protected bool _canChangeFiringMode = false; //ability to change firing mode
         [SerializeField] protected FiringMode _currentFiringMode; //current active firing mode
         [SerializeField] protected int[] _firingModesAvailable; //available firing modes
@@ -34,7 +34,7 @@ namespace TheLastHope.Weapons
         protected Timer _delay = new Timer();                       //Timer
                                                                     //protected bool _readyToFire = true;                         //Ready to shoot flag
         protected int _ammoInClip;                                  //Current ammo in clip
-        protected int _currentAmmoInClip; //Текущие количество патронов в магазине
+        //protected int _currentAmmoInClip; //Текущие количество патронов в магазине
         protected AudioSource _audioPlayer; //Типа должно быть использовано для звуков выстрела
         #endregion
 
@@ -50,11 +50,11 @@ namespace TheLastHope.Weapons
             //после отчета разрешает снова стрелять.
             if (_delay.Elapsed == -1)
             {
-                State = WeaponState.Inactive;
+                State = WeaponState.Active;
             }
-            if (_currentAmmoInClip == 0)
+            if (currentAmmoInClip <= 0)
             {
-                State = WeaponState.empty;
+                //State = WeaponState.empty;
             }
             if (State == WeaponState.Active && _ammo)
             {
@@ -63,8 +63,8 @@ namespace TheLastHope.Weapons
                 var snd = GetComponent<AudioSource>();
                 if (snd) snd.Play();
                 _delay.Start(_rateOfFire);
-                State = WeaponState.Inactive;
-                _currentAmmoInClip--;
+                //State = WeaponState.Inactive;
+                currentAmmoInClip--;
             }
 
 
@@ -76,7 +76,8 @@ namespace TheLastHope.Weapons
         }
         public override void Init()
         {
-            _currentAmmoInClip = _clipSize;
+            currentAmmoInClip = _clipSize;
+            ClipSize = _clipSize;
 
         }
         public override void WeaponUpdate()
@@ -86,8 +87,8 @@ namespace TheLastHope.Weapons
         }
         public override void Reload(int ammoQuantity)
         {
-            _currentAmmoInClip = ammoQuantity;
-            State = WeaponState.Inactive;
+            currentAmmoInClip = ammoQuantity;
+            //State = WeaponState.Inactive;
             _delay.Start(_reloadTime);
         }
 

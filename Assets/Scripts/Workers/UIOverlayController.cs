@@ -22,6 +22,7 @@ namespace TheLastHope.UI {
 		private float _oldHealth;
 		private Timer _timer;
 		private IEnumerator coroutine;
+        GameState gameState = GameState.Wait;
 
 		[SerializeField]
 		private bool _showOnDamage;
@@ -39,19 +40,20 @@ namespace TheLastHope.UI {
 
 			if (_baseObject.GetComponentInChildren<AEnemy>()) _currentType = ObjType.Enemy;
 			else if (_baseObject.GetComponentInChildren<ATurret>()) _currentType = ObjType.Turret;
-			else if (_baseObject.GetComponentInChildren<MainPlayer>()) _currentType = ObjType.Loco;
+			else if (_baseObject.GetComponent<MainPlayer>()) _currentType = ObjType.Loco;
 			print("I am " + _baseObject.name + " and my type is " + _currentType);
 			HideOverlay();
 			_timer = new Timer();
 		}
 
-		public void OverlayUpdate()
+		public void OverlayUpdate(SceneData sceneData)
 		{
 			if ((_baseObject.Health != _oldHealth) && _showOnDamage && _baseObject.IsActive)
 			{
 				coroutine = DamageUI(_showTime);
 				StartCoroutine(coroutine);
 			}
+            gameState = sceneData.CurrentState;
 		}
 
 
@@ -68,14 +70,18 @@ namespace TheLastHope.UI {
 
 		private void OnMouseOver()
 		{
-			//print("Mouse Over!");
-			CountHealth();
-			ShowOverlay();
+            //print("Mouse Over!");
+            if (gameState==GameState.Loop)
+            {
+                CountHealth();
+                ShowOverlay();
+            }
+
 		}
 
 		private void OnMouseExit()
 		{
-			if (!_isUnderControl) HideOverlay();
+			if (!_isUnderControl && gameState == GameState.Loop) HideOverlay();
 			//print("Mouse Exit!");
 		}
 
@@ -87,7 +93,7 @@ namespace TheLastHope.UI {
 		public void ShowOverlay()
 		{
             if (_currentType == ObjType.Enemy) _overlay.ShowOverlay(true, true);
-            else if (_currentType == ObjType.Loco) ;// _overlay.ShowOverlay(true, true);
+            else if (_currentType == ObjType.Loco) _overlay.ShowOverlay(true, true); 
 			else if (_currentType == ObjType.Turret)
 			{
 				if (_baseObject.GetComponentInChildren<ATurret>().soft.canBeManual) _overlay.ShowOverlay(true, true, true);
@@ -97,9 +103,9 @@ namespace TheLastHope.UI {
 
 		public void HideOverlay()
 		{
-			//if (_overlay) _overlay.HideOverlay();
-			//else print("Overlay not found!");
-		}
+            if (_overlay) _overlay.HideOverlay();
+            else print("Overlay not found!");
+        }
 
 		public void ControlButton()
 		{
