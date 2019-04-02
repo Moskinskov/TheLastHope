@@ -14,7 +14,10 @@ namespace TheLastHope.Weapons
 	{
 		[SerializeField] Selector selector;
 		[SerializeField] ATurret[] turretArray;
+        ATurret turretToReload;
+        AAmmoContainer containerToReload;
         List<AAmmoContainer> ammoContainers = new List<AAmmoContainer>();
+        
 
 		public ATurret[] TurretList { get => turretArray; set => turretArray = value; }
 
@@ -41,9 +44,28 @@ namespace TheLastHope.Weapons
 		/// <param name="deltaTime"></param>
 		public void UpdateWeapons(SceneData sceneData, float deltaTime)
 		{
+            
             foreach(var turret in turretArray)
             {
-                if (turret.weapon.State == WeaponState.empty)
+                GameObject selectedObj = null;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    selectedObj = selector.GetSelectedGameObject();
+                }
+                if (selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
+                    selectedObj.GetComponentInChildren<ATurret>().weapon.State ==  WeaponState.empty)
+                {
+                    turretToReload = selectedObj.GetComponentInChildren<ATurret>();
+                    print("TURRET SELECTED");
+                }
+                else if (selectedObj && selectedObj.GetComponentInChildren<AAmmoContainer>())
+                {
+                    containerToReload = selectedObj.GetComponentInChildren<AAmmoContainer>();
+                    print("CONTAINER SELECTED");
+
+                }
+
+                if (containerToReload && turretToReload)
                 {
                     print($"RELOADING {turret.gameObject.name}");
                     if (ammoContainers.ToArray()[0].GetAmmo(turret.weapon.TypeOfAmmo, turret.weapon.ClipSize))
@@ -60,11 +82,13 @@ namespace TheLastHope.Weapons
                         turret.weapon.Reload(ammoToReload);
                         turret.weapon.State = WeaponState.Active;
                     }
+                    containerToReload = null;
+                    turretToReload = null;
                 }
             }
 
             //Fire2 - пкм. При нажатии пкм на турель, мы меняем режим ее стрельбы, если это нам позволяет софт
-            GameObject selectedTurret = selector.GetSelectedGameObject();
+
             //if (Input.GetButtonDown("Fire2") &&
             //    selectedTurret.GetComponentInChildren<ATurret>() != null)
             //{
