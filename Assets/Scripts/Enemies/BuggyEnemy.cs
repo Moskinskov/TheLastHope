@@ -6,6 +6,7 @@ using TheLastHope.Management;
 using TheLastHope.Management.Data;
 using TheLastHope.Weapons;
 using TheLastHope.Helpers;
+using TheLastHope.UI;
 
 namespace TheLastHope.Enemies
 {
@@ -21,6 +22,7 @@ namespace TheLastHope.Enemies
 		[SerializeField] private float _visionSpread;
 		[SerializeField] private float _turnSpeed;
 		[SerializeField] private float _turnRatio;
+		[SerializeField] private float _maxDistanceFromPlayer;
 
 		private RaycastHit hit;
 		private Renderer[] renderers;
@@ -29,9 +31,17 @@ namespace TheLastHope.Enemies
 		private Timer timer;
 		private List<GameObject> _wheels;
 		private List<Texture> _textures;
-		private Vector3 _leftEyeVector;
-		private Vector3 _rightEyeVector;
 		private bool _isAlive;
+		private Quaternion _initialRotation;
+		private bool _avoiding = false;
+		private float _turnSpread;
+		private UIOverlayController _uiController;
+
+		[Header("Sensors")]
+		[SerializeField] private float sensorLength = 3f;
+		[SerializeField] private Vector3 frontSensorPosition = new Vector3(0f, 0f, 1.0f);
+		[SerializeField] private float frontSideSensorPosition = 0.6f;
+		[SerializeField] private float frontSensorAngle = 30f;
 
 
 
@@ -51,6 +61,13 @@ namespace TheLastHope.Enemies
 
 		public override void Init(SceneData sceneData)
         {
+			_uiController = GetComponentInChildren<UIOverlayController>();
+			if (_uiController)
+			{
+				sceneData.UiOverlayControllers.Add(_uiController);
+				_uiController.Init();
+			}
+			base.MaxHealth = this.maxHealth;
 			_turret.Init();
 			_isAlive = true;
 			IsActive = true;
@@ -63,23 +80,15 @@ namespace TheLastHope.Enemies
                                                      this.targetPosition.position.y,
                                                      this.targetPosition.position.z);
 			_wheels = new List<GameObject>();
-			InitVision();
+			RotateRightWay();
+			//InitVision();
 			Init();
 		}
 
-		/// <summary>
-		/// Moves this enemy according it's posibilities and targets.
-		/// </summary>
-		/// <param name="sceneData"></param>
-		/// <param name="deltaTime"></param>
-		private void InitVision()
+		private void RotateRightWay()
 		{
-			Quaternion _leftSpreadAngle = Quaternion.AngleAxis((_visionSpread/2), new Vector3(0, 1, 0));
-			Quaternion _rightSpreadAngle = Quaternion.AngleAxis((-_visionSpread/2), new Vector3(0, 1, 0));
-			Vector3 _leftEyeVector = _leftSpreadAngle * transform.forward;
-			Vector3 _rightEyeVector = _rightSpreadAngle * transform.forward;
-			Ray _leftEye = new Ray(transform.position, _leftEyeVector);
-			Ray _rightEye = new Ray(transform.position, _rightEyeVector);
+			if (transform.rotation == Quaternion.identity) this.transform.Rotate(new Vector3(0, 90, 0));
+			_initialRotation = transform.rotation;
 		}
 
 		public override void EnemyUpdate(SceneData sceneData, float deltaTime)
@@ -92,64 +101,112 @@ namespace TheLastHope.Enemies
 			}
 			if (_isAlive)
 			{
+				Sensors();
 				RotateWheels(sceneData);
 				_turret.TurUpdate(sceneData, deltaTime);
 				timer.TimerUpdate();
+				if (transform.position.z > _maxDistanceFromPlayer) Turn(TurnSide.Right);
+				if (transform.position.z > _maxDistanceFromPlayer * -1) Turn(TurnSide.Left);
+
 				Move(sceneData, deltaTime);
-				if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, Mathf.Infinity))
+			}
+		}
+
+		private void Turn(TurnSide turnSide)
+		{
+			if (IsActive && _isAlive)
+			{
+				if (turnSide == TurnSide.Left)
 				{
-					if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance))
-					{
-						_turret.TurnTurret(2);
-						Turn();
-					}
-
-					else if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
-					{
-						this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
-						Health = 0;
-						//Tell Destroyer to destroy this enemy;
-					}
-
-					else if ((hit.transform.tag == "Prop" || hit.transform.tag == "Enemy") && (hit.distance < _visionDistance))
-					{
-						print("I SEE A PROP!");
-						Turn();
-					}
+					_turnSpread = Mathf.Lerp(0, _turnRatio * -1, Time.deltaTime * _turnSpeed);
+					//transform.rotation = new Quaternion(transform.rotation.x, Mathf.Lerp(transform.rotation.y, transform.rotation.y - _turnRatio*5, Time.deltaTime / _turnSpeed), transform.rotation.z, transform.rotation.w);
 				}
 
+				if (turnSide == TurnSide.Right)
+				{
+					_turnSpread = Mathf.Lerp(0, _turnRatio, Time.deltaTime / _turnSpeed);
+					//transform.rotation = new Quaternion(transform.rotation.x, Mathf.Lerp(transform.rotation.y, transform.rotation.y + _turnRatio*5, Time.deltaTime / _turnSpeed), transform.rotation.z, transform.rotation.w);
+				}
+
+				if (turnSide == TurnSide.Center)
+				{
+					transform.rotation = _initialRotation;
+					//_turnSpread = 0;
+				}
 			}
 
+			//print("I'm turning to the " + turnSide + " and my pos is " + transform.position);
+		}
+
+		private void Sensors()
+		{
+			RaycastHit hit;
+			Vector3 sensorStartPos = transform.position + frontSensorPosition;
+
+			//front center sensor
+			if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+			{
+				Debug.DrawLine(sensorStartPos, hit.point);
+				if (Random.value > 0.5) Turn(TurnSide.Right);
+				else Turn(TurnSide.Left);
+			}
+
+			//front right sensor
+			sensorStartPos.x += frontSideSensorPosition;
+			if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+			{
+				Debug.DrawLine(sensorStartPos, hit.point);
+				if (hit.transform.tag == "Prop" || hit.transform.tag == "Enemy" || hit.transform.tag == "Player")  Turn(TurnSide.Left);
+			}
+
+			//front right angle sensor
+			if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
+			{
+				Debug.DrawLine(sensorStartPos, hit.point);
+				if (hit.transform.tag == "Player") Turn(TurnSide.Left);
+				else Turn(TurnSide.Center);
+			}
+
+			//front left sensor
+			sensorStartPos.x -= 2 * frontSideSensorPosition;
+			if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+			{
+				Debug.DrawLine(sensorStartPos, hit.point);
+				if (hit.transform.tag == "Prop" || hit.transform.tag == "Enemy" || hit.transform.tag == "Player") Turn(TurnSide.Right);
+			}
+
+			//front left angle sensor
+			if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
+			{
+				Debug.DrawLine(sensorStartPos, hit.point);
+				if (hit.transform.tag == "Player") Turn(TurnSide.Right);
+				else Turn(TurnSide.Center);
+			}
+
+			//no sensor
 			else
 			{
-
-			}
-
-
-			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * _visionDistance, Color.red);
-			Debug.DrawRay(transform.position, transform.TransformDirection(_leftEyeVector) * _visionDistance, Color.red);
-			Debug.DrawRay(transform.position, transform.TransformDirection(_rightEyeVector) * _visionDistance, Color.red);
-		}
-
-		private void Turn()
-		{
-			if(IsActive && _isAlive) transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, transform.position.z + _turnRatio, Time.deltaTime/_turnSpeed));
-		}
-
-		
-
-		private void Move(SceneData sceneData, float deltaTime)
-		{
-			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
-			{
-				Vector3 speed = GetCurrentSpeed(sceneData, base.currentSpeed, targetPosition, deltaTime);
-				base.currentSpeed = Vector3.Lerp(base.currentSpeed, speed, _speedSmoother);
-				gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime, gameObject.transform.position.y, gameObject.transform.position.z);
+				if (transform.rotation != _initialRotation) Turn(TurnSide.Center);
 			}
 		}
 
 		/// <summary>
-		/// For not it do nothing.
+		/// Moves this enemy according it's posibilities and targets.
+		/// </summary>
+		/// <param name="sceneData"></param>
+		/// <param name="deltaTime"></param>
+		private void Move(SceneData sceneData, float deltaTime)
+		{
+			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
+			{
+				Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
+				currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
+				transform.position = new Vector3(transform.position.x + currentSpeed.x * deltaTime * Random.RandomRange(0.8f, 1.1f), transform.position.y, transform.position.z + _turnSpread);
+			}
+		}
+
+		/// <summary>
+		/// Applies damage to an Enemy.
 		/// </summary>
 		/// <param name="damage"></param>
 		public override void SetDamage(float damage)

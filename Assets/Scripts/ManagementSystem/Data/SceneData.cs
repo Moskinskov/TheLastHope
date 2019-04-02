@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
+using TheLastHope.UI;
 
 namespace TheLastHope.Management.Data
 {
     public class SceneData
 	{
-		List<GameObject> props = new List<GameObject>();
-        List<GameObject> enemies = new List<GameObject>();
-        List<GameObject> trainCars = new List<GameObject>();
-        List<GameObject> rails = new List<GameObject>();
-        List<GameObject> enemiesPatterns = new List<GameObject>();
-        List<GameObject> ammos = new List<GameObject>();
-        List<GameObject> triggers = new List<GameObject>();
-		List<ABaseObject> trainStuff = new List<ABaseObject>();
+		private List<GameObject> props = new List<GameObject>();
+		private List<GameObject> enemies = new List<GameObject>();
+		private List<GameObject> trainCars = new List<GameObject>();
+		private List<GameObject> rails = new List<GameObject>();
+		private List<GameObject> enemiesPatterns = new List<GameObject>();
+		private List<GameObject> ammos = new List<GameObject>();
+		private List<GameObject> triggers = new List<GameObject>();
+		private List<ABaseObject> trainStuff = new List<ABaseObject>();
+		private List<UIOverlayController> uiOverlayControllers = new List<UIOverlayController>();
+		private GameObject _selectedEnemy;
         private GameState State; 
 
         /// <summary>
@@ -81,8 +84,16 @@ namespace TheLastHope.Management.Data
 		/// List of all things that belong to the train.
 		/// </summary>
 		public List<ABaseObject> TrainStuff { get => trainStuff; set => trainStuff = value; }
+		/// <summary>
+		/// List of all UI Overlay Controllers.
+		/// </summary>
+		public List<UIOverlayController> UiOverlayControllers { get => uiOverlayControllers; set => uiOverlayControllers = value; }
+		/// <summary>
+		/// The enemy being currently selected.
+		/// </summary>
+		public GameObject SelectedEnemy { get => _selectedEnemy; set => _selectedEnemy = value; }
 
-        public Player Player { get; set; }
+		public Player Player { get; set; }
 
 
 		public GameState CurrentState { get; set; }

@@ -37,10 +37,7 @@ namespace TheLastHope.Generators
                 var i = 0;
                 foreach(var enemy in objList)
                 {
-                    GameObject genEnemy = Instantiate(
-                    enemy,
-                    positions[objList.IndexOf(enemy)],                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
-                    Quaternion.identity);
+                    GameObject genEnemy = Instantiate(enemy, positions[objList.IndexOf(enemy)], Quaternion.identity);
                     enemy.GetComponentInChildren<AEnemy>().Init(sceneData);
                     sceneData.Enemies.Add(enemy);
                 }

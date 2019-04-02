@@ -23,7 +23,7 @@ namespace TheLastHope.Weapons
         public override void Init()
         {
             _coreCurrentCharge = _coreEnergyCapacity;
-            _origLR.enabled = false;
+            if (_origLR) _origLR.enabled = false;
         }
 
         #region Abstract Methods
@@ -48,7 +48,7 @@ namespace TheLastHope.Weapons
             if (!_usingLaser)
             {
                 _coreCurrentCharge += _coreEnergyPerSecond * Time.deltaTime;
-                _origLR.enabled = false;
+				if (_origLR) _origLR.enabled = false;
             }
 
             if (_coreCurrentCharge < 0)

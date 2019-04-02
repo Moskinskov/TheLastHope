@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3765,10 +3765,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionController: {fileID: 1967240004}
-  inventiry: {fileID: 1329074556}
+  inventory: {fileID: 1329074556}
   train:
   - {fileID: 1886778512}
-  currentCarrage: {fileID: 0}
+  currentCarriage: {fileID: 0}
 --- !u!4 &1944944853
 Transform:
   m_ObjectHideFlags: 0
@@ -3871,7 +3871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259c8154643eb094d8c83ad14362d557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsOnCarrage: []
+  itemsOnCarriage: []
   squareSlots: []
 --- !u!114 &1967240005
 MonoBehaviour:

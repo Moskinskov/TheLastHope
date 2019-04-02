@@ -26,7 +26,7 @@ namespace TheLastHope.Management
             FileInfo[] info = dir_i.GetFiles("*.save");
             foreach (FileInfo f in info)
             {
-                Debug.Log(f);
+                Debug.Log(dir);
             }
 
             if (info.Length >= 1)

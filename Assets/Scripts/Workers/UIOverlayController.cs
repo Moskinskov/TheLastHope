@@ -4,6 +4,7 @@ using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Player;
 using TheLastHope.Management.Data;
+using TheLastHope.Management;
 using TheLastHope.Helpers;
 
 namespace TheLastHope.UI {
@@ -32,19 +33,21 @@ namespace TheLastHope.UI {
 			_baseObject = GetComponentInChildren<ABaseObject>();
 			if (!_baseObject) GetComponent<ABaseObject>();
 			_healthBarValue = _baseObject.MaxHealth;
-			_overlay = this.gameObject.GetComponentInChildren<UIObjectOverlay>();
+			_overlay = GetComponentInChildren<UIObjectOverlay>();
+			if (_overlay) print(gameObject.name + " has an overlay!");
 			_oldHealth = _baseObject.Health;
 
 			if (_baseObject.GetComponentInChildren<AEnemy>()) _currentType = ObjType.Enemy;
 			else if (_baseObject.GetComponentInChildren<ATurret>()) _currentType = ObjType.Turret;
 			else if (_baseObject.GetComponentInChildren<MainPlayer>()) _currentType = ObjType.Loco;
+			print("I am " + _baseObject.name + " and my type is " + _currentType);
 			HideOverlay();
 			_timer = new Timer();
 		}
 
 		public void OverlayUpdate()
 		{
-			if (_baseObject.Health != _oldHealth && _showOnDamage && _baseObject.IsActive && !_isUnderControl)
+			if ((_baseObject.Health != _oldHealth) && _showOnDamage && _baseObject.IsActive)
 			{
 				coroutine = DamageUI(_showTime);
 				StartCoroutine(coroutine);
@@ -54,8 +57,12 @@ namespace TheLastHope.UI {
 
 		public void CountHealth()
 		{
-			_healthBarValue = _baseObject.Health / _baseObject.MaxHealth;
-			_overlay.CurrentHealth = _healthBarValue;
+			if (_baseObject)
+			{
+				_healthBarValue = _baseObject.Health / _baseObject.MaxHealth;
+				print("Buggy Health is " + _healthBarValue);
+				_overlay.CurrentHealth = _healthBarValue;
+			}
 		}
 
 
@@ -74,7 +81,7 @@ namespace TheLastHope.UI {
 
 		private void OnMouseDown()
 		{
-			ControlButton();
+			//ControlButton();
 		}
 
 		public void ShowOverlay()

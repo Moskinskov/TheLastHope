@@ -810,7 +810,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350707968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -2374,13 +2374,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317647454}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.7071065, z: -0, w: 0.7071071}
   m_LocalPosition: {x: -2.676039, y: 1.4122992, z: 1.6266184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1351863489}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!1 &1351863488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,7 +3065,7 @@ MonoBehaviour:
   generatorManager: {fileID: 1864739859}
   targetEnemyCount: 5
   targetPropsCount: 20
-  trainSpeed: 35
+  trainSpeed: 45
   worldMover: {fileID: 1754543450}
   destroyer: {fileID: 1071617475}
   weaponController: {fileID: 1312983918}
@@ -3081,6 +3081,7 @@ MonoBehaviour:
   winCanvas: {fileID: 173018540}
   looseCanvas: {fileID: 771127275}
   firstFrameLengthInLines: 14
+  credits: 0
 --- !u!4 &1712002262
 Transform:
   m_ObjectHideFlags: 0

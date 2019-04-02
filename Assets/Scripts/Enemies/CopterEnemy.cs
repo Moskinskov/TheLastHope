@@ -20,7 +20,9 @@ namespace TheLastHope.Enemies
 		private Renderer[] renderers;
 		private Color _initColor;
 		private Texture _initTexture;
+		private List<Texture> _textures;
 		private Timer timer;
+		private bool _isAlive;
 
 		/// <summary>
 		/// Resets health.
@@ -34,10 +36,15 @@ namespace TheLastHope.Enemies
 										 this.targetPosition.position.z);
 			_weapon.Init();
 			IsActive = true;
+			_isAlive = true;
 			MaxHealth = maxHealth;
 			Health = MaxHealth;
 			renderers = GetComponentsInChildren<Renderer>();
-			_initTexture = renderers[2].material.mainTexture;
+			_textures = new List<Texture>();
+			foreach (Renderer rend in renderers)
+			{
+				if (rend) _textures.Add(rend.material.mainTexture);
+			}
 			Init();
 		}
 
@@ -53,38 +60,41 @@ namespace TheLastHope.Enemies
         /// <param name="deltaTime"></param>
         public override void EnemyUpdate(SceneData sceneData, float deltaTime)
         {
-			if (Health < 0 && IsActive)
+			if (Health < 0 && _isAlive)
 			{
 				Die();
 				sceneData.Props.Insert((sceneData.Props.Count - 2), this.gameObject);
 			}
-			_weapon.WeaponUpdate();
-			timer.TimerUpdate();
-			if (timer.IsEvent()) ChangeTex(false);
-			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
-            {
-				//targetPosition = this.targetPosition;
-				print(targetPosition.name);
-                Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
-                currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
-                gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, currentSpeed);
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
-                                                        gameObject.transform.position.y + currentSpeed.y * deltaTime,
-                                                        gameObject.transform.position.z + currentSpeed.z * deltaTime);
-            }
+			if (_isAlive)
+			{
+				_weapon.WeaponUpdate();
+				timer.TimerUpdate();
+				if (timer.IsEvent()) ChangeTex(false);
+				if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
+				{
+					//targetPosition = this.targetPosition;
+					print(targetPosition.name);
+					Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
+					currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
+					gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, currentSpeed);
+					gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
+															gameObject.transform.position.y + currentSpeed.y * deltaTime,
+															gameObject.transform.position.z + currentSpeed.z * deltaTime);
+				}
 
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _visionDistance, Color.red);
+				Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _visionDistance, Color.red);
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-            {
-                if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance)) _weapon.Fire(sceneData);
-                if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
-                {
-                    this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
-                    Health = 0;
-                    //Tell Destroyer to destroy this enemy;
-                }
-            }
+				if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+				{
+					if ((hit.transform.tag == "Player") && (hit.distance < _visionDistance)) _weapon.Fire(sceneData);
+					if ((hit.distance < _visionDistance) && (hit.transform.gameObject.tag == "Finish"))
+					{
+						this.gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
+						Die();
+						//Tell Destroyer to destroy this enemy;
+					}
+				}
+			}
         }
 
         /// <summary>
@@ -110,7 +120,7 @@ namespace TheLastHope.Enemies
 
 		private void ChangeTex(bool isDamage)
 		{
-			if (isDamage)
+			if (isDamage && IsActive)
 			{
 
 				foreach (Renderer rend in renderers)
@@ -121,29 +131,14 @@ namespace TheLastHope.Enemies
 			}
 			else
 			{
-				foreach (Renderer rend in renderers)
+				for (int i = 0; i < renderers.Length; i++)
 				{
-					rend.material.mainTexture = _initTexture;
+					renderers[i].material.mainTexture = _textures[i];
 				}
 			}
 		}
 
-        //Vector3 GetCurrentSpeed(Vector3 currentSpeed, Vector3 currentAcceleration, float deltaTime)
-        //{
-
-        //    return new Vector3(currentSpeed.x + currentAcceleration.x*deltaTime,
-        //                        currentSpeed.y + currentAcceleration.y*deltaTime,
-        //                        currentSpeed.z + currentAcceleration.z*deltaTime);
-        //}
-
-        //Vector3 GetCurrentAcceleration(GameObject targetPosition, float maxAcceleration)
-        //{
-        //   return new Vector3(targetPosition.transform.position.x - this.transform.position.x,
-        //                      0,
-        //                      targetPosition.transform.position.z - this.transform.position.z).normalized * maxAcceleration;
-        //}
-
-        Vector3 DriftSpeed(SceneData sceneData, float deltaTime)
+		Vector3 DriftSpeed(SceneData sceneData, float deltaTime)
         {
             if (Mathf.Abs(currentDriftingPoint.x - transform.position.x) < driftingRadius / 10 &&
                 Mathf.Abs(currentDriftingPoint.z - transform.position.z) < driftingRadius / 10)
@@ -157,14 +152,25 @@ namespace TheLastHope.Enemies
 
         public override void Die()
         {
-            var _explosion = this.gameObject.transform.GetChild(1);
+			ChangeTex(false);
+			IsActive = false;
+			_isAlive = false;
+			var _explosion = this.gameObject.transform.GetChild(1);
             var _copter = this.gameObject.transform.GetChild(0);
-            _copter.gameObject.SetActive(false);
+            //_copter.gameObject.SetActive(false);
             _explosion.gameObject.SetActive(true);
             this.gameObject.GetComponent<AudioSource>().Play();
 			this.gameObject.GetComponent<Collider>().enabled = false;
 
-			IsActive = false;
+			Rigidbody[] _rigidBodies = this.gameObject.GetComponentsInChildren<Rigidbody>();
+			foreach (Rigidbody rb in _rigidBodies)
+			{
+				rb.isKinematic = false;
+				rb.AddRelativeForce(5, 5, 20, ForceMode.Impulse);
+				rb.AddExplosionForce(3, transform.position, 10);
+				rb.AddRelativeTorque(0, Random.Range(5,10), 0, ForceMode.Impulse);
+			}
+
         }
     }
 }

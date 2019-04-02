@@ -77,7 +77,7 @@ namespace TheLastHope.Management
 			sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
 			sceneData.CurrentState = GameState.Loop;
-            SaveLoadManager.SavePlayer(playerTrain, sceneData.Player);
+            //SaveLoadManager.SavePlayer(playerTrain, sceneData.Player); TEMPORARY OFF.
 		}
 
 		private void trainStuffAdd()

@@ -18438,7 +18438,7 @@ GameObject:
   - component: {fileID: 4934485063181370368}
   - component: {fileID: 4934485063182370496}
   - component: {fileID: 7630740941288193211}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShoulderedPlatform
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -18515,8 +18515,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7630740941288193215}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.6781106, y: 4.44, z: 1.6159999}
   m_Center: {x: 0.17613053, y: 2.06, z: 0}

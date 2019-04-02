@@ -9,7 +9,7 @@ namespace TheLastHope.Management
     {
         string levelToRead = string.Empty;
         string[] level;
-		int levelLength;
+		private int levelLength;
         char divider;
 
         /// <summary>
@@ -17,10 +17,10 @@ namespace TheLastHope.Management
         /// </summary>
         /// <param name="levelToRead">Name of map-file without extension.</param>
         /// <param name="divider">Separator of elements in one string of map.</param>
-        public LevelReader(string levelToRead, char devider)
+        public LevelReader(string levelToRead, char divider)
         {
             this.levelToRead = levelToRead;
-            this.divider = devider;
+            this.divider = divider;
 
             if (File.Exists(levelToRead))
             {
