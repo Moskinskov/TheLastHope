@@ -57,7 +57,7 @@ namespace TheLastHope.Player
 		{
 			Ray ray = new Ray(transform.position, transform.forward);
 			RaycastHit hitInfo = new RaycastHit();
-			Debug.DrawLine(transform.position, transform.forward, Color.red);
+			Debug.DrawLine(transform.position, transform.forward*_raycastDepth, Color.red);
 			if (Physics.Raycast(ray, out hitInfo, _raycastDepth) && hitInfo.collider.isTrigger)
 			{
 				print("I had hit a trigger!");
@@ -65,6 +65,7 @@ namespace TheLastHope.Player
 			}
 			else
 			{
+                //if (Physics.Raycast(ray, out hitInfo, _raycastDepth))print($"I hit {hitInfo.collider.gameObject.name}");
 				return null;
 			}
 		}
