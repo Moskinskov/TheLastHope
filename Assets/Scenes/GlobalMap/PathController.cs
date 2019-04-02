@@ -11,8 +11,6 @@ public class PathController : MonoBehaviour
     [SerializeField] private PointController[] mapsObj;
     [SerializeField] public List<int> road;
 
-	private Color _initColor;
-
     #region Math-Calculate function
     private void generateMatrix()
     {
@@ -114,10 +112,9 @@ public class PathController : MonoBehaviour
     // start - цвет стартовой точки
     public void clearRoad(Color main, Color start)
     {
-		_initColor = new Color(17, 86, 33);
-		for (int i = 1; i < road.Count; i++)
+        for (int i = 0; i < countPoints; i++)
         {
-            mapsObj[road[i]].setColor(main);
+            mapsObj[i].setColor(main);
         }
         mapsObj[startPoint.num].setColor(start);
     }
@@ -126,6 +123,7 @@ public class PathController : MonoBehaviour
     {
         foreach (int p in road)
         {
+            print(p);
             mapsObj[p].setColor(clr);
         }
     }
@@ -157,7 +155,6 @@ public class PathController : MonoBehaviour
         //mapsObj[road[1]].name Имя следующего города
 
     }
-
     public void Init()
     {
         road = new List<int>();
@@ -182,5 +179,6 @@ public class PathController : MonoBehaviour
         }
         BFS();
         generateMatrix();
+        
     }
 }
