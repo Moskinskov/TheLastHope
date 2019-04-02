@@ -27,12 +27,5 @@ namespace TheLastHope.Weapons
             throw new System.NotImplementedException();
         }
 
-        
-        public override void Init()
-        {
-            currentAmmoInClip = _clipSize;
-
-            State = WeaponState.Active;
-        }
     }
 }

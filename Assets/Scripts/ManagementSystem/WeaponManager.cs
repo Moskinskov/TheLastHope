@@ -51,12 +51,13 @@ namespace TheLastHope.Weapons
                 if (Input.GetMouseButtonDown(0))
                 {
                     selectedObj = selector.GetSelectedGameObject();
+                    print($"selected obj = {selectedObj.name}");
                 }
                 if (selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
                     selectedObj.GetComponentInChildren<ATurret>().weapon.State ==  WeaponState.empty)
                 {
                     turretToReload = selectedObj.GetComponentInChildren<ATurret>();
-                    print("TURRET SELECTED");
+                    print($"TURRET SELECTED {selectedObj.name}");
                 }
                 else if (selectedObj && selectedObj.GetComponentInChildren<AAmmoContainer>())
                 {

@@ -35,13 +35,13 @@ namespace TheLastHope.UI {
 			if (!_baseObject) GetComponent<ABaseObject>();
 			_healthBarValue = _baseObject.MaxHealth;
 			_overlay = GetComponentInChildren<UIObjectOverlay>();
-			if (_overlay) print(gameObject.name + " has an overlay!");
+			//if (_overlay) print(gameObject.name + " has an overlay!");
 			_oldHealth = _baseObject.Health;
 
 			if (_baseObject.GetComponentInChildren<AEnemy>()) _currentType = ObjType.Enemy;
 			else if (_baseObject.GetComponentInChildren<ATurret>()) _currentType = ObjType.Turret;
 			else if (_baseObject.GetComponent<MainPlayer>()) _currentType = ObjType.Loco;
-			print("I am " + _baseObject.name + " and my type is " + _currentType);
+			//print("I am " + _baseObject.name + " and my type is " + _currentType);
 			HideOverlay();
 			_timer = new Timer();
 		}
@@ -62,7 +62,7 @@ namespace TheLastHope.UI {
 			if (_baseObject)
 			{
 				_healthBarValue = _baseObject.Health / _baseObject.MaxHealth;
-				print("Buggy Health is " + _healthBarValue);
+				//print("Buggy Health is " + _healthBarValue);
 				_overlay.CurrentHealth = _healthBarValue;
 			}
 		}

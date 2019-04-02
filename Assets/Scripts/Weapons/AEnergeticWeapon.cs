@@ -14,7 +14,7 @@ namespace TheLastHope.Weapons
         protected float _coreCurrentCharge;                   //current level of charge
         protected float _coreMinActiveEnergy;                 //min energy for using laser
         protected float _coreMaxRange;						  //maximal range of the weapon
-        [SerializeField] int clipSize;
+        //[SerializeField] int clipSize;
         //----------------------------------------------------------------------------------------------------//
         //protected bool _usingLaser;
         //protected bool _isLoadEnergy = true;
@@ -48,7 +48,7 @@ namespace TheLastHope.Weapons
         {
             if (_timerEndOfFire.IsEvent())
             {
-                //State = WeaponState.Inactive;
+                State = WeaponState.Active;
             }
 
             if (State != WeaponState.Active)
@@ -60,21 +60,20 @@ namespace TheLastHope.Weapons
             if (currentAmmoInClip <= 0)
             {
                 _coreCurrentCharge = 0;
-                //State = WeaponState.empty;
+                State = WeaponState.empty;
             }
 
             if (_coreCurrentCharge > _coreEnergyCapacity)
                 _coreCurrentCharge = _coreEnergyCapacity;
 
             if (State == WeaponState.empty && _coreCurrentCharge > 0)
-                //State = WeaponState.Inactive
-                ;
+                State = WeaponState.Inactive;
         }
         public override void Reload(int ammoQuantity)
         {
             currentAmmoInClip = ammoQuantity;
             _coreCurrentCharge = ammoQuantity;
-            //State = WeaponState.Inactive;
+            State = WeaponState.Inactive;
             _timerEndOfFire.Start(_reloadTime);
         }
     }

@@ -328,20 +328,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: a0dcffffa4dcffffacdcfffff4dcfffffadcffff10e0ffffccfbffff
+      m_SelectedIDs: 729ff0ff
+      m_LastClickedID: -1007758
+      m_ExpandedIDs: 78acf1ff82acf1ff7ab6f1ff92b6f1ff98b6f1ff86b9f1ff9c36f2ffa636f2ff9e40f2ffb640f2ffbc40f2ffaa43f2ffccbcf2ffd6bcf2ffcec6f2ffe6c6f2ffecc6f2ffdac9f2fffa0ff3ff0410f3fffc19f3ff141af3ff1a1af3ff081df3fffcb4f3ff06b5f3ffe6bff3fffebff3ff04c0f3fff2c2f3ffe6acf4fff0acf4ffd0b7f4ffe8b7f4ffeeb7f4ffdcbaf4ff22ecf5ff2cecf5ff0aedf5ff14edf5ff12f7f5ff18f7f5ff24f7f5ff2af7f5ff18faf5ffaad7f6ffb4d7f6ff9ce3f6ffa8e3f6ffaee3f6ff9ce6f6ff34d8f7ff3ed8f7ff42e2f7ff4ee2f7ff54e2f7ff42e5f7ffa24af8ffb64af8ffc04af8ffc64af8ff7a4ff8ff08abf8ff1cabf8ff26abf8ff2cabf8ffe0aff8ffb0e9f8ffc4e9f8ffcee9f8ffd4e9f8ff88eef8ff7c54f9ff9054f9ff9a54f9ffa054f9ff5459f9ff5696faff6a96faff7496faff7a96faff2e9bfaffc887fbffdc87fbffe687fbffec87fbffa08cfbffa80efcffbc0efcffc60efcffcc0efcff8013fcffd411fdffe811fdfff211fdfff811fdffac16fdffccfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Oil barrel
-        m_OriginalName: Oil barrel
+        m_Name: MachineGun(Clone)
+        m_OriginalName: MachineGun(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 23950
+        m_UserData: -847868
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -386,9 +386,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -12.989742, y: 2.7618299, z: 7.1475825}
+    m_Target: {x: -3.407971, y: 4.241538, z: 0.3640033}
     speed: 2
-    m_Value: {x: -12.989742, y: 2.7618299, z: 7.1475825}
+    m_Value: {x: -3.407971, y: 4.241538, z: 0.3640033}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -420,15 +420,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 28.27128
+    m_Target: 15.92197
     speed: 2
-    m_Value: 28.27128
+    m_Value: 15.92197
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: 0.28103063, y: 0.052656665, z: -0.015444785, w: 0.9581287}
+  m_LastSceneViewRotation: {x: 0.25591394, y: 0.5318763, z: -0.17261256, w: 0.78855604}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -552,19 +552,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Prefabs/Weapons/Ranged Weapons/NewOnes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Prefabs/Weapons/Ranged Weapons/NewOnes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\OneDrive\Projects\Unity\Local\The Last Hope\thelasthope
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 547}
-    m_SelectedIDs: ca300000
-    m_LastClickedID: 12490
+    scrollPos: {x: 0, y: 531}
+    m_SelectedIDs: da310000
+    m_LastClickedID: 12762
     m_ExpandedIDs: 00000000942b0000bc300000b03100001c320000dc32000010330000aa3300001e340000e8340000263500002e350000d635000024370000ac3700002c3900005a3900005e39000074390000485100004a5100004c5100004e5100005051000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -618,8 +618,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: d6acf4ff
+    m_LastClickedInstanceID: -742186
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300000a910000
     m_RenameOverlay:

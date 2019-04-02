@@ -73,7 +73,7 @@ namespace TheLastHope.Enemies
 				if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
 				{
 					//targetPosition = this.targetPosition;
-					print(targetPosition.name);
+					//print(targetPosition.name);
 					Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
 					currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
 					gameObject.transform.rotation *= Quaternion.FromToRotation(gameObject.transform.forward, currentSpeed);

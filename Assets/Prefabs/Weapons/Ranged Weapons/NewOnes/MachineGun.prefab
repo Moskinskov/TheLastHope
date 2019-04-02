@@ -182,11 +182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4f57952b954384092de7f8af3daf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfAmmo: 0
+  currentAmmoInClip: 0
+  clipSize: 15
   _rateOfFire: 0.05
   _shootingRange: 15
   _reloadTime: 1
   _force: 100
-  _clipSize: 50
   _canChangeFiringMode: 0
   _currentFiringMode: 0
   _firingModesAvailable: 
