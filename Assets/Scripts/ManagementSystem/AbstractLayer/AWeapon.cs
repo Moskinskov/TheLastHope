@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TheLastHope.Management.Data;
 using UnityEngine;
-using TheLastHope.Management.Data;
 
 namespace TheLastHope.Management.AbstractLayer
 {
     public abstract class AWeapon : MonoBehaviour
     {
-		public bool IsActive { get; set; }
-		public abstract void Fire(SceneData sceneData);
-		public abstract void WeaponUpdate();
-		public abstract void Init();
+        public AmmoType TypeOfAmmo { get; set; }
+        public WeaponState State { get; set; }
+
+        public abstract void Fire(SceneData sceneData);
+        public abstract void Reload(int ammoQuantity);
+        public abstract void WeaponUpdate();
+        public abstract void Init();
     }
 }
 

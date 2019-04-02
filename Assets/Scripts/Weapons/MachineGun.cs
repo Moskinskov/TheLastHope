@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
-using TheLastHope.Management.AbstractLayer;
+using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
-	public sealed class MachineGun : ARangedWeapon
-	{
+    public sealed class MachineGun : ARangedWeapon
+    {
         /// <summary>
         ///  Класс MachineGun
         ///  реализует подобие стрельбы из крупнокалиберного пулемета. Основной принцип большая
@@ -16,17 +14,26 @@ namespace TheLastHope.Weapons
         /// </summary>
         public override void Shot(SceneData sceneData)
         {
-            
+
             AAmmo _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
-			sceneData.Ammos.Add(_bullet.gameObject);
-			_bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
+            sceneData.Ammos.Add(_bullet.gameObject);
+            _bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
             var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
             _bulletRigidBody.AddForce(Muzzle.forward * Force);
         }
 
         public override void SwitchFiringMode()
-		{
-			throw new System.NotImplementedException();
-		}
-	}
+        {
+            throw new System.NotImplementedException();
+        }
+
+        
+        public override void Init()
+        {
+            _currentAmmoInClip = _clipSize;
+
+            State = WeaponState.Inactive;
+            TypeOfAmmo = AmmoType.M792HEI_T;
+        }
+    }
 }

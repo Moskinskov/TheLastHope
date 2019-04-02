@@ -9,7 +9,7 @@ namespace TheLastHope.Management.Data
         /// <summary>
         /// For machinegun
         /// </summary>
-        SimpleBullet,
+        M792HEI_T,
         /// <summary>
         /// For shotgun
         /// </summary>
@@ -17,11 +17,11 @@ namespace TheLastHope.Management.Data
         /// <summary>
         /// For energy weapon
         /// </summary>
-        Battery,
+        Energy,      
         /// <summary>
         /// For Big Cannon
         /// </summary>
-        SeriousAmmo
+        ADM401_84mms
 
     }
 }
