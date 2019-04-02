@@ -6,7 +6,15 @@ using TheLastHope.UI;
 
 namespace TheLastHope.Management.Data
 {
-    public class SceneData
+
+	/// <summary>
+	/// Data of the scene.
+	/// </summary>
+	/// <remarks>
+	/// All the data needed to organize the scene and the game loop.
+	/// </remarks>
+
+	public class SceneData
 	{
 		private List<GameObject> props = new List<GameObject>();
 		private List<GameObject> enemies = new List<GameObject>();

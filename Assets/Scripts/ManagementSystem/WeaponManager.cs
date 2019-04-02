@@ -79,7 +79,7 @@ namespace TheLastHope.Weapons
                     {
                         print("R2");
                         int ammoToReload = 0;
-                        ammoContainers.ToArray()[0].ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out ammoToReload);
+                        ammoContainers.ToArray()[0].Ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out ammoToReload);
                         turret.Weapon.Reload(ammoToReload);
                         turret.Weapon.State = WeaponState.Active;
                     }

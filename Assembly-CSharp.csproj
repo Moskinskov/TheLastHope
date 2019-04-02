@@ -60,59 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineBlendListCamera.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineBrain.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineClearShot.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineCollider.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineConfiner.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineDollyCart.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineExternalCamera.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineFollowZoom.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineFreeLook.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineMixingCamera.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachinePath.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachinePipeline.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineSmoother.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineSmoothPath.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineStateDrivenCamera.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineTargetGroup.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Behaviours\CinemachineVirtualCamera.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineBasicMultiChannelPerlin.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineComposer.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineFramingTransposer.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineGroupComposer.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineHardLockToTarget.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineHardLookAt.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineOrbitalTransposer.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachinePOV.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineSameAsFollowObject.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineTrackedDolly.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Components\CinemachineTransposer.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\AxisState.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CameraState.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineBlend.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineBlenderSettings.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineComponentBase.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineCore.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineDebugLogger.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineExtension.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachinePathBase.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachinePropertyAttribute.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\CinemachineVirtualCameraBase.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\GaussianFilter.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\ICinemachineCamera.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\ICinemachineComponent.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\LensSettings.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\NoiseSettings.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\Predictor.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\ReflectionHelpers.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\SplineHelpers.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Base\Runtime\Core\UnityVectorExtensions.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\PostFX\CinemachinePostFX.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\PostFX\CinemachinePostProcessing.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Timeline\CinemachineMixer.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Timeline\CinemachineShot.cs" />
-    <Compile Include="Assets\Effects\Cinemachine\Timeline\CinemachineTrack.cs" />
+    <Compile Include="Assets\CursorsAndCrosshairs\CursorChanger.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
@@ -172,11 +120,6 @@
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\HippoSkill\ASkill.cs" />
-    <Compile Include="Assets\HippoSkill\HippoSkill1.cs" />
-    <Compile Include="Assets\HippoSkill\SimpleRocket.cs" />
-    <Compile Include="Assets\HippoSkill\SkillManager.cs" />
-    <Compile Include="Assets\HippoSkill\UltimateWeapon.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapManager.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PathController.cs" />
@@ -184,6 +127,7 @@
     <Compile Include="Assets\Scenes\GlobalMap\UiController.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\Ammo\SimpleEnemyBullet.cs" />
+    <Compile Include="Assets\Scripts\Ammo\SimpleRocket.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Carriage.cs" />
@@ -215,16 +159,19 @@
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ACarriage.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ADestroyer.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEnemy.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEnergeticWeapon.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEvent.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AGenerator.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AHardware.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ARail.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ARangedWeapon.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ASkill.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ASoftware.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ATrigger.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ATurret.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AWeapon.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AWorldMover.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\BaseObject.cs" />
-    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\old_ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\AmmoType.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\FiringMode.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\GameState.cs" />
@@ -248,6 +195,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\RenderManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Selector.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\SkillManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\TrainManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\TriggerManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\UIManager.cs" />
@@ -260,12 +208,9 @@
     <Compile Include="Assets\Scripts\Tests\Inventory.cs" />
     <Compile Include="Assets\Scripts\Tests\InventoryElement.cs" />
     <Compile Include="Assets\Scripts\Tests\SingletonTest.cs" />
-    <Compile Include="Assets\Scripts\TODO\BasicAutoWeapon.cs" />
     <Compile Include="Assets\Scripts\Triggers\TriggerEndMap.cs" />
     <Compile Include="Assets\Scripts\Triggers\TriggerEnemyGen.cs" />
     <Compile Include="Assets\Scripts\UI\UIObjectOverlay.cs" />
-    <Compile Include="Assets\Scripts\Weapons\AEnergeticWeapon.cs" />
-    <Compile Include="Assets\Scripts\Weapons\ARangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\BasicTurret.cs" />
     <Compile Include="Assets\Scripts\Weapons\ElectroGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\FlameThrower.cs" />
@@ -274,18 +219,17 @@
     <Compile Include="Assets\Scripts\Weapons\MachineGun.cs" />
     <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
     <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
-    <Compile Include="Assets\Scripts\Weapons\Software\ASoftware.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\AutoAndManualSoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\BasicEnemySoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\ManualControlSoft.cs" />
     <Compile Include="Assets\Scripts\Weapons\Software\PrimitiveControlSoft.cs" />
+    <Compile Include="Assets\Scripts\Weapons\UltimateWeapon.cs" />
     <Compile Include="Assets\Scripts\Workers\CursorSetter.cs" />
+    <Compile Include="Assets\Scripts\Workers\HippoSkill1.cs" />
     <Compile Include="Assets\Scripts\Workers\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Workers\UIOverlayController.cs" />
     <Compile Include="Assets\Scripts\WorldMovement.cs" />
     <Compile Include="Assets\Starter.cs" />
-    <Compile Include="Assets\Turrel\Scripts\BulletController.cs" />
-    <Compile Include="Assets\Turrel\Scripts\TurretController.cs" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\Effects\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
@@ -319,16 +263,14 @@
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
     <None Include="Assets\Effects\JMO Assets\WarFX\Shaders\WFX_S Particle Add A8.shader" />
     <None Include="Assets\Effects\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
-    <None Include="Assets\Effects\Cinemachine\ReleaseNotes.txt" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\Effects\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
-    <None Include="Assets\Laser\laserShader 1.shader" />
     <None Include="Assets\Effects\JMO Assets\WarFX\_Effects (Mobile)\MuzzleFlashes\!MuzzleFlash Differences.txt" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Common.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\Scenes\LvlName.txt" />
     <None Include="Assets\Effects\PostProcessing\Editor Resources\UI\Trackball.shader" />
-    <None Include="Assets\Laser\laserShader.shader" />
+    <None Include="Assets\Effects\Laser\laserShader.shader" />
     <None Include="Assets\Maps\README.txt" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\TAA.shader" />
@@ -550,9 +492,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.4f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="Substance.Game">
-      <HintPath>D:/sm1else/Documents/Limerence/Repo/Assets/Plugins/Substance.Game.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

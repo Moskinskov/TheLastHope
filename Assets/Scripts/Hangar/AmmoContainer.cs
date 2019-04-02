@@ -13,19 +13,19 @@ namespace TheLastHope.Hangar
         public override void Init()
         {
             currentCapacity = maxCapacity;
-            ammo = new Dictionary<AmmoType, int>();
+            Ammo = new Dictionary<AmmoType, int>();
 
-            ammoSize = new Dictionary<AmmoType, int>()
+            AmmoSize = new Dictionary<AmmoType, int>()
             {
                 [AmmoType.ADM401_84mms] = 25,
                 [AmmoType.Energy] = 25,
                 [AmmoType.M792HEI_T] = 1,
                 [AmmoType.Shotgun] = 5
             };
-            ammo[AmmoType.ADM401_84mms] = 30;
-            ammo[AmmoType.Energy] = 30;
-            ammo[AmmoType.M792HEI_T] = 700;
-            ammo[AmmoType.Shotgun] = 200;
+            Ammo[AmmoType.ADM401_84mms] = 30;
+            Ammo[AmmoType.Energy] = 30;
+            Ammo[AmmoType.M792HEI_T] = 700;
+            Ammo[AmmoType.Shotgun] = 200;
         }
 
         /// <summary>
@@ -35,15 +35,15 @@ namespace TheLastHope.Hangar
         /// <param name="amount">how many add</param>
         public void AddAmmo(AmmoType type, int amount)
         {
-            if (amount * ammoSize[type] >= currentCapacity)
+            if (amount * AmmoSize[type] >= currentCapacity)
             {
-                ammo[type] += currentCapacity / ammoSize[type];
-                currentCapacity -= (currentCapacity / ammoSize[type]) * ammoSize[type];   //for example: (19 / 5) * 5 = (3) * 5 = 15
+                Ammo[type] += currentCapacity / AmmoSize[type];
+                currentCapacity -= (currentCapacity / AmmoSize[type]) * AmmoSize[type];   //for example: (19 / 5) * 5 = (3) * 5 = 15
             }
             else
             {
-                ammo[type] += amount ;
-                currentCapacity -= amount * ammoSize[type];
+                Ammo[type] += amount ;
+                currentCapacity -= amount * AmmoSize[type];
             }
         }
 
@@ -56,10 +56,10 @@ namespace TheLastHope.Hangar
         public override bool GetAmmo(AmmoType type, int amount)
         {
             print($"TYPE: {type.ToString()}");
-            if (ammo[type] >= amount)
+            if (Ammo[type] >= amount)
             {
-                ammo[type] -= amount;
-                currentCapacity += amount * ammoSize[type];
+                Ammo[type] -= amount;
+                currentCapacity += amount * AmmoSize[type];
                 return true;
             }
             else

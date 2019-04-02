@@ -5,21 +5,50 @@ using TheLastHope.Management.Data;
 
 namespace TheLastHope.Management.AbstractLayer
 {
-    public abstract class AAmmoContainer : MonoBehaviour
+	/// <summary>
+	/// Abstract ammunition container class.
+	/// </summary>
+	/// <remarks>
+	/// Use this class to create new boxes for ammunition storage.
+	/// </remarks>
+
+	public abstract class AAmmoContainer : MonoBehaviour
     {
-        public Dictionary<AmmoType, int> ammo;
-        protected Dictionary<AmmoType, int> ammoSize;
+		#region Private variables
+		/// <summary>
+		/// Type and quantity of ammunition stored.
+		/// </summary>
+		private Dictionary<AmmoType, int> ammo;
+		/// <summary>
+		/// Slots quantity that the ammunition type occupies.
+		/// </summary>
+		private Dictionary<AmmoType, int> ammoSize;
+		#endregion
 
-        public virtual void Init()
+		#region Public properties
+		public Dictionary<AmmoType, int> Ammo { get => ammo; set => ammo = value; }
+		public Dictionary<AmmoType, int> AmmoSize { get => ammoSize; set => ammoSize = value; }
+		#endregion
+
+		#region Abstracts methods
+		/// <summary>
+		/// Ammunition container initialization.
+		/// </summary>
+		public abstract void Init();
+		#endregion
+
+		#region Virtual methods
+		/// <summary>
+		/// Method that checks whether the amount of selected type
+		/// is enough for the action (e.g. Reload).
+		/// </summary>
+		/// <param name="type"> Type of ammunition being checked.</param>
+		/// <param name="amount"> Quantity of ammunition being checked.</param>
+		public virtual bool GetAmmo(AmmoType type, int amount)
         {
-
-        }
-
-        public virtual bool GetAmmo(AmmoType type, int amount)
-        {
-            if(ammo[type] >= amount)
+            if(Ammo[type] >= amount)
             {
-                ammo[type] -= amount;
+                Ammo[type] -= amount;
                 return true;
             }
             else
@@ -27,6 +56,7 @@ namespace TheLastHope.Management.AbstractLayer
                 return false;
             }
         }
-    }
+		#endregion
+	}
 }
 

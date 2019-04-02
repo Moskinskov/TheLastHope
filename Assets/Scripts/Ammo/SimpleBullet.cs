@@ -10,7 +10,7 @@ namespace TheLastHope.Ammo
         public override void OnPopulate()
         {
             throw new System.NotImplementedException();
-        }
+		}
 
         public override void OnDepopulate()
         {

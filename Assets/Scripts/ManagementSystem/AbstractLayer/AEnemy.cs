@@ -11,9 +11,7 @@ namespace TheLastHope.Management.AbstractLayer
         internal Vector3 currentSpeed;
         [SerializeField] internal float maxAcceleration;
         internal Vector3 currentAcceleration;
-        //[SerializeField]
 		internal Transform target;        //Object to which enemy must shoot
-        //[SerializeField]
 		internal Transform targetPosition; //Place where enemy must be.
         [SerializeField] internal float driftingRadius;
 		[SerializeField] internal float maxHealth;

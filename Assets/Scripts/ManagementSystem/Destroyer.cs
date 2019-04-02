@@ -14,10 +14,18 @@ class Destroyer : ADestroyer
     /// <param name="sceneData"></param>
     public override void Destroy(SceneData sceneData)
     {
-        DestroyInList(sceneData.Props);
-        DestroyInList(sceneData.Rails);
-        DestroyDeadEnemiesInList(sceneData.Enemies);
-        //DestroyFinishedAmmoInList(sceneData.Ammos);
+		/// <summary>
+		/// Destroys props.
+		/// </summary>
+		DestroyInList(sceneData.Props);
+		/// <summary>
+		/// Destroys rails.
+		/// </summary>
+		DestroyInList(sceneData.Rails);
+		/// <summary>
+		/// Destroys enemies.
+		/// </summary>
+		DestroyDeadEnemiesInList(sceneData.Enemies);
     }
 
     void DestroyInList(List<GameObject> list)
