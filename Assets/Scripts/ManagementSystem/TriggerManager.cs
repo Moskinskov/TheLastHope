@@ -30,10 +30,11 @@ namespace TheLastHope.Management
             switch (trigger.Type)
             {
                 case TriggerType.EndGame:
-					sceneData.CurrentState = GameState.Win;
+                    print("EndGame!");
+                    sceneData.CurrentState = GameState.Win;
                     break;
                 case TriggerType.GenerateEnemy:
-                    print("EnemyGen");
+
                     genMan.GenerateDynamicFromTrigger(trigger.EnemiesNames, sceneData, trigger.Pattern);
                     break;
             }

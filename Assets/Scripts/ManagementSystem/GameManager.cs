@@ -9,6 +9,7 @@ using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 using System;
 using TheLastHope.Hangar;
+using UnityEngine.SceneManagement;
 
 namespace TheLastHope.Management
 {
@@ -109,6 +110,10 @@ namespace TheLastHope.Management
 					skillManager.SkillUpdate(sceneData);
 				}
 				pathCounter.CountLenght(sceneData, Time.deltaTime);
+                foreach(var trigger in sceneData.Triggers)
+                {
+                    print($"T {trigger.name}");
+                }
 				triggerManager.ExecuteCurrentEvents(sceneData);
 				//******************************************//
 				//Temp Progress Bar
@@ -190,10 +195,11 @@ namespace TheLastHope.Management
 		
 		public void StartOver()
 		{
-			Application.LoadLevel("MainScene");
-		}
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
 
-		public void Exit()
+        public void Exit()
 		{
 			Application.Quit();
 		}
