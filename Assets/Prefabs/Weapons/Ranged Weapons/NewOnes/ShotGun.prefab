@@ -5505,6 +5505,7 @@ GameObject:
   - component: {fileID: 781536412}
   - component: {fileID: 781536414}
   - component: {fileID: 781536413}
+  - component: {fileID: 1548506419275710473}
   m_Layer: 5
   m_Name: ShotGun
   m_TagString: Player
@@ -5556,6 +5557,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _showOnDamage: 1
   _showTime: 2
+--- !u!114 &1548506419275710473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781536411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2436e984d4c309945aa493726d56d935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typePosition: 0
+  sprite: {fileID: 21300000, guid: ce96eb82960ba6c47978d0c10d2471d1, type: 3}
 --- !u!1 &790381785
 GameObject:
   m_ObjectHideFlags: 0
@@ -6842,6 +6857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444040289}
     m_Modifications:
+    - target: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
+      propertyPath: m_Name
+      value: smoke_thick
+      objectReference: {fileID: 0}
     - target: {fileID: 4105057708622760, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6885,10 +6904,6 @@ PrefabInstance:
     - target: {fileID: 4105057708622760, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
-      propertyPath: m_Name
-      value: smoke_thick
       objectReference: {fileID: 0}
     - target: {fileID: 1616531522783736, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_IsActive

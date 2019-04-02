@@ -86,8 +86,8 @@ namespace TheLastHope.UI {
 
 		public void ShowOverlay()
 		{
-			if (_currentType == ObjType.Enemy) _overlay.ShowOverlay(true, true);
-			else if (_currentType == ObjType.Loco) _overlay.ShowOverlay(true, true);
+            if (_currentType == ObjType.Enemy) _overlay.ShowOverlay(true, true);
+            else if (_currentType == ObjType.Loco) ;// _overlay.ShowOverlay(true, true);
 			else if (_currentType == ObjType.Turret)
 			{
 				if (_baseObject.GetComponentInChildren<ATurret>().soft.canBeManual) _overlay.ShowOverlay(true, true, true);
@@ -97,8 +97,8 @@ namespace TheLastHope.UI {
 
 		public void HideOverlay()
 		{
-			if (_overlay) _overlay.HideOverlay();
-			else print("Overlay not found!");
+			//if (_overlay) _overlay.HideOverlay();
+			//else print("Overlay not found!");
 		}
 
 		public void ControlButton()

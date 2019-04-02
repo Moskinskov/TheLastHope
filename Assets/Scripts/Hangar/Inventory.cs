@@ -20,7 +20,7 @@ namespace TheLastHope.Hangar
             }
         } 
 
-        void Start()
+        public void Init()
         {
             for (int i = 0; i < transform.childCount; i++)
             {

@@ -7,9 +7,9 @@ namespace TheLastHope.Hangar
 {
     public class PositionController : MonoBehaviour
     {
-        [HideInInspector]public List<GameObject> itemsOnCarriage;
-        [HideInInspector]public List<GameObject> squareSlots;
-        void Start()
+        [HideInInspector] public List<GameObject> itemsOnCarriage;
+        [HideInInspector] public List<GameObject> squareSlots;
+        public void Init()
         {
             itemsOnCarriage = new List<GameObject>();
             squareSlots = new List<GameObject>();
@@ -25,6 +25,7 @@ namespace TheLastHope.Hangar
         /// </summary>
         private void InitSlots()
         {
+            print($"name {HangarData.instance.currentCarriage.name}");
             for (int i = 0; i < HangarData.instance.currentCarriage.squareTypeCount; i++)
             {
                 GameObject slot = new GameObject() { name = $"Slot_{i}" };
@@ -38,7 +39,7 @@ namespace TheLastHope.Hangar
                 slot.AddComponent<Image>();
                 slot.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);                        //white color with 50% alpha channel
                 slot.GetComponent<Image>().enabled = false;
-                slot.transform.parent = transform;
+                slot.transform.SetParent(transform);
                 squareSlots.Add(slot);
             }
         }

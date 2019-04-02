@@ -8,6 +8,7 @@ using TheLastHope.Player;
 using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 using System;
+using TheLastHope.Hangar;
 
 namespace TheLastHope.Management
 {
@@ -41,6 +42,8 @@ namespace TheLastHope.Management
         GameObject playerTrain;
         [SerializeField] int credits;
         Player player;
+        [SerializeField] HangarData hangar;
+        [SerializeField] GameObject panelHangar;
 
         // Start is called before the first frame update
         void Start()
@@ -61,10 +64,9 @@ namespace TheLastHope.Management
             sceneData.Player = player;
             worldMover.SetupMover(sceneData);
             generatorManager.Init(sceneData);
-            weaponController.Init(sceneData);
             renderManager.Init();
             triggerManager.Init(generatorManager);
-			uiManager.Init(sceneData);
+            hangar.Init(sceneData);
 
 			trainStuffAdd();
             if (skillManager != null)
@@ -74,9 +76,10 @@ namespace TheLastHope.Management
             pathCounter.Init(sceneData);
 			sceneData.LinesOverall = generatorManager.LevelLenght;
             GenerateFirstArea();
-			sceneData.CurrentState = GameState.Start;
+			//sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
-			sceneData.CurrentState = GameState.Loop;
+            sceneData.CurrentState = GameState.Wait;
+			//sceneData.CurrentState = GameState.Loop;
             //SaveLoadManager.SavePlayer(playerTrain, sceneData.Player); TEMPORARY OFF.
 		}
 
@@ -99,7 +102,7 @@ namespace TheLastHope.Management
 				generatorManager.UpdateGenerators(sceneData);
 				weaponController.UpdateWeapons(sceneData, Time.deltaTime);
 				renderManager.UpdateRender(sceneData);
-				uiManager.UIUpdate(sceneData, pathCounter);
+				//uiManager.UIUpdate(sceneData, pathCounter);
 				if (skillManager != null)
 				{
 					skillManager.SkillUpdate(sceneData);
@@ -110,26 +113,54 @@ namespace TheLastHope.Management
 				//Temp Progress Bar
 				//******************************************//
                 trainManager.UpdateTrain(sceneData);
-			}
+                foreach (var enemy in sceneData.Enemies)
+                {
+                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                }
+
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
+            }
 
 			else if (sceneData.CurrentState == GameState.Lose)
 			{
 				EndGame(false, sceneData);
 				generatorManager.UpdateGenerators(sceneData);
-			}
+                foreach (var enemy in sceneData.Enemies)
+                {
+                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                }
+
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
+            }
 			else if (sceneData.CurrentState == GameState.Win)
 			{
 				EndGame(true, sceneData);
-			}
+                foreach (var enemy in sceneData.Enemies)
+                {
+                    enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                }
 
-            foreach (var enemy in sceneData.Enemies)
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
+            }
+            else if (sceneData.CurrentState == GameState.Start)
             {
-                enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
+                panelHangar.SetActive(false);
+                weaponController.Init(sceneData);
+                //uiManager.Init(sceneData);
+                sceneData.CurrentState = GameState.Loop;
+            }
+            else if (sceneData.CurrentState == GameState.Wait)
+            {
+                panelHangar.SetActive(true);
             }
 
-            destroyer.Destroy(sceneData);
-            worldMover.MoveWorld(sceneData, Time.deltaTime);
-            mainPlayer.UpdatePlayer(sceneData);
+
         }
 
         void EndGame(bool win, SceneData sceneData)
@@ -173,6 +204,11 @@ namespace TheLastHope.Management
                 worldMover.MoveWorld(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
                 pathCounter.CountLenght(sceneData, sceneData.LineLength / sceneData.TrainSpeed);
             }
+        }
+
+        public void RunScene()
+        {
+            sceneData.CurrentState = GameState.Start;
         }
     }
 }

@@ -1963,6 +1963,7 @@ GameObject:
   - component: {fileID: 1693933319}
   - component: {fileID: 1693933321}
   - component: {fileID: 1693933320}
+  - component: {fileID: 4161636680350516662}
   m_Layer: 5
   m_Name: Cannon
   m_TagString: Player
@@ -2111,6 +2112,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _showOnDamage: 1
   _showTime: 2
+--- !u!114 &4161636680350516662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693933317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2436e984d4c309945aa493726d56d935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typePosition: 0
+  sprite: {fileID: 21300000, guid: ce96eb82960ba6c47978d0c10d2471d1, type: 3}
 --- !u!1 &1723544642
 GameObject:
   m_ObjectHideFlags: 0

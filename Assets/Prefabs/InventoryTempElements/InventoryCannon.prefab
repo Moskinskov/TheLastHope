@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9083803997189842759
+--- !u!1 &4863336639038135717
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4738043894336835310}
-  - component: {fileID: 7778859009838473512}
-  - component: {fileID: 6992975798826629121}
-  - component: {fileID: 49823332194647697}
-  - component: {fileID: 81693116908240289}
+  - component: {fileID: 8984334554242446348}
+  - component: {fileID: 6240338109439957962}
+  - component: {fileID: 6656926135176282851}
+  - component: {fileID: 4458334322863654003}
+  - component: {fileID: 4344871966154180419}
   m_Layer: 0
   m_Name: InventoryCannon
   m_TagString: Untagged
@@ -20,13 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4738043894336835310
+--- !u!224 &8984334554242446348
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083803997189842759}
+  m_GameObject: {fileID: 4863336639038135717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.41730633}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39,35 +39,35 @@ RectTransform:
   m_AnchoredPosition: {x: -6.906474, y: 3.5032628}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7778859009838473512
+--- !u!114 &6240338109439957962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083803997189842759}
+  m_GameObject: {fileID: 4863336639038135717}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9597396ec555a45b6e8114d4feecb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hw: {fileID: 3516269878809528101, guid: 48f78a01459e02f4ca34a6a9c6aa7c38, type: 3}
+  hw: {fileID: 1693933317, guid: e8e4488ed571fa44eb6c6232f47cfd63, type: 3}
   controller: {fileID: 0}
---- !u!222 &6992975798826629121
+--- !u!222 &6656926135176282851
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083803997189842759}
+  m_GameObject: {fileID: 4863336639038135717}
   m_CullTransparentMesh: 0
---- !u!114 &49823332194647697
+--- !u!114 &4458334322863654003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083803997189842759}
+  m_GameObject: {fileID: 4863336639038135717}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -90,13 +90,13 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!225 &81693116908240289
+--- !u!225 &4344871966154180419
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083803997189842759}
+  m_GameObject: {fileID: 4863336639038135717}
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
