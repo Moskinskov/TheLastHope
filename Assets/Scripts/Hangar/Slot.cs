@@ -23,18 +23,13 @@ namespace TheLastHope.Hangar
             {
                 if (isInventory && !Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                 {
-                    HangarData.instance.currentCarrage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
+                    HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
                 }
                 else if (!Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                 {
-<<<<<<< HEAD
                     HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
                     HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
-=======
-                    HangarData.instance.currentCarrage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
-                    HangarData.instance.currentCarrage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
                     Item.itemBeingDragged.transform.SetParent(transform);
->>>>>>> 9f181e9... Merge branch 'trit' of https://bitbucket.org/sm1else/thelasthope into sm1else
                 }
                 if (!isInventory && Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                 {

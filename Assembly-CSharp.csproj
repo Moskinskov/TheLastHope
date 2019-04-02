@@ -178,6 +178,7 @@
     <Compile Include="Assets\HippoSkill\SkillManager.cs" />
     <Compile Include="Assets\HippoSkill\UltimateWeapon.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\MapController.cs" />
+    <Compile Include="Assets\Scenes\GlobalMap\MapManager.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PathController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\PointController.cs" />
     <Compile Include="Assets\Scenes\GlobalMap\UiController.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ACarriage.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ADestroyer.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEnemy.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AEvent.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AGenerator.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\AHardware.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\AbstractLayer\ARail.cs" />
@@ -232,7 +234,9 @@
     <Compile Include="Assets\Scripts\ManagementSystem\Data\SceneData.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\TriggerType.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\TurnSide.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\Data\WeaponState.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Destroyer.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\EventManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\GameManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\GeneratorManager.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\InputManager.cs" />

@@ -82,7 +82,7 @@ namespace TheLastHope.Weapons
         public override void WeaponUpdate()
         {
             if (_muzzleFlash) _muzzleFlash.SetActive(false);
-            _delay.Update();
+            _delay.TimerUpdate();
         }
         public override void Reload(int ammoQuantity)
         {

@@ -62,8 +62,6 @@ namespace TheLastHope.Weapons
 
         public override void Fire(SceneData sceneData)
         {
-            if (!_isLoadEnergy) return;
-            _usingLaser = false;
             _timerEndOfFire.Start(0.005f);
 			if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
 			{
@@ -129,13 +127,7 @@ namespace TheLastHope.Weapons
 
         protected override void LocalChecks()
         {
-            if (!_usingLaser)
-            {
-                if (!_laserEffect.isStopped)
-                    _laserEffect.Stop();
-                if (_laserAudioSource.isPlaying)
-                    _laserAudioSource.Stop();
-            }
+
         }
 
 		private IEnumerator Effect(float waitTime, RaycastHit hit)

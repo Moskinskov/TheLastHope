@@ -117,11 +117,7 @@ public class PathController : MonoBehaviour
 		_initColor = new Color(17, 86, 33);
 		for (int i = 1; i < road.Count; i++)
         {
-<<<<<<< HEAD
-            mapsObj[road[i]].setColor(_initColor);
-=======
             mapsObj[road[i]].setColor(main);
->>>>>>> MakeMap
         }
         mapsObj[startPoint.num].setColor(start);
     }
@@ -161,11 +157,8 @@ public class PathController : MonoBehaviour
         //mapsObj[road[1]].name Имя следующего города
 
     }
-<<<<<<< HEAD
-    void Start()
-=======
+
     public void Init()
->>>>>>> MakeMap
     {
         road = new List<int>();
         mapsObj = new PointController[countPoints];
@@ -189,11 +182,5 @@ public class PathController : MonoBehaviour
         }
         BFS();
         generateMatrix();
-<<<<<<< HEAD
-        startPoint.setColor(Color.green);
     }
-
-=======
-    }
->>>>>>> MakeMap
 }

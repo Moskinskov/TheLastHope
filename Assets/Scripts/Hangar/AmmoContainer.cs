@@ -9,16 +9,16 @@ namespace TheLastHope.Hangar
     {
         public int maxCapacity = 1000;
         int currentCapacity;
-        void Awake()
+        void Awake() //KILL AWAKE!
         {
             currentCapacity = maxCapacity;
             ammo = new Dictionary<AmmoType, int>();
 
             ammoSize = new Dictionary<AmmoType, int>()
             {
-                [AmmoType.SeriousAmmo] = 25,
-                [AmmoType.Battery] = 25,
-                [AmmoType.SimpleBullet] = 1
+                [AmmoType.ADM401_84mms] = 25,
+                [AmmoType.Energy] = 25,
+                [AmmoType.M792HEI_T] = 1
             };
         }
 

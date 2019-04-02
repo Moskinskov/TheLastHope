@@ -7,6 +7,7 @@ namespace TheLastHope.Management.AbstractLayer
     {
         public AmmoType TypeOfAmmo { get; set; }
         public WeaponState State { get; set; }
+		public bool IsActive { get; set; }
 
         public abstract void Fire(SceneData sceneData);
         public abstract void Reload(int ammoQuantity);

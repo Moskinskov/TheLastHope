@@ -49,7 +49,7 @@ namespace TheLastHope.Weapons
 
         public override void WeaponUpdate()
         {
-            _timerEndOfFire.Update();
+            _timerEndOfFire.TimerUpdate();
             CoreChecks();
             LocalChecks();
         }
