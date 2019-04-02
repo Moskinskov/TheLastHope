@@ -8,14 +8,16 @@ namespace TheLastHope.Management.AbstractLayer
 {
     public abstract class ATurret : ABaseObject
     {
-        //Оружие турели
-        [SerializeField] internal AWeapon weapon;
-        [SerializeField] internal ASoftware soft;
+		//Оружие турели
+		[SerializeField] private AWeapon weapon;
+		[SerializeField] internal ASoftware soft;
         [SerializeField] internal bool manualMode = false;
         //Скорость поворота турели к цели
         [SerializeField] internal float turningAngularSpeed;
 
-        public abstract void TurnTurret(float deltaTime);
+		internal AWeapon Weapon { get => weapon; set => weapon = value; }
+
+		public abstract void TurnTurret(float deltaTime);
 
         public abstract void TurUpdate(SceneData sceneData, float deltaTime);
 

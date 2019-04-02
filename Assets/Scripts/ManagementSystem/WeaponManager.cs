@@ -31,7 +31,7 @@ namespace TheLastHope.Weapons
             ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
             foreach(var container in ammoContainers)
             {
-                container.Init();
+                if(container) container.Init();
             }
             print($"ContainerCount {ammoContainers.Count}");
             
@@ -54,7 +54,7 @@ namespace TheLastHope.Weapons
                     print($"selected obj = {selectedObj.name}");
                 }
                 if (selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
-                    selectedObj.GetComponentInChildren<ATurret>().weapon.State ==  WeaponState.empty)
+                    selectedObj.GetComponentInChildren<ATurret>().Weapon.State ==  WeaponState.empty)
                 {
                     turretToReload = selectedObj.GetComponentInChildren<ATurret>();
                     print($"TURRET SELECTED {selectedObj.name}");
@@ -69,19 +69,19 @@ namespace TheLastHope.Weapons
                 if (containerToReload && turretToReload)
                 {
                     print($"RELOADING {turret.gameObject.name}");
-                    if (ammoContainers.ToArray()[0].GetAmmo(turret.weapon.TypeOfAmmo, turret.weapon.ClipSize))
+                    if (ammoContainers.ToArray()[0].GetAmmo(turret.Weapon.TypeOfAmmo, turret.Weapon.ClipSize))
                     {
-                        turret.weapon.Reload(turret.weapon.ClipSize);
+                        turret.Weapon.Reload(turret.Weapon.ClipSize);
                         print("R1");
-                        turret.weapon.State = WeaponState.Active;
+                        turret.Weapon.State = WeaponState.Active;
                     }
                     else
                     {
                         print("R2");
                         int ammoToReload = 0;
-                        ammoContainers.ToArray()[0].ammo.TryGetValue(turret.weapon.TypeOfAmmo, out ammoToReload);
-                        turret.weapon.Reload(ammoToReload);
-                        turret.weapon.State = WeaponState.Active;
+                        ammoContainers.ToArray()[0].ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out ammoToReload);
+                        turret.Weapon.Reload(ammoToReload);
+                        turret.Weapon.State = WeaponState.Active;
                     }
                     containerToReload = null;
                     turretToReload = null;

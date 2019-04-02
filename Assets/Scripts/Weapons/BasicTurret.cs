@@ -27,7 +27,7 @@ namespace TheLastHope.Weapons
 			base.Health = base.MaxHealth;
 			_effect = GetComponent<ParticleSystem>();
 			if (_effect) _effect.Stop();
-			weapon.Init();
+			Weapon.Init();
 		}
 
 
@@ -52,7 +52,7 @@ namespace TheLastHope.Weapons
        
         public override void TurUpdate(SceneData sceneData, float deltaTime)
         {
-			weapon.WeaponUpdate();
+			Weapon.WeaponUpdate();
             //Проверяем включен ли ручной режим на турели и возможен ли он при установленном софте
             if (manualMode && soft.canBeManual)
             {
@@ -60,7 +60,7 @@ namespace TheLastHope.Weapons
                 aimingPoint = InputManager.GetMousePosIn3D();
                 if (Input.GetButton("Fire1"))
                 {
-                    weapon.Fire(sceneData);
+                    Weapon.Fire(sceneData);
                 }
             }
             else
@@ -71,7 +71,7 @@ namespace TheLastHope.Weapons
                 //Если навелись на цель стреляем
                 if (soft.ReadyToFire)
                 {
-                    weapon.Fire(sceneData);
+                    Weapon.Fire(sceneData);
                 }
             }
             TurnTurret(Time.deltaTime);
@@ -89,7 +89,7 @@ namespace TheLastHope.Weapons
 		{
 			if (_effect) _effect.Play();
 			base.IsActive = false;
-			weapon.IsActive = false;
+			Weapon.IsActive = false;
 		}
 
 

@@ -57,9 +57,4 @@ public class MapManager : MonoBehaviour
         path.clearRoad(pointClr, currentClr);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

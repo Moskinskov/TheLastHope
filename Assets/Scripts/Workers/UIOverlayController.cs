@@ -6,6 +6,7 @@ using TheLastHope.Player;
 using TheLastHope.Management.Data;
 using TheLastHope.Management;
 using TheLastHope.Helpers;
+using TheLastHope.Weapons;
 
 namespace TheLastHope.UI {
 
@@ -15,6 +16,7 @@ namespace TheLastHope.UI {
 		private ABaseObject _baseObject;
 		private float _startHealth;
 		private float _healthBarValue;
+		private float _ammoBarValue;
 		private UIObjectOverlay _overlay;
 		private ObjType _currentType;
 		private Vector3 _overlaySize;
@@ -53,6 +55,12 @@ namespace TheLastHope.UI {
 				coroutine = DamageUI(_showTime);
 				StartCoroutine(coroutine);
 			}
+
+			if (_currentType == ObjType.Turret)
+			{
+				CountAmmo();
+				ShowOverlay();
+			}
             gameState = sceneData.CurrentState;
 		}
 
@@ -64,6 +72,15 @@ namespace TheLastHope.UI {
 				_healthBarValue = _baseObject.Health / _baseObject.MaxHealth;
 				//print("Buggy Health is " + _healthBarValue);
 				_overlay.CurrentHealth = _healthBarValue;
+			}
+		}
+
+		public void CountAmmo()
+		{
+			if (_baseObject && _currentType == ObjType.Turret)
+			{
+				//_ammoBarValue = _baseObject.GetComponentInChildren<ARangedWeapon>().CurrentAmmoInClip / _baseObject.GetComponentInChildren<ARangedWeapon>().ClipSize;
+				//_overlay.CurrentAmmo = _ammoBarValue;
 			}
 		}
 
@@ -96,7 +113,8 @@ namespace TheLastHope.UI {
             else if (_currentType == ObjType.Loco) _overlay.ShowOverlay(true, true); 
 			else if (_currentType == ObjType.Turret)
 			{
-				if (_baseObject.GetComponentInChildren<ATurret>().soft.canBeManual) _overlay.ShowOverlay(true, true, true);
+				_overlay.ShowOverlay(true, true, true, true);
+				if (_ammoBarValue == 0) _overlay.ShowOverlay(true, true, true, true, true);
 				else _overlay.ShowOverlay(true, true);
 			}
 		}
