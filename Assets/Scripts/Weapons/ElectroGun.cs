@@ -8,71 +8,51 @@ namespace TheLastHope.Weapons
 {
     public class ElectroGun : AEnergeticWeapon
     {
-        [SerializeField, Header("Necessary resources")]
-        private Transform _muzzle;
         [SerializeField]
-        private AudioSource _electroAudioSource;
+        private float radiusElectro;
         [SerializeField]
-        private LineRenderer _electroLineRenderer;
-        [SerializeField]
-        private ParticleSystem _electroEffect;
+        private LineRenderer LR;
 
-        [SerializeField, Header("Weapon options"), Space(10)]
-        private float _damagePerSecond;
-        [SerializeField]
-        private float _energyCapacity;
-        [SerializeField]
-        private float _energyPerSecond;
-        [SerializeField]
-        private float _recoveryPerSecond;
-        [SerializeField]
-        private float _minActiveEnergy;
-        [SerializeField]
-        private float _maxRange;
-        //------------------------------------------------------//
-        [SerializeField] private float _radiusElectro;
-        private List<GameObject> _allEnemies;
-        private List<AEnemy> _nearestEnemies;
+        private List<GameObject> allEnemies;
+        private List<AEnemy> nearestEnemies;
         private IEnumerator coroutine;
-        private bool _isPlaying;
+        private bool isPlaying;
 
-
+        /// <summary>
+        /// ElectroGun 'Init'
+        /// </summary>
         public override void Init()
         {
-            _coreDamagePerSecond = _damagePerSecond;
-            _coreEnergyCapacity = _energyCapacity;
-            _coreEnergyPerSecond = _energyPerSecond;
-            _coreRecoveryPerSecond = _recoveryPerSecond;
-            _coreMinActiveEnergy = _minActiveEnergy;
-            _coreMaxRange = _maxRange;
-            _origLR = _electroLineRenderer;
-
-            if (!_electroEffect.isStopped)
-                _electroEffect.Stop();
-            _nearestEnemies = new List<AEnemy>();
+            nearestEnemies = new List<AEnemy>();
+            LR.enabled = false;
         }
-
+        /// <summary>
+        /// ElectroGun 'WeaponUpdate'
+        /// </summary>
         public override void WeaponUpdate()
         {
-            _timerEndOfFire.TimerUpdate();
+            delay.TimerUpdate();
             CoreChecks();
             LocalChecks();
         }
 
 
-
+        /// <summary>
+        /// ElectroGun 'Fire'
+        /// </summary>
+        /// <param name="sceneData"></param>
         public override void Fire(SceneData sceneData)
         {
-            _allEnemies = sceneData.Enemies;
+            allEnemies = sceneData.Enemies;
 
             if (State != WeaponState.Inactive)
                 return;
 
             State = WeaponState.Active;
-            _timerEndOfFire.Start(0.005f); //MAGIC NUMBERS!!!
-            if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit))
+            delay.Start(0.005f); //MAGIC NUMBERS!!!
+            if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
             {
-                if (hit.distance <= _maxRange && hit.transform.tag == "Enemy")
+                if (hit.distance <= maxRange && hit.transform.tag == "Enemy")
                 {
                     WeaponMethod(hit);
                 }
@@ -87,58 +67,58 @@ namespace TheLastHope.Weapons
 
             coroutine = Effect(2.0f, hit);
 
-            if (!_isPlaying)
+            if (!isPlaying)
             {
-                _isPlaying = true;
+                isPlaying = true;
                 StartCoroutine(coroutine);
             }
 
         }
 
-        protected override void SetLRToTarget(RaycastHit hit)
+        private void SetLRToTarget(RaycastHit hit)
         {
             var enemyPosition = hit.point;
-            _origLR.enabled = true;
+            LR.enabled = true;
 
-            _origLR.SetPosition(0, _muzzle.position);
-            _origLR.SetPosition(1, enemyPosition);
+            LR.SetPosition(0, muzzle.position);
+            LR.SetPosition(1, enemyPosition);
 
-            _origLR.positionCount = _nearestEnemies.Count;
-            if (_nearestEnemies.Count > 0)
+            LR.positionCount = nearestEnemies.Count;
+            if (nearestEnemies.Count > 0)
             {
-                foreach (var enemy in _nearestEnemies)
+                foreach (var enemy in nearestEnemies)
                 {
-                    _origLR.positionCount++;
-                    _origLR.SetPosition(_origLR.positionCount - 1, new Vector3(enemy.transform.position.x,
+                    LR.positionCount++;
+                    LR.SetPosition(LR.positionCount - 1, new Vector3(enemy.transform.position.x,
                                                                                enemy.transform.position.y + 3,
                                                                                enemy.transform.position.z));
                 }
             }
         }
 
-        protected void HitTheEnemies()
+        private void HitTheEnemies()
         {
-            if (_nearestEnemies.Count > 0)
+            if (nearestEnemies.Count > 0)
             {
-                foreach (var enemy in _nearestEnemies)
+                foreach (var enemy in nearestEnemies)
                 {
-                    enemy.SetDamage(_coreDamagePerSecond * Time.deltaTime);
-                    _coreCurrentCharge -= _coreEnergyPerSecond * Time.deltaTime;
+                    enemy.SetDamage(damagePerSecond * Time.deltaTime);
+                    CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
                 }
             }
         }
 
         private void FindTheNearestEnemies(AEnemy firstEnemy)
         {
-            foreach (var enemy in _allEnemies)
+            foreach (var enemy in allEnemies)
             {
                 var tempEnemy = enemy?.GetComponent<AEnemy>();
                 var tempDistance = Vector3.Distance(enemy.transform.position, firstEnemy.transform.position); //Если эта операция будет сильно напрягать память, можно считать дистанцию вручную.
 
-                if (_radiusElectro >= tempDistance && !_nearestEnemies.Contains(tempEnemy))
-                    _nearestEnemies.Add(tempEnemy);
-                if (_radiusElectro < tempDistance && _nearestEnemies.Contains(tempEnemy))
-                    _nearestEnemies.Remove(tempEnemy);
+                if (radiusElectro >= tempDistance && !nearestEnemies.Contains(tempEnemy))
+                    nearestEnemies.Add(tempEnemy);
+                if (radiusElectro < tempDistance && nearestEnemies.Contains(tempEnemy))
+                    nearestEnemies.Remove(tempEnemy);
             }
         }
 
@@ -146,26 +126,31 @@ namespace TheLastHope.Weapons
         {
             if (State != WeaponState.Active)
             {
-                _origLR.positionCount = 2;
-                _nearestEnemies.Clear();
+                LR.positionCount = 2;
+                nearestEnemies.Clear();
 
-                if (!_electroEffect.isStopped)
-                    _electroEffect.Stop();
+                if (!effect.isStopped)
+                    effect.Stop();
+            }
+
+            if (State != WeaponState.Active)
+            {
+                if (LR)
+                    LR.enabled = false;
             }
         }
 
         private IEnumerator Effect(float waitTime, RaycastHit hit)
         {
-            _electroEffect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-            if (!_electroEffect.isPlaying)
-                _electroEffect.Play();
-            if (!_electroAudioSource.isPlaying)
-                _electroAudioSource.Play();
+            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+            if (!effect.isPlaying)
+                effect.Play();
+            if (!audioSource.isPlaying)
+                audioSource.Play();
 
-            yield return new WaitForSeconds(_electroAudioSource.clip.length);
+            yield return new WaitForSeconds(audioSource.clip.length);
 
-            _isPlaying = false;
-
+            isPlaying = false;
         }
 
     }

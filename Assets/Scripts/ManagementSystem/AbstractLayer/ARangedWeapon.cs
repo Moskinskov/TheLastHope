@@ -13,85 +13,93 @@ namespace TheLastHope.Weapons
     public abstract class ARangedWeapon : AWeapon //change to BaseObject when it is ready
     {
         #region Serializables
-        [SerializeField] protected float _rateOfFire = 1.0f; //firing speed
-        [SerializeField] protected float _shootingRange = 30.0f; //firing range
-        [SerializeField] protected float _reloadTime = 1.0f; //reload time
-        [SerializeField] private float _force = 30.0f; //power of fire
-        [SerializeField] protected bool _canChangeFiringMode = false; //ability to change firing mode
-        [SerializeField] protected FiringMode _currentFiringMode; //current active firing mode
-        [SerializeField] protected int[] _firingModesAvailable; //available firing modes
-        [SerializeField] protected AAmmo _ammo; //ammunition to fire
-        [SerializeField] private Transform _muzzle; // Система координат для вылета пули
-        [SerializeField] protected GameObject _barrel;
-        [SerializeField] protected GameObject _muzzleFlash;
+        [SerializeField] protected float rateOfFire = 1.0f;
+        [SerializeField] protected float reloadTime = 1.0f;
+        [SerializeField] private float force = 30.0f;
+
+        [SerializeField, Header("Necessary objects")]
+        protected AAmmo ammoPrefab;
+        [SerializeField] private Transform muzzle; // Система координат для вылета пули
+        [SerializeField] protected GameObject barrel;
+        [SerializeField] protected GameObject muzzleFlash;
+
         #endregion
 
-        public float Force { get { return _force; } set { _force = value; } }
-        public Transform Muzzle { get { return _muzzle; } set { _muzzle = value; } }
+        public float Force { get { return force; } set { force = value; } }
+        public Transform Muzzle { get { return muzzle; } set { muzzle = value; } }
 
         #region Protected Variables
-        protected Timer _delay = new Timer();                       //Timer
-                                                                    //protected bool _readyToFire = true;                         //Ready to shoot flag
-        protected int _ammoInClip;                                  //Current ammo in clip
-        //protected int _currentAmmoInClip; //Текущие количество патронов в магазине
-        protected AudioSource _audioPlayer; //Типа должно быть использовано для звуков выстрела
+        protected Timer delay = new Timer();
+        protected AudioSource audioPlayer;
         #endregion
 
         #region Abstract Functions
-        public abstract void Shot(SceneData sceneData); //Логика выстрела             
-        public abstract void SwitchFiringMode(); // Возможная механика смены режима стрельбы
+        /// <summary>
+        /// Shooting logic
+        /// </summary>
+        /// <param name="sceneData"></param>
+        public abstract void Shot(SceneData sceneData);
         #endregion
 
+        /// <summary>
+        /// ARanged 'Fire'
+        /// </summary>
+        /// <param name="sceneData"></param>
         public override void Fire(SceneData sceneData)
-        //Функция вызывает комманду выстрела проверяя наличие 
-        //патронов и учитывая скорость стрельбы
         {
-            //_delay.Start(time) отсчитывает время time 
-            //после отчета разрешает снова стрелять.
-            if (_delay.Elapsed == -1)
+            if (delay.Elapsed == -1)
             {
-
                 State = WeaponState.Active;
             }
             if (currentAmmoInClip <= 0)
             {
                 State = WeaponState.empty;
             }
-            if (State == WeaponState.Active && _ammo)
+            if (State == WeaponState.Active && ammoPrefab)
             {
-                if (_muzzleFlash) _muzzleFlash.SetActive(true);
+                if (muzzleFlash) muzzleFlash.SetActive(true);
                 Shot(sceneData);
                 var snd = GetComponent<AudioSource>();
                 if (snd) snd.Play();
-                _delay.Start(_rateOfFire);
+                delay.Start(rateOfFire);
                 State = WeaponState.Inactive;
                 currentAmmoInClip--;
             }
-
-
         }
-        public AudioSource AudioPlayer
-        {
-            get { return _audioPlayer; }
-            set { _audioPlayer = value; }
-        }
-        public override void Init()
-        {
-            currentAmmoInClip = clipSize;
-            State = WeaponState.Active;
-
-        }
-        public override void WeaponUpdate()
-        {
-            if (_muzzleFlash) _muzzleFlash.SetActive(false);
-            _delay.TimerUpdate();
-        }
+        /// <summary>
+        /// ARanged 'Reload'
+        /// </summary>
+        /// <param name="ammoQuantity"></param>
         public override void Reload(int ammoQuantity)
         {
             currentAmmoInClip = ammoQuantity;
             State = WeaponState.Inactive;
-            _delay.Start(_reloadTime);
+            delay.Start(reloadTime);
         }
 
+        /// <summary>
+        /// Weapon sound
+        /// </summary>
+        public AudioSource AudioPlayer
+        {
+            get { return audioPlayer; }
+            set { audioPlayer = value; }
+        }
+        /// <summary>
+        /// ARanged 'Start'
+        /// </summary>
+        public override void Init()
+        {
+            currentAmmoInClip = clipSize;
+            State = WeaponState.Active;
+        }
+        /// <summary>
+        /// ARanged 'Update'
+        /// </summary>
+        public override void WeaponUpdate()
+        {
+            if (muzzleFlash) muzzleFlash.SetActive(false);
+            delay.TimerUpdate();
+        }
     }
 }
