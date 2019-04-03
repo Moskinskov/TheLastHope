@@ -1,4 +1,9 @@
-﻿using System.IO;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Sergey Aydarov
+/// to be commented
+
+using System.IO;
 
 namespace TheLastHope.Management
 {

@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// to be commented
+
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace TheLastHope.Hangar

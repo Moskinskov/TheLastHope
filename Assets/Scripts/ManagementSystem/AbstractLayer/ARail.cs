@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Sergey Aydarov
+/// to be commented
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Helpers;
@@ -6,7 +11,11 @@ using TheLastHope.Management.Data;
 
 namespace TheLastHope.Management.AbstractLayer
 {
-    public abstract class ARail : MonoBehaviour
+	/// <summary>
+	/// Abstract rail class.
+	/// Use this class to create new rails with parameters.
+	/// </summary>
+	public abstract class ARail : MonoBehaviour
     {
 
         [SerializeField] BezierCurve curve;

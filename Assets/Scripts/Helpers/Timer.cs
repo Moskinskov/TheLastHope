@@ -3,7 +3,7 @@
 namespace TheLastHope.Helpers
 {
     /// <summary>
-    /// Удобно отсчитывать время
+    /// Time counter
     /// </summary>
     public class Timer
     {
@@ -13,9 +13,9 @@ namespace TheLastHope.Helpers
 
         public TimeSpan Duration { get; private set; }
         /// <summary>
-        /// Старт отсчета
+        /// Timer start
         /// </summary>
-        /// <param name="elapsed">сколько отсчитывать секунд</param>
+        /// <param name="elapsed">Time to count</param>
         public void Start(float elapsed)
         {
             _elapsed = elapsed;
@@ -23,7 +23,11 @@ namespace TheLastHope.Helpers
             Duration = TimeSpan.Zero;
         }
 
-        public void TimerUpdate()
+		/// <summary>
+		/// Timer main method.
+		/// Counts time. When finished sets "true" to Finished.
+		/// </summary>
+		public void TimerUpdate()
         {
             if (_elapsed > 0)
             {
@@ -40,15 +44,19 @@ namespace TheLastHope.Helpers
             }
         }
         /// <summary>
-        /// Отсчет закончен?
+        /// Finished counting time.
         /// </summary>
-        /// <returns></returns>
-        public bool IsEvent()
+        /// <returns>bool</returns>
+        public bool Finished()
         {
             return _elapsed == 0;
         }
 
-        public int TotalSeconds()
+		/// <summary>
+		/// The overall amount of seconds being count.
+		/// </summary>
+		/// <returns>int</returns>
+		public int TotalSeconds()
         {
             return (int)(_elapsed - Duration.TotalSeconds);
         }

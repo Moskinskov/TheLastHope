@@ -46,7 +46,7 @@ namespace TheLastHope.Weapons
         /// 
         protected virtual void CoreChecks()
         {
-            if (_timerEndOfFire.IsEvent())
+            if (_timerEndOfFire.Finished())
             {
                 State = WeaponState.Active;
             }

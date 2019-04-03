@@ -1,8 +1,14 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Nikolay Pankrakhin
+/// to be commented
+
+using System.Collections;
 using System.Collections.Generic;
 using TheLastHope.Helpers;
 using TheLastHope.Management.Data;
 using UnityEngine;
+
 
 public abstract class ASkill : MonoBehaviour
 {

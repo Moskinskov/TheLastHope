@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// Author: Sergey Aydarov
+/// to be commented
+
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TheLastHope.Management.Data;

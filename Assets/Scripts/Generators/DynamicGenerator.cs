@@ -1,4 +1,10 @@
-﻿using System;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// to be commented
+
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.Data;
@@ -44,22 +50,6 @@ namespace TheLastHope.Generators
             }
         }
 
-		// public override void Generate(GameObject obj, SceneData sceneData, List<Vector3> positions)
-		// {
-		// 	if (sceneData.Enemies.Count < sceneData.TargetEnemyCount)
-		// 	{
-		// 		for (int i = sceneData.TargetEnemyCount - sceneData.Enemies.Count; i < sceneData.TargetEnemyCount; i++)
-		// 		{
-		// 			GameObject enemy = Instantiate(
-		// 			obj,
-		// 			positions[0] + new Vector3((i * 8), 0, (i * 10) - 30),                                //position NOT depends on obj name (or type, etc.) TEMP POSITION!
-		// 			Quaternion.identity);
-		// 			enemy.GetComponentInChildren<AEnemy>().Initialize();
-		// 			sceneData.Enemies.Add(enemy);
-		// 		}
-		// 	}
-		// }
-        
         /// <summary>
         /// Generates enemies by pattern.
         /// </summary>

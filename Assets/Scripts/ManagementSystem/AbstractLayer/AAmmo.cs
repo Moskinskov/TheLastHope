@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Interfaces;
@@ -7,10 +11,8 @@ namespace TheLastHope.Management.AbstractLayer
 {
 	/// <summary>
 	/// Abstract ammunition class.
-	/// </summary>
-	/// <remarks>
 	/// Use this class to create new versions of ammunition.
-	/// </remarks>
+	/// </summary>
 
 	[RequireComponent(typeof(Collider))]
 	public abstract class AAmmo : MonoBehaviour, IPoolable

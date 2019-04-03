@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Sergey Aydarov
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +10,9 @@ namespace TheLastHope.Management.AbstractLayer
 {
 	/// <summary>
 	/// Abstract carriage class.
-	/// </summary>
-	/// <remarks>
 	/// Use this class to create new versions of 
 	/// train cars.
-	/// </remarks>
+	/// </summary>
 	public abstract class ACarriage : MonoBehaviour
     {
 		#region Abstract methods

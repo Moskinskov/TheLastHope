@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+/// Author: Nikolay Pankrakhin
+/// to be commented
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.Data;
@@ -43,36 +49,5 @@ namespace TheLastHope.Weapons.Software
         public abstract Vector3 CalculateAim(Transform turPosition);
 
         public abstract void FindClosestTarget(SceneData sceneData);
-
-
-        //Ищет цель с тэгом enemyTag с переодичностью searchTimeDelay
-        // protected virtual IEnumerator FindClosestTarget()
-        // {
-        //     while (true) //DEATHCODE
-        //     {
-        //         //Ближайшая цель, попавшая в радиус обзора
-        //         Transform closest = null;
-        //         GameObject[] targets = GameObject.FindGameObjectsWithTag(enemyTag);
-        //         //Квадрат радиуса обзора, это значение потребуется при поиске ближайшей цели
-        //         float distance = sqrVisionRadius;
-        //         foreach (GameObject go in targets)
-        //         {
-        //             //Находим расстояние между турелью и предполагаемой целью
-        //             Vector3 diff = go.transform.position - transform.position;
-        //             //С точки зрения производительности быстрее сравнить квадраты расстояний,
-        //             //чем делать лишнюю операцию извлечения квадратного корня
-        //             float curDistance = diff.sqrMagnitude;
-        //             //если найдена цель в радиусе поражения, то запоминаем её
-        //             if (curDistance < distance)
-        //             {
-        //                 closest = go.transform;
-        //                 distance = curDistance;
-        //             }
-        //         }
-        //         target = closest;
-        //         //Следующий поиск цели будет осуществлен через searchTimeDelay секунд
-        //         yield return new WaitForSeconds(searchTimeDelay);
-        //     }
-        //}
     }
 }
