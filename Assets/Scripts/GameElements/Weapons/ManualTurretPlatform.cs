@@ -4,6 +4,8 @@
 /// Author: Danny Kotov
 /// to be commented
 
+/// DO WE STILL NEED THIS?
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

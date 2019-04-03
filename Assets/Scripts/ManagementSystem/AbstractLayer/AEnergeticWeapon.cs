@@ -1,8 +1,13 @@
-﻿using TheLastHope.Management.AbstractLayer;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+/// to be commented
+
+using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
-namespace TheLastHope.Weapons
+namespace TheLastHope.Management.AbstractLayer
 {
     public abstract class AEnergeticWeapon : AWeapon
     {
@@ -42,12 +47,10 @@ namespace TheLastHope.Weapons
         /// 
         protected virtual void CoreChecks()
         {
-            if (delay.IsEvent())
+            if (delay.Finished())
             {
                 State = WeaponState.Active;
             }
-
-
 
             if (CurrentAmmoInClip <= 0)
             {

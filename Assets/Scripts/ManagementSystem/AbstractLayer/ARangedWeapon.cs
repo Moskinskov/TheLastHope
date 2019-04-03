@@ -1,9 +1,13 @@
-﻿using TheLastHope.Helpers;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+
+using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
-namespace TheLastHope.Weapons
+namespace TheLastHope.Management.AbstractLayer
 {
     /// <summary>
     ///  ARangedWeapon class
@@ -23,13 +27,15 @@ namespace TheLastHope.Weapons
         [SerializeField] protected GameObject barrel;
         [SerializeField] protected GameObject muzzleFlash;
 
-        #endregion
+		#endregion
 
-        public float Force { get { return force; } set { force = value; } }
+		#region Public Properties
+		public float Force { get { return force; } set { force = value; } }
         public Transform Muzzle { get { return muzzle; } set { muzzle = value; } }
+		#endregion
 
-        #region Protected Variables
-        protected Timer delay = new Timer();
+		#region Protected Variables
+		protected Timer delay = new Timer();
         protected AudioSource audioPlayer;
         #endregion
 

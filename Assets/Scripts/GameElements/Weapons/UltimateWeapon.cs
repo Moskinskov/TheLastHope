@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+/// to be commented
+
+using System.Collections;
 using System.Collections.Generic;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
@@ -40,10 +45,5 @@ public class UltimateWeapon : ARangedWeapon
         _bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
         _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
         _bulletRigidBody.AddForce(Muzzle.forward * -1 * Force);
-    }
-
-    public override void SwitchFiringMode()
-    {
-        throw new System.NotImplementedException();
     }
 }

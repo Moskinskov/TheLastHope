@@ -1,4 +1,9 @@
-﻿using TheLastHope.Management.AbstractLayer;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+/// to be commented
+
+using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
