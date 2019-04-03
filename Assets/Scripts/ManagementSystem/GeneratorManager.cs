@@ -71,10 +71,11 @@ namespace TheLastHope.Management
                 staticGen.Generate(staticArray,sceneData);
                 staticGen.Generate(triggerArray, sceneData);
                 railsGen.Generate(railArray, sceneData);
-                if (enemies.Count > 0)
-                {
-                    enemyGen.Generate(enemiesArray, sceneData);
-                }
+                //Commented by Danny
+                //if (enemies.Count > 0)
+                //{
+                //    enemyGen.Generate(enemiesArray, sceneData);
+                //}
                 currentLine = sceneData.CurrentLine;
             }
         }
