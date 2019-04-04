@@ -2,26 +2,34 @@
 /// The Last Hope
 /// Curator: Ilya Mosckinskov
 /// Author: Dmitri Kuzmin
-/// to be commented
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
+using UnityEngine;
 
 namespace TheLastHope.Ammo
 {
     public class SimpleBullet : AAmmo
     {
+        #region ObjectPool methods
+
+        /// <summary>
+        /// for objectPool
+        /// </summary>
         public override void OnPopulate()
         {
-            throw new System.NotImplementedException();
-		}
 
+        }
+        /// <summary>
+        /// for objectPool
+        /// </summary>
         public override void OnDepopulate()
         {
-            throw new System.NotImplementedException();
+
         }
+
+        #endregion
+
+        #region Collision methods
 
         public override void OnTriggerEnter(Collider collision)
         {
@@ -38,17 +46,22 @@ namespace TheLastHope.Ammo
             if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>())) Die(false);
         }
 
+        #endregion
+        /// <summary>
+        /// Умирать, так с музыкой
+        /// </summary>
+        /// <param name="withSnd"></param>
         private void Die(bool withSnd)
         {
-            var _explosion = this.gameObject.transform.GetChild(0);
+            var _explosion = gameObject.transform.GetChild(0);
             _explosion.gameObject.SetActive(true);
-            var snd = this.GetComponent<AudioSource>();
-            this.gameObject.GetComponent<Renderer>().enabled = false;
+            var snd = GetComponent<AudioSource>();
+            gameObject.GetComponent<Renderer>().enabled = false;
             if (snd)
             {
                 if (withSnd) snd.Play();
             }
-            Destroy(this.gameObject, 0.3f);
+            Destroy(gameObject, 0.3f);
         }
     }
 

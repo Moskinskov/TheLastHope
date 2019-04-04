@@ -2,20 +2,16 @@
 /// The Last Hope
 /// Curator: Ilya Mosckinskov
 /// Author: Dmitri Kuzmin
-/// to be commented
 
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TheLastHope.Weapons;
 using TheLastHope.Management.AbstractLayer;
-using TheLastHope.Player;
+using UnityEngine;
 
 namespace TheLastHope.Ammo
 {
     public class SimpleEnemyBullet : AAmmo
     {
+        #region ObjectPool methods
+
         public override void OnPopulate()
         {
             throw new System.NotImplementedException();
@@ -26,17 +22,21 @@ namespace TheLastHope.Ammo
             throw new System.NotImplementedException();
         }
 
+        #endregion
+
+        #region Collision methods
+
         public override void OnTriggerEnter(Collider collision)
         {
-			if (collision.tag == "Player")
-			{
-				try
-				{
-					collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
-					Die(true);
-				}
-				catch { };
-			}
+            if (collision.tag == "Player")
+            {
+                try
+                {
+                    collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
+                    Die(true);
+                }
+                catch { };
+            }
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -44,17 +44,23 @@ namespace TheLastHope.Ammo
             if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>())) Die(false);
         }
 
+        #endregion
+
+        /// <summary>
+        /// Умирать, так с музыкой
+        /// </summary>
+        /// <param name="withSnd"></param>
         private void Die(bool withSnd)
         {
-            var _explosion = this.gameObject.transform.GetChild(0);
+            var _explosion = gameObject.transform.GetChild(0);
             _explosion.gameObject.SetActive(true);
-            var snd = this.GetComponent<AudioSource>();
-            this.gameObject.GetComponent<Renderer>().enabled = false;
+            var snd = GetComponent<AudioSource>();
+            gameObject.GetComponent<Renderer>().enabled = false;
             if (snd)
             {
                 if (withSnd) snd.Play();
             }
-            Destroy(this.gameObject, 0.0f);
+            Destroy(gameObject, 0.0f);
         }
     }
 }

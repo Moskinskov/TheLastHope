@@ -2,19 +2,19 @@
 /// The Last Hope
 /// Curator: Ilya Mosckinskov
 /// Author: Nikolay Pankrakhin
-/// to be commented
 
-
-using System.Collections;
-using System.Collections.Generic;
 using TheLastHope.Management.AbstractLayer;
 using UnityEngine;
 
 public class SimpleRocket : AAmmo
 {
     private Transform target;
-
+    /// <summary>
+    /// Target for rocket (bullet)
+    /// </summary>
     public Transform Target { get => target; set => target = value; }
+
+    #region ObjectPool methods
 
     public override void OnPopulate()
     {
@@ -25,6 +25,10 @@ public class SimpleRocket : AAmmo
     {
         throw new System.NotImplementedException();
     }
+
+    #endregion
+
+    #region Collision methods
 
     public override void OnTriggerEnter(Collider collision)
     {
@@ -40,6 +44,15 @@ public class SimpleRocket : AAmmo
     {
         if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>())) Die(false);
     }
+
+    #endregion
+
+    #region Public methods
+
+    /// <summary>
+    /// SimpleRocket 'Update'
+    /// </summary>
+    /// <param name="deltaTime"></param>
     public void UpdateBullet(float deltaTime)
     {
         if (target != null)
@@ -59,16 +72,19 @@ public class SimpleRocket : AAmmo
         direction.y = 0f;
         transform.rotation = Quaternion.LookRotation(direction);
     }
+
+    #endregion
+
     private void Die(bool withSnd)
     {
-        var _explosion = this.gameObject.transform.GetChild(0);
+        var _explosion = gameObject.transform.GetChild(0);
         _explosion.gameObject.SetActive(true);
-        var snd = this.GetComponent<AudioSource>();
-        this.gameObject.GetComponent<Renderer>().enabled = false;
+        var snd = GetComponent<AudioSource>();
+        gameObject.GetComponent<Renderer>().enabled = false;
         if (snd)
         {
             if (withSnd) snd.Play();
         }
-        Destroy(this.gameObject, 0.3f);
+        Destroy(gameObject, 0.3f);
     }
 }
