@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    private SLSystem sl;
+
     [SerializeField] public PathController path;
     [SerializeField] public UiController ui;
 
@@ -53,7 +55,9 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path.Init();
+        sl = new SLSystem();
+        sl.SaveMapFile("KeyWest_0");
+        sl.LoadMapFile();
         path.clearRoad(pointClr, currentClr);
     }
 

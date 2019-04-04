@@ -17,14 +17,6 @@ namespace TheLastHope.Generators
         [SerializeField] float step=2.5f;
 
         #region Out of use
-        /// <summary>
-        /// Obsolete method
-        /// </summary>
-        /// <param name="sceneData"></param>
-        public override void Generate(SceneData sceneData)
-        {
-           
-        }
 
         public override void Generate(List<GameObject> gameObject, SceneData sceneData, List<Vector3> positions)
         {
