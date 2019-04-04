@@ -1,7 +1,6 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
 
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
@@ -9,6 +8,9 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    /// 'ARangedWeapon' - class.
+    /// </summary>
     public class Rifle : ARangedWeapon
     {
         /// <summary>

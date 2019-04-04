@@ -1,16 +1,20 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
 
-using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
 namespace TheLastHope.Management.AbstractLayer
 {
+    /// <summary>
+    ///  'AEnergeticWeapon' class
+    ///  realizes basic bahaviour of the energetic weapon
+    ///  Fire() calls WeaponMethod() method that is to be overriden in every 
+    /// </summary>
     public abstract class AEnergeticWeapon : AWeapon
     {
+        #region Protected variables
 
         [SerializeField]
         protected float maxRange;
@@ -25,6 +29,13 @@ namespace TheLastHope.Management.AbstractLayer
         [SerializeField]
         protected ParticleSystem effect;
 
+        #endregion
+
+        #region Override methods
+
+        /// <summary>
+        /// AEnergeticWeapon 'Init'
+        /// </summary>
         public override void Init()
         {
             if (!effect.isStopped)
@@ -33,6 +44,18 @@ namespace TheLastHope.Management.AbstractLayer
             TypeOfAmmo = AmmoType.Energy;
             State = WeaponState.Active;
         }
+        /// <summary>
+        /// AEnergetic 'Reload'
+        /// </summary>
+        /// <param name="ammoQuantity">ammo value</param>
+        public override void Reload(int ammoQuantity)
+        {
+            CurrentAmmoInClip = ammoQuantity;
+            State = WeaponState.Inactive;
+            delay.Start(reloadTime);
+        }
+
+        #endregion
 
         #region Abstract Methods
 
@@ -61,15 +84,6 @@ namespace TheLastHope.Management.AbstractLayer
             if (State == WeaponState.empty && CurrentAmmoInClip > 0)
                 State = WeaponState.Inactive;
         }
-        /// <summary>
-        /// AEnergetic 'Reload'
-        /// </summary>
-        /// <param name="ammoQuantity">ammo value</param>
-        public override void Reload(int ammoQuantity)
-        {
-            CurrentAmmoInClip = ammoQuantity;
-            State = WeaponState.Inactive;
-            delay.Start(reloadTime);
-        }
+
     }
 }
