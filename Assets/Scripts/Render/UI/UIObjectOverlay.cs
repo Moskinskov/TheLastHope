@@ -102,6 +102,6 @@ namespace TheLastHope.UI {
 			//if (_ammoBar) _ammoBar.enabled = false;
 		}
 
-
-	}
+        #endregion
+    }
 }

@@ -188,6 +188,7 @@
     <Compile Include="Assets\Scripts\ManagementSystem\Data\PoolType.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\RailType.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\SceneData.cs" />
+    <Compile Include="Assets\Scripts\ManagementSystem\Data\SLSystem.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\TriggerType.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\TurnSide.cs" />
     <Compile Include="Assets\Scripts\ManagementSystem\Data\WeaponState.cs" />
