@@ -1,7 +1,6 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
 
 using System.Collections;
 using TheLastHope.Management.AbstractLayer;
@@ -10,13 +9,26 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    /// 'AEnergeticWeapon' - class. 
+    /// </summary>
     public class LaserGun : AEnergeticWeapon
     {
+        #region Serialised variables
+
         [SerializeField]
         private LineRenderer LR;
 
+        #endregion
+
+        #region Private variables
+
         private IEnumerator coroutine;
         private bool _isPlaying;
+
+        #endregion
+
+        #region Override methods
 
         /// <summary>
         /// LaserGun 'Init'
@@ -59,8 +71,6 @@ namespace TheLastHope.Weapons
             }
         }
 
-
-
         protected override void WeaponMethod(RaycastHit hit)
         {
             if (hit.transform.GetComponent<AEnemy>())
@@ -82,6 +92,22 @@ namespace TheLastHope.Weapons
                 }
             }
         }
+
+        protected override void LocalChecks()
+        {
+            if (State != WeaponState.Active)
+            {
+                if (!effect.isStopped)
+                    effect.Stop();
+                if (audioSource.isPlaying)
+                    audioSource.Stop();
+            }
+        }
+
+        #endregion
+
+        #region Private methods
+
         protected void SetLRToTarget(RaycastHit hit)
         {
             LR.enabled = true;
@@ -94,16 +120,7 @@ namespace TheLastHope.Weapons
             hit.transform.GetComponent<AEnemy>().SetDamage(damagePerSecond * Time.deltaTime);
             CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
         }
-        protected override void LocalChecks()
-        {
-            if (State != WeaponState.Active)
-            {
-                if (!effect.isStopped)
-                    effect.Stop();
-                if (audioSource.isPlaying)
-                    audioSource.Stop();
-            }
-        }
+
         private IEnumerator Effect(float waitTime, RaycastHit hit)
         {
             effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
@@ -116,5 +133,7 @@ namespace TheLastHope.Weapons
 
             _isPlaying = false;
         }
+
+        #endregion
     }
 }

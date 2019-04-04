@@ -1,14 +1,12 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
 
-using UnityEngine;
-using TheLastHope.Management.Data;
-using TheLastHope.Management;
 using System.Collections.Generic;
-using TheLastHope.Weapons.Software;
+using TheLastHope.Management;
 using TheLastHope.Management.AbstractLayer;
+using TheLastHope.Management.Data;
+using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
@@ -16,41 +14,50 @@ namespace TheLastHope.Weapons
     /// Class that manages weapons.
     /// </summary>
 	public class WeaponManager : MonoBehaviour
-	{
-		[SerializeField] Selector selector;
-		[SerializeField] ATurret[] turretArray;
-        ATurret turretToReload;
-        AAmmoContainer containerToReload;
-        List<AAmmoContainer> ammoContainers = new List<AAmmoContainer>();
-        
+    {
+        #region Serialized variables
 
-		public ATurret[] TurretList { get => turretArray; set => turretArray = value; }
+        [SerializeField] private Selector selector;
+        [SerializeField] private ATurret[] turretArray;
 
-		public void Init(SceneData sceneData)
-		{
+        #endregion
+
+        #region Private variables
+
+        private ATurret turretToReload;
+        private AAmmoContainer containerToReload;
+        private List<AAmmoContainer> ammoContainers = new List<AAmmoContainer>();
+
+        #endregion
+        public ATurret[] TurretList { get => turretArray; set => turretArray = value; }
+
+        /// <summary>
+        /// WeaponManager's 'Init'
+        /// </summary>
+        /// <param name="sceneData"></param>
+        public void Init(SceneData sceneData)
+        {
             turretArray = FindObjectsOfType<ATurret>();
-			foreach (var turret in TurretList)
-			{
-                turret.Init();
-			}
-            ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
-            foreach(var container in ammoContainers)
+            foreach (var turret in TurretList)
             {
-                if(container) container.Init();
+                turret.Init();
+            }
+            ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
+            foreach (var container in ammoContainers)
+            {
+                if (container) container.Init();
             }
             print($"ContainerCount {ammoContainers.Count}");
-            
-		}
 
-		/// <summary>
-		/// Turns and fires turrets. Also switches manual turret.
-		/// </summary>
-		/// <param name="sceneData"></param>
-		/// <param name="deltaTime"></param>
-		public void UpdateWeapons(SceneData sceneData, float deltaTime)
-		{
-            
-            foreach(var turret in turretArray)
+        }
+        /// <summary>
+        /// WeaponManager's 'Update'
+        /// </summary>
+        /// <param name="sceneData"></param>
+        /// <param name="deltaTime"></param>
+        public void UpdateWeapons(SceneData sceneData, float deltaTime)
+        {
+            foreach (var turret in turretArray)
             {
                 GameObject selectedObj = null;
                 if (Input.GetMouseButtonDown(0))
@@ -59,7 +66,7 @@ namespace TheLastHope.Weapons
                     print($"selected obj = {selectedObj.name}");
                 }
                 if (selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
-                    selectedObj.GetComponentInChildren<ATurret>().Weapon.State ==  WeaponState.empty)
+                    selectedObj.GetComponentInChildren<ATurret>().Weapon.State == WeaponState.empty)
                 {
                     turretToReload = selectedObj.GetComponentInChildren<ATurret>();
                     print($"TURRET SELECTED {selectedObj.name}");
@@ -83,8 +90,7 @@ namespace TheLastHope.Weapons
                     else
                     {
                         print("R2");
-                        int ammoToReload = 0;
-                        ammoContainers.ToArray()[0].Ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out ammoToReload);
+                        ammoContainers.ToArray()[0].Ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out int ammoToReload);
                         turret.Weapon.Reload(ammoToReload);
                         turret.Weapon.State = WeaponState.Active;
                     }
@@ -101,9 +107,9 @@ namespace TheLastHope.Weapons
             //    selectedTurret.GetComponentInChildren<ATurret>().SwitchMode();
             //}
             foreach (var turret in TurretList)
-			{
-				if(turret.IsActive) turret.TurUpdate(sceneData, deltaTime);
-			}
+            {
+                if (turret.IsActive) turret.TurUpdate(sceneData, deltaTime);
+            }
         }
-	}
+    }
 }

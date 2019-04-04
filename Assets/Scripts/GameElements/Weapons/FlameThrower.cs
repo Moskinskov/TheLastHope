@@ -1,7 +1,6 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
 
 using System.Collections;
 using TheLastHope.Management.AbstractLayer;
@@ -10,17 +9,30 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    /// 'AEnergeticWeapon' - class. FlameGun
+    /// </summary>
     public class FlameThrower : AEnergeticWeapon
     {
+        #region Serialized variables
+
         [SerializeField]
         private float _damagePerSecond;
 
         [SerializeField, Header("Necessary objects")]
         private ParticleSystem _flameRenderer;
 
+        #endregion
+
+        #region Private variables
+
         private float _partCountInit = 0;
         private IEnumerator coroutine;
         private bool _isPlaying;
+
+        #endregion
+
+        #region Override methods
 
         public override void Init()
         {
@@ -61,23 +73,6 @@ namespace TheLastHope.Weapons
             }
         }
 
-        private void FireUp(float particleCount)
-        {
-            if (particleCount != _partCountInit)
-            {
-                _flameRenderer.Play();
-                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-                _partCountInit = _flameRenderer.emissionRate;
-            }
-
-            if (particleCount == 0)
-            {
-                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-                _partCountInit = _flameRenderer.emissionRate;
-                //if (_partCountInit == 0) _flameRenderer.Stop();
-            }
-        }
-
         protected override void WeaponMethod(RaycastHit hit)
         {
             if (hit.transform.GetComponent<AEnemy>())
@@ -97,17 +92,36 @@ namespace TheLastHope.Weapons
             }
         }
 
+        protected override void LocalChecks()
+        {
+
+        }
+        #endregion
+
+        #region Private methods
+
+        private void FireUp(float particleCount)
+        {
+            if (particleCount != _partCountInit)
+            {
+                _flameRenderer.Play();
+                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
+                _partCountInit = _flameRenderer.emissionRate;
+            }
+
+            if (particleCount == 0)
+            {
+                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
+                _partCountInit = _flameRenderer.emissionRate;
+                //if (_partCountInit == 0) _flameRenderer.Stop();
+            }
+        }
+
         protected void HitTheEnemy(RaycastHit hit)
         {
             hit.transform.GetComponent<AEnemy>().SetDamage(damagePerSecond * Time.deltaTime);
             CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
         }
-
-        protected override void LocalChecks()
-        {
-
-        }
-
         private IEnumerator Effect(float waitTime, RaycastHit hit)
         {
             effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
@@ -120,5 +134,8 @@ namespace TheLastHope.Weapons
 
             _isPlaying = false;
         }
+
+        #endregion
+
     }
 }

@@ -3,7 +3,6 @@
 /// Curator: Ilya Moskinskov
 
 using TheLastHope.Helpers;
-using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
@@ -27,15 +26,16 @@ namespace TheLastHope.Management.AbstractLayer
         [SerializeField] protected GameObject barrel;
         [SerializeField] protected GameObject muzzleFlash;
 
-		#endregion
+        #endregion
 
-		#region Public Properties
-		public float Force { get { return force; } set { force = value; } }
+        #region Public Properties
+        public float Force { get { return force; } set { force = value; } }
         public Transform Muzzle { get { return muzzle; } set { muzzle = value; } }
-		#endregion
+        public AudioSource AudioPlayer { get { return audioPlayer; } set { audioPlayer = value; } }
+        #endregion
 
-		#region Protected Variables
-		protected Timer delay = new Timer();
+        #region Protected Variables
+        protected Timer delay = new Timer();
         protected AudioSource audioPlayer;
         #endregion
 
@@ -46,6 +46,8 @@ namespace TheLastHope.Management.AbstractLayer
         /// <param name="sceneData"></param>
         public abstract void Shot(SceneData sceneData);
         #endregion
+
+        #region Override methods
 
         /// <summary>
         /// ARanged 'Fire'
@@ -82,15 +84,6 @@ namespace TheLastHope.Management.AbstractLayer
             State = WeaponState.Inactive;
             delay.Start(reloadTime);
         }
-
-        /// <summary>
-        /// Weapon sound
-        /// </summary>
-        public AudioSource AudioPlayer
-        {
-            get { return audioPlayer; }
-            set { audioPlayer = value; }
-        }
         /// <summary>
         /// ARanged 'Start'
         /// </summary>
@@ -107,5 +100,7 @@ namespace TheLastHope.Management.AbstractLayer
             if (muzzleFlash) muzzleFlash.SetActive(false);
             delay.TimerUpdate();
         }
+
+        #endregion
     }
 }

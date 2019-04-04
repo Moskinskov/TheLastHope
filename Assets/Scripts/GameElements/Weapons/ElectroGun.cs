@@ -1,7 +1,7 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
+/// commented
 
 using System.Collections;
 using System.Collections.Generic;
@@ -11,17 +11,31 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    /// 'AEnergeticWeapon' - class
+    /// </summary>
     public class ElectroGun : AEnergeticWeapon
     {
+        #region Serialized variables
+
         [SerializeField]
         private float radiusElectro;
         [SerializeField]
         private LineRenderer LR;
 
+        #endregion
+
+        #region Private variables
+
         private List<GameObject> allEnemies;
         private List<AEnemy> nearestEnemies;
         private IEnumerator coroutine;
         private bool isPlaying;
+
+        #endregion
+
+        #region Override methods
+
 
         /// <summary>
         /// ElectroGun 'Init'
@@ -40,8 +54,6 @@ namespace TheLastHope.Weapons
             CoreChecks();
             LocalChecks();
         }
-
-
         /// <summary>
         /// ElectroGun 'Fire'
         /// </summary>
@@ -77,8 +89,31 @@ namespace TheLastHope.Weapons
                 isPlaying = true;
                 StartCoroutine(coroutine);
             }
-
         }
+
+        protected override void LocalChecks()
+        {
+            if (State != WeaponState.Active)
+            {
+                LR.positionCount = 2;
+                nearestEnemies.Clear();
+
+                if (!effect.isStopped)
+                    effect.Stop();
+            }
+
+            if (State != WeaponState.Active)
+            {
+                if (LR)
+                    LR.enabled = false;
+            }
+        }
+
+
+
+        #endregion
+
+        #region Private methods
 
         private void SetLRToTarget(RaycastHit hit)
         {
@@ -127,24 +162,6 @@ namespace TheLastHope.Weapons
             }
         }
 
-        protected override void LocalChecks()
-        {
-            if (State != WeaponState.Active)
-            {
-                LR.positionCount = 2;
-                nearestEnemies.Clear();
-
-                if (!effect.isStopped)
-                    effect.Stop();
-            }
-
-            if (State != WeaponState.Active)
-            {
-                if (LR)
-                    LR.enabled = false;
-            }
-        }
-
         private IEnumerator Effect(float waitTime, RaycastHit hit)
         {
             effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
@@ -158,5 +175,6 @@ namespace TheLastHope.Weapons
             isPlaying = false;
         }
 
+        #endregion
     }
 }
