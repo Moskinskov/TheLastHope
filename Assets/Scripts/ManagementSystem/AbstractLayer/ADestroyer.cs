@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Sergey Aydarov
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.Data;
@@ -7,11 +11,9 @@ namespace TheLastHope.Management.AbstractLayer
 {
 	/// <summary>
 	/// Abstract destroyer class.
-	/// </summary>
-	/// <remarks>
 	/// Use this class to create new versions of 
 	/// the classes that destroy something.
-	/// </remarks>
+	/// </summary>
 	public abstract class ADestroyer : MonoBehaviour
     {
 		#region Abstract methods

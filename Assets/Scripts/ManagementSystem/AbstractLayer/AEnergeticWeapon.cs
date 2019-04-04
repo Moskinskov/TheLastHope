@@ -1,33 +1,35 @@
-﻿using TheLastHope.Helpers;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Ilya Moskinskov
+/// to be commented
+
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using UnityEngine;
 
-namespace TheLastHope.Weapons
+namespace TheLastHope.Management.AbstractLayer
 {
     public abstract class AEnergeticWeapon : AWeapon
     {
-        protected float _coreEnergyCapacity;                  //maximal charge
-        protected float _coreEnergyPerSecond;                 //energy being consumed per second
-        protected float _coreDamagePerSecond;                 //amount of damage being applied every second
-        protected float _coreRecoveryPerSecond;               //time needed for the full recovery (use Timer)
-        protected float _coreCurrentCharge;                   //current level of charge
-        protected float _coreMinActiveEnergy;                 //min energy for using laser
-        protected float _coreMaxRange;						  //maximal range of the weapon
-        //[SerializeField] int clipSize;
-        //----------------------------------------------------------------------------------------------------//
-        //protected bool _usingLaser;
-        //protected bool _isLoadEnergy = true;
 
-        protected Timer _timerEndOfFire = new Timer();
-        protected LineRenderer _origLR;
-        protected float _reloadTime;
+        [SerializeField]
+        protected float maxRange;
+        [SerializeField]
+        protected float damagePerSecond;
+        [SerializeField]
+        protected float energyPerSecond;
+        [SerializeField, Header("Necessary objects")]
+        protected Transform muzzle;
+        [SerializeField]
+        protected AudioSource audioSource; //to do
+        [SerializeField]
+        protected ParticleSystem effect;
 
         public override void Init()
         {
-            ClipSize = clipSize;
-            _coreCurrentCharge = _coreEnergyCapacity;
-            _origLR.enabled = false;
+            if (!effect.isStopped)
+                effect.Stop();
+
             TypeOfAmmo = AmmoType.Energy;
             State = WeaponState.Active;
         }
@@ -35,7 +37,6 @@ namespace TheLastHope.Weapons
         #region Abstract Methods
 
         protected abstract void WeaponMethod(RaycastHit hit);
-        protected abstract void SetLRToTarget(RaycastHit hit);
         protected abstract void LocalChecks();
 
         #endregion
@@ -46,35 +47,29 @@ namespace TheLastHope.Weapons
         /// 
         protected virtual void CoreChecks()
         {
-            if (_timerEndOfFire.IsEvent())
+            if (delay.Finished())
             {
                 State = WeaponState.Active;
             }
 
-            if (State != WeaponState.Active)
+            if (CurrentAmmoInClip <= 0)
             {
-                if (_origLR)
-                _origLR.enabled = false;
-            }
-
-            if (currentAmmoInClip <= 0)
-            {
-                _coreCurrentCharge = 0;
+                CurrentAmmoInClip = 0;
                 State = WeaponState.empty;
             }
 
-            if (_coreCurrentCharge > _coreEnergyCapacity)
-                _coreCurrentCharge = _coreEnergyCapacity;
-
-            if (State == WeaponState.empty && _coreCurrentCharge > 0)
+            if (State == WeaponState.empty && CurrentAmmoInClip > 0)
                 State = WeaponState.Inactive;
         }
+        /// <summary>
+        /// AEnergetic 'Reload'
+        /// </summary>
+        /// <param name="ammoQuantity">ammo value</param>
         public override void Reload(int ammoQuantity)
         {
-            currentAmmoInClip = ammoQuantity;
-            _coreCurrentCharge = ammoQuantity;
+            CurrentAmmoInClip = ammoQuantity;
             State = WeaponState.Inactive;
-            _timerEndOfFire.Start(_reloadTime);
+            delay.Start(reloadTime);
         }
     }
 }

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Sergey Aydarov
+/// to be commented
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
@@ -71,11 +76,10 @@ namespace TheLastHope.Management
                 staticGen.Generate(staticArray,sceneData);
                 staticGen.Generate(triggerArray, sceneData);
                 railsGen.Generate(railArray, sceneData);
-                //Commented by Danny
-                //if (enemies.Count > 0)
-                //{
-                //    enemyGen.Generate(enemiesArray, sceneData);
-                //}
+                if (enemies.Count > 0)
+                {
+                    enemyGen.Generate(enemiesArray, sceneData);
+                }
                 currentLine = sceneData.CurrentLine;
             }
         }

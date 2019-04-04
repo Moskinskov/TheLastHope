@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// to be commented
+
+using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;

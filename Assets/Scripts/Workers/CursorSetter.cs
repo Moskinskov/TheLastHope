@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Dmitri Kuzmin
+/// to be commented
+
+using UnityEngine;
 using System.Collections;
 
 namespace TheLastHope.Workers

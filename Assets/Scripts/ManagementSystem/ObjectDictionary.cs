@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Sergey Aydarov
+/// to be commented
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
@@ -19,11 +24,7 @@ namespace TheLastHope.Management
         [SerializeField] List<GameObject> locoObjList = new List<GameObject>();
         public Dictionary<string, GameObject> ObjectsDictionary { get; set; }
 
-        private void Awake()
-        {
-
-        }
-        // Start is called before the first frame update
+        // Change this to Init?
         void Start()
         {
             ObjectsDictionary = new Dictionary<string, GameObject>();
