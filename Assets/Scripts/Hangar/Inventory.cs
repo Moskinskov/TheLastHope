@@ -7,8 +7,17 @@ namespace TheLastHope.Hangar
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private GameObject[] objPool;    //Temporary array
+        #region Private variables
+        /// <summary>
+        /// Temporary array for initialization items in inventory
+        /// </summary>
+        [SerializeField] private GameObject[] objPool;
+         /// <summary>
+        /// List of items in inventory
+        /// </summary>
         private List<GameObject> inventory;
+        #endregion
+
         void Filling()
         {
             inventory = new List<GameObject>();

@@ -4,10 +4,23 @@ using UnityEngine;
 
 namespace TheLastHope.Management.AbstractLayer
 {
+    /// <summary>
+    /// Abstract hardware class
+    /// </summary>
     public class AHardware : MonoBehaviour
     {
+        /// <summary>
+        /// Required slot type on carriage
+        /// </summary>
         public TypePosition typePosition;
+        /// <summary>
+        /// Icon of item in inventory
+        /// </summary>
         public Sprite sprite;
+        /// <summary>
+        /// Contained objects
+        /// </summary>
+        public List<GameObject> objects;
     }
 
     public enum TypePosition

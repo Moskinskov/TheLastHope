@@ -25,7 +25,7 @@ namespace TheLastHope.Hangar
         /// </summary>
         private void InitSlots()
         {
-            print($"name {HangarData.instance.currentCarriage.name}");
+            //print($"name {HangarData.instance.currentCarriage.name}");
             for (int i = 0; i < HangarData.instance.currentCarriage.squareTypeCount; i++)
             {
                 GameObject slot = new GameObject() { name = $"Slot_{i}" };
@@ -42,6 +42,17 @@ namespace TheLastHope.Hangar
                 slot.transform.SetParent(transform);
                 squareSlots.Add(slot);
             }
+        }
+        /// <summary>
+        /// Update UI slots when current carriage is changed
+        /// </summary>
+        public void UpdateSlots()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i));
+            }
+            InitSlots();
         }
         
         /// <summary>

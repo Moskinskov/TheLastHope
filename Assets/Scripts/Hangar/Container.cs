@@ -30,7 +30,6 @@ namespace TheLastHope.Hangar
         }
         public void RemoveHardware(int index)
         {
-            print("Remove");
             Destroy(hardwares[index]);
             hardwares[index] = null;
         }

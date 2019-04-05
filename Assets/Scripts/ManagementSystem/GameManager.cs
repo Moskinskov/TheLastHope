@@ -67,7 +67,7 @@ namespace TheLastHope.Management
             generatorManager.Init(sceneData);
             renderManager.Init();
             triggerManager.Init(generatorManager);
-            hangar.Init(sceneData);
+            //hangar.Init(sceneData); //Commited by Danny
             
 
             trainStuffAdd();
