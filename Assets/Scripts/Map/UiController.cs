@@ -16,13 +16,10 @@ public class UiController : MonoBehaviour
     [SerializeField] public Text targetName;
     [SerializeField] public Text distanceFromTarget;
     [SerializeField] public Text nextCity;
-    #endregion
-
-    #region Private variables
     /// <summary>
     /// Открыто или закрыто ui
     /// </summary>
-    private bool uiActive;
+    public bool uiActive;
     #endregion
 
     #region Public methods

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using TheLastHope.Management.AbstractLayer;
@@ -50,35 +51,104 @@ public class SLSystem : MonoBehaviour
 
 
     #region SLMapFile
-    public void SaveMapFile(string cityName)
+    public void SaveMapFile(PointController[] map, string lvlName)
     {
+        XmlNode userNode;
+        XmlAttribute attribute;
+        XmlNode city;
         XmlElement element;
         XmlDocument xmlDoc = new XmlDocument();
-        XmlNode rootNode = xmlDoc.CreateElement("Map");
+        XmlNode temp;
+
+        XmlNode rootNode = xmlDoc.CreateElement("MapSetting");
         xmlDoc.AppendChild(rootNode);
 
-        element = xmlDoc.CreateElement("City");
-        element.SetAttribute("value", cityName);
-        rootNode.AppendChild(element);
+        //Записываем название уровня
+        temp = xmlDoc.CreateElement("Lvl");
+        element = xmlDoc.CreateElement("lvlName");
+        element.SetAttribute("value", lvlName);
+        temp.AppendChild(element);
+        rootNode.AppendChild(temp);
+
+        temp = xmlDoc.CreateElement("Map");
+        rootNode.AppendChild(temp);
+
+        foreach (PointController p in map)
+        {
+            city = xmlDoc.CreateElement("City");
+            element = xmlDoc.CreateElement("Name");
+            element.SetAttribute("value", p.name);
+            city.AppendChild(element);
+
+            element = xmlDoc.CreateElement("IsOpen");
+            element.SetAttribute("value", p.IsOpenPoint.ToString());
+            city.AppendChild(element);
+
+            element = xmlDoc.CreateElement("IsKey");
+            element.SetAttribute("value", p.IsKeyPoint.ToString());
+            city.AppendChild(element);
+
+            element = xmlDoc.CreateElement("IsStart");
+            element.SetAttribute("value", p.IsStartPoint.ToString());
+            city.AppendChild(element);
+
+            element = xmlDoc.CreateElement("IsBlock");
+            element.SetAttribute("value", p.IsBlockPoint.ToString());
+            city.AppendChild(element);
+
+            temp.AppendChild(city);
+        }
+
         xmlDoc.Save(Application.dataPath + "/" + fileName1 + ".xml");
     }
 
-    public string LoadMapFile()
+    public void LoadMapFile(PointController[] map)
     {
+        XmlTextReader reader = new XmlTextReader(Application.dataPath + "/" + fileName1 + ".xml");
+        int index = 0;
+        while (reader.Read())
+        {
+            if (reader.IsStartElement("Name"))
+            {
+                //print(reader.GetAttribute("value"));
+            }
+            if (reader.IsStartElement("IsOpen"))
+            {
+                map[index].IsOpenPoint = Convert.ToBoolean(reader.GetAttribute("value"));
+            }
+            if (reader.IsStartElement("IsKey"))
+            {
+                map[index].IsKeyPoint = Convert.ToBoolean(reader.GetAttribute("value"));
+            }
+            if (reader.IsStartElement("IsStart"))
+            {
+                map[index].IsStartPoint = Convert.ToBoolean(reader.GetAttribute("value"));
+            }
+            if (reader.IsStartElement("IsBlock"))
+            {
+                map[index].IsBlockPoint = Convert.ToBoolean(reader.GetAttribute("value"));
+                index += 1;
+            }
+        }
+        reader.Close();
+    }
+
+    public string LoadLvlName()
+    {
+        string name = "";
         XmlTextReader reader = new XmlTextReader(Application.dataPath + "/" + fileName1 + ".xml");
         while (reader.Read())
         {
-            if (reader.IsStartElement("City"))
+            if (reader.IsStartElement("lvlName"))
             {
                 return reader.GetAttribute("value");
             }
         }
-        return "";
+        return name;
     }
     #endregion
 
-
-
+    #region DontWork code
     private void AddCarrige(XmlDocument xmlDoc, XmlNode train, int index, int count)
     {
         XmlNode car = xmlDoc.CreateElement("Carrige" + index, "Type" + index);
@@ -115,11 +185,6 @@ public class SLSystem : MonoBehaviour
         xmlDoc.AppendChild(rootNode);
         xmlDoc.Save(Application.dataPath + "/" + fileName2 + ".xml");
     }
-
-
-
-
-
 
     void SaveXML()
     {
@@ -212,15 +277,6 @@ public class SLSystem : MonoBehaviour
             Debug.Log("Ошибка чтения файла!");
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #endregion
 }

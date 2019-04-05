@@ -44,6 +44,14 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     /// Является ли точка открытой для перемещения
     /// </summary>
     [SerializeField] public bool IsOpenPoint = false;
+    /// <summary>
+    /// Является ли точка заблокированной
+    /// </summary>
+    [SerializeField] public bool IsBlockPoint = false;
+    /// <summary>
+    /// Является ли точка стартовой
+    /// </summary>
+    [SerializeField] public bool IsStartPoint = false;
     #endregion
 
 
@@ -56,7 +64,6 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     {
         mapMan.PointEnter(this);
     }
-    
     /// <summary>
     /// Меняет цвет точки
     /// </summary>
@@ -64,6 +71,11 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     public void setColor(Color clr)
     {
         GetComponent<Image>().color = clr;
+    }
+
+    private void OnMouseOver()
+    {
+        print("kek");
     }
     #endregion
 }

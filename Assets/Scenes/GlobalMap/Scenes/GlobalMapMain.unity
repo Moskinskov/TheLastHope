@@ -172,6 +172,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &18909305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,10 +301,12 @@ MonoBehaviour:
   - point: {fileID: 1967308039}
     dist: 8
   - point: {fileID: 2140497189}
-    dist: 12
+    dist: 5
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &51426170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +476,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &73179097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,8 +623,8 @@ MonoBehaviour:
   Neightboring:
   - point: {fileID: 18909304}
     dist: 5
-  - point: {fileID: 944654466}
-    dist: 14
+  - point: {fileID: 2140497189}
+    dist: 6
   - point: {fileID: 1329474708}
     dist: 5
   - point: {fileID: 1324856975}
@@ -626,6 +632,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 1
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &116162898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,8 +944,10 @@ MonoBehaviour:
   - point: {fileID: 1967308039}
     dist: 9
   mapMan: {fileID: 1527635996}
-  IsKeyPoint: 0
+  IsKeyPoint: 1
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &452536347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1188,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!1 &532630577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1268,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 532630580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1527635996}
+        m_MethodName: StartLvl
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &532630580
@@ -1341,11 +1364,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMap: {fileID: 1446666226}
   canUi: {fileID: 1738974353}
-  uiActive: 0
-  turnPoint: {fileID: 0}
   targetName: {fileID: 133786209}
   distanceFromTarget: {fileID: 1806484722}
   nextCity: {fileID: 255411696}
+  uiActive: 0
 --- !u!1 &659961211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1584,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &689031860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,16 +1796,14 @@ MonoBehaviour:
   num: 9
   Neightboring:
   - point: {fileID: 452536346}
-    dist: 12
-  - point: {fileID: 116162897}
-    dist: 14
-  - point: {fileID: 501098984}
-    dist: 10
-  - point: {fileID: 2120317255}
     dist: 7
+  - point: {fileID: 501098984}
+    dist: 5
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &944654467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2163,6 +2185,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &1324856976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2306,17 +2330,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 7
   Neightboring:
-  - point: {fileID: 501098984}
-    dist: 8
-  - point: {fileID: 2140497189}
-    dist: 10
-  - point: {fileID: 2120317255}
-    dist: 5
   - point: {fileID: 116162897}
+    dist: 5
+  - point: {fileID: 2140497189}
+    dist: 5
+  - point: {fileID: 2120317255}
     dist: 5
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &1329474709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2554,6 +2578,8 @@ MonoBehaviour:
   roadClr: {r: 0, g: 0.488204, b: 1, a: 1}
   pointClr: {r: 0.7264151, g: 0.4510765, b: 0.22272162, a: 1}
   currentClr: {r: 0, g: 1, b: 0.0408051, a: 1}
+  keyPointClr: {r: 0.9056604, g: 0.80561674, b: 0, a: 1}
+  blockPointClr: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1527635997
 Transform:
   m_ObjectHideFlags: 0
@@ -2628,6 +2654,8 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &1589538504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,6 +2940,7 @@ GameObject:
   - component: {fileID: 1788480480}
   - component: {fileID: 1788480479}
   - component: {fileID: 1788480482}
+  - component: {fileID: 1788480483}
   m_Layer: 5
   m_Name: KeyWest_0
   m_TagString: Untagged
@@ -3047,6 +3076,34 @@ MonoBehaviour:
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 1
+--- !u!61 &1788480483
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788480477}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5944824, y: -0.000030517578}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 25.95288, y: 24.755676}
+  m_EdgeRadius: 0
 --- !u!1 &1806484720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3269,14 +3326,14 @@ MonoBehaviour:
   num: 11
   Neightboring:
   - point: {fileID: 452536346}
-    dist: 9
+    dist: 5
   - point: {fileID: 51426169}
-    dist: 8
-  - point: {fileID: 2120317255}
-    dist: 13
+    dist: 5
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &1967308040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3396,11 +3453,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bfd78533aa67849a08e6098e75abd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  road: 
   startPoint: {fileID: 1788480482}
   nextKeyPoint: {fileID: 116162897}
   countPoints: 15
   mapsObj: []
-  road: 
 --- !u!4 &2000443607
 Transform:
   m_ObjectHideFlags: 0
@@ -3468,15 +3525,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 8
   Neightboring:
-  - point: {fileID: 944654466}
-    dist: 7
-  - point: {fileID: 1967308039}
-    dist: 13
+  - point: {fileID: 501098984}
+    dist: 5
   - point: {fileID: 1329474708}
     dist: 5
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!114 &2120317256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3602,12 +3659,16 @@ MonoBehaviour:
   num: 12
   Neightboring:
   - point: {fileID: 51426169}
-    dist: 12
+    dist: 6
   - point: {fileID: 1329474708}
-    dist: 10
+    dist: 5
+  - point: {fileID: 116162897}
+    dist: 5
   mapMan: {fileID: 1527635996}
   IsKeyPoint: 0
   IsOpenPoint: 0
+  IsBlockPoint: 0
+  IsStartPoint: 0
 --- !u!224 &2140497190
 RectTransform:
   m_ObjectHideFlags: 0

@@ -33,7 +33,17 @@ public class MapManager : MonoBehaviour
     /// currentClr - цвет стартовой точки
     /// </summary>
     [SerializeField] public Color currentClr;
+    /// <summary>
+    /// keyPointClr - цвет ключевой точки
+    /// </summary>
+    [SerializeField] public Color keyPointClr;
+    /// <summary>
+    /// blockPointClr - цвет заблокированной точки
+    /// </summary>
+    [SerializeField] public Color blockPointClr;
     #endregion
+
+    private SLSystem sl = new SLSystem();
 
     #region Public Methods
     /// <summary>
@@ -42,8 +52,8 @@ public class MapManager : MonoBehaviour
     /// <param name="point"> Точка , которую нажал игрок</param>
     public void PointEnter(PointController point)
     {
-        path.clearRoad(pointClr, currentClr);
-        if (point != path.startPoint)
+        path.clearRoad(pointClr, currentClr, keyPointClr,blockPointClr);
+        if (point != path.startPoint && !point.IsBlockPoint)
         {
             if (point.IsKeyPoint)
             {
@@ -57,6 +67,18 @@ public class MapManager : MonoBehaviour
             else
             {
                 path.searchRoad(path.startPoint.num, point.num);
+                foreach (int p in path.road)
+                {
+                    //Если на маршруте есть заблокированная точка
+                    if (path.mapsObj[p].IsBlockPoint)
+                    {
+                        if (ui.uiActive)
+                        {
+                            ui.OpenCloseUi(point, path.GetDistance(point.num), path.GetNextCity());
+                        }
+                        return;
+                    }
+                }
                 if (!path.road.Contains(path.nextKeyPoint.num))
                 {
                     if (point.IsOpenPoint)
@@ -72,6 +94,7 @@ public class MapManager : MonoBehaviour
                     {
                         //point закрытая точка для перемещния
                         //строим дорогу от стартовой до ключевой
+                        //через закрытую точку
                         if (path.searchRoadKey(path.startPoint.num, path.nextKeyPoint.num, point.num))
                         {
                             if (ui.OpenCloseUi(point, path.GetDistance(point.num), path.GetNextCity()))
@@ -83,6 +106,66 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (ui.uiActive)
+            {
+                ui.OpenCloseUi(point, path.GetDistance(point.num), path.GetNextCity());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Метод ищет ближайшую ключевую точку
+    /// </summary>
+    public void ChangeKeyPoint()
+    {
+        foreach (PointController p in path.mapsObj)
+        {
+            if (p.IsKeyPoint)
+            {
+                bool temp = true;
+                path.searchRoad(path.startPoint.num, p.num);
+                foreach (int k in path.road)
+                {
+                    if (path.mapsObj[k].IsKeyPoint)
+                    {
+                        if (k != p.num)
+                        {
+                            temp = false;
+                        }
+                    }
+                }
+                if (temp)
+                {
+                    path.nextKeyPoint = p;
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// Устанавливает стартовую точку
+    /// </summary>
+    public void ChangeStartPoint()
+    {
+        foreach (PointController p in path.mapsObj)
+        {
+            if (p.IsStartPoint)
+            {
+                path.startPoint = p;
+            }
+        }
+    }
+    /// <summary>
+    /// Стартует лвл
+    /// </summary>
+    public void StartLvl()
+    {
+        path.GetNextCity().IsStartPoint = true;
+        path.startPoint.IsStartPoint = false;
+        path.startPoint.IsBlockPoint = true;
+        sl.SaveMapFile(path.mapsObj, path.startPoint.name + "/" + path.GetNextCity().name);
+        Application.Quit();
     }
     #endregion
 
@@ -90,9 +173,33 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path.Init();
-        path.clearRoad(pointClr, currentClr);
+        try
+        {
+            path.Init();
+            sl.LoadMapFile(path.mapsObj);
+            ChangeStartPoint();
+            if (path.startPoint.IsKeyPoint)
+            {
+                path.startPoint.IsKeyPoint = false;
+                
+            }
+            ChangeKeyPoint();
+            path.clearRoad(pointClr, currentClr, keyPointClr,blockPointClr);
+            foreach (PointController p in path.mapsObj)
+            {
+                if (p.IsStartPoint)
+                {
+                    path.startPoint = p;
+                }
+            }
+        }
+        catch
+        {
+            path.Init();
+            path.clearRoad(pointClr, currentClr, keyPointClr, blockPointClr);
+            sl.SaveMapFile(path.mapsObj, "LVL1");
+            print("Файл отсутствует. Создан новый.");
+        }
     }
     #endregion
-
 }
