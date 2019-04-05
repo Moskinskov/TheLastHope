@@ -609,13 +609,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2403224203502377714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0611fe81f6e2b004faa269ac7e39d11e, type: 3}
+  m_Script: {fileID: 11500000, guid: bf822fe3ee40ab040a20ca6a340b595a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frame: {fileID: 2403224203490443039}
-  _healthBar: {fileID: 2403224205016480788}
-  _buttonBar: {fileID: 2403224204168027281}
-  _healthBarImage: {fileID: 2403224204702013993}
+  frame: {fileID: 2403224203490443039}
+  healthBar: {fileID: 2403224205016480788}
+  ammoBar: {fileID: 0}
+  reloadBar: {fileID: 0}
+  buttonBar: {fileID: 2403224204168027281}
+  healthBarImage: {fileID: 0}
+  ammoBarImage: {fileID: 0}
 --- !u!1 &2403224203521325028
 GameObject:
   m_ObjectHideFlags: 0
@@ -12218,14 +12221,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6169721750599559355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506bf321e8ad0664d8b0b3adf190bc5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a770df370118e5498bf1dbec6165f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 4932013810334355985}
   soft: {fileID: 4079027151865531339, guid: 801d83c6675742f46bc28ac771f916e0, type: 3}
   manualMode: 0
   turningAngularSpeed: 180
-  _maxHealth: 500
+  _maxHealth: 300
 --- !u!199 &2403224203531913330
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -17048,19 +17051,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6559562128419309897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83fab434166acd74089592defa55804f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d4ca1a5393111f4fa1071ebe9d2cfc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _muzzle: {fileID: 2403224203521325029}
-  _laserAudioSource: {fileID: 2403224202993366029}
+  typeOfAmmo: 2
+  currentAmmoInClip: 100
+  clipSize: 100
+  reloadTime: 10
+  maxRange: 15
+  damagePerSecond: 5
+  energyPerSecond: 10
+  muzzle: {fileID: 2403224203521325029}
+  audioSource: {fileID: 0}
+  effect: {fileID: 2586797402439845981}
+  _damagePerSecond: 5
   _flameRenderer: {fileID: 3152924841262943732}
-  _laserEffect: {fileID: 2586797402439845981}
-  _damagePerSecond: 1.5
-  _energyCapacity: 15
-  _energyPerSecond: 3
-  _recoveryPerSecond: 2
-  _minActiveEnergy: 10
-  _maxRange: 20
 --- !u!1 &8042589247727611127
 GameObject:
   m_ObjectHideFlags: 0

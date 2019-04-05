@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1438546517193334971}
   - component: {fileID: 4587789525232091608}
   m_Layer: 0
-  m_Name: Rails
+  m_Name: rails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,11 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 197664749159427404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23bfd03a0f6d8d94b83c1d336b822085, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e7b3880e61f736408ae19aeb15c7d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curve: {fileID: 7552010036132997319}
-  length: 10
+  curve: {fileID: 0}
+  length: 0
   type: 0
 --- !u!65 &4587789525232091608
 BoxCollider:
@@ -136,15 +136,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 197664748961103315}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7552010036132997319 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7669663250309780756, guid: 4638f08ed92045b42811f9469c1c768e,
-    type: 3}
-  m_PrefabInstance: {fileID: 197664748961103315}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3573baebd6091794ab72ccb5e451e0e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

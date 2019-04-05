@@ -322,12 +322,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 963044536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed96d71f3f00cff46a347016858f802d, type: 3}
+  m_Script: {fileID: 11500000, guid: 80e8db8c7e5c55442a5fec8039e544bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  speed: 30
-  maxMagnitude: 50
+  damage: 5
+  speed: 0
+  maxMagnitude: 0
 --- !u!1001 &1882949295833743189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,12 +399,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 198532743192405386, guid: 643639841fb531e4ba8097fed4eb9ac7,
+    - target: {fileID: 198606588566830260, guid: 643639841fb531e4ba8097fed4eb9ac7,
         type: 3}
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198606588566830260, guid: 643639841fb531e4ba8097fed4eb9ac7,
+    - target: {fileID: 198532743192405386, guid: 643639841fb531e4ba8097fed4eb9ac7,
         type: 3}
       propertyPath: looping
       value: 0

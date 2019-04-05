@@ -40,10 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3721137512515253489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc90e993c89556c44bb24e3e523e293d, type: 3}
+  m_Script: {fileID: 11500000, guid: e3b9ff73e38ecdc4789c9ced61340cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Player
-  visionRadius: 5
-  searchTimeDelay: 0.5
+  visionRadius: 15
+  searchTimeDelay: 1
   canBeManual: 0

@@ -19399,21 +19399,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 399272609710532797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4f57952b954384092de7f8af3daf36, type: 3}
+  m_Script: {fileID: 11500000, guid: bb9503f7e565a1647ace81e2aba1e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateOfFire: 0.25
-  _shootingRange: 60
-  _reloadTime: 3
-  _force: 30
-  _clipSize: 30
-  _canChangeFiringMode: 0
-  _currentFiringMode: 0
-  _firingModesAvailable: 
-  _ammo: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b, type: 3}
-  _muzzle: {fileID: 399272610497876519}
-  _barrel: {fileID: 0}
-  _muzzleFlash: {fileID: 0}
+  typeOfAmmo: 0
+  currentAmmoInClip: 50
+  clipSize: 50
+  reloadTime: 2
+  rateOfFire: 1
+  force: 150
+  ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
+    type: 3}
+  muzzle: {fileID: 399272610497876519}
+  barrel: {fileID: 399272610497876518}
+  muzzleFlash: {fileID: 0}
 --- !u!82 &399272609710532771
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24395,18 +24394,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 399272610317790381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83bd3c3630591674a857423b9e6ba923, type: 3}
+  m_Script: {fileID: 11500000, guid: c6ea831d27f241a4392545a1a9401bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 20
-  maxAcceleration: 10
-  driftingRadius: 30
-  maxHealth: 350
-  _driftingSpeedDivider: 0.3
-  _speedSmoother: 0.001
-  _weapon: {fileID: 3838980590964847983}
-  _visionDistance: 20
+  maxHealth: 150
+  _driftingSpeedDivider: 0.5
+  _speedSmoother: 10
+  _weapon: {fileID: 399272609710532768}
+  _visionDistance: 30
   _damageTex: {fileID: 2800000, guid: 26e21044f357e8e478d4951e7195b203, type: 3}
+  maxSpeed: 20
+  maxAcceleration: 5
+  driftingRadius: 15
 --- !u!65 &399272610317791059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25022,21 +25021,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3838980590964847980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4f57952b954384092de7f8af3daf36, type: 3}
+  m_Script: {fileID: 11500000, guid: bb9503f7e565a1647ace81e2aba1e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateOfFire: 0.35
-  _shootingRange: 22
-  _reloadTime: 0
-  _force: 600
-  _clipSize: 5
-  _canChangeFiringMode: 0
-  _currentFiringMode: 0
-  _firingModesAvailable: 
-  _ammo: {fileID: 8567172581761347633, guid: 092addff08be5c745a97df00460f50f2, type: 3}
-  _muzzle: {fileID: 3838980589405248804}
-  _barrel: {fileID: 0}
-  _muzzleFlash: {fileID: 0}
+  typeOfAmmo: 0
+  currentAmmoInClip: 0
+  clipSize: 0
+  reloadTime: 0
+  rateOfFire: 1
+  force: 30
+  ammoPrefab: {fileID: 0}
+  muzzle: {fileID: 0}
+  barrel: {fileID: 0}
+  muzzleFlash: {fileID: 0}
 --- !u!82 &3838980590964847982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25188,6 +25185,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
       propertyPath: InheritVelocityModule.enabled
       value: 1
@@ -25196,9 +25197,45 @@ PrefabInstance:
       propertyPath: InheritVelocityModule.m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800008, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800010, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -25227,46 +25264,6 @@ PrefabInstance:
     - target: {fileID: 19800002, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
       propertyPath: moveWithTransform
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InheritVelocityModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800008, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InheritVelocityModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800010, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InheritVelocityModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InheritVelocityModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800012, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}

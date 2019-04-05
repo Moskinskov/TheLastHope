@@ -9761,21 +9761,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6491789264380002305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c8c449520988724db8bc0ec1a1009da, type: 3}
+  m_Script: {fileID: 11500000, guid: 01ed5c4e158fb094c8caf6d7a7746a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateOfFire: 0.05
-  _shootingRange: 15
-  _reloadTime: 10
-  _force: 300
-  _clipSize: 200
-  _canChangeFiringMode: 0
-  _currentFiringMode: 0
-  _firingModesAvailable: 
-  _ammo: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b, type: 3}
-  _muzzle: {fileID: 6491789263208544817}
-  _barrel: {fileID: 6491789264380002317}
-  _muzzleFlash: {fileID: 6490678891455049982}
+  typeOfAmmo: 0
+  currentAmmoInClip: 300
+  clipSize: 300
+  reloadTime: 10
+  rateOfFire: 0.1
+  force: 300
+  ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
+    type: 3}
+  muzzle: {fileID: 6491789263208544817}
+  barrel: {fileID: 6491789264380002317}
+  muzzleFlash: {fileID: 6490678891455049982}
 --- !u!1 &6491789264380002307
 GameObject:
   m_ObjectHideFlags: 0
@@ -10084,14 +10083,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6491789264380002311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506bf321e8ad0664d8b0b3adf190bc5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a770df370118e5498bf1dbec6165f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 6491789263212140144}
   soft: {fileID: 5894397521185714274, guid: 0e1d5669a7a406c4d9ed4177eac0bb20, type: 3}
   manualMode: 0
-  turningAngularSpeed: 120
-  _maxHealth: 150
+  turningAngularSpeed: 180
+  _maxHealth: 0
 --- !u!54 &6491789264380002308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10594,31 +10593,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 6491789264380002319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bec51a671b22e4d828e4cecaa8300b, type: 3}
+  m_Script: {fileID: 11500000, guid: 67b5522ae09929d4a999d5bd939016aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 20
-  maxAcceleration: 5
-  driftingRadius: 50
-  maxHealth: 350
+  maxHealth: 300
   _driftingSpeedDivider: 0.5
-  _speedSmoother: 0.5
+  _speedSmoother: 20
   _turret: {fileID: 6491789264665482539}
-  _visionDistance: 15
+  _visionDistance: 0
   _damageTex: {fileID: 2800000, guid: 26e21044f357e8e478d4951e7195b203, type: 3}
   _frontWheels:
-  - {fileID: 6491789264380002333}
   - {fileID: 6491789264380002309}
+  - {fileID: 6491789264380002333}
   _rearWheels:
   - {fileID: 6491789264380002307}
   - {fileID: 6491789264380002315}
   _visionSpread: 15
-  _turnSpeed: 0.5
-  _turnRatio: 3
-  _maxDistanceFromPlayer: 10
-  sensorLength: 15
-  frontSensorPosition: {x: 0, y: 0, z: 0}
-  frontSideSensorPosition: 2
+  _turnSpeed: 10
+  _turnRatio: 10
+  _maxDistanceFromPlayer: 15
+  maxSpeed: 20
+  maxAcceleration: 5
+  driftingRadius: 15
+  sensorLength: 3
+  frontSensorPosition: {x: 0, y: 0, z: 1}
+  frontSideSensorPosition: 0.6
   frontSensorAngle: 30
 --- !u!82 &6491789264380002316
 AudioSource:
@@ -15668,6 +15667,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 501590933162578891, guid: 45d49d4b988d19447a64e3b4798eb939,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 501590933162578891, guid: 45d49d4b988d19447a64e3b4798eb939,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 187.125
+      objectReference: {fileID: 0}
     - target: {fileID: 501590933750257703, guid: 45d49d4b988d19447a64e3b4798eb939,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -15692,16 +15701,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 19.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 501590933162578891, guid: 45d49d4b988d19447a64e3b4798eb939,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 501590933162578891, guid: 45d49d4b988d19447a64e3b4798eb939,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 187.125
       objectReference: {fileID: 0}
     - target: {fileID: 501590933815059857, guid: 45d49d4b988d19447a64e3b4798eb939,
         type: 3}
@@ -15738,21 +15737,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 501590933846691752, guid: 45d49d4b988d19447a64e3b4798eb939,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 501590933846691752, guid: 45d49d4b988d19447a64e3b4798eb939,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 94.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 501590933846691752, guid: 45d49d4b988d19447a64e3b4798eb939,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 501590932516313646, guid: 45d49d4b988d19447a64e3b4798eb939,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -15772,6 +15756,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 462.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 501590933846691752, guid: 45d49d4b988d19447a64e3b4798eb939,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 501590933846691752, guid: 45d49d4b988d19447a64e3b4798eb939,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 94.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 501590933846691752, guid: 45d49d4b988d19447a64e3b4798eb939,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d49d4b988d19447a64e3b4798eb939, type: 3}

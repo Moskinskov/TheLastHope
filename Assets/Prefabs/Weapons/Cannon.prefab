@@ -255,23 +255,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1400911071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4f57952b954384092de7f8af3daf36, type: 3}
+  m_Script: {fileID: 11500000, guid: bb9503f7e565a1647ace81e2aba1e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfAmmo: 3
   currentAmmoInClip: 5
   clipSize: 5
-  _rateOfFire: 1
-  _shootingRange: 15
-  _reloadTime: 0
-  _force: 500
-  _canChangeFiringMode: 0
-  _currentFiringMode: 0
-  _firingModesAvailable: 
-  _ammo: {fileID: 240558141, guid: 706898fbe57b38a49873e78ff07eb83b, type: 3}
-  _muzzle: {fileID: 1570630945}
-  _barrel: {fileID: 0}
-  _muzzleFlash: {fileID: 984023446}
+  reloadTime: 10
+  rateOfFire: 1
+  force: 10
+  ammoPrefab: {fileID: 240558141, guid: 706898fbe57b38a49873e78ff07eb83b, type: 3}
+  muzzle: {fileID: 1570630945}
+  barrel: {fileID: 1570630944}
+  muzzleFlash: {fileID: 984023446}
 --- !u!82 &1400911073
 AudioSource:
   m_ObjectHideFlags: 0
@@ -757,14 +753,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728004597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506bf321e8ad0664d8b0b3adf190bc5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a770df370118e5498bf1dbec6165f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1400911074}
-  soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
+  soft: {fileID: 4079027151865531339, guid: 801d83c6675742f46bc28ac771f916e0, type: 3}
   manualMode: 0
-  turningAngularSpeed: 45
-  _maxHealth: 100
+  turningAngularSpeed: 90
+  _maxHealth: 300
 --- !u!198 &1728004602
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -7300,16 +7296,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6870402409950365921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0611fe81f6e2b004faa269ac7e39d11e, type: 3}
+  m_Script: {fileID: 11500000, guid: bf822fe3ee40ab040a20ca6a340b595a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frame: {fileID: 4558088452924114462}
-  _healthBar: {fileID: 1789961432283647482}
-  _ammoBar: {fileID: 6684728310679275224}
-  _reloadBar: {fileID: 6183625821267938716}
-  _buttonBar: {fileID: 8672671243466532835}
-  _healthBarImage: {fileID: 6240662340709377353}
-  _ammoBarImage: {fileID: 8318159400994788825}
+  frame: {fileID: 4558088452924114462}
+  healthBar: {fileID: 1789961432283647482}
+  ammoBar: {fileID: 6684728310679275224}
+  reloadBar: {fileID: 6183625821267938716}
+  buttonBar: {fileID: 8672671243466532835}
+  healthBarImage: {fileID: 0}
+  ammoBarImage: {fileID: 0}
 --- !u!1 &6885030162131825184
 GameObject:
   m_ObjectHideFlags: 0

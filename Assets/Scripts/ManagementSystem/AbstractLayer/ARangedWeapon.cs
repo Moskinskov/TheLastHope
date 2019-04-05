@@ -17,7 +17,6 @@ namespace TheLastHope.Management.AbstractLayer
     {
         #region Serializables
         [SerializeField] protected float rateOfFire = 1.0f;
-        [SerializeField] protected float reloadTime = 1.0f;
         [SerializeField] private float force = 30.0f;
 
         [SerializeField, Header("Necessary objects")]

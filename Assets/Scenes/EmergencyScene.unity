@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1587856826}
-  m_IndirectSpecularColor: {r: 0.12947877, g: 0.11278122, b: 0.06761504, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1471,7 +1471,6 @@ GameObject:
   - component: {fileID: 350707972}
   - component: {fileID: 350707974}
   - component: {fileID: 350707973}
-  - component: {fileID: 350707975}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1553,10 +1552,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 350707968}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80128df588107b94ab90fb6072033cd6, type: 3}
+  m_Script: {fileID: 11500000, guid: bef424b8f7063394dabd6c1b3725641a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTransform: {fileID: 350707971}
+  cameraSpeed: 1
+  zRange: 5
+  xRange: 10
+  xBoard: 0.8
+  yBoard: 0.5
+  steps: 4
+  _scrollSpeed: 10
+  _deepOfZoom: 2
+  cameraSpeedinFrames: 60
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  t: 1
+  camTransform: {fileID: 0}
   shakeDuration: 0
   shakeAmount: 0.7
   decreaseFactor: 1
@@ -1582,60 +1615,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 350707968}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 360979aafebd332448626a2236bafdb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fa6e2fb5277e7e44a81ab0ec4823396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Profile: {fileID: 11400000, guid: d048099bc81f61c43ab0ca39daf1f4bd, type: 2}
-  m_FocusTracksTarget: 0
-  m_FocusOffset: 0
---- !u!114 &350707975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350707968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b74df0010023f46994a9b2c9900018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraSpeed: 4
-  zRange: 6.48
-  xRange: 30
-  xBoard: 0.8
-  yBoard: 0.5
-  steps: 20
-  _scrollSpeed: 35
-  _deepOfZoom: 2
-  cameraSpeedinFrames: 60
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  t: 0.04
-  camTransform: {fileID: 350707971}
-  shakeDuration: 1
+  camTransform: {fileID: 0}
+  shakeDuration: 0
   shakeAmount: 0.7
   decreaseFactor: 1
 --- !u!1 &383829605
@@ -5503,13 +5487,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1702990410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9d5b5a8cf8bfd4b9281f4fe945ccf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3037b043b2671094abdb0afe4b02c683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 10
-  start: {fileID: 1702990412}
-  skillRadius: 30
-  rocket: {fileID: 2828636802105262265, guid: 0d9dbb8df89bb15438d57f6d437412d3, type: 3}
+  cooldown: 1
+  start: {fileID: 0}
+  skillRadius: 20
+  rocket: {fileID: 0}
 --- !u!4 &1702990412
 Transform:
   m_ObjectHideFlags: 0
@@ -5859,10 +5843,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1754543449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ffa2eaf29b0e9b469f0b8f0f7385c5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 98a89d585c6a6cf4e9ca20542923b4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDivider: 10
+  speedDivider: 0
 --- !u!4 &1754543451
 Transform:
   m_ObjectHideFlags: 0

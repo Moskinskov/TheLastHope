@@ -170,14 +170,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 444040288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506bf321e8ad0664d8b0b3adf190bc5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a770df370118e5498bf1dbec6165f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1403347127}
-  soft: {fileID: 4079027151865531339, guid: 116c44fb20d54d3428a8bad3b9d68dfd, type: 3}
+  soft: {fileID: 4079027151865531339, guid: 801d83c6675742f46bc28ac771f916e0, type: 3}
   manualMode: 0
   turningAngularSpeed: 180
-  _maxHealth: 100
+  _maxHealth: 300
 --- !u!65 &444040290
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5052,25 +5052,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403347125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e031c9d404d7aca45925cf9388f53a66, type: 3}
+  m_Script: {fileID: 11500000, guid: 3774c5812490d694db544ad8e22433a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfAmmo: 0
-  currentAmmoInClip: 8
-  clipSize: 8
-  _rateOfFire: 1
-  _shootingRange: 10
-  _reloadTime: 1
-  _force: 100
-  _canChangeFiringMode: 0
-  _currentFiringMode: 0
-  _firingModesAvailable: 
-  _ammo: {fileID: 963044537, guid: bda4d8028fc5435468dc26a084e5963b, type: 3}
-  _muzzle: {fileID: 1354831041}
-  _barrel: {fileID: 0}
-  _muzzleFlash: {fileID: 0}
-  _ammoPerShot: 12
-  _angleScatter: 15
+  typeOfAmmo: 1
+  currentAmmoInClip: 15
+  clipSize: 15
+  reloadTime: 10
+  rateOfFire: 0.5
+  force: 200
+  ammoPrefab: {fileID: 963044537, guid: bda4d8028fc5435468dc26a084e5963b, type: 3}
+  muzzle: {fileID: 1354831041}
+  barrel: {fileID: 1354831040}
+  muzzleFlash: {fileID: 0}
+  ammoPerShot: 5
+  angleScatter: 15
 --- !u!82 &1403347128
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7199,16 +7195,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6734822247464376753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0611fe81f6e2b004faa269ac7e39d11e, type: 3}
+  m_Script: {fileID: 11500000, guid: bf822fe3ee40ab040a20ca6a340b595a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frame: {fileID: 6955371162984808237}
-  _healthBar: {fileID: 133290863548838791}
-  _ammoBar: {fileID: 1939421497631112687}
-  _reloadBar: {fileID: 9157598619737347802}
-  _buttonBar: {fileID: 1461157437244889843}
-  _healthBarImage: {fileID: 7860745640180006083}
-  _ammoBarImage: {fileID: 2772292313123393540}
+  frame: {fileID: 6955371162984808237}
+  healthBar: {fileID: 133290863548838791}
+  ammoBar: {fileID: 1939421497631112687}
+  reloadBar: {fileID: 9157598619737347802}
+  buttonBar: {fileID: 1461157437244889843}
+  healthBarImage: {fileID: 7860745640180006083}
+  ammoBarImage: {fileID: 2772292313123393540}
 --- !u!1 &8005521108854562605
 GameObject:
   m_ObjectHideFlags: 0
@@ -7590,6 +7586,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444040289}
     m_Modifications:
+    - target: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
+      propertyPath: m_Name
+      value: smoke_thick
+      objectReference: {fileID: 0}
     - target: {fileID: 4105057708622760, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7633,10 +7633,6 @@ PrefabInstance:
     - target: {fileID: 4105057708622760, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
-      propertyPath: m_Name
-      value: smoke_thick
       objectReference: {fileID: 0}
     - target: {fileID: 1616531522783736, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_IsActive
