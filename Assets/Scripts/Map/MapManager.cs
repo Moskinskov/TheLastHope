@@ -44,15 +44,29 @@ public class MapManager : MonoBehaviour
     #endregion
 
     private SLSystem sl = new SLSystem();
+    public bool fix = false;
 
     #region Public Methods
+    public void PointClick(PointController point)
+    {
+        
+        if (fix)
+        {
+            PointEnter(point);
+        }
+        else
+        {
+
+        }
+        fix = !fix;
+    }
     /// <summary>
     /// Метод обрабатывает нажатие точки
     /// </summary>
     /// <param name="point"> Точка , которую нажал игрок</param>
     public void PointEnter(PointController point)
     {
-        path.clearRoad(pointClr, currentClr, keyPointClr,blockPointClr);
+        path.clearRoad(pointClr, currentClr, keyPointClr, blockPointClr);
         if (point != path.startPoint && !point.IsBlockPoint)
         {
             if (point.IsKeyPoint)
@@ -114,7 +128,53 @@ public class MapManager : MonoBehaviour
             }
         }
     }
-
+    public void PointIntoExit(PointController point)
+    {
+        path.clearRoad(pointClr, currentClr, keyPointClr, blockPointClr);
+        if (point != path.startPoint && !point.IsBlockPoint)
+        {
+            if (point.IsKeyPoint)
+            {
+                // point - ключевая точка
+                path.searchRoad(path.startPoint.num, point.num);
+                path.drawRoad(roadClr);
+                
+            }
+            else
+            {
+                path.searchRoad(path.startPoint.num, point.num);
+                foreach (int p in path.road)
+                {
+                    //Если на маршруте есть заблокированная точка
+                    if (path.mapsObj[p].IsBlockPoint)
+                    {
+                        return;
+                    }
+                }
+                if (!path.road.Contains(path.nextKeyPoint.num))
+                {
+                    if (point.IsOpenPoint)
+                    {
+                        //point - открытая точка для перемещения
+                        path.searchRoad(path.startPoint.num, point.num);
+                        path.drawRoad(roadClr);
+                        
+                    }
+                    else
+                    {
+                        //point закрытая точка для перемещния
+                        //строим дорогу от стартовой до ключевой
+                        //через закрытую точку
+                        if (path.searchRoadKey(path.startPoint.num, path.nextKeyPoint.num, point.num))
+                        {
+                            path.drawRoad(roadClr);
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
     /// <summary>
     /// Метод ищет ближайшую ключевую точку
     /// </summary>
@@ -159,13 +219,21 @@ public class MapManager : MonoBehaviour
     /// <summary>
     /// Стартует лвл
     /// </summary>
-    public void StartLvl()
+    public void StartLvl(int numScene)
     {
-        path.GetNextCity().IsStartPoint = true;
-        path.startPoint.IsStartPoint = false;
-        path.startPoint.IsBlockPoint = true;
-        sl.SaveMapFile(path.mapsObj, path.startPoint.name + "/" + path.GetNextCity().name);
-        Application.Quit();
+        if (numScene == 1)
+        {
+            path.GetNextCity().IsStartPoint = true;
+            path.startPoint.IsStartPoint = false;
+            path.startPoint.IsBlockPoint = true;
+            sl.SaveMapFile(path.mapsObj, path.startPoint.name + "/" + path.GetNextCity().name);
+            //Новый уровень
+        }
+        if (numScene == 2)
+        {
+            sl.SaveMapFile(path.mapsObj, path.startPoint.name + "/" + path.GetNextCity().name);
+            //Вызов сцены ангара
+        }
     }
     #endregion
 

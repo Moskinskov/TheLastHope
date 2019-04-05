@@ -215,6 +215,7 @@
     <Compile Include="Assets\Scripts\Map\MapManager.cs" />
     <Compile Include="Assets\Scripts\Map\PathController.cs" />
     <Compile Include="Assets\Scripts\Map\PointController.cs" />
+    <Compile Include="Assets\Scripts\Map\TempScript.cs" />
     <Compile Include="Assets\Scripts\Map\UiController.cs" />
     <Compile Include="Assets\Scripts\Render\CameraController.cs" />
     <Compile Include="Assets\Scripts\Render\CameraShake.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Assets\Scripts\Workers\UIOverlayController.cs" />
     <Compile Include="Assets\Starter.cs" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\DepthOfField.shader" />
+    <None Include="Assets\MapSettings.xml" />
     <None Include="Assets\Effects\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Fog.shader" />

@@ -19,7 +19,7 @@ public struct Points
 /// <summary>
 /// PointController - отвечает за логику и ф-ционал отдельно взятой точки
 /// </summary>
-public class PointController : MonoBehaviour, IPointerClickHandler
+public class PointController : MonoBehaviour, IPointerClickHandler , IPointerEnterHandler, IPointerExitHandler
 {
     #region Public variables
     /// <summary>
@@ -62,8 +62,28 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     /// <param name="eventData">Хз что это</param>
     public void OnPointerClick(PointerEventData eventData)
     {
-        mapMan.PointEnter(this);
+        mapMan.PointClick(this);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!mapMan.fix)
+        {
+            mapMan.PointEnter(this);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!mapMan.fix)
+        {
+            if (mapMan.ui.uiActive)
+            {
+                mapMan.PointEnter(this);
+            }
+        }
+    }
+
     /// <summary>
     /// Меняет цвет точки
     /// </summary>
