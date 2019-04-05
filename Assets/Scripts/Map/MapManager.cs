@@ -209,12 +209,13 @@ public class MapManager : MonoBehaviour
     /// <summary>
     /// Устанавливает стартовую точку
     /// </summary>
-    public void ChangeStartPoint()
+    public void ChangeStartPoint(string name)
     {
         foreach (PointController p in path.mapsObj)
         {
-            if (p.IsStartPoint)
+            if (p.name == name)
             {
+                p.IsStartPoint = true;
                 path.startPoint = p;
             }
         }
@@ -226,15 +227,15 @@ public class MapManager : MonoBehaviour
     {
         if (numScene == 1)
         {
-            path.GetNextCity().IsStartPoint = true;
+            //path.GetNextCity().IsStartPoint = true;
             path.startPoint.IsStartPoint = false;
             path.startPoint.IsBlockPoint = true;
-            sl.SaveMapFile(path.mapsObj, path.startPoint.name + "/" + path.GetNextCity().name);
+            sl.SaveMapFile(path.mapsObj, path.startPoint.name, path.GetNextCity().name); 
             //Новый уровень
         }
         if (numScene == 2)
         {
-            sl.SaveMapFile(path.mapsObj, path.startPoint.name + "/" + path.GetNextCity().name);
+            sl.SaveMapFile(path.mapsObj, path.startPoint.name, path.GetNextCity().name);
             //Вызов сцены ангара
         }
     }
@@ -248,27 +249,28 @@ public class MapManager : MonoBehaviour
         {
             path.Init();
             sl.LoadMapFile(path.mapsObj);
-            ChangeStartPoint();
+            string name = sl.LoadNextLvlName();
+            if (name != "")
+            {
+                ChangeStartPoint(name);
+            }
+            else
+            {
+                ChangeStartPoint(sl.LoadPrevLvlName());
+            }
             if (path.startPoint.IsKeyPoint)
             {
+                print(path.startPoint.name);
                 path.startPoint.IsKeyPoint = false;
-                
             }
             ChangeKeyPoint();
-            path.clearRoad(pointClr, currentClr, keyPointClr,blockPointClr);
-            foreach (PointController p in path.mapsObj)
-            {
-                if (p.IsStartPoint)
-                {
-                    path.startPoint = p;
-                }
-            }
+            path.clearRoad(pointClr, currentClr, keyPointClr, blockPointClr);
         }
         catch
         {
             path.Init();
             path.clearRoad(pointClr, currentClr, keyPointClr, blockPointClr);
-            sl.SaveMapFile(path.mapsObj, "LVL1");
+            sl.SaveMapFile(path.mapsObj, "LVL1", "LVL2");
             print("Файл отсутствует. Создан новый.");
         }
     }

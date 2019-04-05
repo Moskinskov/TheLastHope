@@ -120,6 +120,7 @@
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Effects\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scripts\Events\SecretRoad.cs" />
     <Compile Include="Assets\Scripts\GameElements\Ammo\SimpleBullet.cs" />
     <Compile Include="Assets\Scripts\GameElements\Ammo\SimpleEnemyBullet.cs" />
     <Compile Include="Assets\Scripts\GameElements\Ammo\SimpleRocket.cs" />

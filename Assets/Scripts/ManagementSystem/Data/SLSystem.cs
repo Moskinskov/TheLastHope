@@ -51,7 +51,7 @@ public class SLSystem : MonoBehaviour
 
 
     #region SLMapFile
-    public void SaveMapFile(PointController[] map, string lvlName)
+    public void SaveMapFile(PointController[] map, string prevLvlName, string nextLvlName)
     {
         XmlNode userNode;
         XmlAttribute attribute;
@@ -63,10 +63,13 @@ public class SLSystem : MonoBehaviour
         XmlNode rootNode = xmlDoc.CreateElement("MapSetting");
         xmlDoc.AppendChild(rootNode);
 
-        //Записываем название уровня
+        //Записываем название уровня предыдущего и следующего
         temp = xmlDoc.CreateElement("Lvl");
-        element = xmlDoc.CreateElement("lvlName");
-        element.SetAttribute("value", lvlName);
+        element = xmlDoc.CreateElement("prevLvlName");
+        element.SetAttribute("value", prevLvlName);
+        temp.AppendChild(element);
+        element = xmlDoc.CreateElement("nextLvlName");
+        element.SetAttribute("value", nextLvlName);
         temp.AppendChild(element);
         rootNode.AppendChild(temp);
 
@@ -133,23 +136,61 @@ public class SLSystem : MonoBehaviour
         reader.Close();
     }
 
-    public string LoadLvlName()
+    public string LoadNextLvlName()
     {
         string name = "";
         XmlTextReader reader = new XmlTextReader(Application.dataPath + "/" + fileName1 + ".xml");
         while (reader.Read())
         {
-            if (reader.IsStartElement("lvlName"))
+            if (reader.IsStartElement("nextLvlName"))
             {
-                return reader.GetAttribute("value");
+                name = reader.GetAttribute("value");
             }
         }
+        reader.Close();
         return name;
+    }
+
+    public string LoadPrevLvlName()
+    {
+        string name = "";
+        XmlTextReader reader = new XmlTextReader(Application.dataPath + "/" + fileName1 + ".xml");
+        while (reader.Read())
+        {
+            if (reader.IsStartElement("prevLvlName"))
+            {
+                name = reader.GetAttribute("value");
+            }
+        }
+        reader.Close();
+        return name;
+    }
+
+    public void SaveNextLvlName(string name)
+    {
+        XmlDocument xDoc = new XmlDocument();
+        xDoc.Load(Application.dataPath + "/" + fileName1 + ".xml");
+        foreach (XmlElement p in xDoc.GetElementsByTagName("nextLvlName"))
+        {
+            p.SetAttribute("value", name);
+        }
+        xDoc.Save(Application.dataPath + "/" + fileName1 + ".xml");
+    }
+
+    public void SavePrevLvlName(string name)
+    {
+        XmlDocument xDoc = new XmlDocument();
+        xDoc.Load(Application.dataPath + "/" + fileName1 + ".xml");
+        foreach (XmlElement p in xDoc.GetElementsByTagName("prevLvlName"))
+        {
+            p.SetAttribute("value", name);
+        }
+        xDoc.Save(Application.dataPath + "/" + fileName1 + ".xml");
     }
     #endregion
 
-    #region DontWork code
-    private void AddCarrige(XmlDocument xmlDoc, XmlNode train, int index, int count)
+        #region DontWork code
+        private void AddCarrige(XmlDocument xmlDoc, XmlNode train, int index, int count)
     {
         XmlNode car = xmlDoc.CreateElement("Carrige" + index, "Type" + index);
         
