@@ -2,15 +2,15 @@
 /// The Last Hope
 /// Curator: Ilya Moskinskov
 /// Author: Nikolay Pankrakhin
-/// to be commented
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TheLastHope.Management.Data;
+using UnityEngine;
 
 namespace TheLastHope.Weapons.Software
 {
+    /// <summary>
+    /// Software - core class
+    /// </summary>
     public abstract class ASoftware : MonoBehaviour
     {
         #region Parametrs
@@ -21,9 +21,9 @@ namespace TheLastHope.Weapons.Software
         //Турель будет самостоятельно выбирать ближайшую цель для атаки,
         //поиск цели будет осуществлен с помощью корутина 1 раз в searchTimeDelay секунд
         [SerializeField] internal float searchTimeDelay = 1f;
-		[SerializeField] internal bool canBeManual = false;
-		//Текущая цель турели
-		internal Transform target;
+        [SerializeField] internal bool canBeManual = false;
+        //Текущая цель турели
+        internal Transform target;
         //Предыдущее положение цели
         private Vector3 previousTargetPosition;
         //Скорость цели
@@ -39,15 +39,19 @@ namespace TheLastHope.Weapons.Software
         public Transform Target { get => target; set => target = value; }
         #endregion
 
+        #region Abstruct methods
 
-        public virtual void SwitchMode()
-        {
-            canBeManual = !canBeManual;
-        }
         public abstract void Init();
         //Считает точку, на которую должна навестись турель
         public abstract Vector3 CalculateAim(Transform turPosition);
 
         public abstract void FindClosestTarget(SceneData sceneData);
+
+        #endregion
+
+        public virtual void SwitchMode()
+        {
+            canBeManual = !canBeManual;
+        }
     }
 }
