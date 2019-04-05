@@ -56,7 +56,10 @@ public class MapManager : MonoBehaviour
         }
         else
         {
-
+            if (!ui.uiActive)
+            {
+                PointEnter(point);
+            }
         }
         fix = !fix;
     }
@@ -69,7 +72,7 @@ public class MapManager : MonoBehaviour
         path.clearRoad(pointClr, currentClr, keyPointClr, blockPointClr);
         if (point != path.startPoint && !point.IsBlockPoint)
         {
-            if (point.IsKeyPoint)
+            if (point.IsKeyPoint && path.nextKeyPoint == point)
             {
                 // point - ключевая точка
                 path.searchRoad(path.startPoint.num, point.num);
