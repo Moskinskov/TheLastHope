@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.Data;
@@ -7,10 +11,8 @@ namespace TheLastHope.Management.AbstractLayer
 {
 	/// <summary>
 	/// Abstract ammunition container class.
-	/// </summary>
-	/// <remarks>
 	/// Use this class to create new boxes for ammunition storage.
-	/// </remarks>
+	/// </summary>
 
 	public abstract class AAmmoContainer : MonoBehaviour
     {

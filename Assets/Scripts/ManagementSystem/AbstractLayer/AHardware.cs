@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// Commented
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +30,6 @@ namespace TheLastHope.Management.AbstractLayer
 
     public enum TypePosition
     {
-        square
+        Square
     }
 }

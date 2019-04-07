@@ -25,6 +25,15 @@ namespace TheLastHope.Hangar
         /// </summary>
         [SerializeField] private Button nextCarBtn;
 
+        /// <summary>
+        /// Position of main camera
+        /// </summary>
+        Vector3 cameraPos;
+        /// <summary>
+        /// Step of elementary movement of camera
+        /// </summary>
+        float cameraStep = 10.5f;
+
         public void Init()
         {
             carriageButton.onClick.AddListener(CarriageBtnOnClick);
@@ -36,6 +45,8 @@ namespace TheLastHope.Hangar
             previousCarBtn.onClick.AddListener(PreviousCarriage);
             previousCarBtn.interactable = false;
             nextCarBtn.onClick.AddListener(NextCarriage);
+
+            cameraPos = Camera.main.transform.position;
         }
 
         void CarriageBtnOnClick()
@@ -70,6 +81,8 @@ namespace TheLastHope.Hangar
                     previousCarBtn.interactable = false;
                 HangarData.instance.positionController.UpdateSlots();
                 nextCarBtn.interactable = true;
+
+                cameraPos.x += cameraStep;
                 //camera move -->
             }
         }
@@ -81,10 +94,16 @@ namespace TheLastHope.Hangar
                     nextCarBtn.interactable = false;
                 HangarData.instance.positionController.UpdateSlots();
                 previousCarBtn.interactable = true;
+
+                cameraPos.x -= cameraStep;
                 //camera move <--
             }
         }
 
+        void Update()
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos, Time.deltaTime);
+        }
 
     }
 }

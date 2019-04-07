@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// to be commented
+
+using System.Collections.Generic;
 using TheLastHope.Management.AbstractLayer;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,11 +55,12 @@ namespace TheLastHope.Hangar
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                Destroy(transform.GetChild(i));
+                Destroy(transform.GetChild(i).gameObject);
             }
+
             InitSlots();
         }
-        
+
         /// <summary>
         /// Show vacant slots when item dragging is begin
         /// </summary>
@@ -65,7 +71,7 @@ namespace TheLastHope.Hangar
                 squareSlots[i].GetComponent<Image>().enabled = true;
             }
         }
-        
+
         /// <summary>
         /// Hide unfilled slots when item dragging is end
         /// </summary>

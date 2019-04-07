@@ -1,32 +1,47 @@
-﻿using System.Collections.Generic;
+﻿/// Limerence Games
+/// The Last Hope
+/// Curator: Danny Kotov
+/// Commented
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheLastHope.Hangar
 {
+    /// <summary>
+    /// Container of a carriage
+    /// </summary>
     public class Container : MonoBehaviour
     {
+        /// <summary>
+        /// List of all hardware on the carriage
+        /// </summary>
         public List<GameObject> hardwares;
-        public List<Transform> weaponPositions;
+        /// <summary>
+        /// Positions where Hardware could be installed
+        /// </summary>
+        public List<Transform> hardwarePositions;
+        /// <summary>
+        /// How many positions of type 'square' on carriage
+        /// </summary>
         public int squareTypeCount;
-
-        public int ClipSize { get; set; }
 
         private void Start()
         {
             hardwares = new List<GameObject>();
-            weaponPositions = new List<Transform>();
+            hardwarePositions = new List<Transform>();
             for (int i = 0; i < squareTypeCount; i++)
             {
                 hardwares.Add(null);
-                weaponPositions.Add(transform.GetChild(i));
+                hardwarePositions.Add(transform.GetChild(i));
             }
         }
 
         public void AddNewHardware(GameObject hardware, int index)
         {
             hardwares[index] = Instantiate(hardware);
-            hardwares[index].transform.position = weaponPositions[index].position;
-            hardwares[index].transform.SetParent(weaponPositions[index]);
+            hardwares[index].transform.position = hardwarePositions[index].position;
+            hardwares[index].transform.SetParent(hardwarePositions[index]);
         }
         public void RemoveHardware(int index)
         {

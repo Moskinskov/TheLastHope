@@ -21,12 +21,12 @@ namespace TheLastHope.Generators
         int lineCount = 5;
         int currentLine = 0;
         #endregion
-        
+
         #region Out of use
         public override void Generate(List<GameObject> gameObject, SceneData sceneData, List<Vector3> positions)
-		{
-			throw new System.NotImplementedException();
-		}
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace TheLastHope.Generators
         /// <param name="sceneData"></param>
 		public override void Generate(GameObject[] objects, SceneData sceneData)
         {
-            if(sceneData.CurrentLine > currentLine)
+            if (sceneData.CurrentLine > currentLine)
             {
                 float exactX = sceneData.Props[sceneData.Props.Count - 1].transform.position.x + 10;
                 for (var i = 0; i < lineCount; i++)
@@ -45,13 +45,13 @@ namespace TheLastHope.Generators
                 }
                 currentLine = sceneData.CurrentLine;
             }
-            for (int i = 0; i < lineCount ; i++)
+            for (int i = 0; i < lineCount; i++)
             {
                 if (objects[i] != null)
                 {
                     sceneData.Props.Add(Instantiate(objects[i], positions[i], Quaternion.identity));
                 }
             }
-		}
-	}
+        }
+    }
 }

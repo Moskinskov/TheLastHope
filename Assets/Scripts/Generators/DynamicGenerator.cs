@@ -11,12 +11,18 @@ namespace TheLastHope.Generators
     /// Generator of dynamic objects
     /// </summary>
 	class DynamicGenerator : AGenerator
-	{
+    {
+        /// <summary>
+        /// Generate dynamic objects by pattern
+        /// </summary>
+        /// <param name="objList"></param>
+        /// <param name="sceneData"></param>
+        /// <param name="positions"></param>
         public override void Generate(List<GameObject> objList, SceneData sceneData, List<Vector3> positions)
         {
             if (sceneData.Enemies.Count < sceneData.TargetEnemyCount)
             {
-                foreach(var enemy in objList)
+                foreach (var enemy in objList)
                 {
                     GameObject genEnemy = Instantiate(enemy, positions[objList.IndexOf(enemy)], Quaternion.identity);
                     enemy.GetComponentInChildren<AEnemy>().Init(sceneData);
