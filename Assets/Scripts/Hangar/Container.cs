@@ -44,12 +44,12 @@ namespace TheLastHope.Hangar
         /// <summary>
         /// Add new hardware in defined slot on carriage
         /// </summary>
-        /// <param name="hardware">UI item with hardware</param>
+        /// <param name="item">UI item with hardware</param>
         /// <param name="index">Numbetr of slot</param>
-        public void AddNewHardware(GameObject hardware, GameObject item, int index)
+        public void AddNewHardware(GameObject item, int index)
         {
             items[index] = item;
-            hardwares[index] = Instantiate(hardware, hardwarePositions[index]);
+            hardwares[index] = Instantiate(item.GetComponent<Item>().hw, hardwarePositions[index]);
             hardwares[index].transform.localPosition = new Vector3(0,0,0);
         }
         /// <summary>

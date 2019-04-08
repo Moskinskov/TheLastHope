@@ -49,13 +49,13 @@ namespace TheLastHope.Hangar
                             else if (!isInventory && !Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                             {
                                 HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
-                                HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, Item.itemBeingDragged, number);
+                                HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged, number);
                                 Item.itemBeingDragged.transform.SetParent(transform);
                             }
                             if (!isInventory && Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                             {
                                 HangarData.instance.positionController.itemsOnCarriage.Add(Item.itemBeingDragged);
-                                HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, Item.itemBeingDragged, number);
+                                HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged, number);
                             }
 
                             Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;
