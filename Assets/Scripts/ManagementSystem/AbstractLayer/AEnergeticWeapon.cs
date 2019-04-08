@@ -14,7 +14,7 @@ namespace TheLastHope.Management.AbstractLayer
     /// </summary>
     public abstract class AEnergeticWeapon : AWeapon
     {
-        #region Protected variables
+        #region Serializables
 
         [SerializeField]
         protected float maxRange;

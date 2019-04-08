@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CursorsAndCrosshairs\CursorChanger.cs" />
+    <Compile Include="Assets\Effects\CursorsAndCrosshairs\CursorChanger.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
@@ -126,10 +126,11 @@
     <Compile Include="Assets\Scripts\GameElements\Ammo\SimpleRocket.cs" />
     <Compile Include="Assets\Scripts\GameElements\Enemies\BuggyEnemy.cs" />
     <Compile Include="Assets\Scripts\GameElements\Enemies\CopterEnemy.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Hardware\SquareHardware.cs" />
     <Compile Include="Assets\Scripts\GameElements\Player\Carriage.cs" />
     <Compile Include="Assets\Scripts\GameElements\Player\Loco.cs" />
     <Compile Include="Assets\Scripts\GameElements\Player\MainPlayer.cs" />
-    <Compile Include="Assets\Scripts\GameElements\Player\Rail.cs" />
+    <Compile Include="Assets\Scripts\GameElements\Props\Rail.cs" />
     <Compile Include="Assets\Scripts\GameElements\Triggers\TriggerEndMap.cs" />
     <Compile Include="Assets\Scripts\GameElements\Triggers\TriggerEnemyGen.cs" />
     <Compile Include="Assets\Scripts\GameElements\Weapons\BasicTurret.cs" />
@@ -138,7 +139,6 @@
     <Compile Include="Assets\Scripts\GameElements\Weapons\GatlingGun.cs" />
     <Compile Include="Assets\Scripts\GameElements\Weapons\LaserGun.cs" />
     <Compile Include="Assets\Scripts\GameElements\Weapons\MachineGun.cs" />
-    <Compile Include="Assets\Scripts\GameElements\Weapons\ManualTurretPlatform.cs" />
     <Compile Include="Assets\Scripts\GameElements\Weapons\Rifle.cs" />
     <Compile Include="Assets\Scripts\GameElements\Weapons\Shotgun.cs" />
     <Compile Include="Assets\Scripts\GameElements\Weapons\Software\AutoAndManualSoft.cs" />
@@ -157,7 +157,6 @@
     <Compile Include="Assets\Scripts\Hangar\Item.cs" />
     <Compile Include="Assets\Scripts\Hangar\PositionController.cs" />
     <Compile Include="Assets\Scripts\Hangar\Slot.cs" />
-    <Compile Include="Assets\Scripts\Hardware\SquareHardware.cs" />
     <Compile Include="Assets\Scripts\Helpers\Bezier.cs" />
     <Compile Include="Assets\Scripts\Helpers\BezierCurve.cs" />
     <Compile Include="Assets\Scripts\Helpers\SerializableVector3.cs" />
@@ -227,7 +226,6 @@
     <Compile Include="Assets\Scripts\Workers\UIOverlayController.cs" />
     <Compile Include="Assets\Starter.cs" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\DepthOfField.shader" />
-    <None Include="Assets\MapSettings.xml" />
     <None Include="Assets\Effects\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\Effects\PostProcessing\Resources\Shaders\Fog.shader" />

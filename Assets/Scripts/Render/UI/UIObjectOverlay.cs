@@ -15,7 +15,7 @@ namespace TheLastHope.UI {
 		[SerializeField]
 		private Canvas _healthBar;
 		[SerializeField]
-		private Canvas _ammoBar;
+		private Canvas ammoPrefabBar;
 		[SerializeField]
 		private Canvas _reloadBar;
 		[SerializeField]
@@ -23,7 +23,7 @@ namespace TheLastHope.UI {
 		[SerializeField]
 		private Image _healthBarImage;
 		[SerializeField]
-		private Image _ammoBarImage;
+		private Image ammoPrefabBarImage;
 		private float _currentHealth;
 		private float _currentAmmo = 0;
 		private Vector3 _overlaySize;
@@ -35,7 +35,7 @@ namespace TheLastHope.UI {
 		private void getInfo()
 		{	
 				_healthBarImage.fillAmount = _currentHealth;
-				//_ammoBarImage.fillAmount = _currentAmmo;
+				//ammoPrefabBarImage.fillAmount = _currentAmmo;
 		}
 
 		public void ShowOverlay(bool frame)
@@ -64,7 +64,7 @@ namespace TheLastHope.UI {
 			if (frame) { _frame.enabled = true; }
 			if (health) { _healthBar.enabled = true; }
 			if (button) { _buttonBar.enabled = true; }
-			//if (ammo) { _ammoBar.enabled = true;  }
+			//if (ammo) { ammoPrefabBar.enabled = true;  }
 		}
 
 		public void ShowOverlay(bool frame, bool health, bool button, bool ammo, bool reload)
@@ -73,7 +73,7 @@ namespace TheLastHope.UI {
 			if (frame) { _frame.enabled = true; }
 			if (health) { _healthBar.enabled = true; }
 			if (button) { _buttonBar.enabled = true; }
-			//if (ammo) { _ammoBar.enabled = true; }
+			//if (ammo) { ammoPrefabBar.enabled = true; }
 			//if (reload) { _reloadBar.enabled = true; }
 		}
 
@@ -82,7 +82,7 @@ namespace TheLastHope.UI {
 			_frame.enabled = false;
 			_healthBar.enabled = false;
 			_buttonBar.enabled = false;
-			//if (_ammoBar) _ammoBar.enabled = false;
+			//if (ammoPrefabBar) ammoPrefabBar.enabled = false;
 		}
 
 

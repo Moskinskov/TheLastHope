@@ -22,7 +22,7 @@ namespace TheLastHope.Weapons
 
         /// <summary>
         ///  Shotgun class
-        ///  Реализует подобие стрельбы из дробовика выпуская одновременно _ammoPerShot патронов
+        ///  Реализует подобие стрельбы из дробовика выпуская одновременно ammoPrefabPerShot патронов
         ///  Shot толкает следующий патрон на i * dirDeviation правее и левее
         ///  В свою очередь dirDeviation считается как перепендикулярный вектор к _muzzle.forward
         /// </summary>

@@ -17,33 +17,29 @@ public class UltimateWeapon : ARangedWeapon
     public override void Shot(SceneData sceneData)
     {
 
-        AAmmo _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
+        AAmmo _bullet = Instantiate(ammoPrefab, Muzzle.position, Muzzle.rotation);
         sceneData.Ammos.Add(_bullet.gameObject);
         _bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
         var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
         _bulletRigidBody.AddForce(Muzzle.forward * Force);
 
-        _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
+        _bullet = Instantiate(ammoPrefab, Muzzle.position, Muzzle.rotation);
         sceneData.Ammos.Add(_bullet.gameObject);
         _bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
         _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
         _bulletRigidBody.AddForce(Muzzle.right * Force);
 
-        _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
+        _bullet = Instantiate(ammoPrefab, Muzzle.position, Muzzle.rotation);
         sceneData.Ammos.Add(_bullet.gameObject);
         _bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
         _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
         _bulletRigidBody.AddForce(Muzzle.right * -1 * Force);
 
-        _bullet = Instantiate(_ammo, Muzzle.position, Muzzle.rotation);
+        _bullet = Instantiate(ammoPrefab, Muzzle.position, Muzzle.rotation);
         sceneData.Ammos.Add(_bullet.gameObject);
         _bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
         _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
         _bulletRigidBody.AddForce(Muzzle.forward * -1 * Force);
     }
 
-    public override void SwitchFiringMode()
-    {
-        throw new System.NotImplementedException();
-    }
 }

@@ -7,9 +7,9 @@ using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Weapons
 {
-    /// <summary>
-    /// 'ARangedWeapon' - class. For gatling gun
-    /// </summary>
+	/// <summary>
+	/// 'ARangedWeapon' - class. For gatling gun
+	/// </summary>
 	public sealed class GatlingGun : ARangedWeapon
 	{
 		/// <summary>
@@ -18,15 +18,15 @@ namespace TheLastHope.Weapons
 		///  скорострельность, большой объем магазина. 
 		///  Shot - толкает все пули по направлению _muzzle.forward
 		/// </summary>
-        public override void Shot(SceneData sceneData)
-        {
-			
-            AAmmo _bullet = Instantiate(ammoPrefab, Muzzle.position, Muzzle.rotation);
+		public override void Shot(SceneData sceneData)
+		{
+
+			AAmmo _bullet = Instantiate(ammoPrefab, Muzzle.position, Muzzle.rotation);
 			sceneData.Ammos.Add(_bullet.gameObject);
 			_bullet.StartPoint = new Vector3(Muzzle.position.x, Muzzle.position.y, Muzzle.position.z);
-            var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
-            _bulletRigidBody.AddForce(Muzzle.forward * Force);
-			if (barrel) barrel.transform.Rotate(0,0,-30);
+			var _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
+			_bulletRigidBody.AddForce(Muzzle.forward * Force);
+			if (barrel) barrel.transform.Rotate(0, 0, -30);
 		}
 	}
 }

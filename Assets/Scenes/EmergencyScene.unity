@@ -3393,6 +3393,10 @@ MonoBehaviour:
   - {fileID: 3252065511983120356, guid: 601d3685b26b6ca41beeac1c21d5fa3a, type: 3}
   railsObjList:
   - {fileID: 2959852092950765152, guid: f8c65c37d49a8d849861cea57e4a389b, type: 3}
+  - {fileID: 7274841418539024329, guid: e76f2fe2a3fc6e947919e70faf3c0808, type: 3}
+  - {fileID: 7274841418539024329, guid: e76f2fe2a3fc6e947919e70faf3c0808, type: 3}
+  - {fileID: 3699869240267547767, guid: b432ce2c53f417947bae7a65ae5733f9, type: 3}
+  - {fileID: 3699869240267547767, guid: b432ce2c53f417947bae7a65ae5733f9, type: 3}
   carsObjList:
   - {fileID: 7630740939616229754, guid: 51fb8322769995d4f8b0239751da5e5c, type: 3}
   - {fileID: 850198385594888859, guid: d1ef869ea705e2b48af457dfe843118d, type: 3}
