@@ -104,6 +104,6 @@ public class Carriage : ACarriage
         {
             //print("LOST");
         }
-        transform.LookAt(connector.transform.position);
+        //transform.LookAt(connector.transform.position);
     }
 }

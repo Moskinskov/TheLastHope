@@ -501,7 +501,7 @@ RectTransform:
   - {fileID: 1000549911}
   - {fileID: 98476114}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3393,10 +3393,6 @@ MonoBehaviour:
   - {fileID: 3252065511983120356, guid: 601d3685b26b6ca41beeac1c21d5fa3a, type: 3}
   railsObjList:
   - {fileID: 2959852092950765152, guid: f8c65c37d49a8d849861cea57e4a389b, type: 3}
-  - {fileID: 7274841418539024329, guid: e76f2fe2a3fc6e947919e70faf3c0808, type: 3}
-  - {fileID: 7274841418539024329, guid: e76f2fe2a3fc6e947919e70faf3c0808, type: 3}
-  - {fileID: 3699869240267547767, guid: b432ce2c53f417947bae7a65ae5733f9, type: 3}
-  - {fileID: 3699869240267547767, guid: b432ce2c53f417947bae7a65ae5733f9, type: 3}
   carsObjList:
   - {fileID: 7630740939616229754, guid: 51fb8322769995d4f8b0239751da5e5c, type: 3}
   - {fileID: 850198385594888859, guid: d1ef869ea705e2b48af457dfe843118d, type: 3}
@@ -5690,9 +5686,9 @@ MonoBehaviour:
   currentLevel: lvl1
   winCanvas: {fileID: 173018540}
   looseCanvas: {fileID: 771127275}
-  firstFrameLengthInLines: 14
+  firstFrameLengthInLines: 15
   credits: 0
-  hangar: {fileID: 1944944852}
+  hangar: {fileID: 0}
   panelHangar: {fileID: 98476113}
 --- !u!4 &1712002262
 Transform:
@@ -6695,52 +6691,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932571354}
   m_Enabled: 1
---- !u!1 &1944944851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1944944853}
-  - component: {fileID: 1944944852}
-  m_Layer: 0
-  m_Name: HangarData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1944944852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944944851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794ff6d2050c7d145a90413fe18c17a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positionController: {fileID: 1967240004}
-  inventory: {fileID: 1329074556}
-  currentCarriage: {fileID: 0}
---- !u!4 &1944944853
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944944851}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 175.56172, y: 428.63907, z: -3.6071486}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1964544041
 GameObject:
   m_ObjectHideFlags: 0

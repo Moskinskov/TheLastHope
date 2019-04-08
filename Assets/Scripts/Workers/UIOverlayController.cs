@@ -17,51 +17,51 @@ namespace TheLastHope.UI {
 
 	public class UIOverlayController : MonoBehaviour
 	{
-		private float _health;
-		private ABaseObject _baseObject;
-		private float _startHealth;
-		private float _healthBarValue;
+		private float health;
+		private ABaseObject baseObject;
+		private float startHealth;
+		private float healthBarValue;
 		private float ammoPrefabBarValue;
-		private UIObjectOverlay _overlay;
-		private ObjType _currentType;
-		private Vector3 _overlaySize;
-		private bool _isUnderControl;
-		private float _oldHealth;
-		private Timer _timer;
+		private UIObjectOverlay overlay;
+		private ObjType currentType;
+		private Vector3 overlaySize;
+		private bool isUnderControl;
+		private float oldHealth;
+		private Timer timer;
 		private IEnumerator coroutine;
         GameState gameState = GameState.Wait;
 
 		[SerializeField]
-		private bool _showOnDamage;
+		private bool showOnDamage;
 		[SerializeField]
-		private float _showTime = 1.0f;
+		private float showTime = 1.0f;
 
 		public void Init()
 		{
-			_baseObject = GetComponentInChildren<ABaseObject>();
-			if (!_baseObject) GetComponent<ABaseObject>();
-			_healthBarValue = _baseObject.MaxHealth;
-			_overlay = GetComponentInChildren<UIObjectOverlay>();
+			baseObject = GetComponentInChildren<ABaseObject>();
+			if (!baseObject) GetComponent<ABaseObject>();
+			healthBarValue = baseObject.MaxHealth;
+			overlay = GetComponentInChildren<UIObjectOverlay>();
 			//if (_overlay) print(gameObject.name + " has an overlay!");
-			_oldHealth = _baseObject.Health;
+			oldHealth = baseObject.Health;
 
-			if (_baseObject.GetComponentInChildren<AEnemy>()) _currentType = ObjType.Enemy;
-			else if (_baseObject.GetComponentInChildren<ATurret>()) _currentType = ObjType.Turret;
-			else if (_baseObject.GetComponent<MainPlayer>()) _currentType = ObjType.Loco;
+			if (baseObject.GetComponentInChildren<AEnemy>()) currentType = ObjType.Enemy;
+			else if (baseObject.GetComponentInChildren<ATurret>()) currentType = ObjType.Turret;
+			else if (baseObject.GetComponent<MainPlayer>()) currentType = ObjType.Loco;
 			//print("I am " + _baseObject.name + " and my type is " + _currentType);
 			HideOverlay();
-			_timer = new Timer();
+			timer = new Timer();
 		}
 
 		public void OverlayUpdate(SceneData sceneData)
 		{
-			if ((_baseObject.Health != _oldHealth) && _showOnDamage && _baseObject.IsActive)
+			if ((baseObject.Health != oldHealth) && showOnDamage && baseObject.IsActive)
 			{
-				coroutine = DamageUI(_showTime);
+				coroutine = DamageUI(showTime);
 				StartCoroutine(coroutine);
 			}
 
-			if (_currentType == ObjType.Turret)
+			if (currentType == ObjType.Turret)
 			{
 				CountAmmo();
 				ShowOverlay();
@@ -72,17 +72,17 @@ namespace TheLastHope.UI {
 
 		public void CountHealth()
 		{
-			if (_baseObject)
+			if (baseObject)
 			{
-				_healthBarValue = _baseObject.Health / _baseObject.MaxHealth;
+				healthBarValue = baseObject.Health / baseObject.MaxHealth;
 				//print("Buggy Health is " + _healthBarValue);
-				_overlay.CurrentHealth = _healthBarValue;
+				overlay.CurrentHealth = healthBarValue;
 			}
 		}
 
 		public void CountAmmo()
 		{
-			if (_baseObject && _currentType == ObjType.Turret)
+			if (baseObject && currentType == ObjType.Turret)
 			{
 				//ammoPrefabBarValue = _baseObject.GetComponentInChildren<ARangedWeapon>().CurrentAmmoInClip / _baseObject.GetComponentInChildren<ARangedWeapon>().ClipSize;
 				//_overlay.CurrentAmmo = ammoPrefabBarValue;
@@ -103,7 +103,7 @@ namespace TheLastHope.UI {
 
 		private void OnMouseExit()
 		{
-			if (!_isUnderControl && gameState == GameState.Loop) HideOverlay();
+			if (!isUnderControl && gameState == GameState.Loop) HideOverlay();
 			//print("Mouse Exit!");
 		}
 
@@ -114,34 +114,34 @@ namespace TheLastHope.UI {
 
 		public void ShowOverlay()
 		{
-            if (_currentType == ObjType.Enemy) _overlay.ShowOverlay(true, true);
-            else if (_currentType == ObjType.Loco) _overlay.ShowOverlay(true, true); 
-			else if (_currentType == ObjType.Turret)
+            if (currentType == ObjType.Enemy) overlay.ShowOverlay(true, true);
+            else if (currentType == ObjType.Loco) overlay.ShowOverlay(true, true); 
+			else if (currentType == ObjType.Turret)
 			{
-				_overlay.ShowOverlay(true, true, true, true);
-				if (ammoPrefabBarValue == 0) _overlay.ShowOverlay(true, true, true, true, true);
-				else _overlay.ShowOverlay(true, true);
+				overlay.ShowOverlay(true, true, true, true);
+				if (ammoPrefabBarValue == 0) overlay.ShowOverlay(true, true, true, true, true);
+				else overlay.ShowOverlay(true, true);
 			}
 		}
 
 		public void HideOverlay()
 		{
-            if (_overlay) _overlay.HideOverlay();
+            if (overlay) overlay.HideOverlay();
             else print("Overlay not found!");
         }
 
 		public void ControlButton()
 		{
-			if (_currentType == ObjType.Turret && !_isUnderControl && _baseObject.GetComponentInChildren<ATurret>().soft.canBeManual)
+			if (currentType == ObjType.Turret && !isUnderControl && baseObject.GetComponentInChildren<ATurret>().soft.canBeManual)
 			{
-				_isUnderControl = true;
-				_baseObject.GetComponentInChildren<ATurret>().SwitchMode();
+				isUnderControl = true;
+				baseObject.GetComponentInChildren<ATurret>().SwitchMode();
 			}
 
 			else
 			{
-				_isUnderControl = false;
-				_baseObject.GetComponentInChildren<ATurret>().SwitchMode();
+				isUnderControl = false;
+				baseObject.GetComponentInChildren<ATurret>().SwitchMode();
 			}
 		}
 
@@ -151,7 +151,7 @@ namespace TheLastHope.UI {
 			ShowOverlay();
 			yield return new WaitForSeconds(waitTime);
 			HideOverlay();
-			_oldHealth = _baseObject.Health;
+			oldHealth = baseObject.Health;
 		}
 	}
 

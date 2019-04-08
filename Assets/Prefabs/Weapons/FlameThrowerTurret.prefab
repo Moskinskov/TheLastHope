@@ -614,11 +614,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frame: {fileID: 2403224203490443039}
   healthBar: {fileID: 2403224205016480788}
-  ammoBar: {fileID: 0}
-  reloadBar: {fileID: 0}
+  ammoPrefabBar: {fileID: 0}
+  _reloadBar: {fileID: 0}
   buttonBar: {fileID: 2403224204168027281}
-  healthBarImage: {fileID: 0}
-  ammoBarImage: {fileID: 0}
+  _healthBarImage: {fileID: 2403224204702013993}
+  ammoPrefabBarImage: {fileID: 0}
 --- !u!1 &2403224203521325028
 GameObject:
   m_ObjectHideFlags: 0
@@ -17062,10 +17062,10 @@ MonoBehaviour:
   damagePerSecond: 5
   energyPerSecond: 10
   muzzle: {fileID: 2403224203521325029}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 2403224202993366029}
   effect: {fileID: 2586797402439845981}
   _damagePerSecond: 5
-  _flameRenderer: {fileID: 3152924841262943732}
+  flameRenderer: {fileID: 3152924841262943732}
 --- !u!1 &8042589247727611127
 GameObject:
   m_ObjectHideFlags: 0

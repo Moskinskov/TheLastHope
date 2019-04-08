@@ -25,7 +25,6 @@ namespace TheLastHope.Generators
         #region Out of use
         public override void Generate(List<GameObject> gameObject, SceneData sceneData, List<Vector3> positions)
         {
-            throw new System.NotImplementedException();
         }
         #endregion
 

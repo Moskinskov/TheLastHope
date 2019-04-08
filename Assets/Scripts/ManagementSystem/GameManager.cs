@@ -78,9 +78,9 @@ namespace TheLastHope.Management
             pathCounter.Init(sceneData);
 			sceneData.LinesOverall = generatorManager.LevelLenght;
             GenerateFirstArea();
-			//sceneData.CurrentState = GameState.Start;
-			sceneData.CurrentState = GameState.Preroll;
-            sceneData.CurrentState = GameState.Wait;
+			sceneData.CurrentState = GameState.Start;
+			//sceneData.CurrentState = GameState.Preroll;
+            //sceneData.CurrentState = GameState.Wait;
 			//sceneData.CurrentState = GameState.Loop;
             //SaveLoadManager.SavePlayer(playerTrain, sceneData.Player); TEMPORARY OFF.
 		}

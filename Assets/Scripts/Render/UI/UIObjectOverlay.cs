@@ -11,77 +11,77 @@ namespace TheLastHope.UI {
 	public class UIObjectOverlay : MonoBehaviour
 	{
 		[SerializeField]
-		private Canvas _frame;
+		private Canvas frame;
 		[SerializeField]
-		private Canvas _healthBar;
+		private Canvas healthBar;
 		[SerializeField]
 		private Canvas ammoPrefabBar;
 		[SerializeField]
-		private Canvas _reloadBar;
+		private Canvas reloadBar;
 		[SerializeField]
-		private Canvas _buttonBar;
+		private Canvas buttonBar;
 		[SerializeField]
-		private Image _healthBarImage;
+		private Image healthBarImage;
 		[SerializeField]
 		private Image ammoPrefabBarImage;
-		private float _currentHealth;
-		private float _currentAmmo = 0;
-		private Vector3 _overlaySize;
+		private float currentHealth = 0;
+		private float currentAmmo = 0;
+		private Vector3 overlaySize;
 
-		public float CurrentHealth {set => _currentHealth = value; }
-		public Vector3 OverlaySize { get => _overlaySize; set => _overlaySize = value; }
-		public float CurrentAmmo { set => _currentAmmo = value; }
+		public float CurrentHealth {set => currentHealth = value; }
+		public Vector3 OverlaySize { get => overlaySize; set => overlaySize = value; }
+		public float CurrentAmmo { set => currentAmmo = value; }
 
 		private void getInfo()
 		{	
-				_healthBarImage.fillAmount = _currentHealth;
+				healthBarImage.fillAmount = currentHealth;
 				//ammoPrefabBarImage.fillAmount = _currentAmmo;
 		}
 
 		public void ShowOverlay(bool frame)
 		{
 			getInfo();
-			if (frame) { _frame.enabled = true; }
+			if (frame) { this.frame.enabled = true; }
 		}
 
 		public void ShowOverlay(bool frame, bool health)
 		{
 			getInfo();
-			if (frame) { _frame.enabled = true; }
-			if (health) { _healthBar.enabled = true; }
+			if (frame) { this.frame.enabled = true; }
+			if (health) { healthBar.enabled = true; }
 		}
 		public void ShowOverlay(bool frame, bool health, bool button)
 		{
 			getInfo();
-			if (frame) { _frame.enabled = true; }
-			if (health) { _healthBar.enabled = true; }
-			if (button) { _buttonBar.enabled = true; }
+			if (frame) { this.frame.enabled = true; }
+			if (health) { healthBar.enabled = true; }
+			if (button) { buttonBar.enabled = true; }
 		}
 
 		public void ShowOverlay(bool frame, bool health, bool button, bool ammo)
 		{
 			getInfo();
-			if (frame) { _frame.enabled = true; }
-			if (health) { _healthBar.enabled = true; }
-			if (button) { _buttonBar.enabled = true; }
+			if (frame) { this.frame.enabled = true; }
+			if (health) { healthBar.enabled = true; }
+			if (button) { buttonBar.enabled = true; }
 			//if (ammo) { ammoPrefabBar.enabled = true;  }
 		}
 
 		public void ShowOverlay(bool frame, bool health, bool button, bool ammo, bool reload)
 		{
 			getInfo();
-			if (frame) { _frame.enabled = true; }
-			if (health) { _healthBar.enabled = true; }
-			if (button) { _buttonBar.enabled = true; }
+			if (frame) { this.frame.enabled = true; }
+			if (health) { healthBar.enabled = true; }
+			if (button) { buttonBar.enabled = true; }
 			//if (ammo) { ammoPrefabBar.enabled = true; }
 			//if (reload) { _reloadBar.enabled = true; }
 		}
 
 		public void HideOverlay()
 		{
-			_frame.enabled = false;
-			_healthBar.enabled = false;
-			_buttonBar.enabled = false;
+			frame.enabled = false;
+			healthBar.enabled = false;
+			buttonBar.enabled = false;
 			//if (ammoPrefabBar) ammoPrefabBar.enabled = false;
 		}
 

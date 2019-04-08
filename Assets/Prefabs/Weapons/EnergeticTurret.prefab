@@ -329,12 +329,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf822fe3ee40ab040a20ca6a340b595a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frame: {fileID: 2460784148259553517}
-  _healthBar: {fileID: 2460784149752431590}
+  frame: {fileID: 2460784148259553517}
+  healthBar: {fileID: 2460784149752431590}
   ammoPrefabBar: {fileID: 0}
   _reloadBar: {fileID: 0}
-  _buttonBar: {fileID: 2460784148903175011}
-  _healthBarImage: {fileID: 0}
+  buttonBar: {fileID: 2460784148903175011}
+  _healthBarImage: {fileID: 2460784149462853083}
   ammoPrefabBarImage: {fileID: 0}
 --- !u!1 &2460784148259553516
 GameObject:
@@ -1000,7 +1000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2460784148903175014
 RectTransform:
   m_ObjectHideFlags: 0

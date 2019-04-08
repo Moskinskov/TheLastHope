@@ -24,7 +24,7 @@ namespace TheLastHope.Weapons
 		#region Private variables
 
 		private IEnumerator coroutine;
-		private bool _isPlaying;
+		private bool isPlaying;
 
 		#endregion
 
@@ -84,9 +84,9 @@ namespace TheLastHope.Weapons
 
 					coroutine = Effect(2.0f, hit);
 
-					if (!_isPlaying)
+					if (!isPlaying)
 					{
-						_isPlaying = true;
+						isPlaying = true;
 						StartCoroutine(coroutine);
 					}
 				}
@@ -131,7 +131,7 @@ namespace TheLastHope.Weapons
 
 			yield return new WaitForSeconds(audioSource.clip.length);
 
-			_isPlaying = false;
+			isPlaying = false;
 		}
 
 		#endregion

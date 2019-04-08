@@ -4934,6 +4934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typePosition: 0
   sprite: {fileID: 21300000, guid: ce96eb82960ba6c47978d0c10d2471d1, type: 3}
+  objects: []
 --- !u!1 &1354831040
 GameObject:
   m_ObjectHideFlags: 0
@@ -7200,11 +7201,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frame: {fileID: 6955371162984808237}
   healthBar: {fileID: 133290863548838791}
-  ammoBar: {fileID: 1939421497631112687}
-  reloadBar: {fileID: 9157598619737347802}
+  ammoPrefabBar: {fileID: 1939421497631112687}
+  _reloadBar: {fileID: 0}
   buttonBar: {fileID: 1461157437244889843}
-  healthBarImage: {fileID: 7860745640180006083}
-  ammoBarImage: {fileID: 2772292313123393540}
+  _healthBarImage: {fileID: 7860745640180006083}
+  ammoPrefabBarImage: {fileID: 2772292313123393540}
 --- !u!1 &8005521108854562605
 GameObject:
   m_ObjectHideFlags: 0

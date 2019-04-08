@@ -20,7 +20,7 @@ namespace TheLastHope.Weapons
 		private float _damagePerSecond;
 
 		[SerializeField, Header("Necessary objects")]
-		private ParticleSystem _flameRenderer;
+		private ParticleSystem flameRenderer;
 
 		#endregion
 
@@ -37,11 +37,11 @@ namespace TheLastHope.Weapons
 		public override void Init()
 		{
 			damagePerSecond = _damagePerSecond;
-			_flameRenderer.emissionRate = 0;
+			if(flameRenderer) flameRenderer.emissionRate = 0;
 			//_flameRenderer.Play();
 
-			if (!_flameRenderer.isStopped)
-				_flameRenderer.Stop();
+			if (!flameRenderer.isStopped)
+				flameRenderer.Stop();
 			if (!effect.isStopped)
 				effect.Stop();
 			if (audioSource.isPlaying)
@@ -104,15 +104,15 @@ namespace TheLastHope.Weapons
 		{
 			if (particleCount != _partCountInit)
 			{
-				_flameRenderer.Play();
-				_flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-				_partCountInit = _flameRenderer.emissionRate;
+				flameRenderer.Play();
+				flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
+				_partCountInit = flameRenderer.emissionRate;
 			}
 
 			if (particleCount == 0)
 			{
-				_flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-				_partCountInit = _flameRenderer.emissionRate;
+				flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
+				_partCountInit = flameRenderer.emissionRate;
 				//if (_partCountInit == 0) _flameRenderer.Stop();
 			}
 		}
