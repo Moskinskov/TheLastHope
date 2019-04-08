@@ -1,7 +1,8 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Danny Kotov
-/// to be commented
+/// Author: Sergey Aydarov
+/// Commented
 
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,6 @@ namespace TheLastHope.Management.AbstractLayer
 	/// </summary>
 	public abstract class AGenerator : MonoBehaviour
 	{
-		/// <summary>
-		/// General generation method.
-		/// </summary>
-		/// <param name="sceneData">A link to the Scene Data.</param>
-		/// <seealso cref="SceneData">
-		/// The object that gathers all of the data needed to 
-		/// build a Scene and organize the main loop. 
-		/// </seealso>
-		public abstract void Generate(SceneData sceneData);
 		/// <summary>
 		/// Generation method that is to be used in Static Generators.
 		/// </summary>

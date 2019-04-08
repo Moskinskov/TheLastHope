@@ -40,27 +40,37 @@ namespace TheLastHope.Management
 		[SerializeField] Canvas looseCanvas;
         [Tooltip("Number of lines to pregenerate scene")] 
         [SerializeField] int firstFrameLengthInLines = 14;
+        GameObject playerTrain;
+        [SerializeField] int credits;
+        Player player;
         [SerializeField] HangarData hangar;
-        [SerializeField] GameObject panel;
+        [SerializeField] GameObject panelHangar;
 
         // Start is called before the first frame update
         void Start()
         {
+            SaveLoadManager.objectsDictionary = FindObjectOfType<ObjectDictionary>();
+            SaveLoadManager.Load(out playerTrain, out player);
             sceneData = new SceneData();
+            mainPlayer = playerTrain.GetComponentInChildren<MainPlayer>();
+            trainManager = playerTrain.GetComponentInChildren<TrainManager>();
+            trainManager.Init(sceneData);
+            mainPlayer.Init();
             sceneData.TargetEnemyCount = targetEnemyCount;
             sceneData.TargetPropsCount = targetPropsCount;
             sceneData.TrainSpeed = trainSpeed;
             sceneData.LineLength = lineLength;
             sceneData.CurrentLevel = currentLevel;
             sceneData.LinesCount = linesCount;
+            sceneData.Player = player;
             worldMover.SetupMover(sceneData);
             generatorManager.Init(sceneData);
             renderManager.Init();
-            trainManager.Init(sceneData);
             triggerManager.Init(generatorManager);
+            //hangar.Init(sceneData); //Commited by Danny
+            
 
-			mainPlayer.Init();
-
+            trainStuffAdd();
             if (skillManager != null)
             {
                 skillManager.Init();
@@ -70,7 +80,9 @@ namespace TheLastHope.Management
             GenerateFirstArea();
 			//sceneData.CurrentState = GameState.Start;
 			sceneData.CurrentState = GameState.Preroll;
-			//ceneData.CurrentState = GameState.Loop;
+            sceneData.CurrentState = GameState.Wait;
+			//sceneData.CurrentState = GameState.Loop;
+            //SaveLoadManager.SavePlayer(playerTrain, sceneData.Player); TEMPORARY OFF.
 		}
 
 		private void trainStuffAdd()
@@ -87,7 +99,6 @@ namespace TheLastHope.Management
 		// Update is called once per frame
 		void Update()
         {
-
 			if (sceneData.CurrentState == GameState.Loop)
 			{
 				generatorManager.UpdateGenerators(sceneData);
@@ -99,58 +110,62 @@ namespace TheLastHope.Management
 					skillManager.SkillUpdate(sceneData);
 				}
 				pathCounter.CountLenght(sceneData, Time.deltaTime);
+                foreach(var trigger in sceneData.Triggers)
+                {
+                    print($"T {trigger.name}");
+                }
 				triggerManager.ExecuteCurrentEvents(sceneData);
 				//******************************************//
 				//Temp Progress Bar
 				//******************************************//
                 trainManager.UpdateTrain(sceneData);
-                destroyer.Destroy(sceneData);
-                worldMover.MoveWorld(sceneData, Time.deltaTime);
-                mainPlayer.UpdatePlayer(sceneData);
                 foreach (var enemy in sceneData.Enemies)
                 {
                     enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
                 }
+
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
             }
 
 			else if (sceneData.CurrentState == GameState.Lose)
 			{
 				EndGame(false, sceneData);
 				generatorManager.UpdateGenerators(sceneData);
-                destroyer.Destroy(sceneData);
-                worldMover.MoveWorld(sceneData, Time.deltaTime);
-                mainPlayer.UpdatePlayer(sceneData);
                 foreach (var enemy in sceneData.Enemies)
                 {
                     enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
                 }
+
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
             }
 			else if (sceneData.CurrentState == GameState.Win)
 			{
 				EndGame(true, sceneData);
-                destroyer.Destroy(sceneData);
-                worldMover.MoveWorld(sceneData, Time.deltaTime);
-                mainPlayer.UpdatePlayer(sceneData);
                 foreach (var enemy in sceneData.Enemies)
                 {
                     enemy.GetComponent<AEnemy>().EnemyUpdate(sceneData, Time.deltaTime);
                 }
-            }
-            else if (sceneData.CurrentState == GameState.Preroll)
-            {
 
+                destroyer.Destroy(sceneData);
+                worldMover.MoveWorld(sceneData, Time.deltaTime);
+                mainPlayer.UpdatePlayer(sceneData);
             }
             else if (sceneData.CurrentState == GameState.Start)
             {
-                hangar.SetInactive();               
-                weaponController.Init();
+                panelHangar.SetActive(false);
+                weaponController.Init(sceneData);
                 uiManager.Init(sceneData);
-                trainStuffAdd();
-                panel.SetActive(false);
                 sceneData.CurrentState = GameState.Loop;
             }
-
-
+            else if (sceneData.CurrentState == GameState.Wait)
+            {
+                
+                panelHangar.SetActive(true);
+            }
 
 
         }
@@ -180,10 +195,11 @@ namespace TheLastHope.Management
 		
 		public void StartOver()
 		{
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
 
-		public void Exit()
+        public void Exit()
 		{
 			Application.Quit();
 		}
@@ -200,7 +216,6 @@ namespace TheLastHope.Management
 
         public void RunScene()
         {
-            hangar.SetInactive();
             sceneData.CurrentState = GameState.Start;
         }
     }

@@ -1,43 +1,66 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Danny Kotov
-/// to be commented
+/// Commented
 
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheLastHope.Hangar
 {
+    /// <summary>
+    /// Container of a carriage
+    /// </summary>
     public class Container : MonoBehaviour
     {
+        /// <summary>
+        /// List of all hardware on the carriage
+        /// </summary>
         public List<GameObject> hardwares;
-        public List<Transform> weaponPositions;
+        /// <summary>
+        /// Connected with hardware UI items 
+        /// </summary>
+        public List<GameObject> items;
+        /// <summary>
+        /// Positions where Hardware could be installed
+        /// </summary>
+        public List<Transform> hardwarePositions;
+        /// <summary>
+        /// How many positions of type 'square' on carriage
+        /// </summary>
         public int squareTypeCount;
 
-        public int ClipSize { get; set; }
-
-        private void Start()
+        private void Awake()
         {
-            hardwares = new List<GameObject>();
-            weaponPositions = new List<Transform>();
+            items = new List<GameObject>();
+            hardwarePositions = new List<Transform>();
             for (int i = 0; i < squareTypeCount; i++)
             {
                 hardwares.Add(null);
-                weaponPositions.Add(transform.GetChild(i));
+                items.Add(null);
+                hardwarePositions.Add(transform.GetChild(i));
             }
         }
-
-        public void AddNewHardware(GameObject hardware, int index)
+        /// <summary>
+        /// Add new hardware in defined slot on carriage
+        /// </summary>
+        /// <param name="item">UI item with hardware</param>
+        /// <param name="index">Numbetr of slot</param>
+        public void AddNewHardware(GameObject item, int index)
         {
-            hardwares[index] = Instantiate(hardware);
-            hardwares[index].transform.position = weaponPositions[index].position;
-            hardwares[index].transform.SetParent(weaponPositions[index]);
+            items[index] = item;
+            hardwares[index] = Instantiate(item.GetComponent<Item>().hw, hardwarePositions[index]);
+            hardwares[index].transform.localPosition = new Vector3(0,0,0);
         }
+        /// <summary>
+        /// Remove hardware from defined slot on carriage
+        /// </summary>
+        /// <param name="index">Number of slot</param>
         public void RemoveHardware(int index)
         {
-            print("Remove");
             Destroy(hardwares[index]);
             hardwares[index] = null;
+            items[index] = null;
         }
     }
 }

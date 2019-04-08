@@ -1,7 +1,7 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Danny Kotov
-/// to be commented
+/// Commented
 
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +10,22 @@ using UnityEngine.UI;
 
 namespace TheLastHope.Hangar
 {
+    /// <summary>
+    /// UI inventory controller
+    /// </summary>
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private GameObject[] objPool;    //Temporary array
+        #region Private variables
+        /// <summary>
+        /// Temporary array for initialization items in inventory
+        /// </summary>
+        [SerializeField] private GameObject[] objPool;
+        /// <summary>
+        /// List of items in inventory
+        /// </summary>
         private List<GameObject> inventory;
+        #endregion
+
         void Filling()
         {
             inventory = new List<GameObject>();
@@ -23,7 +35,7 @@ namespace TheLastHope.Hangar
                 inventory[i].GetComponent<Item>().controller = HangarData.instance.positionController;
                 inventory[i].GetComponent<Item>().Init();
             }
-        } 
+        }
 
         public void Init()
         {
@@ -38,3 +50,4 @@ namespace TheLastHope.Hangar
         }
     }
 }
+

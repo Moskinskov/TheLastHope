@@ -11,7 +11,7 @@ namespace TheLastHope.Hardware
 {
     class SquareHardware : AHardware
     {
-        //Information of contained weapon/shields stuffs will be here
+        //void Awake()
         public void Init()
         {
             typePosition = TypePosition.Square;

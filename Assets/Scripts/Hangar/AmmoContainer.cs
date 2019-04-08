@@ -1,7 +1,7 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Danny Kotov
-/// to be commented
+/// Commented
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +12,14 @@ namespace TheLastHope.Hangar
 {
     class AmmoContainer : AAmmoContainer
     {
+        /// <summary>
+        /// Max capacity of ammunition which container has
+        /// </summary>
         public int maxCapacity = 1000;
-        int currentCapacity;
+        /// <summary>
+        /// Remaining capacity for ammunition in container
+        /// </summary>
+        private int currentCapacity;
 
         public override void Init()
         {
@@ -36,8 +42,8 @@ namespace TheLastHope.Hangar
         /// <summary>
         /// Adding certain type ammo in container
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="amount">how many add</param>
+        /// <param name="type">Ammunition type</param>
+        /// <param name="amount">How many add</param>
         public void AddAmmo(AmmoType type, int amount)
         {
             if (amount * AmmoSize[type] >= currentCapacity)
@@ -55,8 +61,8 @@ namespace TheLastHope.Hangar
         /// <summary>
         /// Taking away certain type ammo from container
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="amount">how many take</param>
+        /// <param name="type">Ammunition type</param>
+        /// <param name="amount">How many take</param>
         /// <returns></returns>
         public override bool GetAmmo(AmmoType type, int amount)
         {

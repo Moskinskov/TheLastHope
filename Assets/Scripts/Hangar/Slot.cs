@@ -10,9 +10,21 @@ namespace TheLastHope.Hangar
 {
     public class Slot : MonoBehaviour, IDropHandler
     {
-        public bool isInventory = true;             //Slots of inventory or not
-        public bool isVacant = true;    
-        public int number;                          //Number of a slot
+        /// <summary>
+        /// Slots of inventory or not
+        /// </summary>
+        public bool isInventory = true;
+        /// <summary>
+        /// Slot is vacant or not
+        /// </summary>
+        public bool isVacant = true;
+        /// <summary>
+        /// Number of a slot
+        /// </summary>
+        public int number;
+        /// <summary>
+        /// Item in this slot
+        /// </summary>
         public GameObject item
         {
             get
@@ -26,25 +38,58 @@ namespace TheLastHope.Hangar
         {
             if (!item)
             {
-                if (isInventory && !Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
+                switch (HangarData.instance.currentWindow)
                 {
-                    HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
-                }
-                else if (!Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
-                {
-                    HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
-                    HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
-                    Item.itemBeingDragged.transform.SetParent(transform);
-                }
-                if (!isInventory && Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
-                {
-                    HangarData.instance.positionController.itemsOnCarriage.Add(item);
-                    HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged.GetComponent<Item>().hw, number);
-                }
+                    case CurrentWindow.Carriage:
+                        {
+                            if (isInventory && !Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
+                            {
+                                HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
+                            }
+                            else if (!isInventory && !Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
+                            {
+                                HangarData.instance.currentCarriage.RemoveHardware(Item.itemBeingDragged.transform.parent.GetComponent<Slot>().number);
+                                HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged, number);
+                                Item.itemBeingDragged.transform.SetParent(transform);
+                            }
+                            if (!isInventory && Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
+                            {
+                                HangarData.instance.positionController.itemsOnCarriage.Add(Item.itemBeingDragged);
+                                HangarData.instance.currentCarriage.AddNewHardware(Item.itemBeingDragged, number);
+                            }
 
+                            Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;
+                            Item.itemBeingDragged.transform.SetParent(transform);
+                            break;
+                        }
+                    case CurrentWindow.Shop:
+                        {
+                            if (!Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
+                            {
+                                if (isInventory)
+                                {
+                                    HangarData.instance.player.Credit -= Item.itemBeingDragged.GetComponent<Item>().price;
+                                    //HangarData.instance.Credit -= Item.itemBeingDragged.GetComponent<Item>().price;
+                                    HangarData.instance.shop.CreditUpdate();
+                                }
 
-                Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;
-                Item.itemBeingDragged.transform.SetParent(transform);
+                                Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;
+                                Item.itemBeingDragged.transform.SetParent(transform);
+                            }
+                            else
+                            {
+                                if (!isInventory)
+                                {
+                                    HangarData.instance.player.Credit += Item.itemBeingDragged.GetComponent<Item>().price;
+                                    //HangarData.instance.Credit += Item.itemBeingDragged.GetComponent<Item>().price;
+                                    HangarData.instance.shop.CreditUpdate();
+                                }
+                                Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;
+                                Item.itemBeingDragged.transform.SetParent(transform);
+                            }
+                            break;
+                        }
+                }
 
                 isVacant = false;
             }
