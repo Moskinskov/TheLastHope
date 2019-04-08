@@ -1,16 +1,15 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// to be commented
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Management.Data;
 using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Weapons
 {
+    /// <summary>
+    /// 'ARangedWeapon' - class. For gatling gun
+    /// </summary>
 	public sealed class GatlingGun : ARangedWeapon
 	{
 		/// <summary>

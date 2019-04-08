@@ -33,6 +33,10 @@ public class PathController : MonoBehaviour
     /// Число вершин в графе
     /// </summary>
     [SerializeField] public int countPoints;
+    /// <summary>
+    /// Список всех точек в графе.
+    /// </summary>
+    [SerializeField] public PointController[] mapsObj;
     #endregion
 
     #region Private variables
@@ -44,10 +48,6 @@ public class PathController : MonoBehaviour
     /// matrix2[i,j] - номер первой точки на маршруте из iой вершины в j-ую
     /// </summary>
     [SerializeField] private int[,] matrix2;
-    /// <summary>
-    /// Список всех точек в графе.
-    /// </summary>
-    [SerializeField] private PointController[] mapsObj;
     #endregion
 
     #region Math-Calculate function
@@ -109,7 +109,7 @@ public class PathController : MonoBehaviour
 
     #endregion
 
-    #region Public methods
+    #region Searcher methods
     /// <summary>
     /// Метод строит маршрут из точки старт в точку энд
     /// </summary>
@@ -168,18 +168,35 @@ public class PathController : MonoBehaviour
         }
         return true;
     }
+    #endregion
+
+    #region Draw methods
     /// <summary>
     /// Приводит граф к первоначальной закраске
     /// </summary>
     /// <param name="main">Основной цвет вершины</param>
     /// <param name="start">Цвет стартовой/текущей точки</param>
-    public void clearRoad(Color main, Color start)
+    public void clearRoad(Color main, Color start, Color keyPoint, Color blockPoint)
     {
         for (int i = 0; i < countPoints; i++)
         {
-            mapsObj[i].setColor(main);
+            if (mapsObj[i].IsKeyPoint)
+            {
+                mapsObj[i].setColor(keyPoint);
+            }
+            else if (mapsObj[i].IsStartPoint)
+            {
+                mapsObj[i].setColor(start);
+            }
+            else if (mapsObj[i].IsBlockPoint)
+            {
+                mapsObj[i].setColor(blockPoint);
+            }
+            else
+            {
+                mapsObj[i].setColor(main);
+            }
         }
-        mapsObj[startPoint.num].setColor(start);
     }
     /// <summary>
     /// Красит построенный маршрут
@@ -189,10 +206,12 @@ public class PathController : MonoBehaviour
     {
         foreach (int p in road)
         {
-            print(p);
             mapsObj[p].setColor(clr);
         }
     }
+    #endregion
+
+    #region Public methods
     /// <summary>
     /// Возвращает дичтанцию из startPoint в город под номером end
     /// </summary>
@@ -209,17 +228,6 @@ public class PathController : MonoBehaviour
     public PointController GetNextCity()
     {
         return mapsObj[road[1]];
-    }
-
-    /// <summary>
-    /// Заглушка для кнопки старт. С помощью этой ф-ции предпологается 
-    /// переходить на новую сцену
-    /// </summary>
-    public void StartLevel()
-    {
-        //startPoint.name Имя стартового города
-        //mapsObj[road[1]].name Имя следующего города
-
     }
     /// <summary>
     /// Инициализирует компоненты PathController и

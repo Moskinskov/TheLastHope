@@ -2,18 +2,23 @@
 /// The Last Hope
 /// Curator: Ilya Moskinskov
 /// Author: Nikolay Pankrakhin
-/// to be commented
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TheLastHope.Management.Data;
-using TheLastHope.Management;
+using UnityEngine;
 
 namespace TheLastHope.Weapons.Software
 {
+    /// <summary>
+    /// 'Auto' or 'Manual' soft
+    /// </summary>
     public class AutoAndManualSoft : ASoftware
     {
+        #region Override methods
+        /// <summary>
+        /// Calculate vector for return
+        /// </summary>
+        /// <param name="turPosition"></param>
+        /// <returns></returns>
         public override Vector3 CalculateAim(Transform turPosition)
         {
             //По умолчанию турель стреляет прямо по цели, но, если цель движется, то нужно высчитать точку,
@@ -43,38 +48,45 @@ namespace TheLastHope.Weapons.Software
             return targetingPosition;
         }
 
-
+        /// <summary>
+        /// Find the closest target
+        /// </summary>
+        /// <param name="sceneData"></param>
         public override void FindClosestTarget(SceneData sceneData)
-        {           
+        {
             //Ближайшая цель, попавшая в радиус обзора
             Transform closest = null;
             //Квадрат радиуса обзора, это значение потребуется при поиске ближайшей цели
             float distance = visionRadius * visionRadius;
             foreach (GameObject go in sceneData.Enemies)
             {
-				if (go != null)
-				{
-					//Находим расстояние между турелью и предполагаемой целью
-					Vector3 diff = go.transform.position - this.gameObject.transform.position;
-					//С точки зрения производительности быстрее сравнить квадраты расстояний,
-					//чем делать лишнюю операцию извлечения квадратного корня
-					float curDistance = diff.sqrMagnitude;
-					//если найдена цель в радиусе поражения, то запоминаем её
-					if (curDistance < distance)
-					{
-						closest = go.transform;
-						distance = curDistance;
-					}
-				}
+                if (go != null)
+                {
+                    //Находим расстояние между турелью и предполагаемой целью
+                    Vector3 diff = go.transform.position - gameObject.transform.position;
+                    //С точки зрения производительности быстрее сравнить квадраты расстояний,
+                    //чем делать лишнюю операцию извлечения квадратного корня
+                    float curDistance = diff.sqrMagnitude;
+                    //если найдена цель в радиусе поражения, то запоминаем её
+                    if (curDistance < distance)
+                    {
+                        closest = go.transform;
+                        distance = curDistance;
+                    }
+                }
             }
             target = closest;
         }
-
+        /// <summary>
+        /// AutoAndManualSoft 'Init'
+        /// </summary>
         public override void Init()
         {
             //canBeManual = true;
             readyToFire = false;
         }
+
+        #endregion
     }
 }
 

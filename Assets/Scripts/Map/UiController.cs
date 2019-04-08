@@ -16,13 +16,10 @@ public class UiController : MonoBehaviour
     [SerializeField] public Text targetName;
     [SerializeField] public Text distanceFromTarget;
     [SerializeField] public Text nextCity;
-    #endregion
-
-    #region Private variables
     /// <summary>
     /// Открыто или закрыто ui
     /// </summary>
-    private bool uiActive;
+    public bool uiActive;
     #endregion
 
     #region Public methods
@@ -57,9 +54,9 @@ public class UiController : MonoBehaviour
             canUi.sortingOrder = 1;
             canMap.sortingOrder = 0;
             uiActive = true;
-            targetName.text = "  Selected city:  " + target.name;
-            distanceFromTarget.text = "  Distance to " + target.name + " :  " + dist;
-            this.nextCity.text = "  Next city where are you going :  " + nextCity.name;
+            targetName.text = " Selected city:  " + target.name;
+            distanceFromTarget.text = " Distance to " + target.name + " :  " + dist;
+            this.nextCity.text = " Next city where are you go:  " + nextCity.name;
             return true;
         }
     }

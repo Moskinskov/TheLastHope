@@ -36,4 +36,8 @@ public class EventManager : MonoBehaviour
             ev.Destroyer();
         }
     }
+    private void Update()
+    {
+        //UpdateEvents();
+    }
 }

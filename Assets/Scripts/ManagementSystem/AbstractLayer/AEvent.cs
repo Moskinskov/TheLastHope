@@ -16,12 +16,12 @@ public abstract class AEvent : MonoBehaviour
     public abstract void EventCode(); //Что должно произойти при сработке ивента
     public void ActivateEvent()
     {
-        EventCode();
         call = !call;
         if (!inf)
         {
             count--;
         }
+        EventCode();
     }
     public void Destroyer()
     {
