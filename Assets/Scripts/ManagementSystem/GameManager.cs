@@ -9,6 +9,7 @@ using TheLastHope.Helpers;
 using TheLastHope.Management.AbstractLayer;
 using System;
 using TheLastHope.Hangar;
+using UnityEngine.SceneManagement;
 
 namespace TheLastHope.Management
 {
@@ -40,6 +41,7 @@ namespace TheLastHope.Management
         [Tooltip("Number of lines to pregenerate scene")] 
         [SerializeField] int firstFrameLengthInLines = 14;
         [SerializeField] HangarData hangar;
+        [SerializeField] GameObject panel;
 
         // Start is called before the first frame update
         void Start()
@@ -144,6 +146,7 @@ namespace TheLastHope.Management
                 weaponController.Init();
                 uiManager.Init(sceneData);
                 trainStuffAdd();
+                panel.SetActive(false);
                 sceneData.CurrentState = GameState.Loop;
             }
 
@@ -177,7 +180,7 @@ namespace TheLastHope.Management
 		
 		public void StartOver()
 		{
-			Application.LoadLevel("MainScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
 		public void Exit()

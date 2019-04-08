@@ -22,12 +22,12 @@ public class PointController : MonoBehaviour, IPointerClickHandler
     {
         if (this != path.startPoint)
         {
-            path.clearRoad();
-            path.searchRoad(this.num);
-            if (ui.OpenCloseUi(this, path.GetDistance(this.num), path.GetNextCity()))
-            {
-                path.drawRoad(Color.blue, this.num);
-            }
+            //path.clearRoad();
+            //path.searchRoad(this.num);
+            //if (ui.OpenCloseUi(this, path.GetDistance(this.num), path.GetNextCity()))
+            //{
+            //    path.drawRoad(Color.blue, this.num);
+            //}
         }
     }
 
