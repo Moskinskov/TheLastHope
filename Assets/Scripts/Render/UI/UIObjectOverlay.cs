@@ -1,9 +1,4 @@
-﻿/// Limerence Games
-/// The Last Hope
-/// Curator: Dmitri Kuzmin
-/// to be commented
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheLastHope.Render;
@@ -13,95 +8,83 @@ using TheLastHope.Management;
 using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.UI {
-
-	/// <summary>
-	/// A controllable group of interface elements
-	/// that could be shown around an object.
-	/// </summary>
 	public class UIObjectOverlay : MonoBehaviour
 	{
-		#region Serializables
 		[SerializeField]
-		private Canvas frame;
+		private Canvas _frame;
 		[SerializeField]
-		private Canvas healthBar;
+		private Canvas _healthBar;
 		[SerializeField]
-		private Canvas ammoBar;
+		private Canvas _ammoBar;
 		[SerializeField]
-		private Canvas reloadBar;
+		private Canvas _reloadBar;
 		[SerializeField]
-		private Canvas buttonBar;
+		private Canvas _buttonBar;
 		[SerializeField]
-		private Image healthBarImage;
+		private Image _healthBarImage;
 		[SerializeField]
-		#endregion
+		private Image _ammoBarImage;
+		private float _currentHealth;
+		private float _currentAmmo = 0;
+		private Vector3 _overlaySize;
 
-		#region 
-		private Image ammoBarImage;
-		private float currentHealth;
-		private float currentAmmo = 0;
-		private Vector3 overlaySize;
-
-		/// <summary>
-		/// Current health level.
-		/// </summary>
-		public float CurrentHealth {set => currentHealth = value; }
-		public Vector3 OverlaySize { get => overlaySize; set => overlaySize = value; }
-		public float CurrentAmmo { set => currentAmmo = value; }
+		public float CurrentHealth {set => _currentHealth = value; }
+		public Vector3 OverlaySize { get => _overlaySize; set => _overlaySize = value; }
+		public float CurrentAmmo { set => _currentAmmo = value; }
 
 		private void getInfo()
 		{	
-				healthBarImage.fillAmount = currentHealth;
+				_healthBarImage.fillAmount = _currentHealth;
 				//_ammoBarImage.fillAmount = _currentAmmo;
 		}
 
 		public void ShowOverlay(bool frame)
 		{
 			getInfo();
-			if (frame) { this.frame.enabled = true; }
+			if (frame) { _frame.enabled = true; }
 		}
 
 		public void ShowOverlay(bool frame, bool health)
 		{
 			getInfo();
-			if (frame) { this.frame.enabled = true; }
-			if (health) { healthBar.enabled = true; }
+			if (frame) { _frame.enabled = true; }
+			if (health) { _healthBar.enabled = true; }
 		}
 		public void ShowOverlay(bool frame, bool health, bool button)
 		{
 			getInfo();
-			if (frame) { this.frame.enabled = true; }
-			if (health) { healthBar.enabled = true; }
-			if (button) { buttonBar.enabled = true; }
+			if (frame) { _frame.enabled = true; }
+			if (health) { _healthBar.enabled = true; }
+			if (button) { _buttonBar.enabled = true; }
 		}
 
 		public void ShowOverlay(bool frame, bool health, bool button, bool ammo)
 		{
 			getInfo();
-			if (frame) { this.frame.enabled = true; }
-			if (health) { healthBar.enabled = true; }
-			if (button) { buttonBar.enabled = true; }
+			if (frame) { _frame.enabled = true; }
+			if (health) { _healthBar.enabled = true; }
+			if (button) { _buttonBar.enabled = true; }
 			//if (ammo) { _ammoBar.enabled = true;  }
 		}
 
 		public void ShowOverlay(bool frame, bool health, bool button, bool ammo, bool reload)
 		{
 			getInfo();
-			if (frame) { this.frame.enabled = true; }
-			if (health) { healthBar.enabled = true; }
-			if (button) { buttonBar.enabled = true; }
+			if (frame) { _frame.enabled = true; }
+			if (health) { _healthBar.enabled = true; }
+			if (button) { _buttonBar.enabled = true; }
 			//if (ammo) { _ammoBar.enabled = true; }
 			//if (reload) { _reloadBar.enabled = true; }
 		}
 
 		public void HideOverlay()
 		{
-			frame.enabled = false;
-			healthBar.enabled = false;
-			buttonBar.enabled = false;
+			_frame.enabled = false;
+			_healthBar.enabled = false;
+			_buttonBar.enabled = false;
 			//if (_ammoBar) _ammoBar.enabled = false;
 		}
 
-        #endregion
-    }
+
+	}
 }
