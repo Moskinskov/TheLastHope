@@ -81,13 +81,16 @@ namespace TheLastHope.Hangar
         }
 
         /// <summary>
-        /// Show vacant slots when item dragging is begin
+        /// Show vacant slots when item dragging is begin. (it works only with square type)
         /// </summary>
-        public void BeginItemDragging()
+        public void BeginItemDragging(AHardware hardware)
         {
-            for (int i = 0; i < squareSlots.Count; i++)
+            if (hardware.typePosition == TypePosition.Square)
             {
-                squareSlots[i].GetComponent<Image>().enabled = true;
+                for (int i = 0; i < squareSlots.Count; i++)
+                {
+                    squareSlots[i].GetComponent<Image>().enabled = true;
+                }
             }
         }
 

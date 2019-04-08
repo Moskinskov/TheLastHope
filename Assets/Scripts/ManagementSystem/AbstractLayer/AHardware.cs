@@ -10,7 +10,7 @@ using UnityEngine;
 namespace TheLastHope.Management.AbstractLayer
 {
     /// <summary>
-    /// Abstract hardware class
+    /// Abstract hardware class. Use it for creating hardware of new type.
     /// </summary>
     public class AHardware : MonoBehaviour
     {
@@ -30,6 +30,7 @@ namespace TheLastHope.Management.AbstractLayer
 
     public enum TypePosition
     {
-        Square
+        Square,
+        Non
     }
 }

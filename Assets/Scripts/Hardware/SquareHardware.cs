@@ -9,10 +9,12 @@ using TheLastHope.Management.AbstractLayer;
 
 namespace TheLastHope.Hardware
 {
+    /// <summary>
+    /// Hardware for items which will be installed on carriage. Square type.
+    /// </summary>
     class SquareHardware : AHardware
     {
-        //void Awake()
-        public void Init()
+        void Awake()
         {
             typePosition = TypePosition.Square;
         }
