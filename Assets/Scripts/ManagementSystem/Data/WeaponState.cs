@@ -10,9 +10,10 @@ namespace TheLastHope.Management.Data
     /// </summary>
     public enum WeaponState
     {
-        Active,
-        Inactive,
-        empty
+        Empty,
+        ReadyToFire,
+        Firing,
+        Off
     }
 
 }

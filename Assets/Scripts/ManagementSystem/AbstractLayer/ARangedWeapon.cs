@@ -30,12 +30,10 @@ namespace TheLastHope.Management.AbstractLayer
         #region Public Properties
         public float Force { get { return force; } set { force = value; } }
         public Transform Muzzle { get { return muzzle; } set { muzzle = value; } }
-        public AudioSource AudioPlayer { get { return audioPlayer; } set { audioPlayer = value; } }
         #endregion
 
         #region Protected Variables
         protected Timer delay = new Timer();
-        protected AudioSource audioPlayer;
         #endregion
 
         #region Abstract Functions
@@ -54,50 +52,24 @@ namespace TheLastHope.Management.AbstractLayer
         /// <param name="sceneData"></param>
         public override void Fire(SceneData sceneData)
         {
-            if (delay.Elapsed == -1)
-            {
-                State = WeaponState.Active;
-            }
-            if (currentAmmoInClip <= 0)
-            {
-                State = WeaponState.empty;
-            }
-            if (State == WeaponState.Active && ammoPrefab)
-            {
-                if (muzzleFlash) muzzleFlash.SetActive(true);
-                Shot(sceneData);
-                var snd = GetComponent<AudioSource>();
-                if (snd) snd.Play();
-                delay.Start(rateOfFire);
-                State = WeaponState.Inactive;
-                currentAmmoInClip--;
-            }
+            if (State != WeaponState.ReadyToFire || ammoPrefab == null)
+                return;
+
+            if (muzzleFlash) muzzleFlash.SetActive(true);
+            Shot(sceneData);
+            if (WeaponAudioSource) WeaponAudioSource.Play();
+            delay.Start(rateOfFire);
+            currentAmmoInClip--;
+            State = WeaponState.Firing;
         }
-        /// <summary>
-        /// ARanged 'Reload'
-        /// </summary>
-        /// <param name="ammoQuantity"></param>
-        public override void Reload(int ammoQuantity)
-        {
-            currentAmmoInClip = ammoQuantity;
-            State = WeaponState.Inactive;
-            delay.Start(reloadTime);
-        }
-        /// <summary>
-        /// ARanged 'Start'
-        /// </summary>
-        public override void Init()
-        {
-            currentAmmoInClip = clipSize;
-            State = WeaponState.Active;
-        }
+
         /// <summary>
         /// ARanged 'Update'
         /// </summary>
         public override void WeaponUpdate()
         {
+            Checks();
             if (muzzleFlash) muzzleFlash.SetActive(false);
-            delay.TimerUpdate();
         }
 
         #endregion

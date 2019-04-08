@@ -22,7 +22,7 @@ namespace TheLastHope.Weapons
 
         /// <summary>
         ///  Shotgun class
-        ///  Реализует подобие стрельбы из дробовика выпуская одновременно ammoPrefabPerShot патронов
+        ///  Реализует подобие стрельбы из дробовика выпуская одновременно _ammoPerShot патронов
         ///  Shot толкает следующий патрон на i * dirDeviation правее и левее
         ///  В свою очередь dirDeviation считается как перепендикулярный вектор к _muzzle.forward
         /// </summary>
@@ -30,8 +30,8 @@ namespace TheLastHope.Weapons
         {
             //Направление перпендикулярное
             Vector3 dirDeviation = new Vector3(Muzzle.forward.z,
-                                   0,
-                                   Muzzle.forward.x);
+                0,
+                Muzzle.forward.x);
             dirDeviation /= (10 * angleScatter);
             for (int i = 0; i < ammoPerShot; i++)
             {
@@ -42,6 +42,12 @@ namespace TheLastHope.Weapons
                 _bulletRigidBody = _bullet.GetComponent<Rigidbody>();
                 _bulletRigidBody.AddForce((Muzzle.forward - i * dirDeviation) * Force);
             }
+        }
+        public override void Init()
+        {
+            IsActive = true;
+            State = WeaponState.ReadyToFire;
+            typeOfAmmo = AmmoType.Shotgun;
         }
     }
 }

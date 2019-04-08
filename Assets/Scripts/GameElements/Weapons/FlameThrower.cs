@@ -9,133 +9,134 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
-	/// <summary>
-	/// 'AEnergeticWeapon' - class. FlameGun
-	/// </summary>
-	public class FlameThrower : AEnergeticWeapon
-	{
-		#region Serialized variables
+    /// <summary>
+    /// 'AEnergeticWeapon' - class. FlameGun
+    /// </summary>
+    public class FlameThrower : AEnergeticWeapon
+    {
+        #region Serialized variables
 
-		[SerializeField]
-		private float _damagePerSecond;
+        [SerializeField, Header("Necessary objects")]
+        private ParticleSystem _flameRenderer;
 
-		[SerializeField, Header("Necessary objects")]
-		private ParticleSystem _flameRenderer;
+        #endregion
 
-		#endregion
+        #region Private variables
 
-		#region Private variables
+        private float _partCountInit = 0;
+        private IEnumerator coroutine;
+        private bool _isPlaying;
 
-		private float _partCountInit = 0;
-		private IEnumerator coroutine;
-		private bool _isPlaying;
+        #endregion
 
-		#endregion
+        #region Override methods
 
-		#region Override methods
+        public override void Init()
+        {
+            IsActive = true;
 
-		public override void Init()
-		{
-			damagePerSecond = _damagePerSecond;
-			_flameRenderer.emissionRate = 0;
-			//_flameRenderer.Play();
+            if (!effect.isStopped)
+                effect.Stop();
+            if (WeaponAudioSource.isPlaying)
+                WeaponAudioSource.Stop();
 
-			if (!_flameRenderer.isStopped)
-				_flameRenderer.Stop();
-			if (!effect.isStopped)
-				effect.Stop();
-			if (audioSource.isPlaying)
-				audioSource.Stop();
+            TypeOfAmmo = AmmoType.Energy;
+            State = WeaponState.ReadyToFire;
 
-			IsActive = true;
-		}
+            _flameRenderer.emissionRate = 0;
 
-		public override void WeaponUpdate()
-		{
-			delay.TimerUpdate();
-			CoreChecks();
-			LocalChecks();
-			if (IsActive == false) effect.Stop();
-		}
+            if (!_flameRenderer.isStopped)
+                _flameRenderer.Stop();
+            if (!effect.isStopped)
+                effect.Stop();
+            if (WeaponAudioSource.isPlaying)
+                audioSource.Stop();
+        }
 
-		public override void Fire(SceneData sceneData)
-		{
-			delay.Start(0.005f);
-			if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
-			{
-				if (hit.distance <= maxRange && IsActive == true)
-				{
-					WeaponMethod(hit);
-					FireUp(240);
-				}
+        public override void WeaponUpdate()
+        {
+            Checks();
+        }
 
-				else FireUp(0);
-			}
-		}
+        public override void Fire(SceneData sceneData)
+        {
+            delay.Start(0.005f);
+            if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
+            {
+                if (hit.distance <= maxRange && IsActive)
+                {
+                    WeaponMethod(hit);
+                    FireUp(240);
+                }
 
-		protected override void WeaponMethod(RaycastHit hit)
-		{
-			if (hit.transform.GetComponent<AEnemy>())
-			{
-				if (hit.distance <= maxRange)
-				{
-					HitTheEnemy(hit);
-					effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-					coroutine = Effect(2.0f, hit);
+                else FireUp(0);
+            }
+        }
 
-					if (!_isPlaying)
-					{
-						_isPlaying = true;
-						StartCoroutine(coroutine);
-					}
-				}
-			}
-		}
+        protected override void WeaponMethod(RaycastHit hit)
+        {
+            if (hit.transform.GetComponent<AEnemy>())
+            {
+                if (hit.distance <= maxRange)
+                {
+                    HitTheEnemy(hit);
+                    effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+                    coroutine = Effect(2.0f, hit);
 
-		protected override void LocalChecks()
-		{
+                    if (!_isPlaying)
+                    {
+                        _isPlaying = true;
+                        StartCoroutine(coroutine);
+                    }
+                }
+            }
+        }
 
-		}
-		#endregion
+        protected override void Checks()
+        {
+            base.Checks();
+            if (!IsActive)
+                effect.Stop();
+        }
+        #endregion
 
-		#region Private methods
+        #region Private methods
 
-		private void FireUp(float particleCount)
-		{
-			if (particleCount != _partCountInit)
-			{
-				_flameRenderer.Play();
-				_flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-				_partCountInit = _flameRenderer.emissionRate;
-			}
+        private void FireUp(float particleCount)
+        {
+            if (particleCount != _partCountInit)
+            {
+                _flameRenderer.Play();
+                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
+                _partCountInit = _flameRenderer.emissionRate;
+            }
 
-			if (particleCount == 0)
-			{
-				_flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-				_partCountInit = _flameRenderer.emissionRate;
-				//if (_partCountInit == 0) _flameRenderer.Stop();
-			}
-		}
+            if (particleCount == 0)
+            {
+                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
+                _partCountInit = _flameRenderer.emissionRate;
+            }
+        }
 
-		protected void HitTheEnemy(RaycastHit hit)
-		{
-			hit.transform.GetComponent<AEnemy>().SetDamage(damagePerSecond * Time.deltaTime);
-			CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
-		}
-		private IEnumerator Effect(float waitTime, RaycastHit hit)
-		{
-			effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-			if (!effect.isPlaying)
-				effect.Play();
-			if (!audioSource.isPlaying)
-				audioSource.Play();
+        protected void HitTheEnemy(RaycastHit hit)
+        {
+            hit.transform.GetComponent<AEnemy>().SetDamage(damagePerSecond * Time.deltaTime);
+            CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
+        }
+        private IEnumerator Effect(float waitTime, RaycastHit hit)
+        {
+            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+            if (!effect.isPlaying)
+                effect.Play();
+            if (!audioSource.isPlaying)
+                audioSource.Play();
 
-			yield return new WaitForSeconds(audioSource.clip.length);
+            yield return new WaitForSeconds(audioSource.clip.length);
 
-			_isPlaying = false;
-		}
+            _isPlaying = false;
+        }
 
-		#endregion
+        #endregion
 
-	}
+    }
 }

@@ -66,7 +66,7 @@ namespace TheLastHope.Weapons
                     print($"selected obj = {selectedObj.name}");
                 }
                 if (selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
-                    selectedObj.GetComponentInChildren<ATurret>().Weapon.State == WeaponState.empty)
+                    selectedObj.GetComponentInChildren<ATurret>().Weapon.State == WeaponState.Empty)
                 {
                     turretToReload = selectedObj.GetComponentInChildren<ATurret>();
                     print($"TURRET SELECTED {selectedObj.name}");
@@ -85,14 +85,12 @@ namespace TheLastHope.Weapons
                     {
                         turret.Weapon.Reload(turret.Weapon.ClipSize);
                         print("R1");
-                        turret.Weapon.State = WeaponState.Active;
                     }
                     else
                     {
                         print("R2");
                         ammoContainers.ToArray()[0].Ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out int ammoToReload);
                         turret.Weapon.Reload(ammoToReload);
-                        turret.Weapon.State = WeaponState.Active;
                     }
                     containerToReload = null;
                     turretToReload = null;

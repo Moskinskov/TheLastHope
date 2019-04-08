@@ -9,131 +9,135 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
-	/// <summary>
-	/// 'AEnergeticWeapon' - class. 
-	/// </summary>
-	public class LaserGun : AEnergeticWeapon
-	{
-		#region Serialised variables
+    /// <summary>
+    /// 'AEnergeticWeapon' - class. 
+    /// </summary>
+    public class LaserGun : AEnergeticWeapon
+    {
+        #region Serialised variables
 
-		[SerializeField]
-		private LineRenderer LR;
+        [SerializeField]
+        private LineRenderer LR;
 
-		#endregion
+        #endregion
 
-		#region Private variables
+        #region Private variables
 
-		private IEnumerator coroutine;
-		private bool _isPlaying;
+        private IEnumerator coroutine;
+        private bool _isPlaying;
 
-		#endregion
+        #endregion
 
-		#region Override methods
+        #region Override methods
 
-		/// <summary>
-		/// LaserGun 'Init'
-		/// </summary>
-		public override void Init()
-		{
-			LR.enabled = false;
+        /// <summary>
+        /// LaserGun 'Init'
+        /// </summary>
+        public override void Init()
+        {
+            IsActive = true;
 
-			if (!effect.isStopped)
-				effect.Stop();
-			if (audioSource.isPlaying)
-				audioSource.Stop();
-		}
-		/// <summary>
-		/// LaserGun 'WeaponUpdate'
-		/// </summary>
-		public override void WeaponUpdate()
-		{
-			delay.TimerUpdate();
-			CoreChecks();
-			LocalChecks();
-		}
-		/// <summary>
-		/// LaserGun 'Fire'
-		/// </summary>
-		/// <param name="sceneData"></param>
-		public override void Fire(SceneData sceneData)
-		{
-			if (State != WeaponState.Inactive)
-				return;
+            if (!effect.isStopped)
+                effect.Stop();
+            if (WeaponAudioSource.isPlaying)
+                WeaponAudioSource.Stop();
 
-			State = WeaponState.Active;
-			delay.Start(0.005f);
-			if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
-			{
-				if (hit.distance <= maxRange)
-				{
-					WeaponMethod(hit);
-				}
-			}
-		}
+            TypeOfAmmo = AmmoType.Energy;
+            State = WeaponState.ReadyToFire;
 
-		protected override void WeaponMethod(RaycastHit hit)
-		{
-			if (hit.transform.GetComponent<AEnemy>())
-			{
-				if (hit.distance <= maxRange)
-				{
-					HitTheEnemy(hit);
-					SetLRToTarget(hit);
+            LR.enabled = false;
+        }
+        /// <summary>
+        /// LaserGun 'WeaponUpdate'
+        /// </summary>
+        public override void WeaponUpdate()
+        {
+            Checks();
+        }
+        /// <summary>
+        /// LaserGun 'Fire'
+        /// </summary>
+        /// <param name="sceneData"></param>
+        public override void Fire(SceneData sceneData)
+        {
+            if (State != WeaponState.ReadyToFire)
+                return;
 
-					effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+            delay.Start(0.005f);
+            if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
+            {
+                if (hit.distance <= maxRange && hit.transform.tag == "Enemy")
+                {
+                    WeaponMethod(hit);
+                }
+            }
+            State = WeaponState.Firing;
+        }
 
-					coroutine = Effect(2.0f, hit);
+        protected override void WeaponMethod(RaycastHit hit)
+        {
+            if (hit.transform.GetComponent<AEnemy>())
+            {
+                if (hit.distance <= maxRange)
+                {
+                    HitTheEnemy(hit);
+                    SetLRToTarget(hit);
 
-					if (!_isPlaying)
-					{
-						_isPlaying = true;
-						StartCoroutine(coroutine);
-					}
-				}
-			}
-		}
+                    effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
 
-		protected override void LocalChecks()
-		{
-			if (State != WeaponState.Active)
-			{
-				if (!effect.isStopped)
-					effect.Stop();
-				if (audioSource.isPlaying)
-					audioSource.Stop();
-			}
-		}
+                    coroutine = Effect(2.0f, hit);
 
-		#endregion
+                    if (!_isPlaying)
+                    {
+                        _isPlaying = true;
+                        StartCoroutine(coroutine);
+                    }
+                }
+            }
+        }
 
-		#region Private methods
+        protected override void Checks()
+        {
+            base.Checks();
+            if (State != WeaponState.ReadyToFire)
+            {
+                if (!effect.isStopped)
+                    effect.Stop();
+                if (audioSource.isPlaying)
+                    audioSource.Stop();
+            }
+        }
 
-		protected void SetLRToTarget(RaycastHit hit)
-		{
-			LR.enabled = true;
-			LR.SetPosition(0, muzzle.position);
-			LR.SetPosition(1, new Vector3(hit.transform.position.x, hit.transform.position.y + 3, hit.transform.position.z));
-		}
+        #endregion
 
-		protected void HitTheEnemy(RaycastHit hit)
-		{
-			hit.transform.GetComponent<AEnemy>().SetDamage(damagePerSecond * Time.deltaTime);
-			CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
-		}
+        #region Private methods
 
-		private IEnumerator Effect(float waitTime, RaycastHit hit)
-		{
-			effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-			if (!effect.isPlaying)
-				effect.Play();
-			if (!audioSource.isPlaying)
-				audioSource.Play();
+        protected void SetLRToTarget(RaycastHit hit)
+        {
+            LR.enabled = true;
+            LR.SetPosition(0, muzzle.position);
+            LR.SetPosition(1, new Vector3(hit.transform.position.x, hit.transform.position.y + 3, hit.transform.position.z));
+        }
 
-			yield return new WaitForSeconds(audioSource.clip.length);
+        protected void HitTheEnemy(RaycastHit hit)
+        {
+            hit.transform.GetComponent<AEnemy>().SetDamage(damagePerSecond * Time.deltaTime);
+            CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
+        }
 
-			_isPlaying = false;
-		}
+        private IEnumerator Effect(float waitTime, RaycastHit hit)
+        {
+            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+            if (!effect.isPlaying)
+                effect.Play();
+            if (!WeaponAudioSource.isPlaying)
+                audioSource.Play();
 
-		#endregion
-	}
+            yield return new WaitForSeconds(audioSource.clip.length);
+
+            _isPlaying = false;
+        }
+
+        #endregion
+    }
 }

@@ -28,7 +28,8 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// The weapon's clip capacity. 
         /// </summary>
-        [SerializeField] protected int clipSize;
+        //[SerializeField]
+        protected int clipSize;
         /// <summary>
         /// Time of weapon's reload
         /// </summary>
@@ -39,6 +40,8 @@ namespace TheLastHope.Management.AbstractLayer
         /// </summary>
         protected Timer delay = new Timer();
 
+        [SerializeField] protected AudioSource audioSource;
+
         #endregion
 
         #region Public properties
@@ -47,12 +50,13 @@ namespace TheLastHope.Management.AbstractLayer
         /// </summary>
         public AmmoType TypeOfAmmo { get { return typeOfAmmo; } set { typeOfAmmo = value; } }
         /// <summary>
-        /// The state of the weapon (e.g. Active, Inactive, Empty, etc.).
+        /// The state of the weapon.
         /// </summary>
         /// <seealso cref="WeaponState">
         /// Enum that enumerates the weapon states.
         /// </seealso>
         public WeaponState State { get; set; }
+
         /// <summary>
         /// The general object state. 
         /// </summary>
@@ -60,19 +64,50 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// The weapon's clip capacity. 
         /// </summary>
-        public int ClipSize { get { return clipSize; } set { clipSize = value; } }
+        public int ClipSize { get { return clipSize = 1000; } set { clipSize = value; } }   //УЗНАТЬ про CLIPSIZE
         /// <summary>
         /// The quantity of ammo available to shoot.
         /// </summary>
         public float CurrentAmmoInClip { get { return currentAmmoInClip; } set { currentAmmoInClip = (int)value; } }
+
+        public AudioSource WeaponAudioSource
+        {
+            get { return audioSource; }
+            set { audioSource = value; }
+        }
+
         #endregion
 
         #region Abstract methods
         public abstract void Fire(SceneData sceneData);
-        public abstract void Reload(int ammoQuantity);
         public abstract void WeaponUpdate();
         public abstract void Init();
         #endregion
+
+        public void Reload(int ammoQuantity)
+        {
+            if (State != WeaponState.Empty)
+                return;
+
+            CurrentAmmoInClip = ammoQuantity;
+            delay.Start(reloadTime);
+        }
+
+        protected virtual void Checks()
+        {
+            if (!IsActive)
+                return;
+
+            delay.TimerUpdate();
+            if (CurrentAmmoInClip > 0 && delay.Elapsed == -1)
+                State = WeaponState.ReadyToFire;
+
+            if (CurrentAmmoInClip <= 0)
+            {
+                CurrentAmmoInClip = 0;
+                State = WeaponState.Empty;
+            }
+        }
     }
 }
 
