@@ -447,9 +447,6 @@
     <Reference Include="UnityEngine.UmbraModule">
       <HintPath>E:/GameDev/Unity 2018.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>E:/GameDev/Unity 2018.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UnityConnectModule">
       <HintPath>E:/GameDev/Unity 2018.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
     </Reference>
