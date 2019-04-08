@@ -22,26 +22,93 @@ public class CarrigeType
     public string car4 = "car4";
 }
 
+public class Slot : MonoBehaviour
+{
+    public string turret;
+    public int pos;
+
+    public Slot()
+    {
+    }
+
+    public Slot(string turret, int pos)
+    {
+        this.turret = turret;
+        this.pos = pos;
+    }
+}
+
 public class Carrige : MonoBehaviour
 {
-    public string carName;
-    public List<string> turrets;
+    public string carName; //Название префаба вагона
+    public int num;
+    public List<Slot> slots;
+
+    public Carrige()
+    {
+        carName = "";
+        slots = new List<Slot>();
+    }
+
+    public Carrige(string carName, int num, List<Slot> slots)
+    {
+        this.carName = carName;
+        this.num = num;
+        this.slots = slots;
+    }
 }
+
+
 
 
 public class Train : MonoBehaviour
 {
-    public List<string> train;
+    public List<Carrige> carriges;
+
+    public Train()
+    {
+        carriges = new List<Carrige>();
+    }
+
+    public void Init()
+    {
+        carriges = new List<Carrige>();
+        List<Slot> slots = new List<Slot>();
+
+        carriges.Add(new Carrige("Loco", 0, slots));
+
+        slots = new List<Slot>();
+        slots.Add(new Slot("MachineGun", 0));
+        slots.Add(new Slot("ShotGun", 2));
+
+        carriges.Add(new Carrige("Car1", 1, slots));
+
+        slots = new List<Slot>();
+        slots.Add(new Slot("MachineGun", 0));
+        slots.Add(new Slot("FireGun", 1));
+        slots.Add(new Slot("ShotGun", 2));
+
+        carriges.Add(new Carrige("Car2", 2, slots));
+        
+        print("Init succes");
+    }
+    public void PrinTrain()
+    {
+        print("TRAIN");
+        foreach (Carrige c in carriges)
+        {
+            print("Car:");
+            print("CarName: " + c.carName);
+            print("CarNum: " + c.num);
+            foreach (Slot s in c.slots)
+            {
+                print("Slot num: " + s.pos);
+                print("Turret name: " + s.turret);
+            }
+            print("");
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
 
 public class SLSystem : MonoBehaviour
 {
@@ -189,44 +256,101 @@ public class SLSystem : MonoBehaviour
     }
     #endregion
 
-        #region DontWork code
-        private void AddCarrige(XmlDocument xmlDoc, XmlNode train, int index, int count)
+    #region DontWork code
+    private void AddCarrige(XmlDocument xmlDoc, XmlNode train, Carrige car)
     {
-        XmlNode car = xmlDoc.CreateElement("Carrige" + index, "Type" + index);
-        
-        for (int i = 0; i < count; i++)
+        XmlElement element;
+        XmlNode userNode;
+        XmlNode carNode = xmlDoc.CreateElement("Carrige");
+
+        element = xmlDoc.CreateElement("CarrigeName");
+        element.SetAttribute("value", car.carName);
+        carNode.AppendChild(element);
+        element = xmlDoc.CreateElement("CarrigeNum");
+        element.SetAttribute("value", car.num.ToString());
+        carNode.AppendChild(element);
+
+        print("Start save slots");
+        for (int i = 0; i < car.slots.Count; i++)
         {
-            XmlElement element;
-            element = xmlDoc.CreateElement("Node" + i);
-            element.SetAttribute("Slot" + i, "Turret" + i);
-            car.AppendChild(element);
+            userNode = xmlDoc.CreateElement("Slot");
+            element = xmlDoc.CreateElement("Turret");
+            element.SetAttribute("value", car.slots[i].turret);
+            userNode.AppendChild(element);
+
+            element = xmlDoc.CreateElement("Num");
+            element.SetAttribute("value", car.slots[i].pos.ToString());
+            userNode.AppendChild(element);
+            carNode.AppendChild(userNode);
         }
-        train.AppendChild(car);
+        
+        train.AppendChild(carNode);
 
         
     }
 
-    private void SaveTrainFile()
+    public void SaveTrainFile(Train tr)
     {
         XmlElement element;
-        
-
         XmlDocument xmlDoc = new XmlDocument();
-        XmlNode rootNode = xmlDoc.CreateElement("GameSettings");
-        
-
-        XmlNode Train = xmlDoc.CreateElement("Train");
-        AddCarrige(xmlDoc, Train, 0, 4);
-        AddCarrige(xmlDoc, Train, 1, 4);
-        AddCarrige(xmlDoc, Train, 2, 6);
-
-
-
-        rootNode.AppendChild(Train);
+        XmlNode rootNode = xmlDoc.CreateElement("TrainSettings");
+        foreach (Carrige c in tr.carriges)
+        {
+            AddCarrige(xmlDoc, rootNode, c);
+        }
         xmlDoc.AppendChild(rootNode);
         xmlDoc.Save(Application.dataPath + "/" + fileName2 + ".xml");
     }
 
+    public void LoadTrainFile(Train tr)
+    {
+        print("Start load.");
+        tr.carriges.Clear();
+        
+        XmlTextReader reader = new XmlTextReader(Application.dataPath + "/" + fileName2 + ".xml");
+        int index = 0;
+
+        Carrige car = new Carrige();
+        Slot slot = new Slot();
+        while (reader.Read())
+        {   
+            if (reader.IsStartElement("CarrigeName"))
+            {
+                //print(reader.GetAttribute("value"));
+                car.carName = reader.GetAttribute("value");
+            }
+            if (reader.IsStartElement("CarrigeNum"))
+            {
+                //print("CarrigeNum: " + reader.GetAttribute("value"));
+                car.num = Convert.ToInt32(reader.GetAttribute("value"));
+            }
+            if (reader.IsStartElement("Turret"))
+            {
+                //print(reader.GetAttribute("value"));
+                slot.turret = reader.GetAttribute("value");
+            }
+            if (reader.IsStartElement("Num"))
+            {
+                //print("Slot Num: " + reader.GetAttribute("value"));
+                slot.pos = Convert.ToInt32(reader.GetAttribute("value"));
+            }
+            if (reader.NodeType == XmlNodeType.EndElement)
+            {
+                if (reader.Name == "Carrige")
+                {
+                    tr.carriges.Add(car);
+                    car = new Carrige();
+                }
+                if (reader.Name == "Slot")
+                {
+                    car.slots.Add(slot);
+                    slot = new Slot();
+                }
+            }
+        }
+        print("End load train");
+        reader.Close();
+    }
     void SaveXML()
     {
         XmlNode userNode;
