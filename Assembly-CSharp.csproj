@@ -151,6 +151,7 @@
      <Compile Include="Assets\Scripts\Hangar\PositionController.cs" />
      <Compile Include="Assets\Scripts\Hangar\Shop.cs" />
      <Compile Include="Assets\Scripts\Hangar\Slot.cs" />
+     <Compile Include="Assets\Scripts\Hangar\TrainLoader.cs" />
      <Compile Include="Assets\Scripts\Hardware\SquareHardware.cs" />
      <Compile Include="Assets\Scripts\Helpers\Bezier.cs" />
      <Compile Include="Assets\Scripts\Helpers\BezierCurve.cs" />

@@ -30,7 +30,6 @@ namespace TheLastHope.Hangar
         /// </summary>
         private void InitSlots()
         {
-            //print($"name {HangarData.instance.currentCarriage.name}");
             for (int i = 0; i < HangarData.instance.currentCarriage.squareTypeCount; i++)
             {
                 GameObject slot = new GameObject() { name = $"Slot_{i}" };
@@ -46,6 +45,17 @@ namespace TheLastHope.Hangar
                 slot.GetComponent<Image>().enabled = false;
                 slot.transform.SetParent(transform);
                 squareSlots.Add(slot);
+                
+                if (HangarData.instance.currentCarriage.items[i] != null)
+                {
+                    HangarData.instance.currentCarriage.items[i].transform.SetParent(squareSlots[i].transform);
+                    squareSlots[i].GetComponent<Image>().enabled = true;
+                    itemsOnCarriage.Add(HangarData.instance.currentCarriage.items[i]);
+
+                    
+                    itemsOnCarriage[itemsOnCarriage.Count - 1].GetComponent<Item>().controller = HangarData.instance.positionController;
+                    itemsOnCarriage[itemsOnCarriage.Count - 1].GetComponent<Item>().Init();
+                }
             }
         }
         /// <summary>
@@ -53,11 +63,20 @@ namespace TheLastHope.Hangar
         /// </summary>
         public void UpdateSlots()
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < squareSlots.Count; i++)
             {
-                Destroy(transform.GetChild(i).gameObject);
+                if (squareSlots[i].transform.childCount == 0)
+                {
+                    Destroy(squareSlots[i]);
+                }
+                else
+                {
+                    squareSlots[i].transform.GetChild(0).SetParent(null);
+                    Destroy(squareSlots[i]);
+                }
             }
-
+            squareSlots.Clear();
+            itemsOnCarriage.Clear();
             InitSlots();
         }
 

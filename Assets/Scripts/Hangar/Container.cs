@@ -18,6 +18,10 @@ namespace TheLastHope.Hangar
         /// </summary>
         public List<GameObject> hardwares;
         /// <summary>
+        /// Connected with hardware UI items 
+        /// </summary>
+        public List<GameObject> items;
+        /// <summary>
         /// Positions where Hardware could be installed
         /// </summary>
         public List<Transform> hardwarePositions;
@@ -26,27 +30,37 @@ namespace TheLastHope.Hangar
         /// </summary>
         public int squareTypeCount;
 
-        private void Start()
+        private void Awake()
         {
-            hardwares = new List<GameObject>();
+            items = new List<GameObject>();
             hardwarePositions = new List<Transform>();
             for (int i = 0; i < squareTypeCount; i++)
             {
                 hardwares.Add(null);
+                items.Add(null);
                 hardwarePositions.Add(transform.GetChild(i));
             }
         }
-
-        public void AddNewHardware(GameObject hardware, int index)
+        /// <summary>
+        /// Add new hardware in defined slot on carriage
+        /// </summary>
+        /// <param name="hardware">UI item with hardware</param>
+        /// <param name="index">Numbetr of slot</param>
+        public void AddNewHardware(GameObject hardware, GameObject item, int index)
         {
-            hardwares[index] = Instantiate(hardware);
-            hardwares[index].transform.position = hardwarePositions[index].position;
-            hardwares[index].transform.SetParent(hardwarePositions[index]);
+            items[index] = item;
+            hardwares[index] = Instantiate(hardware, hardwarePositions[index]);
+            hardwares[index].transform.localPosition = new Vector3(0,0,0);
         }
+        /// <summary>
+        /// Remove hardware from defined slot on carriage
+        /// </summary>
+        /// <param name="index">Number of slot</param>
         public void RemoveHardware(int index)
         {
             Destroy(hardwares[index]);
             hardwares[index] = null;
+            items[index] = null;
         }
     }
 }
