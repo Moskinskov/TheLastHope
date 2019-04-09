@@ -230,12 +230,14 @@ public class MapManager : MonoBehaviour
             //path.GetNextCity().IsStartPoint = true;
             path.startPoint.IsStartPoint = false;
             path.startPoint.IsBlockPoint = true;
-            sl.SaveMapFile(path.mapsObj, path.startPoint.name, path.GetNextCity().name); 
-            //Новый уровень
+            sl.SaveMapFile(path.mapsObj, path.startPoint.name, path.GetNextCity().name);
+			//Новый уровень
+			Application.LoadLevel("EmergencyScene");
         }
         if (numScene == 2)
         {
             sl.SaveMapFile(path.mapsObj, path.startPoint.name, path.GetNextCity().name);
+			Application.LoadLevel("Trit");
             //Вызов сцены ангара
         }
     }

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typePosition: 1
-  sprite: {fileID: 21300000, guid: a7bce435db1124642b5bad60ac2c3e8f, type: 3}
+  sprite: {fileID: 21300000, guid: 896fd579d730b2841a754fd7132902d3, type: 3}
   objects: []

@@ -45,7 +45,7 @@ namespace TheLastHope.Hangar
 
         public void Init()
         {
-            price = 10;
+            //price = 10;
             gameObject.GetComponent<Image>().sprite = hw.GetComponent<AHardware>().sprite;
         }
 
