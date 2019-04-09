@@ -38,7 +38,6 @@ namespace TheLastHope.Management
 		{      
 			foreach (UIOverlayController controller in sceneData.UiOverlayControllers)
 			{
-
                 controller.OverlayUpdate(sceneData);
 				_tempProgressBar.fillAmount = (float)pathCounter.CurrentLine / (float)sceneData.LinesOverall;
 			}

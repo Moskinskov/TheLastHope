@@ -44,7 +44,6 @@ namespace TheLastHope.Management
         [SerializeField] int credits;
         Player player;
         [SerializeField] HangarData hangar;
-        [SerializeField] GameObject panelHangar;
 
         // Start is called before the first frame update
         void Start()
@@ -156,7 +155,6 @@ namespace TheLastHope.Management
             }
             else if (sceneData.CurrentState == GameState.Start)
             {
-                panelHangar.SetActive(false);
                 weaponController.Init(sceneData);
                 uiManager.Init(sceneData);
                 sceneData.CurrentState = GameState.Loop;
@@ -164,7 +162,6 @@ namespace TheLastHope.Management
             else if (sceneData.CurrentState == GameState.Wait)
             {
                 
-                panelHangar.SetActive(true);
             }
 
 

@@ -17,14 +17,14 @@ namespace TheLastHope.Weapons
     {
         #region Serialazed variables
 
-        [SerializeField] private float _maxHealth;
+        [SerializeField] private float maxHealth;
 
         #endregion
 
         #region Private variables
 
         private Vector3 aimingPoint;
-        private ParticleSystem _effect;
+        private ParticleSystem effect;
 
         #endregion
 
@@ -45,10 +45,10 @@ namespace TheLastHope.Weapons
         {
             IsActive = true;
             soft.Init();
-            MaxHealth = _maxHealth;
+            MaxHealth = maxHealth;
             Health = MaxHealth;
-            _effect = GetComponent<ParticleSystem>();
-            if (_effect) _effect.Stop();
+            effect = GetComponent<ParticleSystem>();
+            if (effect) effect.Stop();
             Weapon.Init();
         }
         /// <summary>
@@ -121,7 +121,7 @@ namespace TheLastHope.Weapons
         /// </summary>
         public void Die()
         {
-            if (_effect) _effect.Play();
+            if (effect) effect.Play();
             IsActive = false;
             Weapon.IsActive = false;
         }

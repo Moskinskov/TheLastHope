@@ -42,7 +42,7 @@ namespace TheLastHope.UI {
 			if (!baseObject) GetComponent<ABaseObject>();
 			healthBarValue = baseObject.MaxHealth;
 			overlay = GetComponentInChildren<UIObjectOverlay>();
-			//if (_overlay) print(gameObject.name + " has an overlay!");
+			if (overlay) print(gameObject.name + " has an overlay!");
 			oldHealth = baseObject.Health;
 
 			if (baseObject.GetComponentInChildren<AEnemy>()) currentType = ObjType.Enemy;
@@ -103,7 +103,7 @@ namespace TheLastHope.UI {
 
 		private void OnMouseExit()
 		{
-			if (!isUnderControl && gameState == GameState.Loop) HideOverlay();
+			if (gameState == GameState.Loop) HideOverlay();
 			//print("Mouse Exit!");
 		}
 
@@ -118,7 +118,7 @@ namespace TheLastHope.UI {
             else if (currentType == ObjType.Loco) overlay.ShowOverlay(true, true); 
 			else if (currentType == ObjType.Turret)
 			{
-				overlay.ShowOverlay(true, true, true, true);
+	
 				if (ammoPrefabBarValue == 0) overlay.ShowOverlay(true, true, true, true, true);
 				else overlay.ShowOverlay(true, true);
 			}
