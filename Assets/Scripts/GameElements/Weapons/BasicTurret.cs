@@ -10,124 +10,124 @@ using UnityEngine;
 
 namespace TheLastHope.Weapons
 {
-	/// <summary>
-	/// Basic Turret - class
-	/// </summary>
-	public class BasicTurret : ATurret
-	{
-		#region Serialazed variables
+    /// <summary>
+    /// Basic Turret - class
+    /// </summary>
+    public class BasicTurret : ATurret
+    {
+        #region Serialazed variables
 
-		[SerializeField] private float _maxHealth;
+        [SerializeField] private float _maxHealth;
 
-		#endregion
+        #endregion
 
-		#region Private variables
+        #region Private variables
 
-		private Vector3 aimingPoint;
-		private ParticleSystem _effect;
+        private Vector3 aimingPoint;
+        private ParticleSystem _effect;
 
-		#endregion
+        #endregion
 
-		#region Override methods
+        #region Override methods
 
-		/// <summary>
-		/// BasicTurret 'Init'
-		/// </summary>
-		/// <param name="sceneData"></param>
-		public override void Init(SceneData sceneData)
-		{
+        /// <summary>
+        /// BasicTurret 'Init'
+        /// </summary>
+        /// <param name="sceneData"></param>
+        public override void Init(SceneData sceneData)
+        {
 
-		}
-		/// <summary>
-		/// BasicTurret 'Init'
-		/// </summary>
-		public override void Init()
-		{
-			IsActive = true;
-			soft.Init();
-			MaxHealth = _maxHealth;
-			Health = MaxHealth;
-			_effect = GetComponent<ParticleSystem>();
-			if (_effect) _effect.Stop();
-			Weapon.Init();
-		}
-		/// <summary>
-		/// Turret is turning
-		/// </summary>
-		/// <param name="deltaTime"></param>
-		public override void TurnTurret(float deltaTime)
-		{
-			float eulerTargetRot = Quaternion.FromToRotation(transform.forward,
-							aimingPoint - transform.position).eulerAngles.y;
-			//print("rot: " + eulerTargetRot);
-			float turningDir = 1;
-			if (Mathf.Abs(eulerTargetRot) > 180)
-				turningDir *= -1;
-			if (Mathf.Abs(eulerTargetRot) < turningAngularSpeed * deltaTime)
-			{
-				gameObject.transform.rotation *= Quaternion.AngleAxis(eulerTargetRot * deltaTime, Vector3.up);
-			}
-			else
-			{
-				gameObject.transform.rotation *= Quaternion.AngleAxis(turningAngularSpeed * turningDir * deltaTime, Vector3.up);
-			}
-		}
-		/// <summary>
-		/// BasicTurret 'Update'
-		/// </summary>
-		/// <param name="sceneData"></param>
-		/// <param name="deltaTime"></param>
-		public override void TurUpdate(SceneData sceneData, float deltaTime)
-		{
-			Weapon.WeaponUpdate();
-			//Проверяем включен ли ручной режим на турели и возможен ли он при установленном софте
-			if (manualMode && soft.canBeManual)
-			{
-				//Смотрим куда показывает мышка
-				aimingPoint = InputManager.GetMousePosIn3D();
-				if (Input.GetButton("Fire1"))
-				{
-					Weapon.Fire(sceneData);
-				}
-			}
-			else
-			{
-				//Рассчитываем точку для стрельбы
-				soft.FindClosestTarget(sceneData);
-				aimingPoint = soft.CalculateAim(transform);
-				//Если навелись на цель стреляем
-				if (soft.ReadyToFire)
-				{
-					Weapon.Fire(sceneData);
-				}
-			}
-			TurnTurret(Time.deltaTime);
+        }
+        /// <summary>
+        /// BasicTurret 'Init'
+        /// </summary>
+        public override void Init()
+        {
+            IsActive = true;
+            soft.Init();
+            MaxHealth = _maxHealth;
+            Health = MaxHealth;
+            _effect = GetComponent<ParticleSystem>();
+            if (_effect) _effect.Stop();
+            Weapon.Init();
+        }
+        /// <summary>
+        /// Turret is turning
+        /// </summary>
+        /// <param name="deltaTime"></param>
+        public override void TurnTurret(float deltaTime)
+        {
+            float eulerTargetRot = Quaternion.FromToRotation(transform.forward,
+                            aimingPoint - transform.position).eulerAngles.y;
+            //print("rot: " + eulerTargetRot);
+            float turningDir = 1;
+            if (Mathf.Abs(eulerTargetRot) > 180)
+                turningDir *= -1;
+            if (Mathf.Abs(eulerTargetRot) < turningAngularSpeed * deltaTime)
+            {
+                gameObject.transform.rotation *= Quaternion.AngleAxis(eulerTargetRot * deltaTime, Vector3.up);
+            }
+            else
+            {
+                gameObject.transform.rotation *= Quaternion.AngleAxis(turningAngularSpeed * turningDir * deltaTime, Vector3.up);
+            }
+        }
+        /// <summary>
+        /// BasicTurret 'Update'
+        /// </summary>
+        /// <param name="sceneData"></param>
+        /// <param name="deltaTime"></param>
+        public override void TurUpdate(SceneData sceneData, float deltaTime)
+        {
+            Weapon.WeaponUpdate();
+            //Проверяем включен ли ручной режим на турели и возможен ли он при установленном софте
+            if (manualMode && soft.canBeManual)
+            {
+                //Смотрим куда показывает мышка
+                aimingPoint = InputManager.GetMousePosIn3D();
+                if (Input.GetButton("Fire1"))
+                {
+                    Weapon.Fire(sceneData);
+                }
+            }
+            else
+            {
+                //Рассчитываем точку для стрельбы
+                soft.FindClosestTarget(sceneData);
+                aimingPoint = soft.CalculateAim(transform);
+                //Если навелись на цель стреляем
+                if (soft.ReadyToFire)
+                {
+                    Weapon.Fire(sceneData);
+                }
+            }
+            TurnTurret(Time.deltaTime);
 
-			if (Health <= 0) Die();
-		}
-		/// <summary>
-		/// BasicTurret 'SetDamage'
-		/// </summary>
-		/// <param name="damage"></param>
-		public override void SetDamage(float damage)
-		{
-			Health -= damage;
-		}
+            if (Health <= 0) Die();
+        }
+        /// <summary>
+        /// BasicTurret 'SetDamage'
+        /// </summary>
+        /// <param name="damage"></param>
+        public override void SetDamage(float damage)
+        {
+            Health -= damage;
+        }
 
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// BasicTurret 'Die' - method
-		/// </summary>
-		public void Die()
-		{
-			if (_effect) _effect.Play();
-			IsActive = false;
-			Weapon.IsActive = false;
-		}
+        /// <summary>
+        /// BasicTurret 'Die' - method
+        /// </summary>
+        public void Die()
+        {
+            if (_effect) _effect.Play();
+            IsActive = false;
+            Weapon.IsActive = false;
+        }
 
 
-		/*
+        /*
         //Для удобства - в окне редактора покажем радиус поражения турели и некоторые дополнительные данные
         void OnDrawGizmos()
         {
@@ -143,5 +143,5 @@ namespace TheLastHope.Weapons
             }
         }
         */
-	}
+    }
 }
