@@ -10,6 +10,7 @@ using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 using TheLastHope.Enemies;
 using TheLastHope.Helpers;
+using TheLastHope.Generators;
 
 namespace TheLastHope.Management
 {
@@ -18,9 +19,9 @@ namespace TheLastHope.Management
     /// </summary>
     public class GeneratorManager : Singleton<GeneratorManager>
     {
-        [SerializeField] AGenerator enemyGen;
-        [SerializeField] AGenerator staticGen;
-        [SerializeField] AGenerator railsGen;
+        [SerializeField] DynamicGenerator enemyGen;
+        [SerializeField] StaticGenerator staticGen;
+        [SerializeField] NewRailGen railsGen;
         [SerializeField] ObjectDictionary objDictionary;
         [SerializeField] List<GameObject> enemies;
         [SerializeField] List<GameObject> enemyPatterns;

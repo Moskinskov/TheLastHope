@@ -19406,8 +19406,8 @@ MonoBehaviour:
   currentAmmoInClip: 50
   clipSize: 50
   reloadTime: 2
-  rateOfFire: 1
-  force: 150
+  rateOfFire: 0.5
+  force: 200
   ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
     type: 3}
   muzzle: {fileID: 399272610497876519}
@@ -24398,11 +24398,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 150
-  _driftingSpeedDivider: 0.5
-  _speedSmoother: 10
-  _weapon: {fileID: 399272609710532768}
-  _visionDistance: 30
-  _damageTex: {fileID: 2800000, guid: 26e21044f357e8e478d4951e7195b203, type: 3}
+  driftingSpeedDivider: 2
+  speedSmoother: 1
+  weapon: {fileID: 399272609710532768}
+  visionDistance: 15
+  damageTex: {fileID: 2800000, guid: 26e21044f357e8e478d4951e7195b203, type: 3}
   maxSpeed: 20
   maxAcceleration: 5
   driftingRadius: 15
