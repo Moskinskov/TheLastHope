@@ -5009,6 +5009,8 @@ MonoBehaviour:
   objPool:
   - {fileID: 6370188629635475981, guid: 626fe5bea3a035c4d95f5da7c5323125, type: 3}
   - {fileID: 6370188629635475981, guid: 626fe5bea3a035c4d95f5da7c5323125, type: 3}
+  - {fileID: 5810713811202891652, guid: bbad51369e5b8b24d90c1a6b3ee9f227, type: 3}
+  - {fileID: 5810713811202891652, guid: bbad51369e5b8b24d90c1a6b3ee9f227, type: 3}
 --- !u!114 &1504374439
 MonoBehaviour:
   m_ObjectHideFlags: 0

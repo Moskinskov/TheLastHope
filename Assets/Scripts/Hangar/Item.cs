@@ -61,7 +61,7 @@ namespace TheLastHope.Hangar
                         startParent = transform.parent;
                         GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-                        controller.BeginItemDragging();
+                        controller.BeginItemDragging(hw.GetComponent<AHardware>());
                         break;
                     }
                 case CurrentWindow.Shop:

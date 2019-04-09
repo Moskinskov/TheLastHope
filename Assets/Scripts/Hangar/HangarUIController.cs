@@ -102,6 +102,15 @@ namespace TheLastHope.Hangar
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                PreviousCarriage();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                NextCarriage();
+            }
+
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraPos, Time.deltaTime);
         }
 
