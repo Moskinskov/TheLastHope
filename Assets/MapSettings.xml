@@ -1,0 +1,113 @@
+<MapSetting>
+  <Lvl>
+    <prevLvlName value="Miami_1" />
+    <nextLvlName value="WestPalmBeach_3" />
+  </Lvl>
+  <Map>
+    <City>
+      <Name value="KeyWest_0" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="True" />
+    </City>
+    <City>
+      <Name value="Miami_1" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="True" />
+    </City>
+    <City>
+      <Name value="FtMeyers_2" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="WestPalmBeach_3" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Tampa_4" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Galnesvill_5" />
+      <IsOpen value="False" />
+      <IsKey value="True" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Orlando_6" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Jacksonvill_7" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Waycross_8" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Macon_9" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Atlanta_10" />
+      <IsOpen value="False" />
+      <IsKey value="True" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Columnus_11" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Tallahassee_12" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Savannah_13" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+    <City>
+      <Name value="Dothar_14" />
+      <IsOpen value="False" />
+      <IsKey value="False" />
+      <IsStart value="False" />
+      <IsBlock value="False" />
+    </City>
+  </Map>
+</MapSetting>
