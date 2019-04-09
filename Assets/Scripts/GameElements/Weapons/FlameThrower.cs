@@ -17,15 +17,15 @@ namespace TheLastHope.Weapons
         #region Serialized variables
 
         [SerializeField, Header("Necessary objects")]
-        private ParticleSystem _flameRenderer;
+        private ParticleSystem flameRenderer;
 
         #endregion
 
         #region Private variables
 
-        private float _partCountInit = 0;
+        private float partCountInit = 0;
         private IEnumerator coroutine;
-        private bool _isPlaying;
+        private bool isPlaying;
 
         #endregion
 
@@ -43,10 +43,10 @@ namespace TheLastHope.Weapons
             TypeOfAmmo = AmmoType.Energy;
             State = WeaponState.ReadyToFire;
 
-            _flameRenderer.emissionRate = 0;
+            flameRenderer.emissionRate = 0;
 
-            if (!_flameRenderer.isStopped)
-                _flameRenderer.Stop();
+            if (!flameRenderer.isStopped)
+                flameRenderer.Stop();
             if (!effect.isStopped)
                 effect.Stop();
             if (WeaponAudioSource.isPlaying)
@@ -83,9 +83,9 @@ namespace TheLastHope.Weapons
                     effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
                     coroutine = Effect(2.0f, hit);
 
-                    if (!_isPlaying)
+                    if (!isPlaying)
                     {
-                        _isPlaying = true;
+                        isPlaying = true;
                         StartCoroutine(coroutine);
                     }
                 }
@@ -104,17 +104,17 @@ namespace TheLastHope.Weapons
 
         private void FireUp(float particleCount)
         {
-            if (particleCount != _partCountInit)
+            if (particleCount != partCountInit)
             {
-                _flameRenderer.Play();
-                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-                _partCountInit = _flameRenderer.emissionRate;
+                flameRenderer.Play();
+                flameRenderer.emissionRate = Mathf.Lerp(partCountInit, particleCount, Time.deltaTime);
+                partCountInit = flameRenderer.emissionRate;
             }
 
             if (particleCount == 0)
             {
-                _flameRenderer.emissionRate = Mathf.Lerp(_partCountInit, particleCount, Time.deltaTime);
-                _partCountInit = _flameRenderer.emissionRate;
+                flameRenderer.emissionRate = Mathf.Lerp(partCountInit, particleCount, Time.deltaTime);
+                partCountInit = flameRenderer.emissionRate;
             }
         }
 
@@ -133,7 +133,7 @@ namespace TheLastHope.Weapons
 
             yield return new WaitForSeconds(audioSource.clip.length);
 
-            _isPlaying = false;
+            isPlaying = false;
         }
 
         #endregion

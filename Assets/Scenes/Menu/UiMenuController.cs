@@ -11,8 +11,7 @@ public class UiMenuController : MonoBehaviour
 
     public void NewGame()
     {
-
-
+		Application.LoadLevel("Trit");
     }
 
     public void Setting()
@@ -23,7 +22,7 @@ public class UiMenuController : MonoBehaviour
 
     public void Exit()
     {
-
+		Application.Quit();
     }
 
     // Start is called before the first frame update
