@@ -19405,9 +19405,9 @@ MonoBehaviour:
   typeOfAmmo: 0
   currentAmmoInClip: 50
   reloadTime: 2
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 399272609710532771}
   rateOfFire: 0.5
-  force: 200
+  force: 100
   ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
     type: 3}
   muzzle: {fileID: 399272610497876519}

@@ -99,7 +99,7 @@ namespace TheLastHope.Management.AbstractLayer
                 return;
 
             delay.TimerUpdate();
-            if (CurrentAmmoInClip > 0 && delay.Elapsed == -1)
+            if (CurrentAmmoInClip > 0 && delay.Elapsed < 0)
                 State = WeaponState.ReadyToFire;
 
             if (CurrentAmmoInClip <= 0)
@@ -107,7 +107,10 @@ namespace TheLastHope.Management.AbstractLayer
                 CurrentAmmoInClip = 0;
                 State = WeaponState.Empty;
             }
-        }
+
+			if (State == WeaponState.Firing && delay.Elapsed < 0)
+				State = WeaponState.Off;
+		}
     }
 }
 

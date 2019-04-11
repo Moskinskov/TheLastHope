@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Enemy
-  visionRadius: 10
+  visionRadius: 30
   canBeManual: 0

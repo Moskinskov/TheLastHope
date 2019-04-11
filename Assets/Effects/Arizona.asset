@@ -84,7 +84,7 @@ MonoBehaviour:
       sampleCount: 16
       frameBlending: 0.1
   eyeAdaptation:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       lowPercent: 45
       highPercent: 95
@@ -157,8 +157,8 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.43714285
-              value: 0.5878788
+              time: 0.4542857
+              value: 0.5090909
               inSlope: 1.1164272
               outSlope: 1.1164272
               tangentMode: 0

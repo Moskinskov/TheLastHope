@@ -53,6 +53,7 @@ namespace TheLastHope.Weapons
         public override void WeaponUpdate()
         {
             Checks();
+			//if (State == WeaponState.Off) { LR.enabled = false; print("I'M OFF!"); } // KOSTYYL!
         }
         /// <summary>
         /// LaserGun 'Fire'
@@ -105,7 +106,9 @@ namespace TheLastHope.Weapons
                     effect.Stop();
                 if (audioSource.isPlaying)
                     audioSource.Stop();
-            }
+				if (LR)
+					LR.enabled = false;
+			}
         }
 
         #endregion

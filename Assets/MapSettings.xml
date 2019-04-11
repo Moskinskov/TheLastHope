@@ -1,7 +1,7 @@
 <MapSetting>
   <Lvl>
-    <prevLvlName value="Miami_1" />
-    <nextLvlName value="FtMeyers_2" />
+    <prevLvlName value="KeyWest_0" />
+    <nextLvlName value="Miami_1" />
   </Lvl>
   <Map>
     <City>
@@ -15,7 +15,7 @@
       <Name value="Miami_1" />
       <IsOpen value="True" />
       <IsKey value="False" />
-      <IsStart value="True" />
+      <IsStart value="False" />
       <IsBlock value="False" />
     </City>
     <City>

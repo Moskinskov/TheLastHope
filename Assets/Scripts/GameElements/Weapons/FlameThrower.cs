@@ -97,7 +97,9 @@ namespace TheLastHope.Weapons
             base.Checks();
             if (!IsActive)
                 effect.Stop();
-        }
+			if (flameRenderer.emissionRate == 0)
+				flameRenderer.Stop();
+		}
         #endregion
 
         #region Private methods
