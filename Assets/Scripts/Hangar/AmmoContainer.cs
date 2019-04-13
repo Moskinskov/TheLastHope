@@ -33,8 +33,8 @@ namespace TheLastHope.Hangar
                 [AmmoType.M792HEI_T] = 1,
                 [AmmoType.Shotgun] = 5
             };
-            Ammo[AmmoType.ADM401_84mms] = 30;
-            Ammo[AmmoType.Energy] = 30;
+            Ammo[AmmoType.ADM401_84mms] = 300;
+            Ammo[AmmoType.Energy] = 300;
             Ammo[AmmoType.M792HEI_T] = 700;
             Ammo[AmmoType.Shotgun] = 200;
         }

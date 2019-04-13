@@ -28,20 +28,27 @@ namespace TheLastHope.Ammo
 
         public override void OnTriggerEnter(Collider collision)
         {
-            if (collision.tag == "Player")
-            {
-                try
-                {
-                    collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
-                    Die(true);
-                }
-                catch { };
-            }
+            //if (collision.tag == "Player")
+            //{
+            //    try
+            //    {
+            //        collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
+            //        Die(true);
+            //    }
+            //    catch { };
+            //}
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>())) Die(false);
+            if(collision.gameObject.tag == "Player")
+            {
+                collision.gameObject.GetComponent<ABaseObject>().SetDamage(damage);
+                Die(true);
+            }
+
+            //if ((!collision.gameObject.GetComponent<AEnemy>()) && (!collision.gameObject.GetComponent<AAmmo>()))
+            //    Die(false);
         }
 
         #endregion

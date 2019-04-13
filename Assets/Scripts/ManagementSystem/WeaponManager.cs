@@ -18,7 +18,8 @@ namespace TheLastHope.Weapons
         #region Serialized variables
 
         [SerializeField] private Selector selector;
-        [SerializeField] private ATurret[] turretArray;
+        [SerializeField] private List<ATurret> turretArray;
+        [SerializeField] private GameObject selectedObj;
 
         #endregion
 
@@ -29,7 +30,7 @@ namespace TheLastHope.Weapons
         private List<AAmmoContainer> ammoContainers = new List<AAmmoContainer>();
 
         #endregion
-        public ATurret[] TurretList { get => turretArray; set => turretArray = value; }
+        public List<ATurret> TurretList { get => turretArray; set => turretArray = value; }
 
         /// <summary>
         /// WeaponManager's 'Init'
@@ -37,19 +38,37 @@ namespace TheLastHope.Weapons
         /// <param name="sceneData"></param>
         public void Init(SceneData sceneData)
         {
-            turretArray = FindObjectsOfType<ATurret>();
+            ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
+            var tempArray = FindObjectsOfType<ATurret>();
+            foreach (var turret in tempArray)
+            {
+                if (!turret.GetComponentInParent<AEnemy>())
+                    turretArray.Add(turret);
+            }
+
+
+            foreach (var container in ammoContainers)
+            {
+                container.Init();
+            }
+
             foreach (var turret in TurretList)
             {
                 turret.Init();
-            }
-            ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
-            foreach (var container in ammoContainers)
-            {
-                if (container) container.Init();
+                foreach (var container in ammoContainers)
+                {
+                    var tempAmmo = turret.Weapon.Ammo;
+                    if (container.Ammo.ContainsKey(tempAmmo))
+                        turret.Weapon.ClipSize = container.Ammo[tempAmmo];
+                }
             }
             print($"ContainerCount {ammoContainers.Count}");
 
+            selectedObj = null;
         }
+
+
+
         /// <summary>
         /// WeaponManager's 'Update'
         /// </summary>
@@ -57,44 +76,43 @@ namespace TheLastHope.Weapons
         /// <param name="deltaTime"></param>
         public void UpdateWeapons(SceneData sceneData, float deltaTime)
         {
-            foreach (var turret in turretArray)
+            if (Input.GetMouseButtonDown(0))
             {
-                GameObject selectedObj = null;
-                if (Input.GetMouseButtonDown(0))
-                {
-                    selectedObj = selector.GetSelectedGameObject();
-                    print($"selected obj = {selectedObj.name}");
-                }
-                if (selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
-                    selectedObj.GetComponentInChildren<ATurret>().Weapon.State == WeaponState.Empty)
-                {
-                    turretToReload = selectedObj.GetComponentInChildren<ATurret>();
-                    print($"TURRET SELECTED {selectedObj.name}");
-                }
-                else if (selectedObj && selectedObj.GetComponentInChildren<AAmmoContainer>())
-                {
-                    containerToReload = selectedObj.GetComponentInChildren<AAmmoContainer>();
-                    print("CONTAINER SELECTED");
+                selectedObj = selector.GetSelectedGameObject();
+                print($"selected obj = {selectedObj.name}");
+            }
+            if ((selectedObj && selectedObj.GetComponentInChildren<ATurret>() &&
+                 selectedObj.GetComponentInChildren<ATurret>().Weapon.State == WeaponState.Empty) ||
+                (selectedObj && selectedObj.GetComponentInParent<ATurret>() &&
+                 selectedObj.GetComponentInParent<ATurret>().Weapon.State == WeaponState.Empty))
+            {
+                turretToReload = selectedObj.GetComponentInChildren<ATurret>();
+                print($"TURRET SELECTED {selectedObj.name}");
+            }
+            else if (selectedObj && selectedObj.GetComponentInChildren<AAmmoContainer>())
+            {
+                containerToReload = selectedObj.GetComponentInChildren<AAmmoContainer>();
+                print("CONTAINER SELECTED");
+            }
+            if (containerToReload && turretToReload)
+            {
+                print($"RELOADING {turretToReload.gameObject.name}");
 
+                if (containerToReload.GetAmmo(turretToReload.Weapon.Ammo, turretToReload.Weapon.ClipSize))
+                {
+                    turretToReload.Weapon.Reload(turretToReload.Weapon.ClipSize);
+                    print("R1");
+                }
+                else
+                {
+                    print("R2");
+                    containerToReload.Ammo.TryGetValue(turretToReload.Weapon.Ammo, out int ammoToReload);
+                    turretToReload.Weapon.Reload(ammoToReload);
                 }
 
-                if (containerToReload && turretToReload)
-                {
-                    print($"RELOADING {turret.gameObject.name}");
-                    if (ammoContainers.ToArray()[0].GetAmmo(turret.Weapon.TypeOfAmmo, turret.Weapon.ClipSize))
-                    {
-                        turret.Weapon.Reload(turret.Weapon.ClipSize);
-                        print("R1");
-                    }
-                    else
-                    {
-                        print("R2");
-                        ammoContainers.ToArray()[0].Ammo.TryGetValue(turret.Weapon.TypeOfAmmo, out int ammoToReload);
-                        turret.Weapon.Reload(ammoToReload);
-                    }
-                    containerToReload = null;
-                    turretToReload = null;
-                }
+                selectedObj = null;
+                containerToReload = null;
+                turretToReload = null;
             }
 
             //Fire2 - пкм. При нажатии пкм на турель, мы меняем режим ее стрельбы, если это нам позволяет софт

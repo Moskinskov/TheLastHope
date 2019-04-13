@@ -49,7 +49,7 @@ namespace TheLastHope.Weapons
             if (WeaponAudioSource.isPlaying)
                 WeaponAudioSource.Stop();
 
-            TypeOfAmmo = AmmoType.Energy;
+            Ammo = AmmoType.Energy;
             State = WeaponState.ReadyToFire;
 
             nearestEnemies = new List<AEnemy>();

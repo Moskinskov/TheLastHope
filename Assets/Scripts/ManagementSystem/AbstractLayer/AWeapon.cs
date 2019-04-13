@@ -20,7 +20,7 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// Type of ammunitions that the weapon utilies.
         /// </summary>
-        [SerializeField, Header("Weapon's property")] protected AmmoType typeOfAmmo;
+        [SerializeField, Header("Weapon's property")] protected AmmoType ammo;
         /// <summary>
         /// The quantity of ammo available to shoot.
         /// </summary>
@@ -48,7 +48,7 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// Type of ammunitions that the weapon utilies.
         /// </summary>
-        public AmmoType TypeOfAmmo { get { return typeOfAmmo; } set { typeOfAmmo = value; } }
+        public AmmoType Ammo { get { return ammo; } set { ammo = value; } }
         /// <summary>
         /// The state of the weapon.
         /// </summary>
@@ -64,7 +64,7 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// The weapon's clip capacity. 
         /// </summary>
-        public int ClipSize { get { return clipSize = 1000; } set { clipSize = value; } }   //УЗНАТЬ про CLIPSIZE
+        public int ClipSize { get { return clipSize; } set { clipSize = value; } }   //УЗНАТЬ про CLIPSIZE
         /// <summary>
         /// The quantity of ammo available to shoot.
         /// </summary>
@@ -88,7 +88,7 @@ namespace TheLastHope.Management.AbstractLayer
         {
             if (State != WeaponState.Empty)
                 return;
-
+            print(ammoQuantity);
             CurrentAmmoInClip = ammoQuantity;
             delay.Start(reloadTime);
         }
@@ -108,9 +108,9 @@ namespace TheLastHope.Management.AbstractLayer
                 State = WeaponState.Empty;
             }
 
-			if (State == WeaponState.Firing && delay.Elapsed < 0)
-				State = WeaponState.Off;
-		}
+            if (State == WeaponState.Firing && delay.Elapsed < 0)
+                State = WeaponState.ReadyToFire;
+        }
     }
 }
 

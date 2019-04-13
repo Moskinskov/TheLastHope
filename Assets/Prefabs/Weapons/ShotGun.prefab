@@ -177,7 +177,7 @@ MonoBehaviour:
   soft: {fileID: 4079027151865531339, guid: 801d83c6675742f46bc28ac771f916e0, type: 3}
   manualMode: 0
   turningAngularSpeed: 180
-  _maxHealth: 300
+  maxHealth: 0
 --- !u!65 &444040290
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4866,7 +4866,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 781536412}
-  - component: {fileID: 781536414}
   - component: {fileID: 781536413}
   - component: {fileID: 1548506419275710473}
   m_Layer: 5
@@ -4893,19 +4892,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
---- !u!65 &781536414
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781536411}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10.048259, y: 5.163496, z: 4.7591224}
-  m_Center: {x: 0.28536355, y: 6.68, z: -0.24307156}
 --- !u!114 &781536413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4918,8 +4904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d28893206ac784782ee7d9c523ada5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showOnDamage: 1
-  _showTime: 2
+  showOnDamage: 0
+  showTime: 1
 --- !u!114 &1548506419275710473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,10 +5042,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3774c5812490d694db544ad8e22433a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfAmmo: 1
+  ammo: 0
   currentAmmoInClip: 15
-  clipSize: 15
   reloadTime: 10
+  audioSource: {fileID: 0}
   rateOfFire: 0.5
   force: 200
   ammoPrefab: {fileID: 963044537, guid: bda4d8028fc5435468dc26a084e5963b, type: 3}
@@ -7202,9 +7188,9 @@ MonoBehaviour:
   frame: {fileID: 6955371162984808237}
   healthBar: {fileID: 133290863548838791}
   ammoPrefabBar: {fileID: 1939421497631112687}
-  _reloadBar: {fileID: 0}
+  reloadBar: {fileID: 0}
   buttonBar: {fileID: 1461157437244889843}
-  _healthBarImage: {fileID: 7860745640180006083}
+  healthBarImage: {fileID: 0}
   ammoPrefabBarImage: {fileID: 2772292313123393540}
 --- !u!1 &8005521108854562605
 GameObject:
@@ -7587,10 +7573,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 444040289}
     m_Modifications:
-    - target: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
-      propertyPath: m_Name
-      value: smoke_thick
-      objectReference: {fileID: 0}
     - target: {fileID: 4105057708622760, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7634,6 +7616,10 @@ PrefabInstance:
     - target: {fileID: 4105057708622760, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642322455942316, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
+      propertyPath: m_Name
+      value: smoke_thick
       objectReference: {fileID: 0}
     - target: {fileID: 1616531522783736, guid: d26aaf76e6e2409448242b9a2d66f31f, type: 3}
       propertyPath: m_IsActive

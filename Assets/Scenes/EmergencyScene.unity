@@ -2310,6 +2310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selector: {fileID: 1439058672}
   turretArray: []
+  selectedObj: {fileID: 0}
 --- !u!4 &1312983919
 Transform:
   m_ObjectHideFlags: 0
@@ -3059,7 +3060,8 @@ MonoBehaviour:
   renderManager: {fileID: 707051677}
   skillManager: {fileID: 1964544042}
   triggerManager: {fileID: 1650839111}
-  trainManager: {fileID: 0}
+  trainManager: {fileID: 3287353338628852047, guid: 8e06e37b4a1b5af4a80c7af1634bee9f,
+    type: 3}
   uiManager: {fileID: 320051821}
   lineLength: 10
   linesCount: 5

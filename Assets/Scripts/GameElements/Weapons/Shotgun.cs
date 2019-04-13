@@ -47,7 +47,7 @@ namespace TheLastHope.Weapons
         {
             IsActive = true;
             State = WeaponState.ReadyToFire;
-            typeOfAmmo = AmmoType.Shotgun;
+            Ammo = AmmoType.Shotgun;
         }
     }
 }

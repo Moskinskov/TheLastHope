@@ -42,7 +42,7 @@ namespace TheLastHope.Weapons
             if (WeaponAudioSource.isPlaying)
                 WeaponAudioSource.Stop();
 
-            TypeOfAmmo = AmmoType.Energy;
+            Ammo = AmmoType.Energy;
             State = WeaponState.ReadyToFire;
 
             LR.enabled = false;
@@ -53,7 +53,6 @@ namespace TheLastHope.Weapons
         public override void WeaponUpdate()
         {
             Checks();
-			//if (State == WeaponState.Off) { LR.enabled = false; print("I'M OFF!"); } // KOSTYYL!
         }
         /// <summary>
         /// LaserGun 'Fire'
@@ -64,10 +63,10 @@ namespace TheLastHope.Weapons
             if (State != WeaponState.ReadyToFire)
                 return;
 
-            delay.Start(0.005f);
+             
             if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
             {
-                if (hit.distance <= maxRange && hit.transform.tag == "Enemy")
+                if (hit.distance <= maxRange)
                 {
                     WeaponMethod(hit);
                 }
@@ -100,15 +99,15 @@ namespace TheLastHope.Weapons
         protected override void Checks()
         {
             base.Checks();
-            if (State != WeaponState.ReadyToFire)
+            if (State != WeaponState.Firing)
             {
                 if (!effect.isStopped)
                     effect.Stop();
                 if (audioSource.isPlaying)
                     audioSource.Stop();
-				if (LR)
-					LR.enabled = false;
-			}
+                if (LR)
+                    LR.enabled = false;
+            }
         }
 
         #endregion
@@ -136,7 +135,7 @@ namespace TheLastHope.Weapons
             if (!WeaponAudioSource.isPlaying)
                 audioSource.Play();
 
-            yield return new WaitForSeconds(audioSource.clip.length);
+            yield return new WaitForSeconds(waitTime);
 
             _isPlaying = false;
         }
