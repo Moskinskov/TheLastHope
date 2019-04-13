@@ -44,12 +44,12 @@ namespace TheLastHope.Weapons
         public override void Init()
         {
             IsActive = true;
+            Weapon.Init();
             soft.Init();
             MaxHealth = maxHealth;
             Health = MaxHealth;
             effect = GetComponent<ParticleSystem>();
             if (effect) effect.Stop();
-            Weapon.Init();
         }
         /// <summary>
         /// Turret is turning

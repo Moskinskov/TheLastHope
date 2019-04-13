@@ -103,13 +103,15 @@ namespace TheLastHope.Weapons
         {
             base.Checks();
 
-            if (State != WeaponState.ReadyToFire)
+            if (State != WeaponState.Firing)
             {
                 LR.positionCount = 2;
                 nearestEnemies.Clear();
 
                 if (!effect.isStopped)
                     effect.Stop();
+                if (audioSource.isPlaying)
+                    audioSource.Stop();
                 if (LR)
                     LR.enabled = false;
             }
@@ -176,7 +178,7 @@ namespace TheLastHope.Weapons
             if (!WeaponAudioSource.isPlaying)
                 audioSource.Play();
 
-            yield return new WaitForSeconds(audioSource.clip.length);
+            yield return new WaitForSeconds(waitTime);
 
             isPlaying = false;
         }

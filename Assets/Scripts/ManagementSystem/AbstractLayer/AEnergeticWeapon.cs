@@ -29,11 +29,6 @@ namespace TheLastHope.Management.AbstractLayer
 
         #endregion
 
-        #region Override methods
-
-
-        #endregion
-
         #region Abstract Methods
 
         protected abstract void WeaponMethod(RaycastHit hit);
