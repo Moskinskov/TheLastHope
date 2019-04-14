@@ -35,7 +35,9 @@ namespace TheLastHope.Ammo
             }
 
             if ((!collision.gameObject?.GetComponent<AEnemy>()) && (!collision.gameObject?.GetComponent<AAmmo>()))
+            {
                 Die(false);
+            }
         }
 
         #endregion

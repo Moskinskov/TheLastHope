@@ -40,30 +40,21 @@ namespace TheLastHope.Weapons
         {
             ammoContainers.Add(FindObjectOfType<AAmmoContainer>());
             var tempArray = FindObjectsOfType<ATurret>();
+
             foreach (var turret in tempArray)
             {
                 if (!turret.GetComponentInParent<AEnemy>())
+                {
+                    turret.Init();
                     turretArray.Add(turret);
+                }
             }
-
-
             foreach (var container in ammoContainers)
             {
                 container.Init();
             }
 
-            foreach (var turret in TurretList)
-            {
-                turret.Init();
-                foreach (var container in ammoContainers)
-                {
-                    var tempAmmo = turret.Weapon.Ammo;
-                    if (container.Ammo.ContainsKey(tempAmmo))
-                        turret.Weapon.ClipSize = container.Ammo[tempAmmo];
-                }
-            }
             print($"ContainerCount {ammoContainers.Count}");
-
             selectedObj = null;
         }
 

@@ -4,13 +4,12 @@
 /// Commented
 
 using System.Collections.Generic;
-using UnityEngine;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
 
 namespace TheLastHope.Hangar
 {
-    class AmmoContainer : AAmmoContainer
+    internal class AmmoContainer : AAmmoContainer
     {
         /// <summary>
         /// Max capacity of ammunition which container has
@@ -24,7 +23,13 @@ namespace TheLastHope.Hangar
         public override void Init()
         {
             currentCapacity = maxCapacity;
-            Ammo = new Dictionary<AmmoType, int>();
+            Ammo = new Dictionary<AmmoType, int>()
+            {
+                [AmmoType.ADM401_84mms] = 30,
+                [AmmoType.Energy] = 30,
+                [AmmoType.M792HEI_T] = 700,
+                [AmmoType.Shotgun] = 20
+            };
 
             AmmoSize = new Dictionary<AmmoType, int>()
             {
@@ -33,10 +38,7 @@ namespace TheLastHope.Hangar
                 [AmmoType.M792HEI_T] = 1,
                 [AmmoType.Shotgun] = 5
             };
-            Ammo[AmmoType.ADM401_84mms] = 300;
-            Ammo[AmmoType.Energy] = 300;
-            Ammo[AmmoType.M792HEI_T] = 700;
-            Ammo[AmmoType.Shotgun] = 200;
+
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace TheLastHope.Hangar
             }
             else
             {
-                Ammo[type] += amount ;
+                Ammo[type] += amount;
                 currentCapacity -= amount * AmmoSize[type];
             }
         }

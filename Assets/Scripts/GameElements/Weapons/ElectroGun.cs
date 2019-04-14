@@ -1,7 +1,6 @@
 ﻿/// Limerence Games
 /// The Last Hope
 /// Curator: Ilya Moskinskov
-/// commented
 
 using System.Collections;
 using System.Collections.Generic;
@@ -51,9 +50,9 @@ namespace TheLastHope.Weapons
 
             Ammo = AmmoType.Energy;
             State = WeaponState.ReadyToFire;
-
             nearestEnemies = new List<AEnemy>();
             LR.enabled = false;
+            ClipSize = 20;
         }
         /// <summary>
         /// ElectroGun 'WeaponUpdate'
@@ -73,34 +72,36 @@ namespace TheLastHope.Weapons
             if (State != WeaponState.ReadyToFire)
                 return;
 
-            delay.Start(0.005f); //MAGIC NUMBERS!!!
+            State = WeaponState.Firing;
+
             if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
             {
-                if (hit.distance <= maxRange && hit.transform.tag == "Enemy")
+                if (hit.distance <= maxRange && hit.transform.GetComponentInChildren<AEnemy>())
                 {
+                    isPlaying = true;
                     WeaponMethod(hit);
+                    Effects();
                 }
             }
-            State = WeaponState.Firing;
         }
 
         protected override void WeaponMethod(RaycastHit hit)
         {
+            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+
             FindTheNearestEnemies(hit.transform.GetComponent<AEnemy>());
             HitTheEnemies();
             SetLRToTarget(hit);
-
-            coroutine = Effect(2.0f, hit);
-
-            if (!isPlaying)
-            {
-                isPlaying = true;
-                StartCoroutine(coroutine);
-            }
         }
 
         protected override void Checks()
         {
+            if (!IsActive)
+            {
+                WeaponAudioSource.Stop();
+                effect.Stop();
+            }
+
             base.Checks();
 
             if (State != WeaponState.Firing)
@@ -169,18 +170,15 @@ namespace TheLastHope.Weapons
                     nearestEnemies.Remove(tempEnemy);
             }
         }
-
-        private IEnumerator Effect(float waitTime, RaycastHit hit)
+        /// <summary>
+        /// All effects that need to play 'OnFire'
+        /// </summary>
+        private void Effects()
         {
-            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-            if (!effect.isPlaying)
-                effect.Play();
-            if (!WeaponAudioSource.isPlaying)
-                audioSource.Play();
-
-            yield return new WaitForSeconds(waitTime);
-
-            isPlaying = false;
+            if (!isPlaying)
+                return;
+            effect.Play();
+            audioSource.Play();
         }
 
         #endregion

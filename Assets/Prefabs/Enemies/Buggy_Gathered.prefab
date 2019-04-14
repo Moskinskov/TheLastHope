@@ -9668,7 +9668,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7ad9f9dc2cd84454ea68ef05972f68e6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -9764,7 +9764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ed5c4e158fb094c8caf6d7a7746a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfAmmo: 0
   currentAmmoInClip: 300
   reloadTime: 10
   audioSource: {fileID: 0}

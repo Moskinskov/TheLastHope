@@ -34,6 +34,7 @@ namespace TheLastHope.Weapons
             IsActive = true;
             State = WeaponState.ReadyToFire;
             Ammo = AmmoType.M792HEI_T;
+            ClipSize = 100;
         }
     }
 }

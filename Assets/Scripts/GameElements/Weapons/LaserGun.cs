@@ -24,7 +24,7 @@ namespace TheLastHope.Weapons
         #region Private variables
 
         private IEnumerator coroutine;
-        private bool _isPlaying;
+        private bool isPlaying;
 
         #endregion
 
@@ -44,8 +44,9 @@ namespace TheLastHope.Weapons
 
             Ammo = AmmoType.Energy;
             State = WeaponState.ReadyToFire;
-
+            isPlaying = false;
             LR.enabled = false;
+            ClipSize = 20;
         }
         /// <summary>
         /// LaserGun 'WeaponUpdate'
@@ -63,50 +64,48 @@ namespace TheLastHope.Weapons
             if (State != WeaponState.ReadyToFire)
                 return;
 
-             
+            State = WeaponState.Firing;
+
             if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
             {
                 if (hit.distance <= maxRange)
                 {
-                    WeaponMethod(hit);
-                }
-            }
-            State = WeaponState.Firing;
-        }
-
-        protected override void WeaponMethod(RaycastHit hit)
-        {
-            if (hit.transform.GetComponent<AEnemy>())
-            {
-                if (hit.distance <= maxRange)
-                {
-                    HitTheEnemy(hit);
-                    SetLRToTarget(hit);
-
-                    effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-
-                    coroutine = Effect(2.0f, hit);
-
-                    if (!_isPlaying)
+                    if (hit.transform.GetComponentInChildren<AEnemy>())
                     {
-                        _isPlaying = true;
-                        StartCoroutine(coroutine);
+                        WeaponMethod(hit);
+                        Effects();
                     }
                 }
             }
         }
 
+        protected override void WeaponMethod(RaycastHit hit)
+        {
+            isPlaying = true;
+            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+
+            HitTheEnemy(hit);
+            SetLRToTarget(hit);
+        }
+
         protected override void Checks()
         {
+            if (!IsActive)
+            {
+                WeaponAudioSource.Stop();
+                effect.Stop();
+            }
+
             base.Checks();
             if (State != WeaponState.Firing)
             {
                 if (!effect.isStopped)
                     effect.Stop();
-                if (audioSource.isPlaying)
-                    audioSource.Stop();
+                if (WeaponAudioSource.isPlaying)
+                    WeaponAudioSource.Stop();
                 if (LR)
                     LR.enabled = false;
+                isPlaying = false;
             }
         }
 
@@ -127,17 +126,15 @@ namespace TheLastHope.Weapons
             CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
         }
 
-        private IEnumerator Effect(float waitTime, RaycastHit hit)
+        /// <summary>
+        /// All effects that need to play 'OnFire'
+        /// </summary>
+        private void Effects()
         {
-            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
-            if (!effect.isPlaying)
-                effect.Play();
-            if (!WeaponAudioSource.isPlaying)
-                audioSource.Play();
-
-            yield return new WaitForSeconds(waitTime);
-
-            _isPlaying = false;
+            if (!isPlaying)
+                return;
+            effect.Play();
+            audioSource.Play();
         }
 
         #endregion

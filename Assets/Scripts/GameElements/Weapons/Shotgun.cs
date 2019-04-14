@@ -48,6 +48,7 @@ namespace TheLastHope.Weapons
             IsActive = true;
             State = WeaponState.ReadyToFire;
             Ammo = AmmoType.Shotgun;
+            ClipSize = 20;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// Type of ammunitions that the weapon utilies.
         /// </summary>
-        [SerializeField, Header("Weapon's property")] protected AmmoType ammo;
+        [Header("Weapon's property")] protected AmmoType ammo;
         /// <summary>
         /// The quantity of ammo available to shoot.
         /// </summary>
@@ -79,9 +79,9 @@ namespace TheLastHope.Management.AbstractLayer
         #endregion
 
         #region Abstract methods
-        public abstract void Fire(SceneData sceneData);
-        public abstract void WeaponUpdate();
         public abstract void Init();
+        public abstract void WeaponUpdate();
+        public abstract void Fire(SceneData sceneData);
         #endregion
 
         public void Reload(int ammoQuantity)
