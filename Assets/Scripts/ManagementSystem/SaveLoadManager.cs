@@ -107,7 +107,7 @@ namespace TheLastHope.Management
         {
             this.player = player;
             ParentTransform = playerTrain.transform.position;
-            Debug.Log("CHC" + playerTrain.transform.childCount);
+            //Debug.Log("CHC" + playerTrain.transform.childCount);
             locos.Add("Loco.1");
             CarsTransform.Add(playerTrain.transform.GetChild(0).position);
             for (var i = 1; i < playerTrain.transform.childCount; i++)

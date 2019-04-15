@@ -49,8 +49,11 @@ namespace TheLastHope.Management
         void Start()
         {
             SaveLoadManager.objectsDictionary = FindObjectOfType<ObjectDictionary>();
-            SaveLoadManager.Load(out playerTrain, out player);
+            //SaveLoadManager.Load(out playerTrain, out player);
             sceneData = new SceneData();
+            //
+            playerTrain = FindObjectOfType<TrainManager>().gameObject;
+            //
             mainPlayer = playerTrain.GetComponentInChildren<MainPlayer>();
             trainManager = playerTrain.GetComponentInChildren<TrainManager>();
             trainManager.Init(sceneData);
@@ -103,7 +106,8 @@ namespace TheLastHope.Management
 				generatorManager.UpdateGenerators(sceneData);
 				weaponController.UpdateWeapons(sceneData, Time.deltaTime);
 				renderManager.UpdateRender(sceneData);
-				uiManager.UIUpdate(sceneData, pathCounter);
+                //Something goes wrong!
+				//uiManager.UIUpdate(sceneData, pathCounter);
 				if (skillManager != null)
 				{
 					skillManager.SkillUpdate(sceneData);

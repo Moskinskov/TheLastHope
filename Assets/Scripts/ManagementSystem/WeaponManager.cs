@@ -51,6 +51,7 @@ namespace TheLastHope.Weapons
             }
             foreach (var container in ammoContainers)
             {
+                if (container)
                 container.Init();
             }
 

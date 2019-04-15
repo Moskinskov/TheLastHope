@@ -998,12 +998,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf822fe3ee40ab040a20ca6a340b595a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frame: {fileID: 0}
-  healthBar: {fileID: 0}
+  frame: {fileID: 501590932281640174}
+  healthBar: {fileID: 501590933162578900}
   ammoPrefabBar: {fileID: 0}
   reloadBar: {fileID: 0}
-  buttonBar: {fileID: 0}
-  healthBarImage: {fileID: 0}
+  buttonBar: {fileID: 501590933864448347}
+  healthBarImage: {fileID: 501590932516313645}
   ammoPrefabBarImage: {fileID: 0}
 --- !u!1 &501590933272540247
 GameObject:

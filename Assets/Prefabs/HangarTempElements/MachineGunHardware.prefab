@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9503f7e565a1647ace81e2aba1e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfAmmo: 0
   currentAmmoInClip: 200
   reloadTime: 10
   audioSource: {fileID: 315095380}
@@ -1114,7 +1113,7 @@ MonoBehaviour:
   soft: {fileID: 4079027151865531339, guid: 801d83c6675742f46bc28ac771f916e0, type: 3}
   manualMode: 0
   turningAngularSpeed: 180
-  _maxHealth: 200
+  maxHealth: 150
 --- !u!198 &812621070
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -6756,7 +6755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1867293247
 Transform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,11 @@ using TheLastHope.Management.AbstractLayer;
 
 public class TrainManager : MonoBehaviour
 {
+    private void Start()
+    {
+        Object.DontDestroyOnLoad(this);
+    }
+
     public void Init(SceneData sceneData)
     {
         ACarriage[] carriages = GameObject.FindObjectsOfType<ACarriage>();

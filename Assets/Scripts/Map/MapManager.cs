@@ -250,7 +250,7 @@ public class MapManager : MonoBehaviour
         try
         {
             path.Init();
-            sl.LoadMapFile(path.mapsObj);
+            //sl.LoadMapFile(path.mapsObj);
             string name = sl.LoadNextLvlName();
             if (name != "")
             {

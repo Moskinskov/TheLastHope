@@ -110,7 +110,7 @@ public class Train : MonoBehaviour
     }
 }
 
-public class SLSystem : MonoBehaviour
+public class SLSystem
 {
     private string fileName1 = "MapSettings";
     private string fileName2 = "TrainSettings";
@@ -270,7 +270,7 @@ public class SLSystem : MonoBehaviour
         element.SetAttribute("value", car.num.ToString());
         carNode.AppendChild(element);
 
-        print("Start save slots");
+        Debug.Log("Start save slots");
         for (int i = 0; i < car.slots.Count; i++)
         {
             userNode = xmlDoc.CreateElement("Slot");
@@ -304,7 +304,7 @@ public class SLSystem : MonoBehaviour
 
     public void LoadTrainFile(Train tr)
     {
-        print("Start load.");
+        Debug.Log("Start load.");
         tr.carriges.Clear();
         
         XmlTextReader reader = new XmlTextReader(Application.dataPath + "/" + fileName2 + ".xml");
@@ -348,7 +348,7 @@ public class SLSystem : MonoBehaviour
                 }
             }
         }
-        print("End load train");
+        Debug.Log("End load train");
         reader.Close();
     }
     void SaveXML()
