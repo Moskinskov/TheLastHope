@@ -32,6 +32,10 @@ namespace TheLastHope.Hangar
         /// (serialazed)
         /// </summary>
         [SerializeField]private HangarUIController uiController;
+        /// <summary>
+        /// Description of item
+        /// </summary>
+        public GameObject description;
         #endregion
 
         public Container[] train;
@@ -77,6 +81,7 @@ namespace TheLastHope.Hangar
             inventory.Init();
             uiController.Init();
             shop.Init();
+            description.SetActive(false);
         }
         
         public bool GetNextCarriage()
