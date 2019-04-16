@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoInClip: 200
-  reloadTime: 10
+  reloadTime: 3
   audioSource: {fileID: 315095380}
   rateOfFire: 0.3
   force: 300

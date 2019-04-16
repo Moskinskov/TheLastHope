@@ -9,11 +9,16 @@ using TheLastHope.Management.Data;
 
 namespace TheLastHope.Management.AbstractLayer
 {
-	/// <summary>
-	/// Abstract enemy class.
-	/// Use this class to create new enemies.
-	/// </summary>
-	public abstract class AEnemy : ABaseObject
+    internal enum UpOrDownType
+    {
+        Up,
+        Down
+    }
+    /// <summary>
+    /// Abstract enemy class.
+    /// Use this class to create new enemies.
+    /// </summary>
+    public abstract class AEnemy : ABaseObject
     {
 		#region Serializables
 		/// <summary>

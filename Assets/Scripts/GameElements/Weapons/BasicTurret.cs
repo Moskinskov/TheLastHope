@@ -101,7 +101,8 @@ namespace TheLastHope.Weapons
                     Weapon.Fire(sceneData);
                 }
             }
-            TurnTurret(Time.deltaTime);
+            if (Weapon.State != WeaponState.Empty && Weapon.State != WeaponState.Off)
+                TurnTurret(Time.deltaTime);
 
             if (Health <= 0) Die();
         }
