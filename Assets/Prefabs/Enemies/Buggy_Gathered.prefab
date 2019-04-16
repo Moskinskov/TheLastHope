@@ -10614,6 +10614,8 @@ MonoBehaviour:
   maxSpeed: 20
   maxAcceleration: 5
   driftingRadius: 15
+  trainWidthForDrifting: 12
+  targetObject: {fileID: 0}
   sensorLength: 3
   frontSensorPosition: {x: 0, y: 0, z: 1}
   frontSideSensorPosition: 0.6

@@ -34,6 +34,7 @@ namespace TheLastHope.Player
 		public override void Init()
 		{
 			base.IsActive = true;
+            _health = _maxHealth;
 		}
 
 		public override void Init(SceneData sceneData)

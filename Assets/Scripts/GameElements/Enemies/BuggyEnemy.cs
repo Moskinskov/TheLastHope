@@ -16,6 +16,7 @@ using TheLastHope.UI;
 
 namespace TheLastHope.Enemies
 {
+    
     public class BuggyEnemy : AEnemy
     {
         [SerializeField] private float _driftingSpeedDivider;
@@ -36,8 +37,10 @@ namespace TheLastHope.Enemies
 		internal Vector3 currentAcceleration;
 		[SerializeField] internal float driftingRadius;
 		internal Vector3 currentDriftingPoint;
+        [SerializeField] float trainWidthForDrifting = 6f;
+        [SerializeField] GameObject targetObject;
 
-		private RaycastHit hit;
+        private RaycastHit hit;
 		private Renderer[] renderers;
 		private Color _initColor;
 		private Texture _initTexture;
@@ -49,6 +52,7 @@ namespace TheLastHope.Enemies
 		private bool _avoiding = false;
 		private float _turnSpread;
 		private UIOverlayController _uiController;
+        UpOrDownType upDownType = UpOrDownType.Up;
 
 		[Header("Sensors")]
 		[SerializeField] private float sensorLength = 3f;
@@ -63,7 +67,21 @@ namespace TheLastHope.Enemies
 		/// </summary>
 		public override void Init()
 		{
-			enemyType = EnemyType.Wheeled;
+            if (transform.position.z>0)
+            {
+                upDownType = UpOrDownType.Up;
+                currentDriftingPoint = new Vector3(targetPosition.position.x,
+                             targetPosition.position.y,
+                             targetPosition.position.z + trainWidthForDrifting * 1.5f);
+            }
+            else
+            {
+                upDownType = UpOrDownType.Down;
+                currentDriftingPoint = new Vector3(targetPosition.position.x,
+                                targetPosition.position.y,
+                                targetPosition.position.z - trainWidthForDrifting * 1.5f);
+            }
+            enemyType = EnemyType.Wheeled;
 			_textures = new List<Texture>();
 			timer = new Timer();
 			renderers = GetComponentsInChildren<Renderer>();
@@ -93,6 +111,7 @@ namespace TheLastHope.Enemies
 			currentDriftingPoint = new Vector3(targetPosition.position.x,
 												targetPosition.position.y,
 												targetPosition.position.z);
+            targetObject = target.gameObject;
 			_wheels = new List<GameObject>();
 			RotateRightWay();
 			//InitVision();
@@ -213,10 +232,13 @@ namespace TheLastHope.Enemies
 		{
 			if ((_speedSmoother != 0) || (_driftingSpeedDivider != 0))
 			{
-				Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
-				currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
-				transform.position = new Vector3(transform.position.x + currentSpeed.x * deltaTime * Random.RandomRange(0.8f, 1.1f), transform.position.y, transform.position.z + _turnSpread);
-			}
+                Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
+                currentSpeed = Vector3.Lerp(currentSpeed, speed, _speedSmoother);
+                //transform.position = new Vector3(transform.position.x + currentSpeed.x * deltaTime * Random.RandomRange(0.8f, 1.1f), transform.position.y, transform.position.z + _turnSpread);
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
+                                                       gameObject.transform.position.y + currentSpeed.y * deltaTime,
+                                                       gameObject.transform.position.z + currentSpeed.z * deltaTime);
+            }
 		}
 
 		/// <summary>
@@ -263,12 +285,26 @@ namespace TheLastHope.Enemies
         Vector3 DriftSpeed(SceneData sceneData, float deltaTime)
         {
             if (Mathf.Abs(currentDriftingPoint.x - transform.position.x) < driftingRadius / 10 &&
-                Mathf.Abs(currentDriftingPoint.z - transform.position.z) < driftingRadius / 10)
-                currentDriftingPoint = new Vector3(Random.Range(targetPosition.position.x - driftingRadius,
-                                                                targetPosition.position.x + driftingRadius),
-                                                   0,
-                                                   Random.Range(targetPosition.position.z - driftingRadius,
-                                                                targetPosition.position.z + driftingRadius));
+                               Mathf.Abs(currentDriftingPoint.z - transform.position.z) < driftingRadius / 10)
+            {
+                if (upDownType == UpOrDownType.Up)
+                {
+                    currentDriftingPoint = new Vector3(Random.Range(targetPosition.position.x - driftingRadius,
+                                                                    targetPosition.position.x),
+                                                                            0,
+                                                      Random.Range(targetPosition.position.z + trainWidthForDrifting,
+                                                                   targetPosition.position.z + driftingRadius));
+                }
+                else
+                {
+                    currentDriftingPoint = new Vector3(Random.Range(targetPosition.position.x - driftingRadius,
+                                                                    targetPosition.position.x),
+                                                                    0,
+                                                       Random.Range(targetPosition.position.z - trainWidthForDrifting,
+                                                                    targetPosition.position.z - driftingRadius));
+                }
+
+            }
             return new Vector3(currentDriftingPoint.x - transform.position.x, 0, currentDriftingPoint.z - transform.position.z);
         }
 

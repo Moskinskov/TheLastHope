@@ -6,11 +6,13 @@
 using System.Collections.Generic;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
+using UnityEngine;
 
 namespace TheLastHope.Hangar
 {
     internal class AmmoContainer : AAmmoContainer
     {
+        [SerializeField] float heitAmount = 0f;
         /// <summary>
         /// Max capacity of ammunition which container has
         /// </summary>
@@ -27,7 +29,7 @@ namespace TheLastHope.Hangar
             {
                 [AmmoType.ADM401_84mms] = 30,
                 [AmmoType.Energy] = 30,
-                [AmmoType.M792HEI_T] = 700,
+                [AmmoType.M792HEI_T] = 3000,
                 [AmmoType.Shotgun] = 20
             };
 
@@ -69,6 +71,7 @@ namespace TheLastHope.Hangar
         public override bool GetAmmo(AmmoType type, int amount)
         {
             print($"TYPE: {type.ToString()}");
+            heitAmount = Ammo[AmmoType.M792HEI_T];
             if (Ammo[type] >= amount)
             {
                 Ammo[type] -= amount;

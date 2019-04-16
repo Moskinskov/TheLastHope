@@ -19402,7 +19402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9503f7e565a1647ace81e2aba1e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAmmoInClip: 50
+  currentAmmoInClip: 500
   reloadTime: 2
   audioSource: {fileID: 399272609710532771}
   rateOfFire: 1
@@ -24401,12 +24401,19 @@ MonoBehaviour:
   maxHealth: 150
   driftingSpeedDivider: 2
   speedSmoother: 0.01
+  attackAngleSmoother: 0.1
+  angularSpeed: 150
   weapon: {fileID: 399272609710532768}
-  visionDistance: 15
+  visionDistance: 25
   damageTex: {fileID: 2800000, guid: 26e21044f357e8e478d4951e7195b203, type: 3}
+  currentRaycastHistGameObject: {fileID: 0}
   maxSpeed: 20
   maxAcceleration: 5
   driftingRadius: 30
+  trainWidthForDrifting: 6
+  attackTime: 3
+  currentAttackTime: 0
+  criticalAngleToTarget: 5
 --- !u!65 &399272610317791059
 BoxCollider:
   m_ObjectHideFlags: 0
