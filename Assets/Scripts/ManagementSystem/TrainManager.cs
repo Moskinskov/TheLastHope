@@ -13,7 +13,9 @@ public class TrainManager : MonoBehaviour
 {
     private void Start()
     {
-        Object.DontDestroyOnLoad(this);
+        if (FindObjectsOfType<TrainManager>().Length == 1)
+            Object.DontDestroyOnLoad(this);
+        else DestroyImmediate(this);
     }
 
     public void Init(SceneData sceneData)
