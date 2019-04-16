@@ -9764,11 +9764,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ed5c4e158fb094c8caf6d7a7746a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAmmoInClip: 300
+  currentAmmoInClip: 500
   reloadTime: 10
-  audioSource: {fileID: 0}
-  rateOfFire: 0.1
-  force: 300
+  audioSource: {fileID: 6491789263212140145}
+  rateOfFire: 5
+  force: 100
   ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
     type: 3}
   muzzle: {fileID: 6491789263208544817}
@@ -10089,7 +10089,7 @@ MonoBehaviour:
   soft: {fileID: 5894397521185714274, guid: 0e1d5669a7a406c4d9ed4177eac0bb20, type: 3}
   manualMode: 0
   turningAngularSpeed: 180
-  maxHealth: 0
+  maxHealth: 200
 --- !u!54 &6491789264380002308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10581,8 +10581,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.0839472, y: 3.1130939, z: 5.7935543}
-  m_Center: {x: -0.001370132, y: 1.3477633, z: 0.22823668}
+  m_Size: {x: 3.0839472, y: 8.105259, z: 5.7935543}
+  m_Center: {x: -0.0013701916, y: 3.8438463, z: 0.22823668}
 --- !u!114 &6491789262848149894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10599,7 +10599,7 @@ MonoBehaviour:
   _driftingSpeedDivider: 1
   _speedSmoother: 0.01
   _turret: {fileID: 6491789264665482539}
-  _visionDistance: 20
+  _visionDistance: 10
   _damageTex: {fileID: 2800000, guid: 26e21044f357e8e478d4951e7195b203, type: 3}
   _frontWheels:
   - {fileID: 6491789264380002309}
@@ -10614,7 +10614,7 @@ MonoBehaviour:
   maxSpeed: 20
   maxAcceleration: 5
   driftingRadius: 15
-  trainWidthForDrifting: 12
+  trainWidthForDrifting: 15
   targetObject: {fileID: 0}
   sensorLength: 3
   frontSensorPosition: {x: 0, y: 0, z: 1}

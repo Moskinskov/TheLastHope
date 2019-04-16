@@ -947,7 +947,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -10648,7 +10648,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c1d57bcaabb23c4182e3d56f63549d2, type: 2}
+  - {fileID: 2100000, guid: b91b31d0510242545b2324721d341e6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10956,7 +10956,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 36cf8743b924e474e84cecb863111058, type: 2}
+  - {fileID: 2100000, guid: b91b31d0510242545b2324721d341e6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11135,7 +11135,7 @@ GameObject:
   - component: {fileID: 5145516715166584255}
   - component: {fileID: 5145516715166584248}
   - component: {fileID: 8907460203580910168}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CannonHardware
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11516,12 +11516,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoInClip: 5
-  reloadTime: 10
+  reloadTime: 5
   audioSource: {fileID: 8498648475325866316}
-  rateOfFire: 1
+  rateOfFire: 10
   force: 100
-  ammoPrefab: {fileID: 8612269453317410879, guid: 092addff08be5c745a97df00460f50f2,
-    type: 3}
+  ammoPrefab: {fileID: 240558141, guid: 706898fbe57b38a49873e78ff07eb83b, type: 3}
   muzzle: {fileID: 4563178942582235965}
   barrel: {fileID: 9212689777400940909}
   muzzleFlash: {fileID: 6933793066450298117}
@@ -11617,7 +11616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5878527445945384859
 Transform:
   m_ObjectHideFlags: 0
@@ -11647,7 +11646,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6782035776908716863}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11686,7 +11685,7 @@ SphereCollider:
   m_GameObject: {fileID: 6782035776908716863}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.00000023841858, y: 0, z: 0}
@@ -11856,7 +11855,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf73f988a447da04680116aebcbf4ec0, type: 2}
+  - {fileID: 2100000, guid: 635f27db5fae3be4aad653c7f0c413d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12911,7 +12910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212689777400940909}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0.18593758, y: -0.4812503, z: 2.25625}
+  m_LocalPosition: {x: 0, y: -0.08, z: 3.05}
   m_LocalScale: {x: 1.5625, y: 1.5625, z: 1.5625}
   m_Children: []
   m_Father: {fileID: 3164083105652243072}

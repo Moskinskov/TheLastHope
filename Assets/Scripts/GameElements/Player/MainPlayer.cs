@@ -18,23 +18,29 @@ namespace TheLastHope.Player
 	public class MainPlayer: ABaseObject
 	{
 		[SerializeField]
-		private float _raycastDepth;
+		private float raycastDepth;
 		[SerializeField]
-		private float _health;
-
+		private float health;
 		[SerializeField]
-		private float _maxHealth;
+		private float maxHealth;
 
-
-		//private void OnGUI()
-		//{
-		//	GUI.Label(new Rect(10, 10, 200, 20), ("Player's health: " + _health.ToString()));
-		//}
+		//TEMPORARY RESET SOLUTION. TODO: implement the right way
+		[SerializeField] List<GameObject> initObjects = new List<GameObject>();
 
 		public override void Init()
 		{
 			base.IsActive = true;
-            _health = _maxHealth;
+            health = maxHealth;
+
+			for (var i = 0; i < transform.childCount; i++)
+			{
+				transform.GetChild(i).gameObject.SetActive(false);
+			}
+
+			foreach (var obj in initObjects)
+			{
+				obj.SetActive(true);
+			}
 		}
 
 		public override void Init(SceneData sceneData)
@@ -44,15 +50,15 @@ namespace TheLastHope.Player
 
 		public override void SetDamage(float damage)
 		{
-			_health -= damage;
+			health -= damage;
 		}
 
 		public void UpdatePlayer(SceneData sceneData) //Temp
 		{
-			base.MaxHealth = _maxHealth;
-			base.Health = _health;
+			base.MaxHealth = maxHealth;
+			base.Health = health;
 			if (RayCast()) sceneData.Triggers.Add(RayCast());
-			if (_health < 1)
+			if (health < 1)
 			{
 				Die(sceneData);
 			}
@@ -63,8 +69,8 @@ namespace TheLastHope.Player
 		{
 			Ray ray = new Ray(transform.position, transform.forward);
 			RaycastHit hitInfo = new RaycastHit();
-			Debug.DrawLine(transform.position, transform.forward*_raycastDepth, Color.red);
-			if (Physics.Raycast(ray, out hitInfo, _raycastDepth) && hitInfo.collider.isTrigger)
+			Debug.DrawLine(transform.position, transform.forward*raycastDepth, Color.red);
+			if (Physics.Raycast(ray, out hitInfo, raycastDepth) && hitInfo.collider.isTrigger)
 			{
 				print("I had hit a trigger!");
 				return hitInfo.collider.gameObject;
@@ -80,17 +86,11 @@ namespace TheLastHope.Player
 		{
 			sceneData.CurrentState = GameState.Lose;
 			this.GetComponent<AudioSource>().clip = null;
-			int _childCount = gameObject.transform.childCount;
-			for (int i = 0; i < _childCount; i++)
+			int childCount = gameObject.transform.childCount;
+			for (int i = 0; i < childCount; i++)
 			{
-				var _child = gameObject.transform.GetChild(i);
-				if (!_child.gameObject.active) _child.gameObject.SetActive(true); 
-			}
-
-			for (int i = 0; i < _childCount; i++)
-			{
-				var _child = gameObject.transform.GetChild(i);
-				if (!_child.gameObject.active) _child.gameObject.SetActive(true);
+				var child = gameObject.transform.GetChild(i);
+				if (!child.gameObject.active) child.gameObject.SetActive(true); 
 			}
 			base.IsActive = false;
 		}

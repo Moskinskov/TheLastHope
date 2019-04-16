@@ -58,7 +58,7 @@ namespace TheLastHope.Hangar
         public Management.Player player;
         public static HangarData instance;
         #endregion
-        void Awake()
+        void Start()
         {
             Init();
         }

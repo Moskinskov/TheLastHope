@@ -25,7 +25,7 @@ namespace TheLastHope.Ammo
         #endregion
 
         #region Collision methods
-        protected override void OnCollisionEnter(Collision collision)
+        protected override void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject?.tag == "Player")
             {
@@ -39,20 +39,6 @@ namespace TheLastHope.Ammo
             }
         }
 
-
-        protected void OnTriggerEnter(Collider collision)
-        {
-            if (collision.gameObject?.tag == "Player")
-            {
-                collision.gameObject?.GetComponent<ABaseObject>()?.SetDamage(damage);
-                Die(true);
-            }
-
-            if ((!collision.gameObject?.GetComponent<AEnemy>()) && (!collision.gameObject?.GetComponent<AAmmo>()))
-            {
-                Die(false);
-            }
-        }
 
         #endregion
 

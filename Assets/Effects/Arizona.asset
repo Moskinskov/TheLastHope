@@ -78,7 +78,7 @@ MonoBehaviour:
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       shutterAngle: 90
       sampleCount: 16
@@ -101,9 +101,9 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.46
+        intensity: 0.25
         threshold: 0.68
-        softKnee: 0.519
+        softKnee: 0.426
         radius: 1
         antiFlicker: 1
       lensDirt:

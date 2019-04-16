@@ -6796,8 +6796,8 @@ MonoBehaviour:
   currentAmmoInClip: 200
   reloadTime: 10
   audioSource: {fileID: 278187883845761518}
-  rateOfFire: 0.3
-  force: 300
+  rateOfFire: 4
+  force: 100
   ammoPrefab: {fileID: 963044537, guid: 3839fdca990e50d41978d84222d19c47, type: 3}
   muzzle: {fileID: 6894496148721370772}
   barrel: {fileID: 4596670672223157344}
@@ -7043,7 +7043,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

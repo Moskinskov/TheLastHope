@@ -65,7 +65,7 @@ namespace TheLastHope.Management.AbstractLayer
         /// Method called when the ammo
         /// touches a trigger.
         /// </summary>
-        protected abstract void OnCollisionEnter(Collision collision);
+        protected abstract void OnTriggerEnter(Collider collision);
         #endregion
     }
 }

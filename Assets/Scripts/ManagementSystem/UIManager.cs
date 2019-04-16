@@ -52,7 +52,7 @@ namespace TheLastHope.Management
 
 			timer.TimerUpdate();
 
-			if (timer.Elapsed < 0) text.CrossFadeAlpha(0, 1, false);
+		//	if (timer.Elapsed < 0) text.CrossFadeAlpha(0, 1, false);
 		}
 	}
 }

@@ -19402,10 +19402,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9503f7e565a1647ace81e2aba1e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAmmoInClip: 500
+  currentAmmoInClip: 200
   reloadTime: 2
   audioSource: {fileID: 399272609710532771}
-  rateOfFire: 1
+  rateOfFire: 3
   force: 100
   ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
     type: 3}
@@ -24422,7 +24422,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399272610317790381}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.12, y: 6.23, z: 3.05}

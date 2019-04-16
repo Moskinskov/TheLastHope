@@ -30,7 +30,7 @@ namespace TheLastHope.Hangar
         /// </summary>
         public int squareTypeCount;
 
-        private void Awake()
+        private void Start()
         {
             items = new List<GameObject>();
             hardwarePositions = new List<Transform>();
