@@ -55,6 +55,7 @@ namespace TheLastHope.UI {
 
 		public void OverlayUpdate(SceneData sceneData)
 		{
+			if (gameState != GameState.Loop) HideOverlay();
 			if ((baseObject.Health != oldHealth) && showOnDamage && baseObject.IsActive)
 			{
 				coroutine = DamageUI(showTime);
@@ -84,33 +85,34 @@ namespace TheLastHope.UI {
 		{
 			if (baseObject && currentType == ObjType.Turret)
 			{
-				//ammoPrefabBarValue = _baseObject.GetComponentInChildren<ARangedWeapon>().CurrentAmmoInClip / _baseObject.GetComponentInChildren<ARangedWeapon>().ClipSize;
-				//_overlay.CurrentAmmo = ammoPrefabBarValue;
+				ammoPrefabBarValue = baseObject.GetComponentInChildren<AWeapon>().CurrentAmmoInClip / baseObject.GetComponentInChildren<AWeapon>().ClipSize;
+				overlay.CurrentAmmo = ammoPrefabBarValue;
 			}
 		}
 
 
-		private void OnMouseOver()
+		private void OnMouseEnter()
 		{
             //print("Mouse Over!");
             if (gameState==GameState.Loop)
             {
                 CountHealth();
-                ShowOverlay();
-            }
+				CountAmmo();
+				ShowOverlay();
+			}
 
 		}
 
 		private void OnMouseExit()
 		{
-			if (gameState == GameState.Loop) HideOverlay();
-			//print("Mouse Exit!");
+			HideOverlay();
+			print("Mouse Exit!");
 		}
 
-		private void OnMouseDown()
-		{
-			//ControlButton();
-		}
+		//private void OnMouseDown()
+		//{
+		//	//ControlButton();
+		//}
 
 		public void ShowOverlay()
 		{
@@ -118,9 +120,8 @@ namespace TheLastHope.UI {
             else if (currentType == ObjType.Loco) overlay.ShowOverlay(true, true); 
 			else if (currentType == ObjType.Turret)
 			{
-	
 				if (ammoPrefabBarValue == 0) overlay.ShowOverlay(true, true, true, true, true);
-				else overlay.ShowOverlay(true, true);
+				else overlay.ShowOverlay(true, true, true, true);
 			}
 		}
 
