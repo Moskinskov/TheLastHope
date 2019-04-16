@@ -66,11 +66,15 @@ namespace TheLastHope.Hangar
                         {
                             if (!Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isInventory)
                             {
-                                if (isInventory)
+                                if (isInventory && Item.itemBeingDragged.GetComponent<Item>().price <= HangarData.instance.player.Credit)
                                 {
                                     HangarData.instance.player.Credit -= Item.itemBeingDragged.GetComponent<Item>().price;
                                     //HangarData.instance.Credit -= Item.itemBeingDragged.GetComponent<Item>().price;
                                     HangarData.instance.shop.CreditUpdate();
+                                }
+                                else if (isInventory)
+                                {
+                                    break;
                                 }
 
                                 Item.itemBeingDragged.transform.parent.GetComponent<Slot>().isVacant = true;

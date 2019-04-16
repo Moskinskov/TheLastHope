@@ -13,7 +13,7 @@ namespace TheLastHope.Hangar
     /// <summary>
     /// Item with drag and drop system
     /// </summary>
-    public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
         /// <summary>
         /// The item which being dragged now (this gameObject)
@@ -31,8 +31,14 @@ namespace TheLastHope.Hangar
         /// Price of item
         /// </summary>
         public int price;
-        
-
+        /// <summary>
+        /// If mouse over the object value is true;
+        /// </summary>
+        private bool isOver;
+        /// <summary>
+        /// Description of item
+        /// </summary>
+        [SerializeField, TextArea(5,10)]private string description;
         /// <summary>
         /// Hardware which banded with item (serialized)
         /// </summary>
@@ -67,17 +73,11 @@ namespace TheLastHope.Hangar
                 case CurrentWindow.Shop:
                     {
                         //if (price <= HangarData.instance.Credit)
-                        if (price <= HangarData.instance.player.Credit)
-                            {
-                            itemBeingDragged = gameObject;
-                            startPosition = transform.position;
-                            startParent = transform.parent;
-                            GetComponent<CanvasGroup>().blocksRaycasts = false;
-                        }
-                        else
-                        {
-                            //message "Not enough credits" or something else
-                        }
+                        
+                        itemBeingDragged = gameObject;
+                        startPosition = transform.position;
+                        startParent = transform.parent;
+                        GetComponent<CanvasGroup>().blocksRaycasts = false;
                         break;
                     }
             }
@@ -136,5 +136,25 @@ namespace TheLastHope.Hangar
             }
         }
         #endregion
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            HangarData.instance.description.SetActive(true);
+            
+            HangarData.instance.description.transform.position = transform.position + new Vector3(0, - gameObject.GetComponent<RectTransform>().sizeDelta.y / 2, 0);
+            HangarData.instance.description.GetComponentInChildren<Text>().text = description;
+
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                HangarData.instance.description.SetActive(false);
+            }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            HangarData.instance.description.SetActive(false);
+        }
+
+
     }
 }
