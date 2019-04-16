@@ -32,10 +32,17 @@ namespace TheLastHope.UI {
 		public Vector3 OverlaySize { get => overlaySize; set => overlaySize = value; }
 		public float CurrentAmmo { set => currentAmmo = value; }
 
+
+		private void Start()
+		{
+			getInfo();
+			HideOverlay();
+		}
+
 		private void getInfo()
 		{	
 				healthBarImage.fillAmount = currentHealth;
-				//ammoPrefabBarImage.fillAmount = _currentAmmo;
+				if(ammoPrefabBarImage) ammoPrefabBarImage.fillAmount = currentAmmo;
 		}
 
 		public void ShowOverlay(bool frame)
@@ -64,7 +71,7 @@ namespace TheLastHope.UI {
 			if (frame) { this.frame.enabled = true; }
 			if (health) { healthBar.enabled = true; }
 			if (button) { buttonBar.enabled = true; }
-			//if (ammo) { ammoPrefabBar.enabled = true;  }
+			if (ammo) { ammoPrefabBar.enabled = true;  }
 		}
 
 		public void ShowOverlay(bool frame, bool health, bool button, bool ammo, bool reload)
@@ -73,8 +80,8 @@ namespace TheLastHope.UI {
 			if (frame) { this.frame.enabled = true; }
 			if (health) { healthBar.enabled = true; }
 			if (button) { buttonBar.enabled = true; }
-			//if (ammo) { ammoPrefabBar.enabled = true; }
-			//if (reload) { _reloadBar.enabled = true; }
+			if (ammo) { ammoPrefabBar.enabled = true; }
+			if (reload) { reloadBar.enabled = true; }
 		}
 
 		public void HideOverlay()
@@ -82,7 +89,9 @@ namespace TheLastHope.UI {
 			frame.enabled = false;
 			healthBar.enabled = false;
 			buttonBar.enabled = false;
-			//if (ammoPrefabBar) ammoPrefabBar.enabled = false;
+			if (reloadBar) reloadBar.enabled = false;
+			if (ammoPrefabBar) ammoPrefabBar.enabled = false;
+			if (ammoPrefabBarImage) ammoPrefabBarImage.enabled = false;
 		}
 
 

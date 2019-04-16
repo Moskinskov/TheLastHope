@@ -101,5 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 15
+  description: 'Name: Machine Gun
+
+    Range: 15
+
+    Price: 15'
   hw: {fileID: 307482254, guid: cba97ebd6779cd84a9e5aadeb24aadfa, type: 3}
   controller: {fileID: 0}

@@ -100,6 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9597396ec555a45b6e8114d4feecb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50
+  price: 30
+  description: 'Name: Ammo Container
+
+    Capacity: 1000
+
+    Price: 30'
   hw: {fileID: 760648730297596143, guid: 83939e3e94bea524f9694cde504a8a9b, type: 3}
   controller: {fileID: 0}

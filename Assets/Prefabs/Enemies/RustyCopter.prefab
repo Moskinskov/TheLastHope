@@ -19405,7 +19405,7 @@ MonoBehaviour:
   currentAmmoInClip: 500
   reloadTime: 2
   audioSource: {fileID: 399272609710532771}
-  rateOfFire: 0.5
+  rateOfFire: 1
   force: 100
   ammoPrefab: {fileID: 369553738919171032, guid: 11c7cfdac927d41458f22345d49e4d3b,
     type: 3}
@@ -25158,14 +25158,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 399272608914977356}
     m_Modifications:
-    - target: {fileID: 100006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: m_Name
-      value: WFX_Explosion StarSmoke
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -25208,6 +25200,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: m_Name
+      value: WFX_Explosion StarSmoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: a49596ebf788acd4ab1281bffea444b1, type: 3}

@@ -107,7 +107,7 @@ namespace TheLastHope.Management
 				weaponController.UpdateWeapons(sceneData, Time.deltaTime);
 				renderManager.UpdateRender(sceneData);
                 //Something goes wrong!
-				//uiManager.UIUpdate(sceneData, pathCounter);
+				uiManager.UIUpdate(sceneData, pathCounter);
 				if (skillManager != null)
 				{
 					skillManager.SkillUpdate(sceneData);

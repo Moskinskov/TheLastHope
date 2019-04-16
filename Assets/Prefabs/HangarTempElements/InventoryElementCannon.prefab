@@ -103,8 +103,8 @@ MonoBehaviour:
   price: 10
   description: 'Name: Cannon
 
-    Damage: 130
+    Range: 10
 
-    Range: 10'
+    Price: 10'
   hw: {fileID: 5145516715166584250, guid: 006e3666815277b48991c016a88e6212, type: 3}
   controller: {fileID: 0}

@@ -101,5 +101,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 5
+  description: 'Name: Ammo
+
+    Quantity: 100
+
+    Price: 5'
   hw: {fileID: 2441974558688896901, guid: ed1e780c0cc0f4c478b34dcaee8fe077, type: 3}
   controller: {fileID: 0}
