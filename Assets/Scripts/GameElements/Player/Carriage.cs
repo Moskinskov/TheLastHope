@@ -23,7 +23,7 @@ public class Carriage : ACarriage
     float bezierParam;
     float distance;
 
-    void Start() //Change to Init()?
+    public void Init() //Change to Init()?
     {
         distance = connector.transform.position.x - transform.position.x;
     }

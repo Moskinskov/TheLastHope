@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisObj: {fileID: 120046807366964006}
+  path: Weapons\
 --- !u!1 &414772208785313891
 GameObject:
   m_ObjectHideFlags: 0

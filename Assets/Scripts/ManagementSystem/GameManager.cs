@@ -48,7 +48,6 @@ namespace TheLastHope.Management
         // Start is called before the first frame update
         void Start()
         {
-            SaveLoadManager.objectsDictionary = FindObjectOfType<ObjectDictionary>();
             //SaveLoadManager.Load(out playerTrain, out player);
             sceneData = new SceneData();
             //
