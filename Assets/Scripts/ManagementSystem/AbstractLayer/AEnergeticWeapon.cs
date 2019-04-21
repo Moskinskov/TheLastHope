@@ -14,24 +14,34 @@ namespace TheLastHope.Management.AbstractLayer
     /// </summary>
     public abstract class AEnergeticWeapon : AWeapon
     {
-        #region Protected variables
+        [Header("Some properties"), SerializeField] protected LineRenderer LR;
+        protected bool isPlaying;
 
-        [SerializeField]
-        protected float maxRange;
-        [SerializeField]
-        protected float damagePerSecond;
-        [SerializeField]
-        protected float energyPerSecond;
-        [SerializeField, Header("Necessary objects")]
-        protected Transform muzzle;
-        [SerializeField]
-        protected ParticleSystem effect;
+        #region Override methods
 
-        #endregion
+        /// <summary>
+        /// Energetic weapon 'Init'
+        /// </summary>
+        public override void Init()
+        {
+            base.Init();
+            isPlaying = false;
+            LR.enabled = false;
+            ammoType = AmmoType.Energy;
+        }
+        /// <summary>
+        /// Energetic weapon 'Checks'
+        /// </summary>
+        protected override void Checks()
+        {
+            if (!IsActive|| WeaponState != WeaponState.Firing)
+            {
+                LR.enabled = false;
+                isPlaying = false;
+            }
 
-        #region Abstract Methods
-
-        protected abstract void WeaponMethod(RaycastHit hit);
+            base.Checks();
+        }
 
         #endregion
     }

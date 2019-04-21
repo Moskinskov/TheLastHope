@@ -16,11 +16,9 @@ namespace TheLastHope.Management.AbstractLayer
     {
         #region Serialized variables
 
-        //Оружие турели
         [SerializeField] private AWeapon weapon;
         [SerializeField] internal ASoftware soft;
         [SerializeField] internal bool manualMode = false;
-        //Скорость поворота турели к цели
         [SerializeField] internal float turningAngularSpeed;
 
         #endregion
@@ -35,7 +33,6 @@ namespace TheLastHope.Management.AbstractLayer
         #endregion
 
 
-        //меняем режим стрельбы
         public virtual void SwitchMode()
         {
             if (soft.canBeManual) manualMode = !manualMode;

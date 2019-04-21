@@ -81,7 +81,7 @@ namespace TheLastHope.UI {
 			if (health) { healthBar.enabled = true; }
 			if (button) { buttonBar.enabled = true; }
 			if (ammo) { ammoPrefabBar.enabled = true; }
-			if (reload) { reloadBar.enabled = true; }
+			//if (reload) { reloadBar.enabled = true; }
 		}
 
 		public void HideOverlay()
@@ -91,7 +91,7 @@ namespace TheLastHope.UI {
 			buttonBar.enabled = false;
 			if (reloadBar) reloadBar.enabled = false;
 			if (ammoPrefabBar) ammoPrefabBar.enabled = false;
-			if (ammoPrefabBarImage) ammoPrefabBarImage.enabled = false;
+			//if (ammoPrefabBarImage) ammoPrefabBarImage.enabled = false;
 		}
 
 

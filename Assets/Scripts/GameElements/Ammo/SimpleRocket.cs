@@ -71,14 +71,10 @@ public class SimpleRocket : AAmmo
 
     private void Die(bool withSnd)
     {
-        var _explosion = gameObject.transform.GetChild(0);
-        _explosion.gameObject.SetActive(true);
-        var snd = GetComponent<AudioSource>();
-        gameObject.GetComponent<Renderer>().enabled = false;
-        if (snd)
-        {
-            if (withSnd) snd.Play();
-        }
-        Destroy(gameObject, 0.3f);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        GetComponent<Renderer>().enabled = false;
+        if (withSnd)
+            GetComponent<AudioSource>().Play();
+        Destroy(gameObject, 1f);
     }
 }

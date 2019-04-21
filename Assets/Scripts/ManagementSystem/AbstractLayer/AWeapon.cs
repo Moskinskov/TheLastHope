@@ -17,30 +17,24 @@ namespace TheLastHope.Management.AbstractLayer
     public abstract class AWeapon : MonoBehaviour
     {
         #region Serializables
-        /// <summary>
-        /// Type of ammunitions that the weapon utilies.
-        /// </summary>
-        [Header("Weapon's property")] protected AmmoType ammo;
-        /// <summary>
-        /// The quantity of ammo available to shoot.
-        /// </summary>
-        [SerializeField] protected int currentAmmoInClip;
-        /// <summary>
-        /// The weapon's clip capacity. 
-        /// </summary>
-        //[SerializeField]
-        protected int clipSize;
-        /// <summary>
-        /// Time of weapon's reload
-        /// </summary>
+
+        [Header("Weapon's property"), SerializeField] protected AmmoType ammoType;
+        [SerializeField] protected float damage;
+        [SerializeField] protected float ammoPerShot;
+        [SerializeField] protected float clipSize;
         [SerializeField] protected float reloadTime;
+        [SerializeField] protected ParticleSystem damageEffect;
+        [SerializeField] protected ParticleSystem fireEffect;
+        [SerializeField] protected Transform muzzle;
 
-        /// <summary>
-        /// 'timer'
-        /// </summary>
+        protected WeaponState weaponState;
+        protected AudioSource audioSource;
         protected Timer delay = new Timer();
+        protected float currentAmmoInClip;
+        protected Animator animator;
 
-        [SerializeField] protected AudioSource audioSource;
+
+
 
         #endregion
 
@@ -48,14 +42,14 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// Type of ammunitions that the weapon utilies.
         /// </summary>
-        public AmmoType Ammo { get { return ammo; } set { ammo = value; } }
+        public AmmoType AmmoType { get { return ammoType; } }
         /// <summary>
         /// The state of the weapon.
         /// </summary>
-        /// <seealso cref="WeaponState">
+        /// <seealso cref="Data.WeaponState">
         /// Enum that enumerates the weapon states.
         /// </seealso>
-        public WeaponState State { get; set; }
+        public WeaponState WeaponState { get { return weaponState; } }
 
         /// <summary>
         /// The general object state. 
@@ -64,52 +58,121 @@ namespace TheLastHope.Management.AbstractLayer
         /// <summary>
         /// The weapon's clip capacity. 
         /// </summary>
-        public int ClipSize { get { return clipSize; } set { clipSize = value; } }   //УЗНАТЬ про CLIPSIZE
+        public float ClipSize { get { return clipSize; } set { clipSize = value; } }
         /// <summary>
-        /// The quantity of ammo available to shoot.
+        /// Max range of weapon
         /// </summary>
-        public float CurrentAmmoInClip { get { return currentAmmoInClip; } set { currentAmmoInClip = (int)value; } }
-
-        public AudioSource WeaponAudioSource
-        {
-            get { return audioSource; }
-            set { audioSource = value; }
-        }
+        public float MaxRange { get; set; }
+        /// <summary>
+        /// Current ammo amount in weapon
+        /// </summary>
+        public float CurrentAmmoInClip { get { return currentAmmoInClip; } }
 
         #endregion
 
         #region Abstract methods
-        public abstract void Init();
-        public abstract void WeaponUpdate();
-        public abstract void Fire(SceneData sceneData);
+        protected abstract void WeaponMethod(RaycastHit hit);
         #endregion
 
-        public void Reload(int ammoQuantity)
+        #region Virual methods
+        /// <summary>
+        /// Core weapon's 'Init'
+        /// </summary>
+        public virtual void Init()
         {
-            if (State != WeaponState.Empty)
-                return;
-            print(ammoQuantity);
-            CurrentAmmoInClip = ammoQuantity;
-            delay.Start(reloadTime);
+            IsActive = true;
+            weaponState = WeaponState.ReadyToFire;
+            audioSource = GetComponent<AudioSource>();
+            currentAmmoInClip = clipSize;
+            delay = new Timer();
+            animator = GetComponentInParent<Animator>();
+        }
+        /// <summary>
+        /// Core weapon 'Update'
+        /// </summary>
+        public virtual void WeaponUpdate()
+        {
+            Checks();
         }
 
+        #endregion
+        /// <summary>
+        /// 'Reload' this weapon
+        /// </summary>
+        /// <param name="ammoQuantity"></param>
+        public void Reload(int ammoQuantity)
+        {
+            if (WeaponState != WeaponState.Empty)
+                return;
+            print(ammoQuantity);
+            currentAmmoInClip = ammoQuantity;
+            delay.Start(reloadTime);
+        }
+        /// <summary>
+        /// Core weapon's 'Fire'
+        /// </summary>
+        /// <param name="sceneData"></param>
+        public virtual void Fire(SceneData sceneData)
+        {
+            if (WeaponState != WeaponState.ReadyToFire)
+                return;
+
+            weaponState = WeaponState.Firing;
+
+            if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
+            {
+                if (hit.distance <= MaxRange)
+                {
+                    if (hit.transform.GetComponent<AEnemy>())
+                    {
+                        WeaponMethod(hit);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Core weapon checks
+        /// </summary>
         protected virtual void Checks()
         {
             if (!IsActive)
+            {
+                audioSource?.Stop();
+                damageEffect?.Stop();
                 return;
+            }
 
             delay.TimerUpdate();
             if (CurrentAmmoInClip > 0 && delay.Elapsed < 0)
-                State = WeaponState.ReadyToFire;
+                weaponState = WeaponState.ReadyToFire;
 
             if (CurrentAmmoInClip <= 0)
             {
-                CurrentAmmoInClip = 0;
-                State = WeaponState.Empty;
+                currentAmmoInClip = 0;
+                weaponState = WeaponState.Empty;
             }
 
-            if (State == WeaponState.Firing && delay.Elapsed < 0)
-                State = WeaponState.ReadyToFire;
+            if (WeaponState != WeaponState.Firing)
+            {
+                damageEffect?.Stop();
+                fireEffect?.Stop();
+                audioSource?.Stop();
+                animator?.SetTrigger("Idle");
+            }
+            if (WeaponState == WeaponState.Empty)
+            {
+                animator?.SetTrigger("Reload");
+            }
+        }
+        /// <summary>
+        /// Core OnFire effects
+        /// </summary>
+        protected virtual void Effects()
+        {
+            damageEffect?.Play();
+            fireEffect?.Play();
+            audioSource?.Play();
+            animator?.SetTrigger("Fire");
         }
     }
 }

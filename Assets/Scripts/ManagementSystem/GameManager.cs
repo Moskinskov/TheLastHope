@@ -49,7 +49,7 @@ namespace TheLastHope.Management
         void Start()
         {
             SaveLoadManager.objectsDictionary = FindObjectOfType<ObjectDictionary>();
-            //SaveLoadManager.Load(out playerTrain, out player);
+            SaveLoadManager.Load(out playerTrain, out player);
             sceneData = new SceneData();
             //
             playerTrain = FindObjectOfType<TrainManager>().gameObject;

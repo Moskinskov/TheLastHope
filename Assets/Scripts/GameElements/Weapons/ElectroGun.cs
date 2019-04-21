@@ -2,7 +2,6 @@
 /// The Last Hope
 /// Curator: Ilya Moskinskov
 
-using System.Collections;
 using System.Collections.Generic;
 using TheLastHope.Management.AbstractLayer;
 using TheLastHope.Management.Data;
@@ -15,51 +14,20 @@ namespace TheLastHope.Weapons
     /// </summary>
     public class ElectroGun : AEnergeticWeapon
     {
-        #region Serialized variables
-
-        [SerializeField]
-        private float radiusElectro;
-        [SerializeField]
-        private LineRenderer LR;
-
-        #endregion
-
-        #region Private variables
+        [SerializeField] private float radiusElectro;
 
         private List<GameObject> allEnemies;
         private List<AEnemy> nearestEnemies;
-        private IEnumerator coroutine;
-        private bool isPlaying;
-
-        #endregion
 
         #region Override methods
-
 
         /// <summary>
         /// ElectroGun 'Init'
         /// </summary>
         public override void Init()
         {
-            IsActive = true;
-
-            if (!effect.isStopped)
-                effect.Stop();
-            if (WeaponAudioSource.isPlaying)
-                WeaponAudioSource.Stop();
-
-            Ammo = AmmoType.Energy;
-            State = WeaponState.ReadyToFire;
+            base.Init();
             nearestEnemies = new List<AEnemy>();
-            LR.enabled = false;
-            ClipSize = 20;
-        }
-        /// <summary>
-        /// ElectroGun 'WeaponUpdate'
-        /// </summary>
-        public override void WeaponUpdate()
-        {
-            Checks();
         }
         /// <summary>
         /// ElectroGun 'Fire'
@@ -68,53 +36,33 @@ namespace TheLastHope.Weapons
         public override void Fire(SceneData sceneData)
         {
             allEnemies = sceneData.Enemies;
-
-            if (State != WeaponState.ReadyToFire)
-                return;
-
-            State = WeaponState.Firing;
-
-            if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
-            {
-                if (hit.distance <= maxRange && hit.transform.GetComponentInChildren<AEnemy>())
-                {
-                    isPlaying = true;
-                    WeaponMethod(hit);
-                    Effects();
-                }
-            }
+            base.Fire(sceneData);
         }
-
+        /// <summary>
+        /// ElectroGun 'Update'
+        /// </summary>
+        /// <param name="hit"></param>
         protected override void WeaponMethod(RaycastHit hit)
         {
-            effect.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(hit.normal));
+            isPlaying = true;
+            damageEffect.transform.SetPositionAndRotation(hit.transform.position, Quaternion.Euler(hit.normal));
 
             FindTheNearestEnemies(hit.transform.GetComponent<AEnemy>());
             HitTheEnemies();
             SetLRToTarget(hit);
+            Effects();
         }
-
+        /// <summary>
+        /// ElectroGun 'Checks'
+        /// </summary>
         protected override void Checks()
         {
-            if (!IsActive)
-            {
-                WeaponAudioSource.Stop();
-                effect.Stop();
-            }
-
             base.Checks();
 
-            if (State != WeaponState.Firing)
+            if (WeaponState != WeaponState.Firing)
             {
                 LR.positionCount = 2;
                 nearestEnemies.Clear();
-
-                if (!effect.isStopped)
-                    effect.Stop();
-                if (audioSource.isPlaying)
-                    audioSource.Stop();
-                if (LR)
-                    LR.enabled = false;
             }
         }
 
@@ -151,8 +99,8 @@ namespace TheLastHope.Weapons
             {
                 foreach (var enemy in nearestEnemies)
                 {
-                    enemy.SetDamage(damagePerSecond * Time.deltaTime);
-                    CurrentAmmoInClip -= energyPerSecond * Time.deltaTime;
+                    enemy.SetDamage(damage * Time.deltaTime);
+                    currentAmmoInClip = CurrentAmmoInClip - ammoPerShot * Time.deltaTime;
                 }
             }
         }
@@ -169,16 +117,6 @@ namespace TheLastHope.Weapons
                 if (radiusElectro < tempDistance && nearestEnemies.Contains(tempEnemy))
                     nearestEnemies.Remove(tempEnemy);
             }
-        }
-        /// <summary>
-        /// All effects that need to play 'OnFire'
-        /// </summary>
-        private void Effects()
-        {
-            if (!isPlaying)
-                return;
-            effect.Play();
-            audioSource.Play();
         }
 
         #endregion

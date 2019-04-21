@@ -30,14 +30,20 @@ namespace TheLastHope.Ammo
         #endregion
 
         #region Collision methods
-        
+
         protected override void OnTriggerEnter(Collider collision)
         {
             collision?.gameObject?.GetComponent<AEnemy>()?.SetDamage(damage);
-            Die(true);
-
-            if ((!collision?.gameObject?.GetComponent<AEnemy>()) && (!collision?.gameObject?.GetComponent<AAmmo>())) Die(false);
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if ((!collision?.gameObject?.GetComponent<AEnemy>()) && (!collision?.gameObject?.GetComponent<AAmmo>()))
+                Die(false);
+            if (collision?.gameObject?.GetComponent<AEnemy>())
+                Die(true);
+        }
+
 
         #endregion
         /// <summary>
@@ -46,15 +52,11 @@ namespace TheLastHope.Ammo
         /// <param name="withSnd"></param>
         private void Die(bool withSnd)
         {
-            var _explosion = gameObject.transform.GetChild(0);
-            _explosion.gameObject.SetActive(true);
-            var snd = GetComponent<AudioSource>();
-            gameObject.GetComponent<Renderer>().enabled = false;
-            if (snd)
-            {
-                if (withSnd) snd.Play();
-            }
-            Destroy(gameObject, 0.3f);
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            GetComponent<Renderer>().enabled = false;
+            if (withSnd)
+                GetComponent<AudioSource>().Play();
+            Destroy(gameObject, 1f);
         }
     }
 
