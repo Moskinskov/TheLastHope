@@ -1426,18 +1426,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8c65c37d49a8d849861cea57e4a389b, type: 3}
---- !u!114 &313301046 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 313301046, guid: cec41734d876d6e4a946fdf54b0b86f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 8620024078513528534}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68aff9ec90c5094ab030cdc0a9c2842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &318191385
 GameObject:
   m_ObjectHideFlags: 0
@@ -5294,14 +5282,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objPool:
+  - {fileID: 6370188629635475981, guid: 312257072a9c3b841b1544ce6facc59d, type: 3}
+  - {fileID: 6370188629635475981, guid: 626fe5bea3a035c4d95f5da7c5323125, type: 3}
+  - {fileID: 6370188629635475981, guid: 32083b38aa08bc14999da1b525da9afc, type: 3}
+  - {fileID: 6370188629635475981, guid: bcaa44f3f6aa1cf41a36072f756c55cd, type: 3}
+  - {fileID: 6370188629635475981, guid: cfa8baacffdc7db43821bd5f137ea347, type: 3}
   - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
-  - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
-  - {fileID: 5810713811202891652, guid: bbad51369e5b8b24d90c1a6b3ee9f227, type: 3}
-  - {fileID: 5810713811202891652, guid: bbad51369e5b8b24d90c1a6b3ee9f227, type: 3}
-  - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
-  - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
-  - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
-  - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
+  - {fileID: 6370188629635475981, guid: 5bb25441244333c4c92991a5c46ae271, type: 3}
+  - {fileID: 6370188629635475981, guid: 312257072a9c3b841b1544ce6facc59d, type: 3}
   - {fileID: 6370188629635475981, guid: 312257072a9c3b841b1544ce6facc59d, type: 3}
   - {fileID: 6370188629635475981, guid: 312257072a9c3b841b1544ce6facc59d, type: 3}
 --- !u!114 &1504374439
@@ -33856,18 +33844,6 @@ MonoBehaviour:
   isInventory: 1
   isVacant: 1
   number: 0
---- !u!114 &1835641521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1835641521, guid: cec41734d876d6e4a946fdf54b0b86f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 8620024078513528534}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68aff9ec90c5094ab030cdc0a9c2842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1836796367
 GameObject:
   m_ObjectHideFlags: 0
@@ -34197,8 +34173,8 @@ MonoBehaviour:
   description: {fileID: 1855507771}
   train:
   - {fileID: 1886778512}
-  - {fileID: 1835641521}
-  - {fileID: 313301046}
+  - {fileID: 0}
+  - {fileID: 0}
   currentCarriage: {fileID: 0}
   currentWindow: 0
   numOfCar: 0

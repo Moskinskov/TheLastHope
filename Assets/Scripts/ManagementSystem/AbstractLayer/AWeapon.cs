@@ -86,6 +86,8 @@ namespace TheLastHope.Management.AbstractLayer
             currentAmmoInClip = clipSize;
             delay = new Timer();
             animator = GetComponentInParent<Animator>();
+            damageEffect?.gameObject.SetActive(true);
+            fireEffect?.gameObject.SetActive(true);
         }
         /// <summary>
         /// Core weapon 'Update'

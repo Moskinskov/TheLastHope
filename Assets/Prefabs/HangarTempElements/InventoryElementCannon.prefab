@@ -106,5 +106,5 @@ MonoBehaviour:
     Range: 10
 
     Price: 10'
-  hw: {fileID: 5145516715166584250, guid: 006e3666815277b48991c016a88e6212, type: 3}
+  hw: {fileID: 1182486557420025045, guid: fbbb31117b1519f438de24eec9a87538, type: 3}
   controller: {fileID: 0}
