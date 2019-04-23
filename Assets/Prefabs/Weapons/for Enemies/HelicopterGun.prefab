@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 1039062112150239659}
   - component: {fileID: 1039062112150239658}
   - component: {fileID: 1039062112150239661}
-  - component: {fileID: 1039062112150239660}
   - component: {fileID: 1039062112150239663}
+  - component: {fileID: 4015787340686136842}
   m_Layer: 9
   m_Name: HelicopterGun
   m_TagString: Untagged
@@ -126,27 +126,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1039062112150239660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039062112150239665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1ccb640bbc8f44e92f3e7b8d14ad5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoType: 0
-  damage: 10
-  ammoPerShot: 1
-  clipSize: 20
-  reloadTime: 3
-  damageEffect: {fileID: 6279890957307299612}
-  fireEffect: {fileID: 107322694770588684}
-  muzzle: {fileID: 1039062110792450859}
-  rateOfFire: 1
 --- !u!82 &1039062112150239663
 AudioSource:
   m_ObjectHideFlags: 0
@@ -243,6 +222,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4015787340686136842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039062112150239665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10edf2cbe2b8b20418c7a8ce8d7b9fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoType: 0
+  damage: 10
+  ammoPerShot: 1
+  clipSize: 20
+  reloadTime: 3
+  damageEffect: {fileID: 6279890957307299612}
+  fireEffect: {fileID: 107322694770588684}
+  muzzle: {fileID: 1039062110792450859}
+  rateOfFire: 0
 --- !u!1001 &1527765607171142401
 PrefabInstance:
   m_ObjectHideFlags: 0

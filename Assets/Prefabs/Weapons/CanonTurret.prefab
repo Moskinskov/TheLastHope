@@ -4953,7 +4953,7 @@ GameObject:
   - component: {fileID: 693113567158807416}
   m_Layer: 10
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5143,6 +5143,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7234530182660228769}
     m_Modifications:
+    - target: {fileID: 8904542289926798872, guid: 3fb5e657c8e664943a7549002ad3aad4,
+        type: 3}
+      propertyPath: m_Name
+      value: WeaponUIOverlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904542289926798872, guid: 3fb5e657c8e664943a7549002ad3aad4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5248862872957993218, guid: 3fb5e657c8e664943a7549002ad3aad4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5198,16 +5208,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8904542289926798872, guid: 3fb5e657c8e664943a7549002ad3aad4,
-        type: 3}
-      propertyPath: m_Name
-      value: WeaponUIOverlay
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904542289926798872, guid: 3fb5e657c8e664943a7549002ad3aad4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb5e657c8e664943a7549002ad3aad4, type: 3}
 --- !u!4 &5921527561315073761 stripped
@@ -5223,6 +5223,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 368352150971328740}
     m_Modifications:
+    - target: {fileID: 5479451408515985165, guid: d93e4dd5a2a0a0e4eae8f0a2e45c23e4,
+        type: 3}
+      propertyPath: m_Name
+      value: fireEffect_red
+      objectReference: {fileID: 0}
     - target: {fileID: 3971269566091075827, guid: d93e4dd5a2a0a0e4eae8f0a2e45c23e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5293,11 +5298,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5479451408515985165, guid: d93e4dd5a2a0a0e4eae8f0a2e45c23e4,
-        type: 3}
-      propertyPath: m_Name
-      value: fireEffect_red
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d93e4dd5a2a0a0e4eae8f0a2e45c23e4, type: 3}
 --- !u!4 &3219385418658975959 stripped
@@ -5319,6 +5319,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7234530182660228769}
     m_Modifications:
+    - target: {fileID: 5963803864362162307, guid: 501090dc190b61e4dbae0f6dfa6a5e81,
+        type: 3}
+      propertyPath: m_Name
+      value: turretBase
+      objectReference: {fileID: 0}
     - target: {fileID: 4370910631338367197, guid: 501090dc190b61e4dbae0f6dfa6a5e81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5374,11 +5379,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5963803864362162307, guid: 501090dc190b61e4dbae0f6dfa6a5e81,
-        type: 3}
-      propertyPath: m_Name
-      value: turretBase
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501090dc190b61e4dbae0f6dfa6a5e81, type: 3}
 --- !u!4 &2560481809146797505 stripped
@@ -5394,6 +5394,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5040888096929465076}
     m_Modifications:
+    - target: {fileID: 3618252111137340452, guid: e86d0e578d643a044b79abd46cb6aee1,
+        type: 3}
+      propertyPath: m_Name
+      value: HitEffect_C_green
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618252111137340452, guid: e86d0e578d643a044b79abd46cb6aee1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6295836316743297355, guid: e86d0e578d643a044b79abd46cb6aee1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5447,16 +5457,6 @@ PrefabInstance:
     - target: {fileID: 6295836316743297355, guid: e86d0e578d643a044b79abd46cb6aee1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618252111137340452, guid: e86d0e578d643a044b79abd46cb6aee1,
-        type: 3}
-      propertyPath: m_Name
-      value: HitEffect_C_green
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618252111137340452, guid: e86d0e578d643a044b79abd46cb6aee1,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 6503053050038046319}
   m_Layer: 0
   m_Name: Train in Hangar
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 8620024078758069984}
   m_Layer: 0
   m_Name: ShoulderedPlatform 3
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -404,6 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hardwares: []
+  items: []
   hardwarePositions: []
   squareTypeCount: 3
 --- !u!1 &8620024079007747723
@@ -661,7 +662,7 @@ GameObject:
   - component: {fileID: 8620024080314496103}
   m_Layer: 0
   m_Name: ShoulderedPlatform 2
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -754,6 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hardwares: []
+  items: []
   hardwarePositions: []
   squareTypeCount: 3
 --- !u!1 &8620024080397544698
@@ -771,7 +773,7 @@ GameObject:
   - component: {fileID: 8620024080397576774}
   m_Layer: 0
   m_Name: ShoulderedPlatform 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -864,5 +866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hardwares: []
+  items: []
   hardwarePositions: []
   squareTypeCount: 3

@@ -2967,6 +2967,18 @@ Transform:
   m_Father: {fileID: 766922791}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &868037953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7036453425943961201, guid: cec41734d876d6e4a946fdf54b0b86f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8620024078513528534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68aff9ec90c5094ab030cdc0a9c2842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &876892789
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,6 +4942,18 @@ MonoBehaviour:
   objPool:
   - {fileID: 6370188629635475981, guid: 309d264076d78d74e8ab1fcb1a2cb1e6, type: 3}
   - {fileID: 5810713811202891652, guid: bbad51369e5b8b24d90c1a6b3ee9f227, type: 3}
+--- !u!114 &1364405865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 781044120869575192, guid: cec41734d876d6e4a946fdf54b0b86f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8620024078513528534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68aff9ec90c5094ab030cdc0a9c2842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1390890884
 GameObject:
   m_ObjectHideFlags: 0
@@ -34173,8 +34197,8 @@ MonoBehaviour:
   description: {fileID: 1855507771}
   train:
   - {fileID: 1886778512}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 868037953}
+  - {fileID: 1364405865}
   currentCarriage: {fileID: 0}
   currentWindow: 0
   numOfCar: 0
@@ -34700,6 +34724,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443430444182599315, guid: cec41734d876d6e4a946fdf54b0b86f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998333418169145371, guid: cec41734d876d6e4a946fdf54b0b86f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258435660202783482, guid: cec41734d876d6e4a946fdf54b0b86f1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cec41734d876d6e4a946fdf54b0b86f1, type: 3}

@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 5242724764835129423}
   - component: {fileID: 5242724764836260495}
   - component: {fileID: 5242724762793484857}
-  - component: {fileID: 5242724762793484856}
+  - component: {fileID: 4538944314200618165}
   m_Layer: 0
   m_Name: MGun
   m_TagString: Untagged
@@ -286,7 +286,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5242724762793484856
+--- !u!114 &4538944314200618165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5242724764834329673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1ccb640bbc8f44e92f3e7b8d14ad5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 10edf2cbe2b8b20418c7a8ce8d7b9fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammoType: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
   damageEffect: {fileID: 6001114218407381050}
   fireEffect: {fileID: 3226661714681793628}
   muzzle: {fileID: 5242724762789744249}
-  rateOfFire: 0.3
+  rateOfFire: 0
 --- !u!1 &5242724764834329679
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a770df370118e5498bf1dbec6165f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 5242724762793484856}
+  weapon: {fileID: 0}
   soft: {fileID: 5894397521185714274, guid: 0e1d5669a7a406c4d9ed4177eac0bb20, type: 3}
   manualMode: 0
   turningAngularSpeed: 180
