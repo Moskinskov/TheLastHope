@@ -22,7 +22,7 @@ namespace TheLastHope.Management.AbstractLayer
         [SerializeField] internal float turningAngularSpeed;
 
         #endregion
-        internal AWeapon Weapon { get => weapon; set => weapon = value; }
+        public AWeapon Weapon { get => weapon; set => weapon = value; }
 
         #region Abstruct methods
 

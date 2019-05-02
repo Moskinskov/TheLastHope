@@ -2,6 +2,7 @@
 /// The Last Hope
 /// Curator: Ilya Moskinskov
 
+using System.Collections.Generic;
 using TheLastHope.Helpers;
 using TheLastHope.Management.Data;
 using UnityEngine;
@@ -21,10 +22,10 @@ namespace TheLastHope.Management.AbstractLayer
         [Header("Weapon's property"), SerializeField] protected AmmoType ammoType;
         [SerializeField] protected float damage;
         [SerializeField] protected float ammoPerShot;
-        [SerializeField] protected float clipSize;
-        [SerializeField] protected float reloadTime;
-        [SerializeField] protected ParticleSystem damageEffect;
-        [SerializeField] protected ParticleSystem fireEffect;
+        [SerializeField] private float clipSize;
+        [SerializeField] private float reloadTime;
+        [SerializeField] protected GameObject damageEffect;
+        [SerializeField] protected GameObject fireEffect;
         [SerializeField] protected Transform muzzle;
 
         protected WeaponState weaponState;
@@ -32,6 +33,8 @@ namespace TheLastHope.Management.AbstractLayer
         protected Timer delay = new Timer();
         protected float currentAmmoInClip;
         protected Animator animator;
+        protected List<ParticleSystem> firePS = new List<ParticleSystem>();
+        protected List<ParticleSystem> hitPS = new List<ParticleSystem>();
 
 
 
@@ -82,12 +85,26 @@ namespace TheLastHope.Management.AbstractLayer
         {
             IsActive = true;
             weaponState = WeaponState.ReadyToFire;
-            audioSource = GetComponent<AudioSource>();
             currentAmmoInClip = clipSize;
             delay = new Timer();
+
             animator = GetComponentInParent<Animator>();
-            damageEffect?.gameObject.SetActive(true);
+            audioSource = GetComponent<AudioSource>();
+            audioSource?.Stop();
+
+            damageEffect?.SetActive(true);
+            foreach (var ps in damageEffect.GetComponentsInChildren<ParticleSystem>())
+            {
+                hitPS.Add(ps);
+                ps.Stop();
+            }
+
             fireEffect?.gameObject.SetActive(true);
+            foreach (var ps in fireEffect.GetComponentsInChildren<ParticleSystem>())
+            {
+                firePS.Add(ps);
+                ps.Stop();
+            }
         }
         /// <summary>
         /// Core weapon 'Update'
@@ -120,6 +137,7 @@ namespace TheLastHope.Management.AbstractLayer
                 return;
 
             weaponState = WeaponState.Firing;
+            animator?.SetTrigger("Fire");
 
             if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit))
             {
@@ -131,6 +149,21 @@ namespace TheLastHope.Management.AbstractLayer
                     }
                 }
             }
+
+            EffectsOn();
+        }
+        /// <summary>
+        /// 'Fire'-attack for enemy
+        /// </summary>
+        /// <param name="hit"></param>
+        public virtual void FireIntoThePlayer(RaycastHit hit)
+        {
+            if (WeaponState != WeaponState.ReadyToFire)
+                return;
+
+            weaponState = WeaponState.Firing;
+            WeaponMethod(hit);
+            EffectsOn();
         }
         /// <summary>
         /// Core weapon checks
@@ -139,14 +172,15 @@ namespace TheLastHope.Management.AbstractLayer
         {
             if (!IsActive)
             {
-                audioSource?.Stop();
-                damageEffect?.Stop();
+                EffectsOff();
                 return;
             }
 
             delay.TimerUpdate();
             if (CurrentAmmoInClip > 0 && delay.Elapsed < 0)
+            {
                 weaponState = WeaponState.ReadyToFire;
+            }
 
             if (CurrentAmmoInClip <= 0)
             {
@@ -154,27 +188,53 @@ namespace TheLastHope.Management.AbstractLayer
                 weaponState = WeaponState.Empty;
             }
 
-            if (WeaponState != WeaponState.Firing)
-            {
-                damageEffect?.Stop();
-                fireEffect?.Stop();
-                audioSource?.Stop();
-                animator?.SetTrigger("Idle");
-            }
+
             if (WeaponState == WeaponState.Empty)
             {
                 animator?.SetTrigger("Reload");
+            }
+            if (WeaponState != WeaponState.Firing)
+            {
+                EffectsOff();
+                animator?.SetTrigger("Idle");
             }
         }
         /// <summary>
         /// Core OnFire effects
         /// </summary>
-        protected virtual void Effects()
+        protected virtual void EffectsOn()
         {
-            damageEffect?.Play();
-            fireEffect?.Play();
             audioSource?.Play();
-            animator?.SetTrigger("Fire");
+
+            foreach (var ps in hitPS)
+            {
+                if (!ps.isPlaying)
+                {
+                    ps?.Play();
+                }
+            }
+            foreach (var ps in firePS)
+            {
+                ps?.Play();
+            }
+        }
+
+
+        /// <summary>
+        /// Core 'EffectsOff'
+        /// </summary>
+        public virtual void EffectsOff()
+        {
+            audioSource?.Stop();
+
+            foreach (var ps in hitPS)
+            {
+                ps?.Stop();
+            }
+            foreach (var ps in firePS)
+            {
+                ps?.Stop();
+            }
         }
     }
 }

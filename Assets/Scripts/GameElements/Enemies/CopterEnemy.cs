@@ -22,7 +22,7 @@ namespace TheLastHope.Enemies
         [SerializeField] private ARangedWeapon weapon;
         [SerializeField] private float visionDistance;
         [SerializeField] private Texture damageTex;
-        [SerializeField] GameObject currentRaycastHistGameObject;
+        [SerializeField] private GameObject currentRaycastHistGameObject;
 
         [SerializeField] internal float maxSpeed;
         internal Vector3 currentSpeed;
@@ -31,11 +31,11 @@ namespace TheLastHope.Enemies
         [SerializeField] internal float driftingRadius;
         internal Vector3 currentDriftingPoint;
         internal UpOrDownType upDownType = UpOrDownType.Up;
-        [SerializeField] float trainWidthForDrifting = 6f;
-        EnemyStatus status = EnemyStatus.Move;
-        [SerializeField] float attackTime = 3f;
-        [SerializeField] float currentAttackTime = 0f;
-        [SerializeField] float criticalAngleToTarget = 5f;
+        [SerializeField] private float trainWidthForDrifting = 6f;
+        private EnemyStatus status = EnemyStatus.Move;
+        [SerializeField] private float attackTime = 3f;
+        [SerializeField] private float currentAttackTime = 0f;
+        [SerializeField] private float criticalAngleToTarget = 5f;
 
         private RaycastHit hit;
         private Renderer[] renderers;
@@ -51,18 +51,18 @@ namespace TheLastHope.Enemies
             target = sceneData.TrainCars[0].gameObject.transform;
             targetPosition = sceneData.TrainCars[0].gameObject.transform;
             System.Random r = new System.Random();
-            if (transform.position.z<0) upDownType = UpOrDownType.Down;
+            if (transform.position.z < 0) upDownType = UpOrDownType.Down;
             if (upDownType == UpOrDownType.Up)
             {
                 currentDriftingPoint = new Vector3(targetPosition.position.x,
                              targetPosition.position.y,
-                             targetPosition.position.z + trainWidthForDrifting *1.5f);
+                             targetPosition.position.z + trainWidthForDrifting * 1.5f);
             }
             else
-            {               
+            {
                 currentDriftingPoint = new Vector3(targetPosition.position.x,
                                 targetPosition.position.y,
-                                targetPosition.position.z - trainWidthForDrifting*1.5f);
+                                targetPosition.position.z - trainWidthForDrifting * 1.5f);
             }
             weapon.Init();
             IsActive = true;
@@ -98,7 +98,7 @@ namespace TheLastHope.Enemies
                 //targetPosition = this.targetPosition;
                 //print(targetPosition.name);
                 Vector3 speed = GetCurrentSpeed(sceneData, currentSpeed, targetPosition, deltaTime);
-                currentSpeed = Vector3.Lerp(currentSpeed, speed, speedSmoother);        
+                currentSpeed = Vector3.Lerp(currentSpeed, speed, speedSmoother);
                 if (status == EnemyStatus.Move)
                 {
                     //TO METHOD!!!1
@@ -116,7 +116,7 @@ namespace TheLastHope.Enemies
                     {
                         gameObject.transform.rotation *= Quaternion.AngleAxis(angularSpeed * turningDir * deltaTime, Vector3.up);
                     }
-                    
+
 
                 }
                 else if (status == EnemyStatus.Attack)
@@ -135,7 +135,7 @@ namespace TheLastHope.Enemies
                     {
                         gameObject.transform.rotation *= Quaternion.AngleAxis(angularSpeed * turningDir * deltaTime, Vector3.up);
                     }
-                    
+
                 }
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x + currentSpeed.x * deltaTime,
                                                         gameObject.transform.position.y + currentSpeed.y * deltaTime,
@@ -144,15 +144,20 @@ namespace TheLastHope.Enemies
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * visionDistance, Color.red);
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+
+            var tempVector = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
+            if (Physics.Raycast(tempVector, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
                 currentRaycastHistGameObject = hit.collider.gameObject;
-                if ((hit.transform.tag == "Player") && (hit.distance < visionDistance)) weapon.Fire(sceneData);
+                if (hit.transform.tag == "Player" && hit.distance < visionDistance)
+                {
+                    weapon.FireIntoThePlayer(hit);
+                }
+
                 if ((hit.distance < visionDistance) && (hit.transform.gameObject.tag == "Finish"))
                 {
-                    gameObject.GetComponent<AudioSource>().clip = null; // KILL ME FOR THIS!
+                    gameObject.GetComponent<AudioSource>().clip = null;
                     Health = 0;
-                    //Tell Destroyer to destroy this enemy;
                 }
             }
         }
@@ -225,16 +230,16 @@ namespace TheLastHope.Enemies
                     return Vector3.zero;
                 }
                 if (currentAngleToTarget < criticalAngleToTarget)
-                {    
+                {
                     if (upDownType == UpOrDownType.Up)
                     {
                         if (!(currentDriftingPoint.z < target.position.z + trainWidthForDrifting))
-                        return transform.right;
+                            return transform.right;
                     }
                     else
                     {
                         if (!(currentDriftingPoint.z < target.position.z + trainWidthForDrifting))
-                        return -transform.right;
+                            return -transform.right;
                     }
                     return Vector3.zero;
                 }

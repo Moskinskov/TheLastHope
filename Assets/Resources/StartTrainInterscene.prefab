@@ -129,16 +129,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7645266452893059185, guid: 51fb8322769995d4f8b0239751da5e5c,
+    - target: {fileID: 6742792701157084727, guid: 51fb8322769995d4f8b0239751da5e5c,
         type: 3}
-      propertyPath: connector
-      value: 
-      objectReference: {fileID: 1081233122234864320}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2268601051682108805, guid: 51fb8322769995d4f8b0239751da5e5c,
         type: 3}
       propertyPath: thisObj
       value: 
       objectReference: {fileID: 8314575344639402114}
+    - target: {fileID: 7645266452893059185, guid: 51fb8322769995d4f8b0239751da5e5c,
+        type: 3}
+      propertyPath: connector
+      value: 
+      objectReference: {fileID: 1081233122234864320}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51fb8322769995d4f8b0239751da5e5c, type: 3}
 --- !u!1 &8314575344639402114 stripped
@@ -226,6 +231,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 439558382864676663, guid: bad4d121eadcc5d44b310e19b27cd3a6,
+        type: 3}
+      propertyPath: thisObj
+      value: 
+      objectReference: {fileID: 6103630025854539684}
     - target: {fileID: 2573223379831690104, guid: bad4d121eadcc5d44b310e19b27cd3a6,
         type: 3}
       propertyPath: initObjects.Array.data[0]
@@ -256,11 +266,6 @@ PrefabInstance:
       propertyPath: initObjects.Array.data[5]
       value: 
       objectReference: {fileID: 6103630027212756695}
-    - target: {fileID: 439558382864676663, guid: bad4d121eadcc5d44b310e19b27cd3a6,
-        type: 3}
-      propertyPath: thisObj
-      value: 
-      objectReference: {fileID: 6103630025854539684}
     - target: {fileID: 1763535950179411288, guid: bad4d121eadcc5d44b310e19b27cd3a6,
         type: 3}
       propertyPath: frame
@@ -286,16 +291,16 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 6103630025725175216}
-    - target: {fileID: 1763535950051766034, guid: bad4d121eadcc5d44b310e19b27cd3a6,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 6103630027340438675}
     - target: {fileID: 1763535950460790926, guid: bad4d121eadcc5d44b310e19b27cd3a6,
         type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 6103630026948156167}
+    - target: {fileID: 1763535950051766034, guid: bad4d121eadcc5d44b310e19b27cd3a6,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 6103630027340438675}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bad4d121eadcc5d44b310e19b27cd3a6, type: 3}
 --- !u!1 &6103630025854539684 stripped
@@ -479,16 +484,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7645266452893059185, guid: 51fb8322769995d4f8b0239751da5e5c,
+    - target: {fileID: 6742792701157084727, guid: 51fb8322769995d4f8b0239751da5e5c,
         type: 3}
-      propertyPath: connector
-      value: 
-      objectReference: {fileID: 6103630025713832455}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2268601051682108805, guid: 51fb8322769995d4f8b0239751da5e5c,
         type: 3}
       propertyPath: thisObj
       value: 
       objectReference: {fileID: 1352715022811155043}
+    - target: {fileID: 7645266452893059185, guid: 51fb8322769995d4f8b0239751da5e5c,
+        type: 3}
+      propertyPath: connector
+      value: 
+      objectReference: {fileID: 6103630025713832455}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51fb8322769995d4f8b0239751da5e5c, type: 3}
 --- !u!1 &1352715022811155043 stripped
@@ -576,16 +586,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7645266452893059185, guid: 51fb8322769995d4f8b0239751da5e5c,
+    - target: {fileID: 6742792701157084727, guid: 51fb8322769995d4f8b0239751da5e5c,
         type: 3}
-      propertyPath: connector
-      value: 
-      objectReference: {fileID: 7973569090407086113}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2268601051682108805, guid: 51fb8322769995d4f8b0239751da5e5c,
         type: 3}
       propertyPath: thisObj
       value: 
       objectReference: {fileID: 1734761447409132779}
+    - target: {fileID: 7645266452893059185, guid: 51fb8322769995d4f8b0239751da5e5c,
+        type: 3}
+      propertyPath: connector
+      value: 
+      objectReference: {fileID: 7973569090407086113}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51fb8322769995d4f8b0239751da5e5c, type: 3}
 --- !u!1 &1734761447409132779 stripped

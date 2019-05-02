@@ -21,7 +21,12 @@ public class TrainManager : MonoBehaviour
     public void Init(SceneData sceneData)
     {
         ACarriage[] carriages = GameObject.FindObjectsOfType<ACarriage>();
-        foreach(var car in carriages)
+        foreach (var car in carriages)
+        {
+            if (car.GetComponent<Loco>())
+                sceneData.TrainCars.Add(car.gameObject);
+        }
+        foreach (var car in carriages)
         {
             sceneData.TrainCars.Add(car.gameObject);
         }

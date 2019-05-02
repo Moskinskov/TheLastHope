@@ -34,13 +34,21 @@ namespace TheLastHope.Management.AbstractLayer
         /// </summary>
         protected override void Checks()
         {
-            if (!IsActive|| WeaponState != WeaponState.Firing)
+            if (!IsActive || WeaponState != WeaponState.Firing)
             {
-                LR.enabled = false;
-                isPlaying = false;
+                EffectsOff();
             }
 
             base.Checks();
+        }
+        /// <summary>
+        /// AEnergeticWeapon's 'EffectsOff'
+        /// </summary>
+        public override void EffectsOff()
+        {
+            base.EffectsOff();
+            LR.enabled = false;
+            isPlaying = false;
         }
 
         #endregion

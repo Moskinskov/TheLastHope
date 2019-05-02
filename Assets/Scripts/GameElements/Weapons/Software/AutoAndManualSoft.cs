@@ -34,7 +34,7 @@ namespace TheLastHope.Weapons.Software
             {
                 Vector3 diff = go.transform.position - gameObject.transform.position;
                 float curDistance = diff.sqrMagnitude;
-                
+
                 if (curDistance < distance)
                 {
                     closest = go.transform;
@@ -47,6 +47,7 @@ namespace TheLastHope.Weapons.Software
         public override void Init()
         {
             readyToFire = false;
+            enemyTag = "Enemy";
         }
     }
 }

@@ -15228,13 +15228,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5242724764548850019, guid: 6623e396cf50a6845a1ba82c829cbe77,
+    - target: {fileID: 4538944314200618165, guid: 6623e396cf50a6845a1ba82c829cbe77,
         type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 3182637955532685565}
-    m_RemovedComponents:
-    - {fileID: 5242724762793484856, guid: 6623e396cf50a6845a1ba82c829cbe77, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242724762789744249, guid: 6623e396cf50a6845a1ba82c829cbe77,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.636
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6623e396cf50a6845a1ba82c829cbe77, type: 3}
 --- !u!4 &6491789264380435495 stripped
 Transform:
@@ -15252,18 +15256,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a770df370118e5498bf1dbec6165f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3182637955532685565 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4538944314200618165, guid: 6623e396cf50a6845a1ba82c829cbe77,
-    type: 3}
-  m_PrefabInstance: {fileID: 1357432409435894856}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10edf2cbe2b8b20418c7a8ce8d7b9fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5214654176463585610

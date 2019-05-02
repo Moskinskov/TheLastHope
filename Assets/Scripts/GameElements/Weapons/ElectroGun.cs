@@ -45,12 +45,11 @@ namespace TheLastHope.Weapons
         protected override void WeaponMethod(RaycastHit hit)
         {
             isPlaying = true;
-            damageEffect.transform.SetPositionAndRotation(hit.transform.position, Quaternion.Euler(hit.normal));
+            damageEffect.transform.SetPositionAndRotation(hit.transform.position, Quaternion.Euler(hit.point));
 
             FindTheNearestEnemies(hit.transform.GetComponent<AEnemy>());
             HitTheEnemies();
             SetLRToTarget(hit);
-            Effects();
         }
         /// <summary>
         /// ElectroGun 'Checks'

@@ -121,6 +121,7 @@ namespace TheLastHope.Weapons
         {
             effect?.Play();
             IsActive = false;
+            Weapon.EffectsOff();
             Weapon.IsActive = false;
 
             gameObject.tag = "Untagged";

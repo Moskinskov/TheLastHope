@@ -19,10 +19,9 @@ namespace TheLastHope.Management.AbstractLayer
         {
             currentAmmoInClip -= ammoPerShot;
 
-            damageEffect.transform.SetPositionAndRotation(hit.transform.position, Quaternion.Euler(hit.normal));
+            damageEffect.transform.SetPositionAndRotation(hit.transform.position, Quaternion.Euler(hit.point));
             hit.transform.GetComponent<AEnemy>().SetDamage(damage);
             delay.Start(rateOfFire);
-            Effects();
         }
     }
 }

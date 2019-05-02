@@ -16,7 +16,7 @@ namespace TheLastHope.Weapons.Software
         #region Parametrs
         [SerializeField] internal float visionRadius = 10;
         [SerializeField] internal bool canBeManual = false;
-        internal string enemyTag = "Enemy";
+        internal string enemyTag;
         internal Transform target;
         private Vector3 previousTargetPosition;
         internal bool readyToFire;

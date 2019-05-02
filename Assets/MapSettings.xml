@@ -1,7 +1,7 @@
 <MapSetting>
   <Lvl>
-    <prevLvlName value="WestPalmBeach_3" />
-    <nextLvlName value="Miami_1" />
+    <prevLvlName value="Miami_1" />
+    <nextLvlName value="WestPalmBeach_3" />
   </Lvl>
   <Map>
     <City>
@@ -16,7 +16,7 @@
       <IsOpen value="False" />
       <IsKey value="False" />
       <IsStart value="False" />
-      <IsBlock value="False" />
+      <IsBlock value="True" />
     </City>
     <City>
       <Name value="FtMeyers_2" />
@@ -30,7 +30,7 @@
       <IsOpen value="False" />
       <IsKey value="False" />
       <IsStart value="False" />
-      <IsBlock value="True" />
+      <IsBlock value="False" />
     </City>
     <City>
       <Name value="Tampa_4" />

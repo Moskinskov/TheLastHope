@@ -85,6 +85,7 @@ namespace TheLastHope.Weapons.Software
         {
             //canBeManual = true;
             readyToFire = false;
+            enemyTag = "Player";
         }
 
         #endregion
